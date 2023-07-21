@@ -12,7 +12,12 @@ export interface IButtonProps
   nextLink?: string;
 }
 
-export default function Button({ children, variant, nextLink }: IButtonProps) {
+export default function Button({
+  children,
+  variant,
+  nextLink,
+  ...props
+}: IButtonProps) {
   if (nextLink) {
     return (
       <Link
@@ -25,7 +30,10 @@ export default function Button({ children, variant, nextLink }: IButtonProps) {
   }
 
   return (
-    <button className={variant === "subtle" ? styles.subtle : styles.root}>
+    <button
+      className={variant === "subtle" ? styles.subtle : styles.root}
+      {...props}
+    >
       {children}
     </button>
   );

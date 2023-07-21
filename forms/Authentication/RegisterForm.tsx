@@ -20,7 +20,7 @@ export interface IRegisterFormProps {}
 export function RegisterForm(props: IRegisterFormProps) {
   const signIn = useAuthenticationStore((state) => state.signIn);
   const reset = useAuthenticationStore((state) => state.reset);
-  const show = useSnackbarStore((state) => state.show);
+  const showSnackbar = useSnackbarStore((state) => state.show);
 
   const onSubmit = (values: IRegisterFormValues) => {
     const requestOptions = {
@@ -39,7 +39,7 @@ export function RegisterForm(props: IRegisterFormProps) {
       .then((data) => {
         if (data?.errors) {
           reset();
-          show({
+          showSnackbar({
             message: data?.errors?.full_messages?.join(" "),
             type: "error",
           });
@@ -65,9 +65,14 @@ export function RegisterForm(props: IRegisterFormProps) {
 
   return (
     <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
-      <Input label="Email address" {...form.getInputProps("email")} />
+      <Input
+        label="Email address"
+        {...form.getInputProps("email")}
+        placeholder="Email"
+      />
       <Input
         label="Password"
+        placeholder="Password"
         type="password"
         {...form.getInputProps("password")}
       />

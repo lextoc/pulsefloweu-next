@@ -19,8 +19,8 @@ export interface ILoginFormProps {}
 
 export function LoginForm(props: ILoginFormProps) {
   const signIn = useAuthenticationStore((state) => state.signIn);
-  const reset = useAuthenticationStore((state) => state.reset);
-  const show = useSnackbarStore((state) => state.show);
+  const resetAuth = useAuthenticationStore((state) => state.reset);
+  const showSnackbar = useSnackbarStore((state) => state.show);
 
   const onSubmit = (values: ILoginFormValues) => {
     const requestOptions = {
@@ -38,15 +38,12 @@ export function LoginForm(props: ILoginFormProps) {
       })
       .then((data) => {
         if (data?.errors) {
-          reset();
-          show({
+          resetAuth();
+          showSnackbar({
             message: data?.errors?.full_messages?.join(" "),
             type: "error",
           });
         } else {
-          show({
-            message: `${accessToken}`,
-          });
           signIn({
             accessToken,
             ...data.data,
@@ -68,10 +65,15 @@ export function LoginForm(props: ILoginFormProps) {
 
   return (
     <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
-      <Input label="Email address" {...form.getInputProps("email")} />
+      <Input
+        label="Email address"
+        placeholder="Email"
+        {...form.getInputProps("email")}
+      />
       <Input
         label="Password"
         type="password"
+        placeholder="Password"
         {...form.getInputProps("password")}
       />
       <div className={styles.submit}>
