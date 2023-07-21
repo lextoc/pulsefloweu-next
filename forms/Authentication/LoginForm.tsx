@@ -44,6 +44,9 @@ export function LoginForm(props: ILoginFormProps) {
             type: "error",
           });
         } else {
+          show({
+            message: `${accessToken}`,
+          });
           signIn({
             accessToken,
             ...data.data,
