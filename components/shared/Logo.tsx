@@ -1,10 +1,12 @@
+import Link from "next/link";
+
 import styles from "./Logo.module.css";
 
 export interface ILogoProps {}
 
 export default function Logo(props: ILogoProps) {
   return (
-    <div className={styles.root}>
+    <Link href="/" className={styles.root}>
       <svg
         className={styles.logo}
         xmlns="http://www.w3.org/2000/svg"
@@ -34,6 +36,6 @@ export default function Logo(props: ILogoProps) {
         <polygon fill="#fff" points="70,60 70,140 140,100"></polygon>
       </svg>
       <div className={styles.tracky}>Tracky</div>
-    </div>
+    </Link>
   );
 }

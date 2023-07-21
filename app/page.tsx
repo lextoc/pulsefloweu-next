@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import Logo from "@/components/shared/Logo";
 import Main from "@/components/shared/Main";
 import Wrapper from "@/components/shared/Wrapper";
@@ -19,6 +21,8 @@ export default function Home() {
           </div>
           <div className={styles.links}>
             <a href="mailto:alexander.claes10@gmail.com">Contact support</a>
+            &nbsp;•&nbsp;
+            <Link href="/forgot-password">Forgot password</Link>
           </div>
         </div>
       </Wrapper>

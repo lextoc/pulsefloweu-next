@@ -28,7 +28,9 @@ export default function Register(props: IRegisterProps) {
           <div className={styles.links}>
             <a href="mailto:alexander.claes10@gmail.com">Contact support</a>
             &nbsp;•&nbsp;
-            <Link href="/forgot-password">Forgot password</Link>
+            <Link href="/">Sign in</Link>
+            &nbsp;•&nbsp;
+            <Link href="/register">Register</Link>
           </div>
         </div>
       </Wrapper>
