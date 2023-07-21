@@ -1,0 +1,42 @@
+.root {
+  position: absolute;
+  bottom: var(--box-margin);
+  left: var(--box-margin);
+  right: var(--box-margin);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.25rem solid rgb(var(--light-background));
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  user-select: none;
+  background: rgb(var(--white));
+  padding: var(--box-padding);
+  border-radius: var(--border-radius);
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease;
+
+  @media (min-width: 600px) {
+    left: initial;
+  }
+}
+
+.root svg {
+  color: rgb(var(--black));
+}
+
+.root span {
+  display: block;
+  margin-right: 1em;
+}
+
+.error span {
+  color: red;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(200%) scale(0.8);
+  pointer-events: none;
+}

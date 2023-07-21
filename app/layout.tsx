@@ -1,10 +1,15 @@
+import "./reset.css";
+import "./variables.css";
+import "./elements.css";
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Palanquin } from "next/font/google";
+import { Assistant } from "next/font/google";
 
-const palanquin = Palanquin({
-  weight: ["300", "400", "500", "700"],
+import { Snackbar } from "@/components/shared/Snackbar";
+
+const font = Assistant({
+  weight: ["300", "400", "500", "700", "800"],
   subsets: ["latin"],
 });
 
@@ -20,7 +25,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={palanquin.className}>{children}</body>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
+      <body className={font.className}>
+        {children}
+        <Snackbar />
+      </body>
     </html>
   );
 }

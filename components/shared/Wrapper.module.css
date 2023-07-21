@@ -1,0 +1,4 @@
+.root {
+  background: rgb(var(--white));
+  color: rgba(var(--black), 0.8);
+}

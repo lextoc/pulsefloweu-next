@@ -1,0 +1,46 @@
+.loginWrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-right: var(--box-margin);
+  padding-left: var(--box-margin);
+  background: linear-gradient(
+    75deg,
+    rgb(var(--white)),
+    rgb(var(--light-background))
+  );
+  border-top: 1rem solid rgb(var(--light-background));
+  border-bottom: 1rem solid rgb(var(--light-background));
+  padding-top: 10vh;
+
+  @media (min-width: 600px) {
+    padding-top: 20vh;
+  }
+}
+
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.login {
+  background: rgb(var(--white));
+  border-radius: var(--border-radius);
+  border-bottom: 5px solid rgb(var(--main));
+  padding: var(--box-padding);
+  width: var(--box-width);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.links {
+  margin: 1rem;
+}
+
+.links a {
+  color: rgba(var(--black), 0.5);
+  font-size: 0.9rem;
+}

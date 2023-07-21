@@ -1,0 +1,38 @@
+.root {
+  display: flex;
+  align-items: center;
+  margin: 0 0 2.5em;
+}
+
+.logo {
+  display: block;
+  width: 80px;
+  height: auto;
+  overflow: hidden;
+  border-radius: 1rem;
+  transform: rotate3d(0, 0, 1, -5deg);
+  box-shadow: 0.5rem 0.5rem 0 rgb(var(--light-background));
+}
+
+.logoSquareOne {
+  fill: rgb(250, 217, 52);
+}
+
+.logoSquareTwo {
+  fill: rgb(255, 224, 67);
+}
+
+.logoSquareThree {
+  fill: rgb(255, 224, 67);
+}
+
+.logoSquareFour {
+  fill: rgb(255, 215, 15);
+}
+
+.tracky {
+  margin-left: 0.75em;
+  font-size: 3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
