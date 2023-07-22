@@ -22,14 +22,16 @@
   cursor: pointer;
   user-select: none;
   background: rgb(var(--white));
-  padding: var(--box-padding);
+  padding: 1.5rem var(--box-padding);
   border-radius: var(--border-radius);
+  line-height: 1.6em;
   transition:
     opacity 150ms ease,
     transform 150ms ease;
 
   @media (min-width: 600px) {
-    left: initial;
+    margin: 0 auto;
+    max-width: 20rem;
   }
 }
 

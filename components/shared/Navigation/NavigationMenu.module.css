@@ -1,3 +1,8 @@
+.wrapper {
+  height: var(--menu-height);
+  background: rgb(var(--white));
+}
+
 .root {
   position: sticky;
   top: 0;

@@ -18,8 +18,6 @@
   overflow: hidden;
 
   @media (min-width: 600px) {
-    border-right: 1rem solid rgb(var(--secondary));
-    border-left: 1rem solid rgb(var(--secondary));
     padding-top: 15vh;
   }
 }
@@ -93,7 +91,7 @@
 }
 
 .links {
-  margin: 0.8rem;
+  margin: 0.8rem 0.8rem 4rem;
 }
 
 .links a {

@@ -22,10 +22,12 @@ export default function NavigationMenu({ user }: INavigationMenuProps) {
   if (!user) return null;
 
   return (
-    <div className={styles.root}>
-      <div className={styles.account}>
-        Signed in as {user?.email}
-        <button onClick={onSignOut}>Sign out</button>
+    <div className={styles.wrapper}>
+      <div className={styles.root}>
+        <div className={styles.account}>
+          Signed in as {user?.email}
+          <button onClick={onSignOut}>Sign out</button>
+        </div>
       </div>
     </div>
   );
