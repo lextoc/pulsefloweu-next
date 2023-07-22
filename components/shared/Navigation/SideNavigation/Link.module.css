@@ -1,7 +1,7 @@
 .root {
   display: block;
   text-decoration: none;
-  color: rgba(var(--white), 0.8);
+  color: rgba(var(--white), 0.9);
   border: 0 solid transparent;
   transition: border 150ms ease;
   overflow: hidden;
@@ -14,6 +14,7 @@
   margin-top: 0.5em;
   font-size: 0.9em;
   line-height: 1.25em;
+  color: rgba(var(--white), 0.5);
 }
 
 .inner {

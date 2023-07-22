@@ -4,7 +4,7 @@ import "./elements.css";
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Assistant } from "next/font/google";
+import { Lato } from "next/font/google";
 import Head from "next/head";
 import { cookies } from "next/headers";
 
@@ -15,8 +15,8 @@ import NavigationMenu from "@/components/shared/Navigation/NavigationMenu";
 import SideNavigation from "@/components/shared/Navigation/SideNavigation";
 import { Snackbar } from "@/components/shared/Snackbar";
 
-const font = Assistant({
-  weight: ["300", "400", "500", "700", "800"],
+const font = Lato({
+  weight: ["300", "400", "700", "900"],
   subsets: ["latin"],
 });
 

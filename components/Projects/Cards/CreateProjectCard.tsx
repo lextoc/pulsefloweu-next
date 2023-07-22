@@ -59,8 +59,9 @@ export function CreateProjectCard(props: ICreateProjectCardProps) {
     <div className={styles.root}>
       <h2>Create project</h2>
       <p>
-        Enter a name and click on create to make a new project.{" "}
-        <i>(e.g. a new client)</i>
+        Enter a name and click on create to make a new project{" "}
+        <i>(e.g. a new client)</i>. You'll be able to categorize your projects'
+        timesheets in folders.
       </p>
       <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
         <Input

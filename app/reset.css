@@ -206,4 +206,5 @@ audio,
 video,
 input {
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
 }

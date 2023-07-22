@@ -5,9 +5,9 @@
   padding: 1rem 1.5rem;
   background-color: rgb(var(--secondary));
   color: rgb(var(--white));
-  letter-spacing: 0.075em;
+  letter-spacing: var(--letter-spacing-uppercase);
+  font-weight: 700;
   font-size: 0.8rem;
-  font-weight: 500;
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
