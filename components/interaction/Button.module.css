@@ -3,7 +3,7 @@
   border: 0;
   margin: 2rem 0 0;
   padding: 1rem 1.5rem;
-  background-color: rgb(var(--black));
+  background-color: rgb(var(--secondary));
   color: rgb(var(--white));
   letter-spacing: 0.075em;
   font-size: 0.8rem;
@@ -17,15 +17,15 @@
 
 .root:hover,
 .root:focus {
-  background-color: rgba(var(--black), 0.7);
+  background-color: rgba(var(--secondary), 0.8);
 }
 
 .subtle {
   background-color: transparent;
-  color: rgb(var(--black));
+  color: rgb(var(--secondary));
 }
 
 .subtle:hover,
 .subtle:focus {
-  background-color: rgba(var(--black), 0.1);
+  background-color: rgba(var(--secondary), 0.1);
 }

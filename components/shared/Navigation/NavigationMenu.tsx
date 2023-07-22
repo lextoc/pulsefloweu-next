@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 
 import { clearCookies } from "@/api/cookies";
 import { IUser } from "@/api/types";
-import Logo from "@/components/shared/Logo";
 
 import styles from "./NavigationMenu.module.css";
 
@@ -20,12 +19,7 @@ export default function NavigationMenu({ user }: INavigationMenuProps) {
     push("/");
   };
 
-  if (!user) {
-    clearCookies();
-    return null;
-  }
-
-  if (!user?.id) return null;
+  if (!user) return null;
 
   return (
     <div className={styles.root}>

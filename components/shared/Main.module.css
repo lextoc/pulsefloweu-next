@@ -1,5 +1,14 @@
 .root {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: rgb(var(--white));
+  min-height: 100vh;
+}
+
+.withMenu {
+  min-height: calc(100vh - var(--menu-height));
+}
+
+.withSidebar {
+  margin-left: var(--sidebar-width);
 }

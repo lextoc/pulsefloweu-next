@@ -4,12 +4,19 @@ import { NextResponse } from "next/server";
 import validateToken from "@/api/auth/validateToken";
 
 const publicRoutes = ["/register", "/", "/forgot-password"];
+const excludedPaths = ["/favicon.ico", "/_next/"];
+
+function startsWithAnyOf(paths: string[], pathname: string) {
+  return paths.some((path) => pathname.startsWith(path));
+}
 
 export async function middleware(request: NextRequest) {
+  const { pathname } = new URL(request.url);
+
+  if (startsWithAnyOf(excludedPaths, pathname)) return;
+
   const response = await validateToken(request.cookies);
   const isSignedIn = response.success;
-
-  const { pathname } = new URL(request.url);
 
   if (isSignedIn && publicRoutes.includes(pathname))
     return NextResponse.redirect(new URL("/app/dashboard", request.url));

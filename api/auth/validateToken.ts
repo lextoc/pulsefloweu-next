@@ -2,6 +2,7 @@ import { RequestCookies } from "next/dist/compiled/@edge-runtime/cookies";
 import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 
 import { getCookies } from "@/api/cookies";
+import endpoints from "@/api/endpoints";
 import { IUser } from "@/api/types";
 
 export type TSuccessResponse = {
@@ -23,7 +24,7 @@ export default async function validateToken(
     return { success: false, errors: ["No valid cookies"] };
 
   const { accessToken, client, uid } = _cookies;
-  const response = await fetch("http://localhost:3000/auth/validate_token", {
+  const response = await fetch(endpoints.authValidateToken, {
     headers: {
       "access-token": accessToken,
       client,

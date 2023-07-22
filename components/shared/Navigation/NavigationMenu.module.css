@@ -1,22 +1,24 @@
 .root {
   position: sticky;
   top: 0;
+  left: 0;
+  padding-left: var(--sidebar-width);
   background: linear-gradient(
     75deg,
-    rgb(var(--light-background)),
-    rgb(229, 229, 229)
+    rgba(var(--light-background), 0.7),
+    rgba(229, 229, 229, 0.7)
   );
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: sticky;
-  height: 2.5rem;
+  height: var(--menu-height);
+  backdrop-filter: blur(1rem);
+  color: rgba(var(--secondary), 0.8);
+  font-weight: 500;
 }
 
 .account {
   margin-left: auto;
-  background: rgb(var(--black));
-  color: rgb(var(--white));
   height: 100%;
   padding: 0 1rem;
   display: flex;

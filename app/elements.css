@@ -20,6 +20,10 @@ h1 {
 }
 
 p {
-  color: rgba(var(--black), 0.6);
+  color: rgba(var(--secondary), 0.8);
   font-size: 1rem;
+}
+
+strong {
+  font-weight: 700;
 }

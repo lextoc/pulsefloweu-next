@@ -5,11 +5,17 @@ import styles from "./Logo.module.css";
 export interface ILogoProps {
   noText?: boolean;
   small?: boolean;
+  white?: boolean;
+  noLink?: boolean;
 }
 
-export default function Logo({ noText, small }: ILogoProps) {
+function actualLogo({
+  noText,
+  small,
+  white,
+}: Omit<ILogoProps, "noLink">): React.ReactNode {
   return (
-    <Link href="/" className={styles.root}>
+    <>
       <svg
         className={`${styles.logo} ${small ? styles.logoSmall : ""}`}
         xmlns="http://www.w3.org/2000/svg"
@@ -39,10 +45,29 @@ export default function Logo({ noText, small }: ILogoProps) {
         <polygon fill="#fff" points="70,60 70,140 140,100"></polygon>
       </svg>
       {!noText && (
-        <div className={`${styles.tracky} ${small ? styles.trackySmall : ""}`}>
+        <div
+          className={`${styles.tracky} ${small ? styles.trackySmall : ""} ${
+            white ? styles.trackyWhite : ""
+          }`}
+        >
           Tracky
         </div>
       )}
+    </>
+  );
+}
+
+export default function Logo({ noLink, small, ...props }: ILogoProps) {
+  return noLink ? (
+    <div className={`${styles.root} ${small ? styles.rootSmall : ""}`}>
+      {actualLogo({ small, ...props })}
+    </div>
+  ) : (
+    <Link
+      href="/"
+      className={`${styles.root} ${small ? styles.rootSmall : ""}`}
+    >
+      {actualLogo({ small, ...props })}
     </Link>
   );
 }

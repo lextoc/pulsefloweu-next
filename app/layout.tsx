@@ -5,10 +5,14 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import { Assistant } from "next/font/google";
+import Head from "next/head";
 import { cookies } from "next/headers";
 
 import validateToken from "@/api/auth/validateToken";
-import NavigationMenu from "@/components/shared/NavigationMenu";
+import { IUser } from "@/api/types";
+import Main from "@/components/shared/Main";
+import NavigationMenu from "@/components/shared/Navigation/NavigationMenu";
+import SideNavigation from "@/components/shared/Navigation/SideNavigation";
 import { Snackbar } from "@/components/shared/Snackbar";
 
 const font = Assistant({
@@ -27,12 +31,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const response = await validateToken(cookies());
-  let user = null;
+  let user: IUser | null = null;
   if (response.success) user = response.data;
 
   return (
     <html lang="en">
-      <head>
+      <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
           rel="apple-touch-icon"
@@ -55,10 +59,11 @@ export default async function RootLayout({
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
-      </head>
+      </Head>
       <body className={font.className}>
         <NavigationMenu user={user} />
-        {children}
+        <SideNavigation user={user} />
+        <Main user={user}>{children}</Main>
         <Snackbar />
       </body>
     </html>

@@ -7,5 +7,5 @@
 }
 
 .root::placeholder {
-  color: rgba(var(--black), 0.15);
+  color: rgba(var(--secondary), 0.25);
 }

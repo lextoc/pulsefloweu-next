@@ -3,17 +3,21 @@
   align-items: center;
   user-select: none;
   text-decoration: none;
-  color: var(--black);
+  font-size: 3rem;
+}
+
+.rootSmall {
+  font-size: 1.5rem;
 }
 
 .logo {
   display: block;
-  width: 80px;
+  width: 1.6em;
   height: auto;
   overflow: hidden;
-  border-radius: 1rem;
+  border-radius: 0.25em;
   transform: rotate3d(0, 0, 1, -5deg);
-  box-shadow: 0.5rem 0.5rem 0 rgb(var(--light-background));
+  box-shadow: 0.2em 0.2em 0 rgb(var(--light-background));
 }
 
 .logoSquareOne {
@@ -33,16 +37,25 @@
 }
 
 .logoSmall {
-  width: 40px;
+  font-size: 1em;
+  width: 1em;
+  box-shadow: none;
+  transform: none;
 }
 
 .tracky {
   margin-left: 0.75em;
-  font-size: 3rem;
   font-weight: 800;
+  letter-spacing: 0.075em;
   text-transform: uppercase;
+  color: rgb(var(--secondary));
+}
+
+.trackyWhite {
+  color: rgb(var(--white));
 }
 
 .trackySmall {
-  font-size: 1.5rem;
+  margin-left: 0.5em;
+  font-size: 0.9em;
 }

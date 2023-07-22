@@ -4,6 +4,7 @@ import { useForm } from "@mantine/form";
 import { useRouter } from "next/navigation";
 
 import { clearCookies, setCookies } from "@/api/cookies";
+import endpoints from "@/api/endpoints";
 import Form from "@/components/forms/Form";
 import Input from "@/components/forms/Input";
 import Button from "@/components/interaction/Button";
@@ -32,7 +33,7 @@ export function RegisterForm(props: IRegisterFormProps) {
     let accessToken: string | null = null;
     let client: string | null = null;
 
-    fetch("http://localhost:3000/auth", requestOptions)
+    fetch(endpoints.auth, requestOptions)
       .then((response) => {
         accessToken = response.headers.get("access-token");
         client = response.headers.get("client");
