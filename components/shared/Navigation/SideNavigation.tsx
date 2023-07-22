@@ -36,7 +36,7 @@ export default function SideNavigation({ user }: ISideNavigationProps) {
       <SideNavigationLink
         href="/app/invoices"
         title="Invoice generator"
-        sub="Creat an invoice for a specific date range"
+        sub="Create an invoice for a specific date range"
       />
     </div>
   );
