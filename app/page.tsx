@@ -15,7 +15,7 @@ export default function Home() {
         <h1>Hey there!</h1>
         <p>
           Please sign in to continue. Or click register if you have no account
-          yet.
+          yet. <strong>It's free!</strong>
         </p>
         <LoginForm />
       </div>

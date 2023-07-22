@@ -19,6 +19,13 @@ h1 {
   color: rgb(var(--secondary));
 }
 
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  color: rgb(var(--secondary));
+}
+
 p {
   color: rgba(var(--secondary), 0.8);
   font-size: 1rem;
@@ -27,4 +34,8 @@ p {
 
 strong {
   font-weight: 700;
+}
+
+i {
+  font-style: italic;
 }

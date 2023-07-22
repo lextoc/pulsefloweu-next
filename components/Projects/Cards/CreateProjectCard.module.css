@@ -1,0 +1,11 @@
+.root {
+  background: rgb(var(--light-background));
+  max-width: 20rem;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+}
+
+.submit {
+  display: flex;
+  justify-content: flex-end;
+}

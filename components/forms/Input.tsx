@@ -8,13 +8,17 @@ export interface IInputProps
     HTMLInputElement
   > {
   label?: string;
+  inverted?: boolean;
 }
 
-export default function Input({ label, ...props }: IInputProps) {
+export default function Input({ label, inverted, ...props }: IInputProps) {
   return (
     <>
       {label && <Label>{label}</Label>}
-      <input className={styles.root} {...props} />
+      <input
+        className={`${styles.root} ${inverted ? styles.inverted : ""}`}
+        {...props}
+      />
     </>
   );
 }

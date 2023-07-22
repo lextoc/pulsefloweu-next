@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+.inverted {
+  background: white;
+}
+
 .root::placeholder {
   color: rgba(var(--secondary), 0.25);
 }

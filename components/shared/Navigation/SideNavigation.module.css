@@ -4,6 +4,7 @@
   left: 0;
   width: var(--sidebar-width);
   height: 100vh;
+  overflow: hidden;
   background: rgb(var(--secondary));
 }
 
