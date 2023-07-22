@@ -5,3 +5,7 @@
   padding: 1em;
   width: 100%;
 }
+
+.root::placeholder {
+  color: rgba(var(--black), 0.15);
+}

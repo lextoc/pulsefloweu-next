@@ -2,30 +2,37 @@
 
 import { useRouter } from "next/navigation";
 
-import Button from "@/components/interaction/Button";
-import { useAuthenticationStore } from "@/stores/authentication";
+import { clearCookies } from "@/api/cookies";
+import { IUser } from "@/api/types";
+import Logo from "@/components/shared/Logo";
 
 import styles from "./NavigationMenu.module.css";
 
-export interface INavigationMenuProps {}
+export interface INavigationMenuProps {
+  user: IUser | null | undefined;
+}
 
-export default function NavigationMenu(props: INavigationMenuProps) {
-  const accessToken = useAuthenticationStore((state) => state.accessToken);
-  const email = useAuthenticationStore((state) => state.email);
-  const signOut = useAuthenticationStore((state) => state.reset);
+export default function NavigationMenu({ user }: INavigationMenuProps) {
   const { push } = useRouter();
 
   const onSignOut = () => {
-    signOut();
+    clearCookies();
     push("/");
   };
 
-  if (!accessToken) return null;
+  if (!user) {
+    clearCookies();
+    return null;
+  }
+
+  if (!user?.id) return null;
 
   return (
     <div className={styles.root}>
-      <button onClick={onSignOut}>Sign out</button>
-      <div className={styles.account}>Signed in as {email}</div>
+      <div className={styles.account}>
+        Signed in as {user?.email}
+        <button onClick={onSignOut}>Sign out</button>
+      </div>
     </div>
   );
 }

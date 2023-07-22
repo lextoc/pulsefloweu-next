@@ -1,11 +1,12 @@
 "use client";
 
 import { useForm } from "@mantine/form";
+import { useRouter } from "next/navigation";
 
+import { clearCookies, setCookies } from "@/api/cookies";
 import Form from "@/components/forms/Form";
 import Input from "@/components/forms/Input";
 import Button from "@/components/interaction/Button";
-import { useAuthenticationStore } from "@/stores/authentication";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./LoginForm.module.css";
@@ -18,9 +19,8 @@ export interface ILoginFormValues {
 export interface ILoginFormProps {}
 
 export function LoginForm(props: ILoginFormProps) {
-  const signIn = useAuthenticationStore((state) => state.signIn);
-  const resetAuth = useAuthenticationStore((state) => state.reset);
   const showSnackbar = useSnackbarStore((state) => state.show);
+  const { push } = useRouter();
 
   const onSubmit = (values: ILoginFormValues) => {
     const requestOptions = {
@@ -30,24 +30,29 @@ export function LoginForm(props: ILoginFormProps) {
     };
 
     let accessToken: string | null = null;
+    let client: string | null = null;
 
     fetch("http://localhost:3000/auth/sign_in", requestOptions)
       .then((response) => {
         accessToken = response.headers.get("access-token");
+        client = response.headers.get("client");
         return response.json();
       })
       .then((data) => {
         if (data?.errors) {
-          resetAuth();
+          clearCookies();
           showSnackbar({
-            message: data?.errors?.full_messages?.join(" "),
+            message:
+              data?.errors?.full_messages?.join(" ") || data?.errors?.join(" "),
             type: "error",
           });
         } else {
-          signIn({
-            accessToken,
-            ...data.data,
+          setCookies({
+            accessToken: accessToken!,
+            client: client!,
+            uid: data.data.uid,
           });
+          push("/app/dashboard");
         }
       });
   };

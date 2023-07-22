@@ -2,13 +2,16 @@ import Link from "next/link";
 
 import styles from "./Logo.module.css";
 
-export interface ILogoProps {}
+export interface ILogoProps {
+  noText?: boolean;
+  small?: boolean;
+}
 
-export default function Logo(props: ILogoProps) {
+export default function Logo({ noText, small }: ILogoProps) {
   return (
     <Link href="/" className={styles.root}>
       <svg
-        className={styles.logo}
+        className={`${styles.logo} ${small ? styles.logoSmall : ""}`}
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         viewBox="0 0 200 200"
@@ -35,7 +38,11 @@ export default function Logo(props: ILogoProps) {
         />
         <polygon fill="#fff" points="70,60 70,140 140,100"></polygon>
       </svg>
-      <div className={styles.tracky}>Tracky</div>
+      {!noText && (
+        <div className={`${styles.tracky} ${small ? styles.trackySmall : ""}`}>
+          Tracky
+        </div>
+      )}
     </Link>
   );
 }

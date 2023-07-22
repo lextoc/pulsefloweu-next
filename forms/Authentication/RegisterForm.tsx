@@ -1,11 +1,12 @@
 "use client";
 
 import { useForm } from "@mantine/form";
+import { useRouter } from "next/navigation";
 
+import { clearCookies, setCookies } from "@/api/cookies";
 import Form from "@/components/forms/Form";
 import Input from "@/components/forms/Input";
 import Button from "@/components/interaction/Button";
-import { useAuthenticationStore } from "@/stores/authentication";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./RegisterForm.module.css";
@@ -18,9 +19,8 @@ export interface IRegisterFormValues {
 export interface IRegisterFormProps {}
 
 export function RegisterForm(props: IRegisterFormProps) {
-  const signIn = useAuthenticationStore((state) => state.signIn);
-  const reset = useAuthenticationStore((state) => state.reset);
   const showSnackbar = useSnackbarStore((state) => state.show);
+  const { push } = useRouter();
 
   const onSubmit = (values: IRegisterFormValues) => {
     const requestOptions = {
@@ -30,24 +30,28 @@ export function RegisterForm(props: IRegisterFormProps) {
     };
 
     let accessToken: string | null = null;
+    let client: string | null = null;
 
     fetch("http://localhost:3000/auth", requestOptions)
       .then((response) => {
         accessToken = response.headers.get("access-token");
+        client = response.headers.get("client");
         return response.json();
       })
       .then((data) => {
         if (data?.errors) {
-          reset();
+          clearCookies();
           showSnackbar({
             message: data?.errors?.full_messages?.join(" "),
             type: "error",
           });
         } else {
-          signIn({
-            accessToken,
-            ...data.data,
+          setCookies({
+            accessToken: accessToken!,
+            client: client!,
+            uid: data.data.uid,
           });
+          push("/app/dashboard");
         }
       });
   };

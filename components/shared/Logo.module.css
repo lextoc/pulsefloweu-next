@@ -1,7 +1,6 @@
 .root {
   display: flex;
   align-items: center;
-  margin: 0 0 2.5em;
   user-select: none;
   text-decoration: none;
   color: var(--black);
@@ -33,9 +32,17 @@
   fill: rgb(var(--main));
 }
 
+.logoSmall {
+  width: 40px;
+}
+
 .tracky {
   margin-left: 0.75em;
   font-size: 3rem;
   font-weight: 800;
   text-transform: uppercase;
+}
+
+.trackySmall {
+  font-size: 1.5rem;
 }

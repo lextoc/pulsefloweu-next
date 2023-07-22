@@ -5,7 +5,10 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import { Assistant } from "next/font/google";
+import { cookies } from "next/headers";
 
+import validateToken from "@/api/auth/validateToken";
+import NavigationMenu from "@/components/shared/NavigationMenu";
 import { Snackbar } from "@/components/shared/Snackbar";
 
 const font = Assistant({
@@ -18,11 +21,15 @@ export const metadata: Metadata = {
   description: "Track your timesheets with ease",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const response = await validateToken(cookies());
+  let user = null;
+  if (response.success) user = response.data;
+
   return (
     <html lang="en">
       <head>
@@ -50,6 +57,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" />
       </head>
       <body className={font.className}>
+        <NavigationMenu user={user} />
         {children}
         <Snackbar />
       </body>

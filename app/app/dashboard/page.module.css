@@ -1,0 +1,4 @@
+.root {
+  background: rgb(var(--white));
+  min-height: 100vh;
+}

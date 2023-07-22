@@ -1,3 +1,7 @@
+body {
+  background: rgb(var(--light-background));
+}
+
 h1,
 h2,
 h3,
