@@ -52,7 +52,7 @@ export function RegisterForm(props: IRegisterFormProps) {
             client: client!,
             uid: data.data.uid,
           });
-          push("/app/dashboard");
+          push("/app/timers");
         }
       });
   };

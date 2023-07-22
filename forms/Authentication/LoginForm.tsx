@@ -53,7 +53,7 @@ export function LoginForm(props: ILoginFormProps) {
             client: client!,
             uid: data.data.uid,
           });
-          push("/app/dashboard");
+          push("/app/timers");
         }
       });
   };

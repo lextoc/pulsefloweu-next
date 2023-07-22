@@ -4,6 +4,7 @@ import { IUser } from "@/api/types";
 import Logo from "@/components/shared/Logo";
 
 import styles from "./SideNavigation.module.css";
+import SideNavigationLink from "./SideNavigation/Link";
 
 export interface ISideNavigationProps {
   user: IUser | null | undefined;
@@ -17,24 +18,26 @@ export default function SideNavigation({ user }: ISideNavigationProps) {
       <Link href="/" className={styles.logo}>
         <Logo small white noLink />
       </Link>
-      <a className={styles.link} href="#">
-        <div className={styles.linkInner}>
-          <strong>Get started</strong>
-          <div>View your active timers</div>
-        </div>
-      </a>
-      <a className={styles.link} href="#">
-        <div className={styles.linkInner}>
-          <strong>Dashboard</strong>
-          <div>View project directories</div>
-        </div>
-      </a>
-      <a className={styles.link} href="#">
-        <div className={styles.linkInner}>
-          <strong>Calendar</strong>
-          <div>View your timeline</div>
-        </div>
-      </a>
+      <SideNavigationLink
+        href="/app/timers"
+        title="Get started"
+        sub="View your active timers"
+      />
+      <SideNavigationLink
+        href="/app/dashboard"
+        title="Dashboard"
+        sub="Manage project directories"
+      />
+      <SideNavigationLink
+        href="/app/timeline"
+        title="Calendar"
+        sub="Use a timeline for inserting timesheets"
+      />
+      <SideNavigationLink
+        href="/app/invoices"
+        title="Invoice generator"
+        sub="Creat an invoice for a specific date range"
+      />
     </div>
   );
 }

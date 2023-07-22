@@ -1,0 +1,24 @@
+.root {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.root::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 1em;
+  left: -0.25rem;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 0.5rem;
+  background: rgb(var(--main));
+  transform: translateX(-100%);
+  transition: transform 150ms ease;
+}
+
+.active::before {
+  transform: translateX(0);
+}

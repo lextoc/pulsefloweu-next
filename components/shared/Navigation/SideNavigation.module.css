@@ -21,6 +21,8 @@
   );
   position: absolute;
   z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  filter: blur(0.8rem);
 }
 
 .root::after {
@@ -39,6 +41,8 @@
   );
   position: absolute;
   z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  filter: blur(0.1rem);
 }
 
 .logo {
@@ -63,6 +67,8 @@
   background: rgba(255, 255, 255, 0.1);
   position: absolute;
   z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  filter: blur(0.2rem);
 }
 
 .logo::after {
@@ -79,32 +85,6 @@
   );
   position: absolute;
   z-index: -1;
-}
-
-.link {
-  display: block;
-  text-decoration: none;
-  color: rgba(var(--white), 0.8);
-  border: 0 solid transparent;
-  transition: border 150ms ease;
-  overflow: hidden;
-  position: relative;
-  padding: 0.2rem 0.4rem;
-  font-size: 0.9rem;
-}
-
-.linkInner > div {
-  margin-top: 0.5em;
-  font-size: 0.9em;
-  line-height: 1.25em;
-}
-
-.linkInner {
-  padding: 0.4rem 1.1rem;
-  border-radius: 0.2rem;
-}
-
-.link:hover .linkInner,
-.link:focus .linkInner {
-  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  filter: blur(0.2rem);
 }
