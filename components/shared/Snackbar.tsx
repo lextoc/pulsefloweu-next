@@ -34,14 +34,16 @@ export function Snackbar(props: ISnackbarProps) {
   }, [visible, message]);
 
   return (
-    <div
-      className={`${styles.root} ${visible ? "" : styles.hidden} ${
-        type ? styles[type] : ""
-      }`}
-      onClick={hide}
-    >
-      <span>{message}</span>
-      <IconX />
+    <div className={styles.wrapper}>
+      <div
+        className={`${styles.root} ${visible ? "" : styles.hidden} ${
+          type ? styles[type] : ""
+        }`}
+        onClick={hide}
+      >
+        <span>{message}</span>
+        <IconX />
+      </div>
     </div>
   );
 }
