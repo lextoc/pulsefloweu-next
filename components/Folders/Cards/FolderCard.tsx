@@ -13,7 +13,7 @@ export default function FolderCard({ folder }: IFolderCardProps) {
   return (
     <div className={styles.root} id={`#folder-${folder.id}`}>
       <header className={styles.header}>
-        <Link href="folder.." className={styles.link}>
+        <Link href={`/app/folders/${folder.id}`} className={styles.link}>
           <h3>{folder.name}</h3>
           <p>Folder</p>
         </Link>
