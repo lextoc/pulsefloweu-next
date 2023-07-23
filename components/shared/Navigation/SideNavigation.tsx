@@ -15,6 +15,7 @@ export default function SideNavigation({ user }: ISideNavigationProps) {
 
   return (
     <div className={styles.root}>
+      <div className={styles.secondRoot} />
       <Link href="/" className={styles.logo}>
         <Logo small white noLink />
       </Link>

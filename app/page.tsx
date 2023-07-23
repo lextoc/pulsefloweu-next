@@ -12,9 +12,14 @@ export default function Home() {
         <div>
           <Logo />
           <p>
-            Use Tracky for tracking your tasks with timesheets. You can create
-            an <strong>infinite amount of projects for free</strong> that can be
-            brought to order with folders in each of them containing your tasks.
+            Use Tracky,{" "}
+            <a href="https://github.com/lextoc/tracky-next" target="_blank">
+              an open-source website
+            </a>{" "}
+            that will remain <strong>free forever</strong>, for tracking your
+            tasks with timesheets. You can create an{" "}
+            <strong>infinite amount of projects</strong> that can be brought to
+            order with folders in each of them containing your tasks.
           </p>
         </div>
       </div>

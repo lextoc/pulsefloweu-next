@@ -33,7 +33,6 @@
   }
 }
 
-
 .root::before {
   content: "";
   display: block;
@@ -57,6 +56,55 @@
   content: "";
   display: block;
   bottom: -86em;
+  right: -1rem;
+  width: 120em;
+  height: 120rem;
+  border-radius: 120rem;
+  background: linear-gradient(
+    rgba(var(--secondary-bright), 0.1),
+    rgba(var(--secondary-bright), 0),
+    rgba(var(--secondary-bright), 0),
+    rgba(var(--secondary-bright), 0)
+  );
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  filter: blur(0.1rem);
+  animation: moveAround 60s ease-in-out infinite;
+}
+
+.secondRoot {
+  position: absolute;
+  top: 3rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.secondRoot::before {
+  content: "";
+  display: block;
+  top: -50rem;
+  left: -1rem;
+  width: 120em;
+  height: 120rem;
+  border-radius: 120rem;
+  background: linear-gradient(
+    rgba(var(--secondary-bright), 0.1),
+    rgba(var(--secondary-bright), 0)
+  );
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  filter: blur(0.8rem);
+  animation: moveAround 50s ease-in-out infinite;
+}
+
+.secondRoot::after {
+  content: "";
+  display: block;
+  top: -86em;
   right: -1rem;
   width: 120em;
   height: 120rem;
