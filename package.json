@@ -18,6 +18,8 @@
     "next": "13.4.11",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-modal": "^3.16.1",
+    "react-tiny-popover": "^7.2.4",
     "typescript": "5.1.6",
     "zustand": "^4.3.9"
   },

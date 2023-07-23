@@ -14,7 +14,7 @@ export default function Dashboard(props: IDashboardProps) {
           <p>View active timers</p>
         </PaddingContainer>
       </Header>
-      <PaddingContainer>:3</PaddingContainer>
+      <PaddingContainer>Timerssss</PaddingContainer>
     </div>
   );
 }
