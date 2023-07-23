@@ -18,9 +18,11 @@ export default function SideNavigation({ user }: ISideNavigationProps) {
     <div className={styles.root}>
       <div className={styles.secondRoot} />
       <div className={styles.thirdRoot} />
-      <Link href="/" className={styles.logo}>
-        <Logo small white noLink />
-      </Link>
+      <div className={styles.logoWrapper}>
+        <Link href="/" className={styles.logo}>
+          <Logo small white noLink />
+        </Link>
+      </div>
       <SideNavigationLink
         href="/app/timers"
         title="Get started"

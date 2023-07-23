@@ -123,14 +123,24 @@
   animation: moveAround 60s ease-in-out infinite;
 }
 
+.logoWrapper {
+  height: 3rem;
+  margin-bottom: 1rem;
+}
+
 .logo {
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 102;
+  width: var(--sidebar-width);
+  background-color: rgb(var(--secondary));
   align-items: center;
   height: 3rem;
   padding: 0 1.5rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
   overflow: hidden;
   text-decoration: none;
 }
