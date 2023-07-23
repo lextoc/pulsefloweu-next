@@ -4,9 +4,10 @@
 }
 
 .root {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   padding-left: var(--sidebar-width);
   background: linear-gradient(
     75deg,
@@ -18,8 +19,6 @@
   justify-content: space-between;
   height: var(--menu-height);
   backdrop-filter: blur(1rem);
-  color: rgba(var(--secondary), 0.8);
-  font-weight: 400;
 }
 
 .account {
@@ -28,4 +27,5 @@
   padding: 0 1rem;
   display: flex;
   align-items: center;
+  color: rgba(var(--secondary-bright), 0.7);
 }

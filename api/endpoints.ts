@@ -5,4 +5,5 @@ export default {
   authValidateToken: h("/auth/validate_token"),
   authSignIn: h("/auth/sign_in"),
   auth: h("/auth"),
+  createProject: h("/projects"),
 };

@@ -8,6 +8,18 @@
   background: rgb(var(--secondary));
 }
 
+@keyframes moveAround {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .root::before {
   content: "";
   display: block;
@@ -17,13 +29,14 @@
   height: 120rem;
   border-radius: 120rem;
   background: linear-gradient(
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0)
+    rgba(var(--secondary-bright), 0.1),
+    rgba(var(--secondary-bright), 0)
   );
   position: absolute;
   z-index: -1;
   border: 1px solid rgba(255, 255, 255, 0.05);
   filter: blur(0.8rem);
+  animation: moveAround 50s ease-in-out infinite;
 }
 
 .root::after {
@@ -35,15 +48,16 @@
   height: 120rem;
   border-radius: 120rem;
   background: linear-gradient(
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0)
+    rgba(var(--secondary-bright), 0.1),
+    rgba(var(--secondary-bright), 0),
+    rgba(var(--secondary-bright), 0),
+    rgba(var(--secondary-bright), 0)
   );
   position: absolute;
   z-index: -1;
   border: 1px solid rgba(255, 255, 255, 0.05);
   filter: blur(0.1rem);
+  animation: moveAround 60s ease-in-out infinite;
 }
 
 .logo {
@@ -65,7 +79,7 @@
   width: 20em;
   height: 20rem;
   border-radius: 20em;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(var(--secondary-bright), 0.1);
   position: absolute;
   z-index: -1;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -81,8 +95,8 @@
   height: 15rem;
   border-radius: 15rem;
   background: linear-gradient(
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.1)
+    rgba(var(--secondary-bright), 0.1),
+    rgba(var(--secondary-bright), 0.15)
   );
   position: absolute;
   z-index: -1;

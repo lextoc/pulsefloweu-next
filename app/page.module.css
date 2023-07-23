@@ -22,6 +22,18 @@
   }
 }
 
+@keyframes moveAround {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .loginWrapper::before {
   content: "";
   display: block;
@@ -38,6 +50,7 @@
   z-index: -1;
   border: 1px solid rgba(var(--secondary), 0.05);
   filter: blur(0.8rem);
+  animation: moveAround 50s ease-in-out infinite;
 }
 
 .loginWrapper::after {
@@ -58,6 +71,7 @@
   z-index: -1;
   border: 1px solid rgba(var(--secondary), 0.05);
   filter: blur(0.1rem);
+  animation: moveAround 60s ease-in-out infinite;
 }
 
 .logoWrapper {

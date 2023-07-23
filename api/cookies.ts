@@ -3,6 +3,12 @@ import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adap
 
 import { ICookies } from "@/api/types";
 
+function getCookie(name: string) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts?.pop()?.split(";").shift();
+}
+
 export function getCookies(
   cookies: ReadonlyRequestCookies | RequestCookies,
 ): false | ICookies {
@@ -30,4 +36,12 @@ export function clearCookies() {
   document.cookie = "accessToken=;path=/;";
   document.cookie = "client=;path=/;";
   document.cookie = "uid=;path=/;";
+}
+
+export function getHeaders() {
+  return {
+    "access-token": getCookie("accessToken")!,
+    client: getCookie("client")!,
+    uid: getCookie("uid")!,
+  };
 }
