@@ -18,9 +18,11 @@ export default async function SideNavigationProjects(
   return (
     <div className={styles.root}>
       <div className={styles.subtitle}>Projects</div>
-      {projects.map((project) => (
-        <SideNavigationProject project={project} />
-      ))}
+      <div className={styles.inner}>
+        {projects.map((project) => (
+          <SideNavigationProject project={project} />
+        ))}
+      </div>
     </div>
   );
 }

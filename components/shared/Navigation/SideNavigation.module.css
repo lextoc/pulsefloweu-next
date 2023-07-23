@@ -5,7 +5,7 @@
   z-index: 101;
   width: var(--sidebar-width);
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   background: rgb(var(--secondary));
 }
 
@@ -33,47 +33,8 @@
   }
 }
 
-.root::before {
-  content: "";
-  display: block;
-  bottom: -72em;
-  left: -1rem;
-  width: 120em;
-  height: 120rem;
-  border-radius: 120rem;
-  background: linear-gradient(
-    rgba(var(--secondary-bright), 0.1),
-    rgba(var(--secondary-bright), 0)
-  );
-  position: absolute;
-  z-index: -1;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  filter: blur(0.8rem);
-  animation: moveAround 50s ease-in-out infinite;
-}
-
-.root::after {
-  content: "";
-  display: block;
-  bottom: -64em;
-  right: -1rem;
-  width: 120em;
-  height: 120rem;
-  border-radius: 120rem;
-  background: linear-gradient(
-    rgba(var(--secondary-bright), 0.1),
-    rgba(var(--secondary-bright), 0),
-    rgba(var(--secondary-bright), 0),
-    rgba(var(--secondary-bright), 0)
-  );
-  position: absolute;
-  z-index: -1;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  filter: blur(0.1rem);
-  animation: moveAround 60s ease-in-out infinite;
-}
-
-.secondRoot {
+.secondRoot,
+.thirdRoot {
   position: absolute;
   top: 3rem;
   right: 0;
@@ -105,6 +66,46 @@
   content: "";
   display: block;
   top: -86em;
+  right: -1rem;
+  width: 120em;
+  height: 120rem;
+  border-radius: 120rem;
+  background: linear-gradient(
+    rgba(var(--secondary-bright), 0.1),
+    rgba(var(--secondary-bright), 0),
+    rgba(var(--secondary-bright), 0),
+    rgba(var(--secondary-bright), 0)
+  );
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  filter: blur(0.1rem);
+  animation: moveAround 60s ease-in-out infinite;
+}
+
+.thirdRoot::before {
+  content: "";
+  display: block;
+  bottom: -72em;
+  left: -1rem;
+  width: 120em;
+  height: 120rem;
+  border-radius: 120rem;
+  background: linear-gradient(
+    rgba(var(--secondary-bright), 0.1),
+    rgba(var(--secondary-bright), 0)
+  );
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  filter: blur(0.8rem);
+  animation: moveAround 50s ease-in-out infinite;
+}
+
+.thirdRoot::after {
+  content: "";
+  display: block;
+  bottom: -64em;
   right: -1rem;
   width: 120em;
   height: 120rem;

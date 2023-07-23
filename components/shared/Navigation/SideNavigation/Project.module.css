@@ -1,5 +1,10 @@
 .root {
-  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgb(var(--secondary));
+}
+
+.root:last-child {
+  border-bottom: 0;
 }
 
 .link,
@@ -11,12 +16,12 @@
   transition: border 150ms ease;
   overflow: hidden;
   position: relative;
-  padding: 0.2rem 0.4rem;
+  padding: 0.2rem 0;
   font-size: 0.9rem;
 }
 
 .folderLink {
-  padding-left: 1rem;
+  padding-left: 0.4rem;
   color: rgba(var(--white), 0.5);
 }
 
