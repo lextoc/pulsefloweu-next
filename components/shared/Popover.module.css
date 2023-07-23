@@ -15,6 +15,11 @@
   background-color: rgb(var(--light-background));
 }
 
+.menuButtonWhite:focus,
+.menuButtonWhite:hover {
+  background-color: rgba(var(--light-background), 0.1);
+}
+
 .menu {
   background: white;
   border-radius: var(--border-radius);
