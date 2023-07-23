@@ -37,10 +37,10 @@
 .thirdRoot {
   position: fixed;
   top: 3rem;
-  right: 0;
-  bottom: 0;
   left: 0;
+  bottom: 0;
   overflow: hidden;
+  width: var(--sidebar-width);
 }
 
 .secondRoot::before {
