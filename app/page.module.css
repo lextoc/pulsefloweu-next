@@ -111,7 +111,7 @@
   right: 10%;
   left: 10%;
   bottom: 0;
-  border-bottom: 1rem solid rgba(var(--secondary), 0.3);
+  border-bottom: 1rem solid rgba(var(--secondary-bright), 0.3);
   border-radius: var(--border-radius);
   filter: blur(0.5rem);
   z-index: -1;

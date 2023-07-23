@@ -8,6 +8,10 @@
   border-radius: 0.2rem;
 }
 
+.root:hover {
+  border-bottom: 2px solid rgba(var(--secondary-bright), 0.4);
+}
+
 .root:focus,
 .root:active {
   border-bottom: 2px solid rgba(var(--secondary-bright), 1);

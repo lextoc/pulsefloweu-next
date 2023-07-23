@@ -20,6 +20,15 @@
   background-color: rgba(var(--secondary-bright), 0.8);
 }
 
+.danger {
+  background-color: rgb(var(--danger));
+}
+
+.danger:hover,
+.danger:focus {
+  background-color: rgba(var(--danger), 0.8);
+}
+
 .subtle {
   background-color: transparent;
   color: rgb(var(--secondary-bright));
@@ -28,4 +37,18 @@
 .subtle:hover,
 .subtle:focus {
   background-color: rgba(var(--secondary-bright), 0.1);
+}
+
+.subtle.danger {
+  background-color: transparent;
+  color: rgb(var(--danger));
+}
+
+.subtle.danger:hover,
+.subtle.danger:focus {
+  background-color: rgba(var(--danger), 0.1);
+}
+
+.noMargin {
+  margin: 0;
 }

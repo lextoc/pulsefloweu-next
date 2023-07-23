@@ -52,7 +52,7 @@ export function RegisterForm(props: IRegisterFormProps) {
             client: client!,
             uid: data.data.uid,
           });
-          push("/app/timers");
+          push("/app/dashboard");
         }
       });
   };
@@ -74,11 +74,13 @@ export function RegisterForm(props: IRegisterFormProps) {
         label="Email address"
         {...form.getInputProps("email")}
         placeholder="Email"
+        autoComplete="email"
       />
       <Input
         label="Password"
         placeholder="Password"
         type="password"
+        autoComplete="current-password"
         {...form.getInputProps("password")}
       />
       <div className={styles.submit}>

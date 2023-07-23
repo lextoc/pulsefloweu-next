@@ -10,30 +10,32 @@ export interface IButtonProps
   children: React.ReactNode;
   variant?: "subtle";
   nextLink?: string;
+  danger?: boolean;
+  noMargin?: boolean;
 }
 
 export default function Button({
   children,
   variant,
   nextLink,
+  danger,
+  noMargin,
   ...props
 }: IButtonProps) {
+  const classNames = `${variant === "subtle" ? styles.subtle : styles.root} ${
+    danger ? styles.danger : ""
+  } ${noMargin ? styles.noMargin : ""}`;
+
   if (nextLink) {
     return (
-      <Link
-        className={variant === "subtle" ? styles.subtle : styles.root}
-        href={nextLink}
-      >
+      <Link className={classNames} href={nextLink}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button
-      className={variant === "subtle" ? styles.subtle : styles.root}
-      {...props}
-    >
+    <button className={classNames} {...props}>
       {children}
     </button>
   );

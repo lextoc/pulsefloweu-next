@@ -1,13 +1,12 @@
 import { getHeaders } from "@/api/cookies";
 
-export default function create<T>(endpoint: string, values: T) {
+export default function destroy(endpoint: string) {
   const requestOptions = {
-    method: "POST",
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       ...getHeaders(),
     },
-    body: JSON.stringify(values),
   };
 
   return fetch(endpoint, requestOptions).then((response) => {

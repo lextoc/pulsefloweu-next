@@ -4,22 +4,28 @@ import { useForm } from "@mantine/form";
 
 import create from "@/api/create";
 import endpoints from "@/api/endpoints";
+import { IFolder } from "@/api/types/folders";
 import { IProject } from "@/api/types/projects";
 import Form from "@/components/forms/Form";
 import Input from "@/components/forms/Input";
 import Button from "@/components/interaction/Button";
 import { useSnackbarStore } from "@/stores/snackbar";
 
-import styles from "./CreateProjectCard.module.css";
+import styles from "./CreateFolderCard.module.css";
 
-export interface ICreateProjectCardProps {}
+export interface ICreateFolderCardProps {
+  project: IProject;
+}
 
-export function CreateProjectCard(props: ICreateProjectCardProps) {
+export function CreateFolderCard({ project }: ICreateFolderCardProps) {
   const showSnackbar = useSnackbarStore((state) => state.show);
 
-  const onSubmit = (values: IProject) => {
-    create<{ project: IProject }>(endpoints.createProject, {
-      project: values,
+  const onSubmit = (values: Omit<IFolder, "project_id">) => {
+    create<{ folder: IFolder }>(endpoints.createFolder, {
+      folder: {
+        project_id: project.id!,
+        ...values,
+      },
     }).then((data) => {
       if (data?.errors) {
         showSnackbar({
@@ -30,13 +36,13 @@ export function CreateProjectCard(props: ICreateProjectCardProps) {
       } else {
         form.reset();
         showSnackbar({
-          message: "Project has been created",
+          message: "Folder has been created",
         });
       }
     });
   };
 
-  const form = useForm<IProject>({
+  const form = useForm<Omit<IFolder, "project_id">>({
     initialValues: {
       name: "",
     },
@@ -48,15 +54,15 @@ export function CreateProjectCard(props: ICreateProjectCardProps) {
 
   return (
     <div className={styles.root}>
-      <h3>Create new project</h3>
+      <h3>Create new folder</h3>
       <p>
-        Enter a name and click on create to make a new project. You'll be able
-        to categorize your projects' timesheets in folders.
+        Enter a name and click on create to make a new folder. In this folder
+        you'll be able to create timesheets.
       </p>
       <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
         <Input
           label="Name"
-          placeholder="Project name"
+          placeholder="Folder name"
           inverted
           {...form.getInputProps("name")}
         />

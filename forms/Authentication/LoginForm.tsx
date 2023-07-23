@@ -53,7 +53,7 @@ export function LoginForm(props: ILoginFormProps) {
             client: client!,
             uid: data.data.uid,
           });
-          push("/app/timers");
+          push("/app/dashboard");
         }
       });
   };
@@ -74,12 +74,14 @@ export function LoginForm(props: ILoginFormProps) {
       <Input
         label="Email address"
         placeholder="Email"
+        autoComplete="email"
         {...form.getInputProps("email")}
       />
       <Input
         label="Password"
         type="password"
         placeholder="Password"
+        autoComplete="current-password"
         {...form.getInputProps("password")}
       />
       <div className={styles.submit}>
