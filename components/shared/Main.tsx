@@ -1,4 +1,4 @@
-import { IUser } from "@/api/types";
+import { IUser } from "@/api/types/auth";
 
 import styles from "./Main.module.css";
 

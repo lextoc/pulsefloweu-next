@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 
 import { clearCookies } from "@/api/cookies";
-import { IUser } from "@/api/types";
+import { IUser } from "@/api/types/auth";
 
 import styles from "./NavigationMenu.module.css";
 

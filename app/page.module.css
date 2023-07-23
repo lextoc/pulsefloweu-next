@@ -7,7 +7,7 @@
   padding-left: var(--box-margin);
   background: linear-gradient(
     75deg,
-    rgb(var(--white)),
+    rgba(var(--secondary-bright), 0.01),
     rgb(var(--light-background))
   );
   border-top: 1rem solid rgb(var(--secondary));
@@ -43,12 +43,12 @@
   height: 90vw;
   border-radius: 90vw;
   background: linear-gradient(
-    rgba(var(--secondary), 0.05),
-    rgba(var(--secondary), 0)
+    rgba(var(--secondary-bright), 0.05),
+    rgba(var(--secondary-bright), 0)
   );
   position: absolute;
   z-index: -1;
-  border: 1px solid rgba(var(--secondary), 0.05);
+  border: 1px solid rgba(var(--secondary-bright), 0.05);
   filter: blur(0.8rem);
   animation: moveAround 50s ease-in-out infinite;
 }
@@ -62,14 +62,14 @@
   height: 75vw;
   border-radius: 75vw;
   background: linear-gradient(
-    rgba(var(--secondary), 0.1),
-    rgba(var(--secondary), 0),
-    rgba(var(--secondary), 0),
-    rgba(var(--secondary), 0)
+    rgba(var(--secondary-bright), 0.1),
+    rgba(var(--secondary-bright), 0),
+    rgba(var(--secondary-bright), 0),
+    rgba(var(--secondary-bright), 0)
   );
   position: absolute;
   z-index: -1;
-  border: 1px solid rgba(var(--secondary), 0.05);
+  border: 1px solid rgba(var(--secondary-bright), 0.05);
   filter: blur(0.1rem);
   animation: moveAround 60s ease-in-out infinite;
 }

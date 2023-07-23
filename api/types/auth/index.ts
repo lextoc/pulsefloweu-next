@@ -1,5 +1,5 @@
 export interface ICookies {
-  accessToken: string;
+  ["access-token"]: string;
   client: string;
   uid: string;
 }

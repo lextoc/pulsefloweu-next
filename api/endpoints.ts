@@ -6,4 +6,5 @@ export default {
   authSignIn: h("/auth/sign_in"),
   auth: h("/auth"),
   createProject: h("/projects"),
+  getProjects: h("/projects"),
 };

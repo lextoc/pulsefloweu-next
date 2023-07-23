@@ -9,7 +9,7 @@ import Head from "next/head";
 import { cookies } from "next/headers";
 
 import validateToken from "@/api/auth/validateToken";
-import { IUser } from "@/api/types";
+import { IUser } from "@/api/types/auth";
 import Main from "@/components/shared/Main";
 import NavigationMenu from "@/components/shared/Navigation/NavigationMenu";
 import SideNavigation from "@/components/shared/Navigation/SideNavigation";
@@ -55,6 +55,7 @@ export default async function RootLayout({
           sizes="16x16"
           href="/favicon-16x16.png"
         />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#2d89ef" />

@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
 
   if (!isSignedIn && pathname.startsWith("/app/")) {
     const response = NextResponse.redirect(new URL("/", request.url));
-    response.cookies.set("accessToken", "", { path: "/" });
+    response.cookies.set("access-token", "", { path: "/" });
     response.cookies.set("client", "", { path: "/" });
     response.cookies.set("uid", "", { path: "/" });
     return response;

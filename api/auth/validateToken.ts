@@ -3,7 +3,7 @@ import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adap
 
 import { getCookies } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
-import { IUser } from "@/api/types";
+import { IUser } from "@/api/types/auth";
 
 export type TSuccessResponse = {
   success: true;
@@ -23,12 +23,9 @@ export default async function validateToken(
   if (_cookies === false)
     return { success: false, errors: ["No valid cookies"] };
 
-  const { accessToken, client, uid } = _cookies;
   const response = await fetch(endpoints.authValidateToken, {
     headers: {
-      "access-token": accessToken,
-      client,
-      uid,
+      ..._cookies,
     },
   });
   const data = await response.json();

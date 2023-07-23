@@ -49,7 +49,7 @@ export function LoginForm(props: ILoginFormProps) {
           });
         } else {
           setCookies({
-            accessToken: accessToken!,
+            ["access-token"]: accessToken!,
             client: client!,
             uid: data.data.uid,
           });

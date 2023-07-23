@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { IUser } from "@/api/types";
+import { IUser } from "@/api/types/auth";
 import Logo from "@/components/shared/Logo";
 
 import styles from "./SideNavigation.module.css";

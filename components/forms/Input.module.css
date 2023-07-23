@@ -1,9 +1,10 @@
 .root {
   border: 0;
-  background: #f1f1f1;
+  background: rgba(var(--secondary), 0.05);
   font-size: 1rem;
   padding: 1em;
   width: 100%;
+  border-radius: 0.2rem;
 }
 
 .inverted {
@@ -11,5 +12,5 @@
 }
 
 .root::placeholder {
-  color: rgba(var(--secondary), 0.25);
+  color: rgba(0, 0, 0, 0.4);
 }

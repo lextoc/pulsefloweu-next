@@ -3,7 +3,7 @@
   border: 0;
   margin: 2rem 0 0;
   padding: 1rem 1.5rem;
-  background-color: rgb(var(--secondary));
+  background-color: rgb(var(--secondary-bright));
   color: rgb(var(--white));
   letter-spacing: var(--letter-spacing-uppercase);
   font-weight: 700;
@@ -17,15 +17,15 @@
 
 .root:hover,
 .root:focus {
-  background-color: rgba(var(--secondary), 0.8);
+  background-color: rgba(var(--secondary-bright), 0.8);
 }
 
 .subtle {
   background-color: transparent;
-  color: rgb(var(--secondary));
+  color: rgb(var(--secondary-bright));
 }
 
 .subtle:hover,
 .subtle:focus {
-  background-color: rgba(var(--secondary), 0.1);
+  background-color: rgba(var(--secondary-bright), 0.1);
 }

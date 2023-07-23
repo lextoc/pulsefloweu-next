@@ -10,15 +10,28 @@
 
 @keyframes moveAround {
   0% {
-    transform: translateX(0);
+    transform: translate(0, 0);
   }
   50% {
-    transform: translateX(5%);
+    transform: translate(5%, 5%);
   }
   100% {
-    transform: translateX(0);
+    transform: translate(0, 0);
   }
 }
+
+@keyframes moveAroundSmall {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(25%, 25%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
 
 .root::before {
   content: "";
@@ -84,6 +97,7 @@
   z-index: -1;
   border: 1px solid rgba(255, 255, 255, 0.05);
   filter: blur(0.2rem);
+  animation: moveAroundSmall 25s ease-in-out infinite;
 }
 
 .logo::after {
@@ -102,4 +116,5 @@
   z-index: -1;
   border: 1px solid rgba(255, 255, 255, 0.05);
   filter: blur(0.2rem);
+  animation: moveAroundSmall 30s ease-in-out infinite;
 }

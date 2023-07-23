@@ -17,7 +17,7 @@
   overflow: hidden;
   border-radius: 0.25em;
   transform: rotate3d(0, 0, 1, -5deg);
-  box-shadow: 0.2em 0.2em 0 rgb(var(--light-background));
+  box-shadow: 0.2em 0.2em 0 rgba(var(--light-background), 1);
 }
 
 .logoSquareOne {
@@ -37,10 +37,9 @@
 }
 
 .logoSmall {
-  font-size: 1em;
+  font-size: 1.15em;
   width: 1em;
-  box-shadow: none;
-  transform: none;
+  box-shadow: 0.1em 0.1em 0 rgba(var(--light-background), 0.2);
 }
 
 .tracky {
@@ -56,6 +55,5 @@
 }
 
 .trackySmall {
-  margin-left: 0.5em;
   font-size: 0.9em;
 }

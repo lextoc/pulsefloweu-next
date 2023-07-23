@@ -42,7 +42,13 @@ function actualLogo({
           x="100"
           y="100"
         />
-        <polygon fill="#fff" points="70,60 70,140 140,100"></polygon>
+        <polygon
+          style={{
+            filter: "drop-shadow(0.1em 0.1em 0.2rem rgba(0, 0, 0, 0.2))",
+          }}
+          fill="#fff"
+          points="70,60 70,140 140,100"
+        ></polygon>
       </svg>
       {!noText && (
         <div

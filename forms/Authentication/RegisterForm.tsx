@@ -48,7 +48,7 @@ export function RegisterForm(props: IRegisterFormProps) {
           });
         } else {
           setCookies({
-            accessToken: accessToken!,
+            ["access-token"]: accessToken!,
             client: client!,
             uid: data.data.uid,
           });
