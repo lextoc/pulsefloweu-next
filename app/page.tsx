@@ -9,7 +9,14 @@ export default function Home() {
   return (
     <div className={styles.loginWrapper}>
       <div className={styles.logoWrapper}>
-        <Logo />
+        <div>
+          <Logo />
+          <p>
+            Use Tracky for tracking your tasks with timesheets. You can create
+            an <strong>infinite amount of projects for free</strong> that can be
+            brought to order with folders in each of them containing your tasks.
+          </p>
+        </div>
       </div>
       <div className={styles.login}>
         <h1>Hey there!</h1>

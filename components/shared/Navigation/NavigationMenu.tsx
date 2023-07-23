@@ -25,7 +25,7 @@ export default function NavigationMenu({ user }: INavigationMenuProps) {
     <div className={styles.wrapper}>
       <div className={styles.root}>
         <div className={styles.account}>
-          Signed in as {user?.email}
+          Signed in as<strong>{user?.email}</strong>
           <button onClick={onSignOut}>Sign out</button>
         </div>
       </div>

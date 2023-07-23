@@ -28,8 +28,10 @@
   transition:
     opacity 150ms ease,
     transform 150ms ease;
+}
 
-  @media (min-width: 600px) {
+@media (min-width: 600px) {
+  .root {
     margin: 0 auto;
     max-width: 20rem;
   }

@@ -1,6 +1,6 @@
 .wrapper {
   height: var(--menu-height);
-  background: rgb(var(--white));
+  background: rgb(var(--secondary-bright));
 }
 
 .root {
@@ -8,13 +8,9 @@
   top: 0;
   left: 0;
   right: 0;
+  z-index: 100;
   padding-left: var(--sidebar-width);
-  /* background: linear-gradient(
-    75deg,
-    rgba(var(--light-background), 0.7),
-    rgba(229, 229, 229, 0.7)
-  ); */
-  background: rgb(var(--secondary-bright));
+  background: rgba(var(--secondary-bright), 0.9);
   border-bottom: 1px solid rgba(255, 255, 255, 0.01);
   display: flex;
   align-items: center;
@@ -30,5 +26,9 @@
   display: flex;
   align-items: center;
   color: rgba(255, 255, 255, 0.7);
-  font-weight: 700;
+}
+
+.account strong {
+  display: block;
+  margin-left: 0.5em;
 }

@@ -1,7 +1,7 @@
 :root {
   --white: 255, 255, 255;
   --black: 0, 0, 0;
-  --main: 255, 216, 21;
+  --main: 255, 124, 0;
   --secondary: 6, 31, 54;
   --secondary-bright: 0, 106, 203;
   --light-background: 240, 240, 240;
@@ -16,8 +16,10 @@
   --sidebar-width: 16rem;
 
   --letter-spacing-uppercase: 0.05em;
+}
 
-  @media (min-width: 600px) {
+@media (min-width: 600px) {
+  :root {
     --box-margin: 2rem;
     --box-padding: 2rem;
   }
