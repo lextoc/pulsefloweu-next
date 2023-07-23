@@ -35,7 +35,7 @@
 
 .secondRoot,
 .thirdRoot {
-  position: absolute;
+  position: fixed;
   top: 3rem;
   right: 0;
   bottom: 0;
