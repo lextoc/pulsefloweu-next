@@ -10,7 +10,7 @@ export interface IFolderCardProps {
 
 export default function FolderCard({ folder }: IFolderCardProps) {
   return (
-    <div className={styles.root}>
+    <div className={styles.root} id={`#folder-${folder.id}`}>
       <Link href="folder.." className={styles.link}>
         <h3>{folder.name}</h3>
         <p>Folder</p>

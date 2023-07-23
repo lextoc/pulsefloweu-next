@@ -16,7 +16,6 @@ export default async function ProjectsDashboardListItem({
   project,
 }: IProjectsDashboardListItemProps) {
   let folders: IFolder[] = [];
-
   const response = await getPage(endpoints.getFoldersFromProject(project.id!));
   if (response?.data) folders = response.data;
 

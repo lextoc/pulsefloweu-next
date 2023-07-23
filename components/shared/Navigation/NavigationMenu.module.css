@@ -1,7 +1,6 @@
 .wrapper {
   height: var(--menu-height);
   background: rgb(var(--secondary-bright));
-  border-top: 2px solid rgb(var(--main));
 }
 
 .root {

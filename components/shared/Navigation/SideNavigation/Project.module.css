@@ -1,0 +1,26 @@
+.root {
+  margin-bottom: 1rem;
+}
+
+.link,
+.folderLink {
+  display: block;
+  text-decoration: none;
+  color: rgba(var(--white), 0.9);
+  border: 0 solid transparent;
+  transition: border 150ms ease;
+  overflow: hidden;
+  position: relative;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.9rem;
+}
+
+.folderLink {
+  padding-left: 1rem;
+  color: rgba(var(--white), 0.5);
+}
+
+.inner {
+  padding: 0.4rem 1.1rem;
+  border-radius: 0.2rem;
+}
