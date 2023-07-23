@@ -9,8 +9,14 @@
   );
 }
 
+.header {
+  display: flex;
+  align-items: flex-start;
+}
+
 .link {
   display: block;
+  width: 100%;
   text-decoration: none;
   border-radius: var(--border-radius);
   margin: 0.5rem 0.5rem 0;

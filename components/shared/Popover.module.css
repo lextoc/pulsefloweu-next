@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translateY(0.05rem);
 }
 
 .menuButton:focus,
