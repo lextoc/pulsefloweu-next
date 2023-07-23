@@ -1,7 +1,11 @@
 .root {
   display: flex;
   flex-direction: column;
-  background: rgb(var(--white));
+  background: linear-gradient(
+    to bottom right,
+    rgb(var(--white)),
+    rgb(var(--light-background))
+  );
   min-height: 100vh;
 }
 

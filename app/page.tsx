@@ -13,7 +13,11 @@ export default function Home() {
           <Logo />
           <p>
             Use Tracky,{" "}
-            <a href="https://github.com/lextoc/tracky-next" target="_blank">
+            <a
+              className={styles.openSource}
+              href="https://github.com/lextoc/tracky-next"
+              target="_blank"
+            >
               an open-source website
             </a>{" "}
             that will remain <strong>free forever</strong>, for tracking your

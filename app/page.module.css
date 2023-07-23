@@ -94,6 +94,17 @@
   margin: 3rem 0 2rem;
 }
 
+.openSource {
+  text-decoration: none;
+  color: rgb(var(--secondary-bright));
+  font-weight: 700;
+}
+
+.openSource:focus,
+.openSource:hover {
+  text-decoration: underline;
+}
+
 .login {
   background: rgb(var(--white));
   border-radius: var(--border-radius);

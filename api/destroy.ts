@@ -10,6 +10,10 @@ export default function destroy(endpoint: string) {
   };
 
   return fetch(endpoint, requestOptions).then((response) => {
-    return response.json();
+    if (response.status === 204) {
+      return { success: true, data: null };
+    } else {
+      return { success: false, errors: ["Something went wrong"] };
+    }
   });
 }

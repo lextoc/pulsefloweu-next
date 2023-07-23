@@ -26,10 +26,12 @@ export default async function ProjectsDashboardListItem({
         <h2>{project.name}</h2>
         <ProjectsDashboardListItemMenu project={project} />
       </div>
-      {folders.map((folder) => (
-        <FolderCard folder={folder} />
-      ))}
-      <CreateFolderCard project={project} />
+      <div className="cards">
+        {folders.map((folder) => (
+          <FolderCard folder={folder} />
+        ))}
+        <CreateFolderCard project={project} />
+      </div>
       <hr className="divider" />
     </div>
   );
