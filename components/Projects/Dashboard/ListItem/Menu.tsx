@@ -1,7 +1,5 @@
 "use client";
 
-import { IconDotsVertical } from "@tabler/icons-react";
-
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
 import { IProject } from "@/api/types/projects";
@@ -21,6 +19,10 @@ export default function ProjectsDashboardListItemMenu({
   const showSnackbar = useSnackbarStore((state) => state.show);
 
   const onDelete = () => {
+    const hasAgreed = window.confirm(
+      "Destroying your project will also remove all its folders, tasks and timesheets. Are you sure?",
+    );
+    if (!hasAgreed) return;
     destroy(endpoints.destroyProject(project.id!)).then((data) => {
       if (data.success) {
         showSnackbar({

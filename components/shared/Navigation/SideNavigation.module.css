@@ -55,7 +55,7 @@
 .root::after {
   content: "";
   display: block;
-  bottom: -86em;
+  bottom: -64em;
   right: -1rem;
   width: 120em;
   height: 120rem;

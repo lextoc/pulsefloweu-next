@@ -21,7 +21,7 @@ export default async function ProjectsDashboardListItem({
   if (response?.data) folders = response.data;
 
   return (
-    <div>
+    <div id={`#project-${project.id}`}>
       <div className={styles.header}>
         <h2>{project.name}</h2>
         <ProjectsDashboardListItemMenu project={project} />

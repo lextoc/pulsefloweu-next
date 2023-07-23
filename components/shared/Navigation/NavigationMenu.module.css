@@ -11,13 +11,13 @@
   right: 0;
   z-index: 100;
   padding-left: var(--sidebar-width);
-  background: rgba(var(--secondary-bright), 0.9);
+  background: rgba(var(--secondary-bright), 1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.01);
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: var(--menu-height);
-  backdrop-filter: blur(1rem);
+  /* backdrop-filter: blur(1rem); */
 }
 
 .account {

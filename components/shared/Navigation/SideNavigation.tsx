@@ -5,6 +5,7 @@ import Logo from "@/components/shared/Logo";
 
 import styles from "./SideNavigation.module.css";
 import SideNavigationLink from "./SideNavigation/Link";
+import SideNavigationProjects from "./SideNavigation/Projects";
 
 export interface ISideNavigationProps {
   user: IUser | null | undefined;
@@ -39,6 +40,7 @@ export default function SideNavigation({ user }: ISideNavigationProps) {
         title="Invoice generator"
         sub="Create an invoice for a specific date range"
       />
+      <SideNavigationProjects />
     </div>
   );
 }
