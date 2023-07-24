@@ -11,6 +11,7 @@ import { cookies } from "next/headers";
 import validateToken from "@/api/auth/validateToken";
 import { IUser } from "@/api/types/auth";
 import Main from "@/components/shared/Main";
+import { AuthenticationProvider } from "@/lib/authentication/Context";
 import NavigationMenu from "@/lib/navigation/Menu";
 import SideNavigation from "@/lib/navigation/Side";
 import { Snackbar } from "@/lib/shared/Snackbar";
@@ -61,10 +62,12 @@ export default async function RootLayout({
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <body className={font.className}>
-        <NavigationMenu user={user} />
-        <SideNavigation user={user} />
-        <Main user={user}>{children}</Main>
-        <Snackbar />
+        <AuthenticationProvider>
+          <NavigationMenu />
+          <SideNavigation />
+          <Main>{children}</Main>
+          <Snackbar />
+        </AuthenticationProvider>
       </body>
     </html>
   );

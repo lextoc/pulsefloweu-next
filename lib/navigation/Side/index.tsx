@@ -1,17 +1,17 @@
 import Link from "next/link";
+import { useContext } from "react";
 
-import { IUser } from "@/api/types/auth";
 import Logo from "@/components/shared/Logo";
+import AuthenticationContext from "@/lib/authentication/Context";
 
 import styles from "./index.module.css";
 import SideNavigationLink from "./Link";
 import SideNavigationProjects from "./Projects";
 
-export interface ISideNavigationProps {
-  user: IUser | null | undefined;
-}
+export interface ISideNavigationProps {}
 
-export default function SideNavigation({ user }: ISideNavigationProps) {
+export default function SideNavigation(props: ISideNavigationProps) {
+  const user = useContext(AuthenticationContext);
   if (!user) return null;
 
   return (

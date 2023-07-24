@@ -2,19 +2,19 @@
 
 import { IconMenu2 } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
 
 import { clearCookies } from "@/api/cookies";
-import { IUser } from "@/api/types/auth";
 import Button from "@/components/buttons/base";
 import Popover from "@/components/overlays/Popover";
+import AuthenticationContext from "@/lib/authentication/Context";
 
 import styles from "./index.module.css";
 
-export interface INavigationMenuProps {
-  user: IUser | null | undefined;
-}
+export interface INavigationMenuProps {}
 
-export default function NavigationMenu({ user }: INavigationMenuProps) {
+export default function NavigationMenu(props: INavigationMenuProps) {
+  const user = useContext(AuthenticationContext);
   const { push } = useRouter();
 
   const onSignOut = () => {
