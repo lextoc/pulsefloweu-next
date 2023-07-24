@@ -10,20 +10,20 @@ import Input from "@/components/inputs/base";
 import Form from "@/components/inputs/Form";
 import { useSnackbarStore } from "@/stores/snackbar";
 
-import styles from "./RegisterForm.module.css";
+import styles from "./index.module.css";
 
-export interface IRegisterFormValues {
+export interface ILoginFormValues {
   email: string;
   password: string;
 }
 
-export interface IRegisterFormProps {}
+export interface ILoginFormProps {}
 
-export function RegisterForm(props: IRegisterFormProps) {
+export function LoginForm(props: ILoginFormProps) {
   const showSnackbar = useSnackbarStore((state) => state.show);
   const { push } = useRouter();
 
-  const onSubmit = (values: IRegisterFormValues) => {
+  const onSubmit = (values: ILoginFormValues) => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -33,7 +33,7 @@ export function RegisterForm(props: IRegisterFormProps) {
     let accessToken: string | null = null;
     let client: string | null = null;
 
-    fetch(endpoints.auth, requestOptions)
+    fetch(endpoints.authSignIn, requestOptions)
       .then((response) => {
         accessToken = response.headers.get("access-token");
         client = response.headers.get("client");
@@ -43,7 +43,8 @@ export function RegisterForm(props: IRegisterFormProps) {
         if (data?.errors) {
           clearCookies();
           showSnackbar({
-            message: data?.errors?.full_messages?.join(" "),
+            message:
+              data?.errors?.full_messages?.join(" ") || data?.errors?.join(" "),
             type: "error",
           });
         } else {
@@ -72,22 +73,22 @@ export function RegisterForm(props: IRegisterFormProps) {
     <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
       <Input
         label="Email address"
-        {...form.getInputProps("email")}
         placeholder="Email"
         autoComplete="email"
+        {...form.getInputProps("email")}
       />
       <Input
         label="Password"
-        placeholder="Password"
         type="password"
+        placeholder="Password"
         autoComplete="current-password"
         {...form.getInputProps("password")}
       />
       <div className={styles.submit}>
-        <Button variant="subtle" nextLink="/">
-          Sign in
+        <Button variant="subtle" nextLink="/register">
+          Register
         </Button>
-        <Button type="submit">Register</Button>
+        <Button type="submit">Sign in</Button>
       </div>
     </Form>
   );

@@ -5,8 +5,8 @@ import { IProject } from "@/api/types/projects";
 import FolderCard from "@/lib/folders/cards/base";
 import CreateFolderCard from "@/lib/folders/cards/Create";
 
-import styles from "./ListItem.module.css";
-import ProjectsDashboardListItemMenu from "./ListItem/Menu";
+import styles from "./index.module.css";
+import ProjectsDashboardListItemMenu from "./Menu";
 
 export interface IProjectsDashboardListItemProps {
   project: IProject;

@@ -7,7 +7,7 @@ import Button from "@/components/buttons/base";
 import Popover from "@/components/overlays/Popover";
 import { useSnackbarStore } from "@/stores/snackbar";
 
-import styles from "./Menu.module.css";
+import styles from "./index.module.css";
 
 export interface IProjectsDashboardListItemMenuProps {
   project: IProject;

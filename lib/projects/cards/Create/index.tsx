@@ -5,12 +5,12 @@ import { useForm } from "@mantine/form";
 import create from "@/api/create";
 import endpoints from "@/api/endpoints";
 import { IProject } from "@/api/types/projects";
-import Form from "@/components/inputs/Form";
-import Input from "@/components/inputs/base";
 import Button from "@/components/buttons/base";
+import Input from "@/components/inputs/base";
+import Form from "@/components/inputs/Form";
 import { useSnackbarStore } from "@/stores/snackbar";
 
-import styles from "./CreateProjectCard.module.css";
+import styles from "./index.module.css";
 
 export interface ICreateProjectCardProps {}
 
