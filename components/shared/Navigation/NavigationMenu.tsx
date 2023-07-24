@@ -1,5 +1,6 @@
 "use client";
 
+import { IconMenu2 } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 
 import { clearCookies } from "@/api/cookies";
@@ -26,6 +27,9 @@ export default function NavigationMenu({ user }: INavigationMenuProps) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.root}>
+        <button className={styles.menu}>
+          <IconMenu2 size="1rem" color="white" />
+        </button>
         <div className={styles.account}>
           <div className={styles.signedInAs}>
             Signed in as<strong>{user?.email}</strong>
@@ -33,9 +37,14 @@ export default function NavigationMenu({ user }: INavigationMenuProps) {
           <Popover
             white
             content={
-              <Button noMargin variant="subtle" onClick={onSignOut}>
-                Sign out
-              </Button>
+              <>
+                {/* <p>
+                  Signed in as<strong>{user?.email}</strong>
+                </p> */}
+                <Button noMargin variant="subtle" onClick={onSignOut}>
+                  Sign out
+                </Button>
+              </>
             }
           />
         </div>

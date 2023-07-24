@@ -16,7 +16,25 @@
   align-items: center;
   justify-content: space-between;
   height: var(--menu-height);
-  /* backdrop-filter: blur(1rem); */
+}
+
+.menu {
+  cursor: pointer;
+  border: 0;
+  background: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2rem;
+  margin-left: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(0.05rem);
+}
+
+.menu:focus,
+.menu:hover {
+  background-color: rgba(var(--light-background), 0.1);
 }
 
 .account {
@@ -38,4 +56,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+@media (max-width: 1199px) {
+  .signedInAs {
+    display: none;
+  }
+
+  .root {
+    padding-left: 0;
+  }
+
+  .account {
+    padding: 0 0.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .menu {
+    display: none;
+  }
 }

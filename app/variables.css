@@ -19,7 +19,7 @@
   --letter-spacing-uppercase: 0.05em;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 1200px) {
   :root {
     --box-margin: 2rem;
     --box-padding: 2rem;

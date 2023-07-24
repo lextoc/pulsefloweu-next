@@ -23,27 +23,29 @@ export default function SideNavigation({ user }: ISideNavigationProps) {
           <Logo small white noLink />
         </Link>
       </div>
-      <SideNavigationLink
-        href="/app/timers"
-        title="Get started"
-        sub="View your active timers"
-      />
-      <SideNavigationLink
-        href="/app/dashboard"
-        title="Dashboard"
-        sub="Manage project directories"
-      />
-      <SideNavigationLink
-        href="/app/timeline"
-        title="Calendar"
-        sub="Use a timeline for inserting timesheets"
-      />
-      <SideNavigationLink
-        href="/app/invoices"
-        title="Invoice generator"
-        sub="Create an invoice for a specific date range"
-      />
-      <SideNavigationProjects />
+      <div className={styles.inner}>
+        <SideNavigationLink
+          href="/app/timers"
+          title="Get started"
+          sub="View your active timers"
+        />
+        <SideNavigationLink
+          href="/app/dashboard"
+          title="Dashboard"
+          sub="Manage project directories"
+        />
+        <SideNavigationLink
+          href="/app/timeline"
+          title="Calendar"
+          sub="Use a timeline for inserting timesheets"
+        />
+        <SideNavigationLink
+          href="/app/invoices"
+          title="Invoice generator"
+          sub="Create an invoice for a specific date range"
+        />
+        <SideNavigationProjects />
+      </div>
     </div>
   );
 }

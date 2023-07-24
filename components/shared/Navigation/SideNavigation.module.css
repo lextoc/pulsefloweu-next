@@ -5,8 +5,14 @@
   z-index: 101;
   width: var(--sidebar-width);
   height: 100vh;
-  overflow: auto;
   background: rgb(var(--secondary));
+}
+
+@media (max-width: 1199px) {
+  .root {
+    transition: transform 150ms ease;
+    transform: translateX(-100%);
+  }
 }
 
 @keyframes moveAround {
@@ -125,7 +131,6 @@
 
 .logoWrapper {
   height: 3rem;
-  margin-bottom: 1rem;
 }
 
 .logo {
@@ -177,4 +182,9 @@
   border: 1px solid rgba(255, 255, 255, 0.05);
   filter: blur(0.2rem);
   animation: moveAroundSmall 30s ease-in-out infinite;
+}
+
+.inner {
+  overflow: auto;
+  height: calc(100vh - 3rem);
 }
