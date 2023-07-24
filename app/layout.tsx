@@ -11,9 +11,9 @@ import { cookies } from "next/headers";
 import validateToken from "@/api/auth/validateToken";
 import { IUser } from "@/api/types/auth";
 import Main from "@/components/shared/Main";
-import NavigationMenu from "@/components/shared/Navigation/NavigationMenu";
-import SideNavigation from "@/components/shared/Navigation/SideNavigation";
-import { Snackbar } from "@/components/shared/Snackbar";
+import NavigationMenu from "@/lib/navigation/Menu";
+import SideNavigation from "@/lib/navigation/Side";
+import { Snackbar } from "@/lib/shared/Snackbar";
 
 const font = Lato({
   weight: ["300", "400", "700", "900"],

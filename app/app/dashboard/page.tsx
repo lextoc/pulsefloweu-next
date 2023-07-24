@@ -1,10 +1,10 @@
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { IProject } from "@/api/types/projects";
-import { CreateProjectCard } from "@/components/Projects/Cards/CreateProjectCard";
-import DashboardProjectListItem from "@/components/Projects/Dashboard/ListItem";
 import { Header } from "@/components/shared/Header";
 import PaddingContainer from "@/components/shared/PaddingContainer";
+import { CreateProjectCard } from "@/lib/projects/cards/CreateProjectCard";
+import DashboardProjectListItem from "@/lib/projects/dashboard/ListItem";
 
 import styles from "./page.module.css";
 
