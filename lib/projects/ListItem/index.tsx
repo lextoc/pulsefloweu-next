@@ -1,3 +1,7 @@
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
+
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { IFolder } from "@/api/types/folders";
@@ -12,12 +16,16 @@ export interface IProjectsDashboardListItemProps {
   project: IProject;
 }
 
-export default async function ProjectsDashboardListItem({
+export default function ProjectsDashboardListItem({
   project,
 }: IProjectsDashboardListItemProps) {
+  const query = useQuery({
+    queryKey: [endpoints.getFoldersFromProject(project.id!)],
+    queryFn: () => getPage(endpoints.getFoldersFromProject(project.id!)),
+  });
+
   let folders: IFolder[] = [];
-  const response = await getPage(endpoints.getFoldersFromProject(project.id!));
-  if (response?.data) folders = response.data;
+  if (query.data?.success) folders = query.data?.data;
 
   return (
     <div id={`#project-${project.id}`}>
@@ -27,7 +35,7 @@ export default async function ProjectsDashboardListItem({
       </div>
       <div className="cards">
         {folders.map((folder) => (
-          <FolderCard folder={folder} />
+          <FolderCard key={folder.id} folder={folder} />
         ))}
         <CreateFolderCard project={project} />
       </div>

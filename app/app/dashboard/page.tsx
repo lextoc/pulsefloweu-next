@@ -1,3 +1,7 @@
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
+
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { IProject } from "@/api/types/projects";
@@ -10,11 +14,14 @@ import styles from "./page.module.css";
 
 export interface IDashboardProps {}
 
-export default async function Dashboard(props: IDashboardProps) {
-  let projects: IProject[] = [];
+export default function Dashboard(props: IDashboardProps) {
+  const query = useQuery({
+    queryKey: [endpoints.getProjects],
+    queryFn: () => getPage(endpoints.getProjects),
+  });
 
-  const response = await getPage(endpoints.getProjects);
-  if (response?.data) projects = response.data;
+  let projects: IProject[] = [];
+  if (query.data?.success) projects = query.data?.data;
 
   return (
     <div className={styles.root}>
@@ -27,7 +34,7 @@ export default async function Dashboard(props: IDashboardProps) {
       <PaddingContainer>
         <div className="content">
           {projects.map((project) => (
-            <DashboardProjectListItem project={project} />
+            <DashboardProjectListItem key={project.id} project={project} />
           ))}
           <h2>Create project</h2>
           <CreateProjectCard />

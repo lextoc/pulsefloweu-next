@@ -1,3 +1,6 @@
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 
 import endpoints from "@/api/endpoints";
@@ -11,12 +14,16 @@ export interface ISideNavigationProjectProps {
   project: IProject;
 }
 
-export default async function SideNavigationProject({
+export default function SideNavigationProject({
   project,
 }: ISideNavigationProjectProps) {
+  const query = useQuery({
+    queryKey: [endpoints.getFoldersFromProject(project.id!)],
+    queryFn: () => getPage(endpoints.getFoldersFromProject(project.id!)),
+  });
+
   let folders: IFolder[] = [];
-  const response = await getPage(endpoints.getFoldersFromProject(project.id!));
-  if (response?.data) folders = response.data;
+  if (query.data?.success) folders = query.data?.data;
 
   return (
     <div className={styles.root}>
@@ -30,6 +37,7 @@ export default async function SideNavigationProject({
       </Link>
       {folders.map((folder) => (
         <Link
+          key={folder.id}
           href={`/app/dashboard#folder-${folder.id}`}
           className={styles.folderLink}
         >

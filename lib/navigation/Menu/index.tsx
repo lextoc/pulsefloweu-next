@@ -1,10 +1,12 @@
 "use client";
 
 import { IconMenu2 } from "@tabler/icons-react";
-import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
+import { usePathname, useRouter } from "next/navigation";
 import { useContext } from "react";
 
 import { clearCookies } from "@/api/cookies";
+import endpoints from "@/api/endpoints";
 import Button from "@/components/buttons/base";
 import Popover from "@/components/overlays/Popover";
 import AuthenticationContext from "@/lib/authentication/Context";
@@ -14,15 +16,18 @@ import styles from "./index.module.css";
 export interface INavigationMenuProps {}
 
 export default function NavigationMenu(props: INavigationMenuProps) {
+  const queryClient = useQueryClient();
+  const pathname = usePathname();
   const user = useContext(AuthenticationContext);
   const { push } = useRouter();
 
   const onSignOut = () => {
     clearCookies();
     push("/");
+    queryClient.invalidateQueries([endpoints.authValidateToken]);
   };
 
-  if (!user) return null;
+  if (!pathname.startsWith("/app")) return null;
 
   return (
     <div className={styles.wrapper}>
@@ -31,9 +36,11 @@ export default function NavigationMenu(props: INavigationMenuProps) {
           <IconMenu2 size="1rem" color="white" />
         </button>
         <div className={styles.account}>
-          <div className={styles.signedInAs}>
-            Signed in as<strong>{user?.email}</strong>
-          </div>
+          {user?.email && (
+            <div className={styles.signedInAs}>
+              Signed in as<strong>{user?.email}</strong>
+            </div>
+          )}
           <Popover
             white
             content={

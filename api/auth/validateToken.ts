@@ -7,7 +7,7 @@ import { ICookies, IUser } from "@/api/types/auth";
 
 export type TSuccessResponse = {
   success: true;
-  data: IUser;
+  data: IUser | null;
 };
 
 export type TFailedResponse = {

@@ -14,6 +14,7 @@ import Main from "@/components/shared/Main";
 import { AuthenticationProvider } from "@/lib/authentication/Context";
 import NavigationMenu from "@/lib/navigation/Menu";
 import SideNavigation from "@/lib/navigation/Side";
+import QueryClientProvider from "@/lib/shared/QueryClientProvider";
 import { Snackbar } from "@/lib/shared/Snackbar";
 
 const font = Lato({
@@ -62,12 +63,14 @@ export default async function RootLayout({
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <body className={font.className}>
-        <AuthenticationProvider>
-          <NavigationMenu />
-          <SideNavigation />
-          <Main>{children}</Main>
-          <Snackbar />
-        </AuthenticationProvider>
+        <QueryClientProvider>
+          <AuthenticationProvider initialUser={user}>
+            <NavigationMenu />
+            <SideNavigation />
+            <Main>{children}</Main>
+            <Snackbar />
+          </AuthenticationProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );
