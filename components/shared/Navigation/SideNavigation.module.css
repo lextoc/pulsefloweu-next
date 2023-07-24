@@ -185,6 +185,18 @@
 }
 
 .inner {
-  overflow: auto;
   height: calc(100vh - 3rem);
+  overflow: auto;
+  padding: 1.5rem 0;
+}
+
+.inner::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.inner::-webkit-scrollbar-track {
+}
+
+.inner::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1);
 }
