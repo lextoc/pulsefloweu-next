@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "@mantine/form";
+import { useQueryClient } from "@tanstack/react-query";
 
 import create from "@/api/create";
 import endpoints from "@/api/endpoints";
@@ -15,6 +16,7 @@ import styles from "./index.module.css";
 export interface ICreateProjectCardProps {}
 
 export function CreateProjectCard(props: ICreateProjectCardProps) {
+  const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
   const onSubmit = (values: IProject) => {
@@ -29,6 +31,7 @@ export function CreateProjectCard(props: ICreateProjectCardProps) {
         });
       } else {
         form.reset();
+        queryClient.invalidateQueries([endpoints.getProjects]);
         showSnackbar({
           message: "Project has been created",
         });

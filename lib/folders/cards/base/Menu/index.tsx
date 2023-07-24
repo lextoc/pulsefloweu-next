@@ -1,5 +1,7 @@
 "use client";
 
+import { useQueryClient } from "@tanstack/react-query";
+
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
 import { IFolder } from "@/api/types/folders";
@@ -14,6 +16,7 @@ export interface IFolderCardMenuProps {
 }
 
 export default function FolderCardMenu({ folder }: IFolderCardMenuProps) {
+  const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
   const onDelete = () => {
@@ -23,6 +26,9 @@ export default function FolderCardMenu({ folder }: IFolderCardMenuProps) {
     if (!hasAgreed) return;
     destroy(endpoints.destroyFolder(folder.id!)).then((data) => {
       if (data.success) {
+        queryClient.invalidateQueries([
+          endpoints.getFoldersFromProject(folder.project_id!),
+        ]);
         showSnackbar({
           message: "Folder has been deleted",
         });

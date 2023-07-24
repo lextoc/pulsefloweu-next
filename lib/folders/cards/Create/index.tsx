@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "@mantine/form";
+import { useQueryClient } from "@tanstack/react-query";
 
 import create from "@/api/create";
 import endpoints from "@/api/endpoints";
@@ -18,6 +19,7 @@ export interface ICreateFolderCardProps {
 }
 
 export default function CreateFolderCard({ project }: ICreateFolderCardProps) {
+  const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
   const onSubmit = (values: Omit<IFolder, "project_id">) => {
@@ -35,6 +37,9 @@ export default function CreateFolderCard({ project }: ICreateFolderCardProps) {
         });
       } else {
         form.reset();
+        queryClient.invalidateQueries([
+          endpoints.getFoldersFromProject(project.id!),
+        ]);
         showSnackbar({
           message: "Folder has been created",
         });
