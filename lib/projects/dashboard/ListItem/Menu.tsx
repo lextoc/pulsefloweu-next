@@ -4,7 +4,7 @@ import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
 import { IProject } from "@/api/types/projects";
 import Button from "@/components/buttons/base";
-import Popover from "@/components/shared/Popover";
+import Popover from "@/components/overlays/Popover";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./Menu.module.css";
