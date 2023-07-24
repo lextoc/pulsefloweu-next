@@ -19,7 +19,7 @@ export interface IRegisterFormValues {
 
 export interface IRegisterFormProps {}
 
-export function RegisterForm(props: IRegisterFormProps) {
+export default function RegisterForm(props: IRegisterFormProps) {
   const showSnackbar = useSnackbarStore((state) => state.show);
   const { push } = useRouter();
 

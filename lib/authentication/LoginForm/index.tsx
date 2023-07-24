@@ -19,7 +19,7 @@ export interface ILoginFormValues {
 
 export interface ILoginFormProps {}
 
-export function LoginForm(props: ILoginFormProps) {
+export default function LoginForm(props: ILoginFormProps) {
   const showSnackbar = useSnackbarStore((state) => state.show);
   const { push } = useRouter();
 
