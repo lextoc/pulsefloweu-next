@@ -34,7 +34,7 @@ export default function SideNavigation(props: SideNavigationProps) {
         <SideNavigationLink
           href="/app/dashboard"
           title="Dashboard"
-          sub="Manage project directories"
+          sub="Manage your projects"
         />
         <SideNavigationLink
           href="/app/timeline"

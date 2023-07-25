@@ -28,7 +28,7 @@ export default function Dashboard(props: DashboardProps) {
       <Header>
         <PaddingContainer>
           <h1>Dashboard</h1>
-          <p>Manage project directories</p>
+          <p>Manage your projects</p>
         </PaddingContainer>
       </Header>
       <PaddingContainer>

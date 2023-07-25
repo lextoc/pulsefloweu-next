@@ -1,3 +1,5 @@
+import { FolderDetail } from "@/lib/Folders/Detail";
+
 export interface IProjectFolderPageProps {
   params: {
     folderId: string;
@@ -5,6 +7,9 @@ export interface IProjectFolderPageProps {
 }
 
 export default function ProjectFolderPage(props: IProjectFolderPageProps) {
-  console.log("🚀 ~ props:", props);
-  return <div>HI!</div>;
+  if (!props.params.folderId) return null;
+
+  const folderId = parseInt(props.params.folderId, 10);
+
+  return <FolderDetail folderId={folderId} />;
 }
