@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useContext } from "react";
 
-import AuthenticationContext from "@/lib/Authentication/Context/Index";
+import AuthenticationContext from "@/lib/Authentication/Context";
 
 import styles from "./index.module.css";
 

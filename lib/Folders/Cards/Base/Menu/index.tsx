@@ -1,32 +1,36 @@
 "use client";
 
+import { useQueryClient } from "@tanstack/react-query";
+
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
-import { IProject } from "@/api/types/projects";
-import Button from "@/components/Buttons/Base/Index";
-import Popover from "@/components/Overlays/Popover/Index";
+import { IFolder } from "@/api/types/folders";
+import Button from "@/components/Buttons/Base";
+import Popover from "@/components/Overlays/Popover";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
-export interface IProjectsDashboardListItemMenuProps {
-  project: IProject;
+export interface IFolderCardMenuProps {
+  folder: IFolder;
 }
 
-export default function ProjectsDashboardListItemMenu({
-  project,
-}: IProjectsDashboardListItemMenuProps) {
+export default function FolderCardMenu({ folder }: IFolderCardMenuProps) {
+  const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
   const onDelete = () => {
     const hasAgreed = window.confirm(
-      "Destroying your project will also remove all its folders, tasks and timesheets. Are you sure?",
+      "Destroying your folder will also remove all its tasks and timesheets. Are you sure?",
     );
     if (!hasAgreed) return;
-    destroy(endpoints.destroyProject(project.id!)).then((data) => {
+    destroy(endpoints.destroyFolder(folder.id!)).then((data) => {
       if (data.success) {
+        queryClient.invalidateQueries([
+          endpoints.getFoldersFromProject(folder.project_id!),
+        ]);
         showSnackbar({
-          message: "Project has been deleted",
+          message: "Folder has been deleted",
         });
       } else {
         showSnackbar({
@@ -43,7 +47,7 @@ export default function ProjectsDashboardListItemMenu({
         content={
           <div className={styles.menu}>
             <Button variant="subtle" danger onClick={onDelete} noMargin>
-              Delete project
+              Delete folder
             </Button>
           </div>
         }

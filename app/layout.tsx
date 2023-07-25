@@ -10,12 +10,12 @@ import { cookies } from "next/headers";
 
 import validateToken from "@/api/auth/validateToken";
 import { IUser } from "@/api/types/auth";
-import Main from "@/components/Shared/Main/Index";
-import { AuthenticationProvider } from "@/lib/Authentication/Context/Index";
-import NavigationMenu from "@/lib/Navigation/Menu/Index";
-import SideNavigation from "@/lib/Navigation/Side/Index";
-import QueryClientProvider from "@/lib/Shared/QueryClientProvider/Index";
-import { Snackbar } from "@/lib/Shared/Snackbar/Index";
+import Main from "@/components/Shared/Main";
+import { AuthenticationProvider } from "@/lib/Authentication/Context";
+import NavigationMenu from "@/lib/Navigation/Menu";
+import SideNavigation from "@/lib/Navigation/Side";
+import QueryClientProvider from "@/lib/Shared/QueryClientProvider";
+import { Snackbar } from "@/lib/Shared/Snackbar";
 
 const font = Lato({
   weight: ["300", "400", "700", "900"],

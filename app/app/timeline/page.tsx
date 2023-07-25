@@ -1,5 +1,5 @@
-import { Header } from "@/components/Shared/Header/Index";
-import PaddingContainer from "@/components/Shared/PaddingContainer/Index";
+import { Header } from "@/components/Shared/Header";
+import PaddingContainer from "@/components/Shared/PaddingContainer";
 
 import styles from "./page.module.css";
 

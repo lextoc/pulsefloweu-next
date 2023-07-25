@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import Logo from "@/components/Shared/Logo/Index";
-import SideNavigationLink from "@/lib/Navigation/Side/Link/Index";
-import SideNavigationProjects from "@/lib/Navigation/Side/Projects/Index";
+import Logo from "@/components/Shared/Logo";
+import SideNavigationLink from "@/lib/Navigation/Side/Link";
+import SideNavigationProjects from "@/lib/Navigation/Side/Projects";
 
 import styles from "./index.module.css";
 

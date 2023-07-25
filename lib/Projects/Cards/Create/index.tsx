@@ -5,29 +5,23 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import create from "@/api/create";
 import endpoints from "@/api/endpoints";
-import { IFolder } from "@/api/types/folders";
 import { IProject } from "@/api/types/projects";
-import Button from "@/components/Buttons/Base/Index";
-import Input from "@/components/Inputs/Base/Index";
-import Form from "@/components/Inputs/Form/Index";
+import Button from "@/components/Buttons/Base";
+import Input from "@/components/Inputs/Base";
+import Form from "@/components/Inputs/Form";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
-export interface ICreateFolderCardProps {
-  project: IProject;
-}
+export interface ICreateProjectCardProps {}
 
-export default function CreateFolderCard({ project }: ICreateFolderCardProps) {
+export function CreateProjectCard(props: ICreateProjectCardProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
-  const onSubmit = (values: Omit<IFolder, "project_id">) => {
-    create<{ folder: IFolder }>(endpoints.createFolder, {
-      folder: {
-        project_id: project.id!,
-        ...values,
-      },
+  const onSubmit = (values: IProject) => {
+    create<{ project: IProject }>(endpoints.createProject, {
+      project: values,
     }).then((data) => {
       if (data?.errors) {
         showSnackbar({
@@ -37,17 +31,15 @@ export default function CreateFolderCard({ project }: ICreateFolderCardProps) {
         });
       } else {
         form.reset();
-        queryClient.invalidateQueries([
-          endpoints.getFoldersFromProject(project.id!),
-        ]);
+        queryClient.invalidateQueries([endpoints.getProjects]);
         showSnackbar({
-          message: "Folder has been created",
+          message: "Project has been created",
         });
       }
     });
   };
 
-  const form = useForm<Omit<IFolder, "project_id">>({
+  const form = useForm<IProject>({
     initialValues: {
       name: "",
     },
@@ -59,15 +51,15 @@ export default function CreateFolderCard({ project }: ICreateFolderCardProps) {
 
   return (
     <div className={styles.root}>
-      <h3>Create new folder</h3>
+      <h3>Create new project</h3>
       <p>
-        Enter a name and click on create to make a new folder. In this folder
-        you'll be able to create timesheets.
+        Enter a name and click on create to make a new project. You'll be able
+        to categorize your projects' timesheets in folders.
       </p>
       <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
         <Input
           label="Name"
-          placeholder="Folder name"
+          placeholder="Project name"
           inverted
           {...form.getInputProps("name")}
         />
