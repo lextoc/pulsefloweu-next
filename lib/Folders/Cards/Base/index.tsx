@@ -26,7 +26,17 @@ export default function FolderCard({ folder }: FolderCardProps) {
         <FolderCardMenu folder={folder} />
       </header>
       <div className={styles.content}>
-        <p>This folder has 0 tasks.</p>
+        <p>
+          This folder has 8 tasks:
+          <br />
+          <ul>
+            <li>Spent 192 hours</li>
+            <li>This week 34 hours</li>
+            <br />
+            <li>Profit of £289</li>
+            <li>This week of £18</li>
+          </ul>
+        </p>
         <p className={styles.timestamp}>
           <small>
             <i>
