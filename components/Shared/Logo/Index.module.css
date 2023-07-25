@@ -1,0 +1,59 @@
+.root {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  text-decoration: none;
+  font-size: 2.5rem;
+}
+
+.rootSmall {
+  font-size: 1.5rem;
+}
+
+.logo {
+  display: block;
+  width: 1.5em;
+  height: auto;
+  overflow: hidden;
+  border-radius: 0.25em;
+  transform: rotate3d(0, 0, 1, -5deg);
+  box-shadow: 0.2em 0.2em 0 rgba(var(--light-background), 1);
+}
+
+.logoSquareOne {
+  fill: rgb(var(--main));
+}
+
+.logoSquareTwo {
+  fill: rgb(255, 213, 0);
+}
+
+.logoSquareThree {
+  fill: rgb(255, 213, 0);
+}
+
+.logoSquareFour {
+  fill: rgb(var(--main));
+}
+
+.logoSmall {
+  font-size: 1.15em;
+  width: 1em;
+  box-shadow: 0.1em 0.1em 0 rgba(var(--light-background), 0.2);
+}
+
+.tracky {
+  margin-top: 0.05em;
+  margin-left: 0.75em;
+  font-size: 0.9em;
+  font-weight: 800;
+  color: rgb(var(--secondary));
+}
+
+.trackyWhite {
+  color: rgb(var(--white));
+}
+
+.trackySmall {
+  font-size: 0.9em;
+}

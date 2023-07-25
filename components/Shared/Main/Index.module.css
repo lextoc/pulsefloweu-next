@@ -1,0 +1,24 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+    to bottom right,
+    rgb(var(--white)),
+    rgb(var(--light-background))
+  );
+  min-height: 100vh;
+}
+
+.withMenu {
+  min-height: calc(100vh - var(--menu-height));
+}
+
+.withSidebar {
+  margin-left: var(--sidebar-width);
+}
+
+@media (max-width: 1199px) {
+  .withSidebar {
+    margin-left: 0;
+  }
+}

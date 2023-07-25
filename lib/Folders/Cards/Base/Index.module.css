@@ -1,0 +1,41 @@
+.root {
+  max-width: 20rem;
+  border-radius: var(--border-radius);
+  background: linear-gradient(
+    to bottom right,
+    rgb(var(--light-background)),
+    rgba(var(--light-background), 0.5),
+    rgb(var(--light-background))
+  );
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+}
+
+.link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  margin: 0.5rem 0.5rem 0;
+  padding: 0.5rem;
+  border: 2px solid transparent;
+  transition: border 150ms ease, background 150ms ease;
+}
+
+.link:focus,
+.link:hover {
+  background: rgb(var(--light-background));
+  border: 2px solid rgba(var(--secondary-bright), 0.05);
+}
+
+.link p {
+  margin: 0;
+}
+
+.content {
+  padding: 0.5rem 1rem 1rem;
+  min-height: 14rem;
+}
