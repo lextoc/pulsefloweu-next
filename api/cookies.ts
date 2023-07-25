@@ -1,7 +1,7 @@
 import { RequestCookies } from "next/dist/compiled/@edge-runtime/cookies";
 import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 
-import { ICookies } from "@/api/types/auth";
+import { Cookies } from "@/api/types/auth";
 
 function getCookie(name: string) {
   const value = `; ${document.cookie}`;
@@ -11,7 +11,7 @@ function getCookie(name: string) {
 
 export function getCookies(
   cookies: ReadonlyRequestCookies | RequestCookies,
-): false | ICookies {
+): false | Cookies {
   if (
     !cookies.get("access-token")?.value ||
     !cookies.get("client")?.value ||
@@ -26,7 +26,7 @@ export function getCookies(
   };
 }
 
-export function setCookies(cookies: ICookies) {
+export function setCookies(cookies: Cookies) {
   document.cookie = `access-token=${cookies["access-token"]};path=/;`;
   document.cookie = `client=${cookies.client};path=/;`;
   document.cookie = `uid=${cookies.uid};path=/;`;

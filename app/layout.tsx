@@ -9,7 +9,7 @@ import Head from "next/head";
 import { cookies } from "next/headers";
 
 import validateToken from "@/api/auth/validateToken";
-import { IUser } from "@/api/types/auth";
+import { User } from "@/api/types/auth";
 import Main from "@/components/Shared/Main";
 import { AuthenticationProvider } from "@/lib/Authentication/Context";
 import NavigationMenu from "@/lib/Navigation/Menu";
@@ -33,7 +33,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const response = await validateToken(cookies());
-  let user: IUser | null = null;
+  let user: User | null = null;
   if (response.success) user = response.data;
 
   return (

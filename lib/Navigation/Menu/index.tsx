@@ -13,9 +13,9 @@ import AuthenticationContext from "@/lib/Authentication/Context";
 
 import styles from "./index.module.css";
 
-export interface INavigationMenuProps {}
+export interface NavigationMenuProps {}
 
-export default function NavigationMenu(props: INavigationMenuProps) {
+export default function NavigationMenu(props: NavigationMenuProps) {
   const queryClient = useQueryClient();
   const pathname = usePathname();
   const user = useContext(AuthenticationContext);

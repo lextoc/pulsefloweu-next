@@ -7,9 +7,9 @@ import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
-export interface ISnackbarProps {}
+export interface SnackbarProps {}
 
-export function Snackbar(props: ISnackbarProps) {
+export function Snackbar(props: SnackbarProps) {
   const message = useSnackbarStore((state) => state.message);
   const type = useSnackbarStore((state) => state.type);
   const visible = useSnackbarStore((state) => state.visible);

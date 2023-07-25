@@ -5,8 +5,8 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import create from "@/api/create";
 import endpoints from "@/api/endpoints";
-import { IFolder } from "@/api/types/folders";
-import { IProject } from "@/api/types/projects";
+import { Folder } from "@/api/types/folders";
+import { Project } from "@/api/types/projects";
 import Button from "@/components/Buttons/Base";
 import Input from "@/components/Inputs/Base";
 import Form from "@/components/Inputs/Form";
@@ -14,16 +14,16 @@ import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
-export interface ICreateFolderCardProps {
-  project: IProject;
+export interface CreateFolderCardProps {
+  project: Project;
 }
 
-export default function CreateFolderCard({ project }: ICreateFolderCardProps) {
+export default function CreateFolderCard({ project }: CreateFolderCardProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
-  const onSubmit = (values: Omit<IFolder, "project_id">) => {
-    create<{ folder: IFolder }>(endpoints.createFolder, {
+  const onSubmit = (values: Omit<Folder, "project_id">) => {
+    create<{ folder: Folder }>(endpoints.createFolder, {
       folder: {
         project_id: project.id!,
         ...values,
@@ -47,7 +47,7 @@ export default function CreateFolderCard({ project }: ICreateFolderCardProps) {
     });
   };
 
-  const form = useForm<Omit<IFolder, "project_id">>({
+  const form = useForm<Omit<Folder, "project_id">>({
     initialValues: {
       name: "",
     },

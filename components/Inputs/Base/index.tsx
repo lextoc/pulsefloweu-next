@@ -1,8 +1,8 @@
-import { Label } from "@/components/inputs/Label";
+import { Label } from "@/components/Inputs/Label";
 
 import styles from "./index.module.css";
 
-export interface IInputProps
+export interface InputProps
   extends React.DetailedHTMLProps<
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
@@ -11,7 +11,7 @@ export interface IInputProps
   inverted?: boolean;
 }
 
-export default function Input({ label, inverted, ...props }: IInputProps) {
+export default function Input({ label, inverted, ...props }: InputProps) {
   return (
     <>
       {label && <Label>{label}</Label>}

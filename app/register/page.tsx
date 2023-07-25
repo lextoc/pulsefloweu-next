@@ -5,9 +5,9 @@ import RegisterForm from "@/lib/Authentication/RegisterForm";
 
 import styles from "../page.module.css";
 
-export interface IRegisterProps {}
+export interface RegisterProps {}
 
-export default function Register(props: IRegisterProps) {
+export default function Register(props: RegisterProps) {
   return (
     <div className={styles.loginWrapper}>
       <div className={styles.logoWrapper}>

@@ -5,24 +5,24 @@ import Link from "next/link";
 
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
-import { IFolder } from "@/api/types/folders";
-import { IProject } from "@/api/types/projects";
+import { Folder } from "@/api/types/folders";
+import { Project } from "@/api/types/projects";
 
 import styles from "./index.module.css";
 
-export interface ISideNavigationProjectProps {
-  project: IProject;
+export interface SideNavigationProjectProps {
+  project: Project;
 }
 
 export default function SideNavigationProject({
   project,
-}: ISideNavigationProjectProps) {
+}: SideNavigationProjectProps) {
   const query = useQuery({
     queryKey: [endpoints.getFoldersFromProject(project.id!)],
     queryFn: () => getPage(endpoints.getFoldersFromProject(project.id!)),
   });
 
-  let folders: IFolder[] = [];
+  let folders: Folder[] = [];
   if (query.data?.success) folders = query.data?.data;
 
   return (

@@ -6,28 +6,28 @@ import { createContext } from "react";
 import validateToken from "@/api/auth/validateToken";
 import { getHeaders } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
-import { IUser } from "@/api/types/auth";
+import { User } from "@/api/types/auth";
 
-const AuthenticationContext = createContext<IUser | null>(null);
+const AuthenticationContext = createContext<User | null>(null);
 
 export default AuthenticationContext;
 
-export interface IAuthenticationProviderProps {
+export interface AuthenticationProviderProps {
   children: React.ReactNode;
-  initialUser: IUser | null;
+  initialUser: User | null;
 }
 
 export function AuthenticationProvider({
   children,
   initialUser,
-}: IAuthenticationProviderProps) {
+}: AuthenticationProviderProps) {
   const query = useQuery({
     queryKey: [endpoints.authValidateToken],
     queryFn: () => validateToken(getHeaders()),
     initialData: { success: true, data: initialUser },
   });
 
-  let user: IUser | null = null;
+  let user: User | null = null;
   if (query.data?.success) user = query.data?.data;
 
   return (

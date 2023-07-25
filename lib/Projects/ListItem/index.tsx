@@ -4,27 +4,27 @@ import { useQuery } from "@tanstack/react-query";
 
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
-import { IFolder } from "@/api/types/folders";
-import { IProject } from "@/api/types/projects";
+import { Folder } from "@/api/types/folders";
+import { Project } from "@/api/types/projects";
 import FolderCard from "@/lib/Folders/Cards/Base";
 import CreateFolderCard from "@/lib/Folders/Cards/Create";
 import ProjectsDashboardListItemMenu from "@/lib/Projects/ListItem/Menu";
 
 import styles from "./index.module.css";
 
-export interface IProjectsDashboardListItemProps {
-  project: IProject;
+export interface ProjectsDashboardListItemProps {
+  project: Project;
 }
 
 export default function ProjectsDashboardListItem({
   project,
-}: IProjectsDashboardListItemProps) {
+}: ProjectsDashboardListItemProps) {
   const query = useQuery({
     queryKey: [endpoints.getFoldersFromProject(project.id!)],
     queryFn: () => getPage(endpoints.getFoldersFromProject(project.id!)),
   });
 
-  let folders: IFolder[] = [];
+  let folders: Folder[] = [];
   if (query.data?.success) folders = query.data?.data;
 
   return (

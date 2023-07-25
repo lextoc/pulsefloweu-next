@@ -3,25 +3,25 @@ import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adap
 
 import { getCookies } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
-import { ICookies, IUser } from "@/api/types/auth";
+import { Cookies, User } from "@/api/types/auth";
 
-export type TSuccessResponse = {
+export type SuccessResponse = {
   success: true;
-  data: IUser | null;
+  data: User | null;
 };
 
-export type TFailedResponse = {
+export type FailedResponse = {
   success: false;
   errors?: string[];
 };
 
 export default async function validateToken(
-  cookies: ReadonlyRequestCookies | RequestCookies | ICookies,
-): Promise<TSuccessResponse | TFailedResponse> {
-  let _cookies: ICookies | false = false;
+  cookies: ReadonlyRequestCookies | RequestCookies | Cookies,
+): Promise<SuccessResponse | FailedResponse> {
+  let _cookies: Cookies | false = false;
 
   // Check if cookies is a ICookies object, or try to create one.
-  if (cookies.hasOwnProperty("client")) _cookies = cookies as ICookies;
+  if (cookies.hasOwnProperty("client")) _cookies = cookies as Cookies;
   else
     _cookies = getCookies(cookies as ReadonlyRequestCookies | RequestCookies);
 

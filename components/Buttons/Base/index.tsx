@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import styles from "./index.module.css";
 
-export interface IButtonProps
+export interface ButtonProps
   extends React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
@@ -21,7 +21,7 @@ export default function Button({
   danger,
   noMargin,
   ...props
-}: IButtonProps) {
+}: ButtonProps) {
   const classNames = `${variant === "subtle" ? styles.subtle : styles.root} ${
     danger ? styles.danger : ""
   } ${noMargin ? styles.noMargin : ""}`;

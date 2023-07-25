@@ -1,10 +1,10 @@
-export interface ICookies {
+export interface Cookies {
   ["access-token"]: string;
   client: string;
   uid: string;
 }
 
-export interface IUser {
+export interface User {
   allow_password_change?: boolean;
   email?: string;
   id?: number;

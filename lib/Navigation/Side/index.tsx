@@ -9,9 +9,9 @@ import SideNavigationProjects from "@/lib/Navigation/Side/Projects";
 
 import styles from "./index.module.css";
 
-export interface ISideNavigationProps {}
+export interface SideNavigationProps {}
 
-export default function SideNavigation(props: ISideNavigationProps) {
+export default function SideNavigation(props: SideNavigationProps) {
   const pathname = usePathname();
 
   if (!pathname.startsWith("/app")) return null;

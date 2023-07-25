@@ -2,10 +2,10 @@
 
 import styles from "./index.module.css";
 
-export interface IPaddingContainerProps {
+export interface PaddingContainerProps {
   children: React.ReactNode;
 }
 
-export default function PaddingContainer({ children }: IPaddingContainerProps) {
+export default function PaddingContainer({ children }: PaddingContainerProps) {
   return <div className={styles.root}>{children}</div>;
 }

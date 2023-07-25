@@ -4,12 +4,12 @@ import { Popover } from "react-tiny-popover";
 
 import styles from "./index.module.css";
 
-export interface IPopoverProps {
+export interface PopoverProps {
   content: React.ReactNode;
   white?: boolean;
 }
 
-export default function ({ content, white }: IPopoverProps) {
+export default function ({ content, white }: PopoverProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <Popover

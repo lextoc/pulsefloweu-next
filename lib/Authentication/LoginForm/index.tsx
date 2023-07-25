@@ -13,19 +13,19 @@ import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
-export interface ILoginFormValues {
+export interface LoginFormValues {
   email: string;
   password: string;
 }
 
-export interface ILoginFormProps {}
+export interface LoginFormProps {}
 
-export default function LoginForm(props: ILoginFormProps) {
+export default function LoginForm(props: LoginFormProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
   const { push } = useRouter();
 
-  const onSubmit = (values: ILoginFormValues) => {
+  const onSubmit = (values: LoginFormValues) => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

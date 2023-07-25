@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import styles from "./index.module.css";
 
-export interface ILogoProps {
+export interface LogoProps {
   noText?: boolean;
   small?: boolean;
   white?: boolean;
@@ -13,7 +13,7 @@ function actualLogo({
   noText,
   small,
   white,
-}: Omit<ILogoProps, "noLink">): React.ReactNode {
+}: Omit<LogoProps, "noLink">): React.ReactNode {
   return (
     <>
       <svg
@@ -63,7 +63,7 @@ function actualLogo({
   );
 }
 
-export default function Logo({ noLink, small, ...props }: ILogoProps) {
+export default function Logo({ noLink, small, ...props }: LogoProps) {
   return noLink ? (
     <div className={`${styles.root} ${small ? styles.rootSmall : ""}`}>
       {actualLogo({ small, ...props })}

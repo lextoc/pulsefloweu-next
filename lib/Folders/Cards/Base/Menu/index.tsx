@@ -4,18 +4,18 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
-import { IFolder } from "@/api/types/folders";
+import { Folder } from "@/api/types/folders";
 import Button from "@/components/Buttons/Base";
 import Popover from "@/components/Overlays/Popover";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
-export interface IFolderCardMenuProps {
-  folder: IFolder;
+export interface FolderCardMenuProps {
+  folder: Folder;
 }
 
-export default function FolderCardMenu({ folder }: IFolderCardMenuProps) {
+export default function FolderCardMenu({ folder }: FolderCardMenuProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 

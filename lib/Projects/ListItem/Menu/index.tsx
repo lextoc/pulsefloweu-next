@@ -2,20 +2,20 @@
 
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
-import { IProject } from "@/api/types/projects";
+import { Project } from "@/api/types/projects";
 import Button from "@/components/Buttons/Base";
 import Popover from "@/components/Overlays/Popover";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
-export interface IProjectsDashboardListItemMenuProps {
-  project: IProject;
+export interface ProjectsDashboardListItemMenuProps {
+  project: Project;
 }
 
 export default function ProjectsDashboardListItemMenu({
   project,
-}: IProjectsDashboardListItemMenuProps) {
+}: ProjectsDashboardListItemMenuProps) {
   const showSnackbar = useSnackbarStore((state) => state.show);
 
   const onDelete = () => {

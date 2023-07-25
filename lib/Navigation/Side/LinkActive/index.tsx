@@ -4,11 +4,11 @@ import { usePathname } from "next/navigation";
 
 import styles from "./index.module.css";
 
-export interface ILinkActiveProps {
+export interface LinkActiveProps {
   href: string;
 }
 
-export function LinkActive({ href }: ILinkActiveProps) {
+export function LinkActive({ href }: LinkActiveProps) {
   const pathname = usePathname();
   return (
     <div

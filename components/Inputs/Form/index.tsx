@@ -1,6 +1,6 @@
 import styles from "./index.module.css";
 
-export interface IFormProps
+export interface FormProps
   extends React.DetailedHTMLProps<
     React.FormHTMLAttributes<HTMLFormElement>,
     HTMLFormElement
@@ -8,7 +8,7 @@ export interface IFormProps
   children: React.ReactNode;
 }
 
-export default function Form({ children, ...props }: IFormProps) {
+export default function Form({ children, ...props }: FormProps) {
   return (
     <form {...props} className={styles.root}>
       {children}

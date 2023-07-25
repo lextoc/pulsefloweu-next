@@ -12,18 +12,18 @@ import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
-export interface IRegisterFormValues {
+export interface RegisterFormValues {
   email: string;
   password: string;
 }
 
-export interface IRegisterFormProps {}
+export interface RegisterFormProps {}
 
-export default function RegisterForm(props: IRegisterFormProps) {
+export default function RegisterForm(props: RegisterFormProps) {
   const showSnackbar = useSnackbarStore((state) => state.show);
   const { push } = useRouter();
 
-  const onSubmit = (values: IRegisterFormValues) => {
+  const onSubmit = (values: RegisterFormValues) => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

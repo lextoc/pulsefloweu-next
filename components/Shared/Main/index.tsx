@@ -7,11 +7,11 @@ import AuthenticationContext from "@/lib/Authentication/Context";
 
 import styles from "./index.module.css";
 
-export interface IMainProps {
+export interface MainProps {
   children: React.ReactNode;
 }
 
-export default function Main({ children }: IMainProps) {
+export default function Main({ children }: MainProps) {
   const pathname = usePathname();
   const user = useContext(AuthenticationContext);
   const hasNavigation = user || pathname.startsWith("/app");

@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
-import { IProject } from "@/api/types/projects";
+import { Project } from "@/api/types/projects";
 import { Header } from "@/components/Shared/Header";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
 import { CreateProjectCard } from "@/lib/Projects/Cards/Create";
@@ -12,15 +12,15 @@ import DashboardProjectListItem from "@/lib/Projects/ListItem";
 
 import styles from "./page.module.css";
 
-export interface IDashboardProps {}
+export interface DashboardProps {}
 
-export default function Dashboard(props: IDashboardProps) {
+export default function Dashboard(props: DashboardProps) {
   const query = useQuery({
     queryKey: [endpoints.getProjects],
     queryFn: () => getPage(endpoints.getProjects),
   });
 
-  let projects: IProject[] = [];
+  let projects: Project[] = [];
   if (query.data?.success) projects = query.data?.data;
 
   return (
