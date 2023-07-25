@@ -1,9 +1,0 @@
-.root {
-  padding: 1rem 2rem;
-}
-
-@media (max-width: 1199px) {
-  .root {
-    padding: 1rem 0.5rem;
-  }
-}
