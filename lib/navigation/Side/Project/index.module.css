@@ -24,7 +24,7 @@
 .link:focus .inner,
 .folderLink:hover .inner,
 .folderLink:focus .inner {
-  background-color: rgba(var(--light-background), 0.1);
+  background-color: rgba(var(--secondary-bright), 0.1);
 }
 
 .folderLink {

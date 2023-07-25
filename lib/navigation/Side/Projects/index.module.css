@@ -14,5 +14,5 @@
   margin: 0 0.4rem 2rem;
   padding: 0.4rem 0;
   border-radius: var(--border-radius);
-  background: rgba(var(--light-background), 0.05);
+  background: rgba(var(--secondary-bright), 0.1);
 }
