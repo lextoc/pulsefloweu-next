@@ -9,6 +9,7 @@ export default {
   createProject: h("/projects"),
   destroyProject: (projectId: number) => h(`/projects/${projectId}`),
   destroyFolder: (folderId: number) => h(`/folders/${folderId}`),
+  getFolder: (folderId: number) => h(`/folders/${folderId}`),
   getProjects: h("/projects"),
   getProject: (projectId: number) => h(`/projects/${projectId}`),
   getFoldersFromProject: (projectId: number) =>
