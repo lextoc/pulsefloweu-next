@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import Logo from "@/components/shared/Logo";
+import Logo from "@/components/Shared/Logo/Index";
+import SideNavigationLink from "@/lib/Navigation/Side/Link/Index";
+import SideNavigationProjects from "@/lib/Navigation/Side/Projects/Index";
 
 import styles from "./index.module.css";
-import SideNavigationLink from "./Link";
-import SideNavigationProjects from "./Projects";
 
 export interface ISideNavigationProps {}
 

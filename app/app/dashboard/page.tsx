@@ -5,8 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { IProject } from "@/api/types/projects";
-import { Header } from "@/components/shared/Header";
-import PaddingContainer from "@/components/shared/PaddingContainer";
+import { Header } from "@/components/Shared/Header/Index";
+import PaddingContainer from "@/components/Shared/PaddingContainer/Index";
 import { CreateProjectCard } from "@/lib/Projects/Cards/Create/Index";
 import DashboardProjectListItem from "@/lib/Projects/ListItem/Index";
 

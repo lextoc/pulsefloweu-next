@@ -10,7 +10,7 @@ import { cookies } from "next/headers";
 
 import validateToken from "@/api/auth/validateToken";
 import { IUser } from "@/api/types/auth";
-import Main from "@/components/shared/Main";
+import Main from "@/components/Shared/Main/Index";
 import { AuthenticationProvider } from "@/lib/Authentication/Context/Index";
 import NavigationMenu from "@/lib/Navigation/Menu/Index";
 import SideNavigation from "@/lib/Navigation/Side/Index";

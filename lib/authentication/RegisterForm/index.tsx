@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 
 import { clearCookies, setCookies } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
-import Button from "@/components/buttons/base";
-import Input from "@/components/inputs/base";
-import Form from "@/components/inputs/Form";
+import Button from "@/components/Buttons/Base/Index";
+import Input from "@/components/Inputs/Base/Index";
+import Form from "@/components/Inputs/Form/Index";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";

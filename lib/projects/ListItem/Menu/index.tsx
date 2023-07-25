@@ -3,8 +3,8 @@
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
 import { IProject } from "@/api/types/projects";
-import Button from "@/components/buttons/base";
-import Popover from "@/components/overlays/Popover";
+import Button from "@/components/Buttons/Base/Index";
+import Popover from "@/components/Overlays/Popover/Index";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";

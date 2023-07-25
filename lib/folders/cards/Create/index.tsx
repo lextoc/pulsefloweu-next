@@ -7,9 +7,9 @@ import create from "@/api/create";
 import endpoints from "@/api/endpoints";
 import { IFolder } from "@/api/types/folders";
 import { IProject } from "@/api/types/projects";
-import Button from "@/components/buttons/base";
-import Input from "@/components/inputs/base";
-import Form from "@/components/inputs/Form";
+import Button from "@/components/Buttons/Base/Index";
+import Input from "@/components/Inputs/Base/Index";
+import Form from "@/components/Inputs/Form/Index";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
