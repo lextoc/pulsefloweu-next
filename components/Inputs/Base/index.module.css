@@ -1,0 +1,26 @@
+.root {
+  border: 0;
+  background: rgba(var(--secondary), 0.05);
+  border-bottom: 2px solid rgba(var(--secondary-bright), 0.1);
+  font-size: 1rem;
+  padding: 1em;
+  width: 100%;
+  border-radius: 0.2rem;
+}
+
+.root:hover {
+  border-bottom: 2px solid rgba(var(--secondary-bright), 0.4);
+}
+
+.root:focus,
+.root:active {
+  border-bottom: 2px solid rgba(var(--secondary-bright), 1);
+}
+
+.inverted {
+  background: white;
+}
+
+.root::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
