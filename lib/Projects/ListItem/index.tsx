@@ -8,17 +8,19 @@ import { Folder } from "@/api/types/folders";
 import { Project } from "@/api/types/projects";
 import FolderCard from "@/lib/Folders/Cards/Base";
 import CreateFolderCard from "@/lib/Folders/Cards/Create";
-import ProjectsDashboardListItemMenu from "@/lib/Projects/ListItem/Menu";
+import ProjectsListItemMenu from "@/lib/Projects/ListItem/Menu";
 
 import styles from "./index.module.css";
 
-export interface ProjectsDashboardListItemProps {
+export interface ProjectsListItemProps {
   project: Project;
+  last?: boolean;
 }
 
-export default function ProjectsDashboardListItem({
+export default function ProjectsListItem({
   project,
-}: ProjectsDashboardListItemProps) {
+  last,
+}: ProjectsListItemProps) {
   const query = useQuery({
     queryKey: [endpoints.getFoldersFromProject(project.id!)],
     queryFn: () => getPage(endpoints.getFoldersFromProject(project.id!)),
@@ -31,7 +33,7 @@ export default function ProjectsDashboardListItem({
     <div id={`#project-${project.id}`}>
       <div className={styles.header}>
         <h2>{project.name}</h2>
-        <ProjectsDashboardListItemMenu project={project} />
+        <ProjectsListItemMenu project={project} />
       </div>
       <div className="cards">
         {folders.map((folder) => (
@@ -39,7 +41,7 @@ export default function ProjectsDashboardListItem({
         ))}
         <CreateFolderCard project={project} />
       </div>
-      <hr className="divider" />
+      {!last && <hr className="divider" />}
     </div>
   );
 }

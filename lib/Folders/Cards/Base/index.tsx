@@ -19,7 +19,10 @@ export default function FolderCard({ folder }: FolderCardProps) {
   return (
     <div className={styles.root} id={`#folder-${folder.id}`}>
       <header className={styles.header}>
-        <Link href={`/app/folders/${folder.id}`} className={styles.link}>
+        <Link
+          href={`/app/projects/${folder.project_id}/folders/${folder.id}`}
+          className={styles.link}
+        >
           <h3 className={styles.title}>{folder.name}</h3>
           <p>Folder</p>
         </Link>

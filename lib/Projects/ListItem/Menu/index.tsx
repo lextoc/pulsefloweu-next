@@ -9,13 +9,13 @@ import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
-export interface ProjectsDashboardListItemMenuProps {
+export interface ProjectsListItemMenuProps {
   project: Project;
 }
 
-export default function ProjectsDashboardListItemMenu({
+export default function ProjectsListItemMenu({
   project,
-}: ProjectsDashboardListItemMenuProps) {
+}: ProjectsListItemMenuProps) {
   const showSnackbar = useSnackbarStore((state) => state.show);
 
   const onDelete = () => {
