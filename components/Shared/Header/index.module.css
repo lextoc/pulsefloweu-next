@@ -1,5 +1,5 @@
 .root {
-  background: rgb(0, 87, 168);
+  background: rgb(0, 99, 191);
   border-top: 1px solid rgba(255, 255, 255, 0.01);
   border-bottom: 2px solid rgba(255, 255, 255, 0.01);
   position: relative;
@@ -27,7 +27,7 @@
   width: 50vw;
   height: 50vw;
   border-radius: 50vw;
-  background: rgba(var(--secondary-bright), 0.4);
+  background: rgba(255, 255, 255, 0.08);
   position: absolute;
   z-index: -1;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -43,7 +43,7 @@
   width: 75vw;
   height: 75vw;
   border-radius: 75vw;
-  background: rgba(var(--secondary-bright), 0.4);
+  background: rgba(255, 255, 255, 0.08);
   position: absolute;
   z-index: -1;
   border: 1px solid rgba(255, 255, 255, 0.05);
