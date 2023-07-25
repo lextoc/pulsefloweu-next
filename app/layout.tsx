@@ -10,12 +10,13 @@ import { cookies } from "next/headers";
 
 import validateToken from "@/api/auth/validateToken";
 import { User } from "@/api/types/auth";
+import NavigationProgress from "@/components/Navigation/Progress";
 import Main from "@/components/Shared/Main";
 import { AuthenticationProvider } from "@/lib/Authentication/Context";
 import NavigationMenu from "@/lib/Navigation/Menu";
 import SideNavigation from "@/lib/Navigation/Side";
 import QueryClientProvider from "@/lib/Shared/QueryClientProvider";
-import { Snackbar } from "@/lib/Shared/Snackbar";
+import Snackbar from "@/lib/Shared/Snackbar";
 
 const font = Lato({
   weight: ["300", "400", "700", "900"],
@@ -65,6 +66,7 @@ export default async function RootLayout({
       <body className={font.className}>
         <QueryClientProvider>
           <AuthenticationProvider initialUser={user}>
+            <NavigationProgress />
             <NavigationMenu />
             <SideNavigation />
             <Main>{children}</Main>

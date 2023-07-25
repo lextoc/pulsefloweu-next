@@ -1,0 +1,59 @@
+.root,
+.root::before {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 0.15rem;
+  pointer-events: none;
+}
+
+.root {
+  z-index: 300;
+  width: 100%;
+  background: rgba(var(--main), 0);
+  transition: background 0.5s ease;
+}
+
+.isFetching {
+  transition: background 0ms ease;
+  background: rgba(var(--main), 0.6);
+  width: 100%;
+}
+
+.root::before {
+  content: "";
+  width: 0%;
+  z-index: 301;
+  background: rgba(var(--main), 0);
+  animation: loading 2s linear infinite;
+  transition: background 0.5s ease;
+}
+
+.isFetching::before {
+  transition: background 0ms ease;
+  background: rgb(var(--main));
+}
+
+@keyframes loading {
+  0% {
+    width: 0%;
+    opacity: 1;
+    transform: translateX(0);
+  }
+  25% {
+    width: 25%;
+    opacity: 1;
+    transform: translateX(0);
+  }
+  75% {
+    width: 100%;
+    transform: translateX(75%);
+    opacity: 0;
+  }
+  100% {
+    width: 0%;
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
