@@ -6,11 +6,11 @@ import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { IFolder } from "@/api/types/folders";
 import { IProject } from "@/api/types/projects";
-import FolderCard from "@/lib/folders/cards/base";
-import CreateFolderCard from "@/lib/folders/cards/Create";
+import FolderCard from "@/lib/Folders/Cards/Base/Index";
+import CreateFolderCard from "@/lib/Folders/Cards/Create/Index";
+import ProjectsDashboardListItemMenu from "@/lib/Projects/ListItem/Menu/Index";
 
 import styles from "./index.module.css";
-import ProjectsDashboardListItemMenu from "./Menu";
 
 export interface IProjectsDashboardListItemProps {
   project: IProject;

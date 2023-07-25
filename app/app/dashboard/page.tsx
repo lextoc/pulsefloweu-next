@@ -7,8 +7,8 @@ import getPage from "@/api/getPage";
 import { IProject } from "@/api/types/projects";
 import { Header } from "@/components/shared/Header";
 import PaddingContainer from "@/components/shared/PaddingContainer";
-import { CreateProjectCard } from "@/lib/projects/cards/Create";
-import DashboardProjectListItem from "@/lib/projects/ListItem";
+import { CreateProjectCard } from "@/lib/Projects/Cards/Create/Index";
+import DashboardProjectListItem from "@/lib/Projects/ListItem/Index";
 
 import styles from "./page.module.css";
 

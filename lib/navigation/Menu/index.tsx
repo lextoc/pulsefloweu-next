@@ -9,7 +9,7 @@ import { clearCookies } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
 import Button from "@/components/buttons/base";
 import Popover from "@/components/overlays/Popover";
-import AuthenticationContext from "@/lib/authentication/Context";
+import AuthenticationContext from "@/lib/Authentication/Context/Index";
 
 import styles from "./index.module.css";
 

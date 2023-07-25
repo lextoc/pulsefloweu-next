@@ -11,11 +11,11 @@ import { cookies } from "next/headers";
 import validateToken from "@/api/auth/validateToken";
 import { IUser } from "@/api/types/auth";
 import Main from "@/components/shared/Main";
-import { AuthenticationProvider } from "@/lib/authentication/Context";
-import NavigationMenu from "@/lib/navigation/Menu";
-import SideNavigation from "@/lib/navigation/Side";
-import QueryClientProvider from "@/lib/shared/QueryClientProvider";
-import { Snackbar } from "@/lib/shared/Snackbar";
+import { AuthenticationProvider } from "@/lib/Authentication/Context/Index";
+import NavigationMenu from "@/lib/Navigation/Menu/Index";
+import SideNavigation from "@/lib/Navigation/Side/Index";
+import QueryClientProvider from "@/lib/Shared/QueryClientProvider/Index";
+import { Snackbar } from "@/lib/Shared/Snackbar/Index";
 
 const font = Lato({
   weight: ["300", "400", "700", "900"],
