@@ -5,7 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import create from "@/api/create";
 import endpoints from "@/api/endpoints";
-import { Project } from "@/api/types/projects";
+import { CreateProject } from "@/api/types/projects";
 import Button from "@/components/Buttons/Base";
 import Input from "@/components/Inputs/Base";
 import Form from "@/components/Inputs/Form";
@@ -19,8 +19,8 @@ export function CreateProjectCard(props: CreateProjectCardProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
-  const onSubmit = (values: Project) => {
-    create<{ project: Project }>(endpoints.createProject, {
+  const onSubmit = (values: CreateProject) => {
+    create<{ project: CreateProject }>(endpoints.createProject, {
       project: values,
     }).then((data) => {
       if (data?.errors) {
@@ -39,7 +39,7 @@ export function CreateProjectCard(props: CreateProjectCardProps) {
     });
   };
 
-  const form = useForm<Project>({
+  const form = useForm<CreateProject>({
     initialValues: {
       name: "",
     },

@@ -24,10 +24,10 @@ export default function FolderCardMenu({ folder }: FolderCardMenuProps) {
       "Destroying your folder will also remove all its tasks and timesheets. Are you sure?",
     );
     if (!hasAgreed) return;
-    destroy(endpoints.destroyFolder(folder.id!)).then((data) => {
+    destroy(endpoints.destroyFolder(folder.id)).then((data) => {
       if (data.success) {
         queryClient.invalidateQueries([
-          endpoints.getFoldersFromProject(folder.project_id!),
+          endpoints.getFoldersFromProject(folder.project_id),
         ]);
         showSnackbar({
           message: "Folder has been deleted",
