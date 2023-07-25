@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "@mantine/form";
+import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 import { clearCookies, setCookies } from "@/api/cookies";
@@ -20,6 +21,7 @@ export interface ILoginFormValues {
 export interface ILoginFormProps {}
 
 export default function LoginForm(props: ILoginFormProps) {
+  const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
   const { push } = useRouter();
 
@@ -53,6 +55,7 @@ export default function LoginForm(props: ILoginFormProps) {
             client: client!,
             uid: data.data.uid,
           });
+          queryClient.invalidateQueries([endpoints.authValidateToken]);
           push("/app/dashboard");
         }
       });
