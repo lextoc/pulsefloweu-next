@@ -1,6 +1,7 @@
 "use client";
 
 import { useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
@@ -16,6 +17,7 @@ export interface FolderCardMenuProps {
 }
 
 export default function FolderCardMenu({ folder }: FolderCardMenuProps) {
+  const { replace } = useRouter();
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
@@ -24,6 +26,7 @@ export default function FolderCardMenu({ folder }: FolderCardMenuProps) {
       "Destroying your folder will also remove all its tasks and timesheets. Are you sure?",
     );
     if (!hasAgreed) return;
+    let projectId = folder.project_id;
     destroy(endpoints.destroyFolder(folder.id)).then((data) => {
       if (data.success) {
         queryClient.invalidateQueries([
@@ -32,6 +35,7 @@ export default function FolderCardMenu({ folder }: FolderCardMenuProps) {
         showSnackbar({
           message: "Folder has been deleted",
         });
+        replace(`/app/projects/${projectId}`);
       } else {
         showSnackbar({
           message: data?.errors?.join(" "),
