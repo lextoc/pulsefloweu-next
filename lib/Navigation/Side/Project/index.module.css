@@ -28,6 +28,18 @@
   background-color: rgba(var(--secondary-bright), 0.1);
 }
 
+.linkActive .inner,
+.folderLinkActive .inner {
+  background-color: rgba(var(--secondary-bright), 0.3);
+}
+
+.linkActive:hover .inner,
+.linkActive:focus .inner,
+.folderLinkActive:hover .inner,
+.folderLinkActive:focus .inner {
+  background-color: rgba(var(--secondary-bright), 0.4);
+}
+
 .folderLink {
   color: rgba(var(--white), 0.5);
 }
