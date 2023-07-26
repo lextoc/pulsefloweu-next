@@ -15,3 +15,15 @@
 .main {
   color: rgb(var(--main));
 }
+
+.wip::before {
+  content: "WIP";
+  display: inline-block;
+  background: rgb(var(--danger));
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 1em;
+  padding: 0.25em 0.5em;
+  line-height: 1em;
+  margin-left: 0.35rem;
+}

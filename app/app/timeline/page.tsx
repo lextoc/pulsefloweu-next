@@ -10,11 +10,15 @@ export default function Dashboard(props: DashboardProps) {
     <div className={styles.root}>
       <Header>
         <PaddingContainer>
-          <h1>Your calendar</h1>
+          <h1>
+            Your calendar <span className="wip" />
+          </h1>
           <p>Use a timeline for inserting timesheets</p>
         </PaddingContainer>
       </Header>
-      <PaddingContainer>hi!</PaddingContainer>
+      <PaddingContainer>
+        <p>We're currently not working on this feature but it will be there.</p>
+      </PaddingContainer>
     </div>
   );
 }

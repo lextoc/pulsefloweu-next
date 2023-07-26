@@ -14,7 +14,12 @@ export default function Dashboard(props: DashboardProps) {
           <p>View active timers</p>
         </PaddingContainer>
       </Header>
-      <PaddingContainer>Timerssss</PaddingContainer>
+      <PaddingContainer>
+        <p>
+          First we're implementing a working folder detail page where you can
+          start/stop timers. After that this page will get attention.
+        </p>
+      </PaddingContainer>
     </div>
   );
 }

@@ -10,11 +10,15 @@ export default function Dashboard(props: DashboardProps) {
     <div className={styles.root}>
       <Header>
         <PaddingContainer>
-          <h1>Invoice generator</h1>
+          <h1>
+            Invoice generator <span className="wip" />
+          </h1>
           <p>Create an invoice for a specific date range</p>
         </PaddingContainer>
       </Header>
-      <PaddingContainer>hi!</PaddingContainer>
+      <PaddingContainer>
+        <p>We're currently not working on this feature but it will be there.</p>
+      </PaddingContainer>
     </div>
   );
 }
