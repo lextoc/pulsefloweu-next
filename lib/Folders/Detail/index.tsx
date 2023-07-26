@@ -76,7 +76,7 @@ export function FolderDetail({ folderId }: IFolderDetailProps) {
             <FolderMenu folder={folder} />
           </div>
           <p>
-            of{" "}
+            Folder of{" "}
             <Link
               href={`/app/projects/${folder.project_id}`}
               className={styles.link}

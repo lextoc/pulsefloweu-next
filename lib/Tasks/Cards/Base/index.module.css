@@ -56,21 +56,23 @@
 
 .button {
   position: relative;
+  width: 100%;
+  border: 0;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 4rem;
   padding: 0.75rem 1rem;
+  position: relative;
   background: radial-gradient(
-    rgb(255, 124, 0),
-    rgb(255, 137, 0),
-    rgb(255, 96, 0),
-    rgb(255, 124, 0)
+    rgb(0, 84, 162),
+    rgb(0, 84, 162),
+    rgb(0, 74, 162),
+    rgb(0, 84, 162)
   );
   background-size: 200% 200%;
   background-position-y: 50%;
-  position: relative;
   cursor: pointer;
   transition: background 1s ease;
 }
@@ -88,6 +90,14 @@
 }
 
 .buttonActive {
+  background: radial-gradient(
+    rgb(255, 124, 0),
+    rgb(255, 137, 0),
+    rgb(255, 96, 0),
+    rgb(255, 124, 0)
+  );
+  background-size: 200% 200%;
+  background-position-y: 50%;
   animation: active 2s ease-in-out infinite;
 }
 

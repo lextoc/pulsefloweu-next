@@ -1,6 +1,8 @@
+import queryString from "query-string";
+
 import { getHeaders } from "@/api/cookies";
 
-export default function getPage(endpoint: string): Promise<any> {
+export default function getPage(endpoint: string, params?: {}): Promise<any> {
   const requestOptions = {
     method: "GET",
     headers: {
@@ -9,7 +11,10 @@ export default function getPage(endpoint: string): Promise<any> {
     },
   };
 
-  return fetch(endpoint, requestOptions).then((response) => {
+  return fetch(
+    `${endpoint}${params ? `?${queryString.stringify(params)}` : ""}`,
+    requestOptions,
+  ).then((response) => {
     return response.json();
   });
 }
