@@ -1,0 +1,9 @@
+.header {
+  display: flex;
+  align-items: flex-start;
+}
+
+.link {
+  font-weight: 700;
+  color: rgb(var(--secondary));
+}

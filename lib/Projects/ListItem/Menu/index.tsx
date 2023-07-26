@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
 import { Project } from "@/api/types/projects";
@@ -16,6 +18,7 @@ export interface ProjectsListItemMenuProps {
 export default function ProjectsListItemMenu({
   project,
 }: ProjectsListItemMenuProps) {
+  const { replace } = useRouter();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
   const onDelete = () => {
@@ -28,6 +31,7 @@ export default function ProjectsListItemMenu({
         showSnackbar({
           message: "Project has been deleted",
         });
+        replace("/app/dashboard");
       } else {
         showSnackbar({
           message: data?.errors?.join(" "),
