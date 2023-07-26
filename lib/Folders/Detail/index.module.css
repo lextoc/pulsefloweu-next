@@ -1,9 +1,28 @@
 .header {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  /* margin-bottom: 1rem; */
+}
+
+.headerIcon {
+  display: flex;
+  align-items: center;
+}
+
+.headerInner {
   display: flex;
   align-items: flex-start;
+}
+
+.headerInner p {
+  margin-bottom: 0;
 }
 
 .link {
   font-weight: 700;
   color: rgb(var(--secondary));
+}
+
+.cards {
+  margin-top: 2rem;
 }

@@ -22,8 +22,6 @@ export default function ProjectDetail({ projectId }: IProjectDetailProps) {
 
   let project: Project | null = null;
   if (query.data?.success) project = query.data?.data;
-  console.log("🚀 ~ query.data:", query.data);
-  console.log("🚀 ~ project:", project);
 
   if (!project) return null;
 

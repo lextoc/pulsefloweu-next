@@ -22,8 +22,8 @@ export default function ProjectsListItem({
   last,
 }: ProjectsListItemProps) {
   const query = useQuery({
-    queryKey: [endpoints.getFoldersFromProject(project.id!)],
-    queryFn: () => getPage(endpoints.getFoldersFromProject(project.id!)),
+    queryKey: [endpoints.getFoldersFromProject(project.id || -1)],
+    queryFn: () => getPage(endpoints.getFoldersFromProject(project.id || -1)),
   });
 
   let folders: Folder[] = [];

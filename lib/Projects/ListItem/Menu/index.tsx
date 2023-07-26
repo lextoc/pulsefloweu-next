@@ -1,5 +1,6 @@
 "use client";
 
+import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 import destroy from "@/api/destroy";
@@ -18,7 +19,7 @@ export interface ProjectsListItemMenuProps {
 export default function ProjectsListItemMenu({
   project,
 }: ProjectsListItemMenuProps) {
-  const { replace } = useRouter();
+  const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
   const onDelete = () => {
@@ -26,12 +27,13 @@ export default function ProjectsListItemMenu({
       "Destroying your project will also remove all its folders, tasks and timesheets. Are you sure?",
     );
     if (!hasAgreed) return;
+    let projectId = project.id;
     destroy(endpoints.destroyProject(project.id!)).then((data) => {
       if (data.success) {
+        queryClient.invalidateQueries([endpoints.getProject(projectId)]);
         showSnackbar({
           message: "Project has been deleted",
         });
-        replace("/app/dashboard");
       } else {
         showSnackbar({
           message: data?.errors?.join(" "),

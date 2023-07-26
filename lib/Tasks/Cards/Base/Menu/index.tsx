@@ -5,34 +5,34 @@ import { useRouter } from "next/navigation";
 
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
-import { Folder } from "@/api/types/folders";
+import { Task } from "@/api/types/tasks";
 import Button from "@/components/Buttons/Base";
 import Popover from "@/components/Overlays/Popover";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
-export interface FolderCardMenuProps {
-  folder: Folder;
+export interface TaskCardMenuProps {
+  task: Task;
 }
 
-export default function FolderCardMenu({ folder }: FolderCardMenuProps) {
+export default function TaskCardMenu({ task }: TaskCardMenuProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
   const onDelete = () => {
     const hasAgreed = window.confirm(
-      "Destroying your folder will also remove all its tasks and timesheets. Are you sure?",
+      "Destroying your task will also remove all its tasks and timesheets. Are you sure?",
     );
     if (!hasAgreed) return;
-    let projectId = folder.project_id;
-    destroy(endpoints.destroyFolder(folder.id)).then((data) => {
+    let folderId = task.folder_id;
+    destroy(endpoints.destroyTask(task.id)).then((data) => {
       if (data.success) {
         queryClient.invalidateQueries([
-          endpoints.getFoldersFromProject(folder.project_id),
+          endpoints.getTasksFromFolder(task.folder_id),
         ]);
         showSnackbar({
-          message: "Folder has been deleted",
+          message: "Task has been deleted",
         });
       } else {
         showSnackbar({
@@ -49,7 +49,7 @@ export default function FolderCardMenu({ folder }: FolderCardMenuProps) {
         content={
           <div className={styles.menu}>
             <Button variant="subtle" danger onClick={onDelete} noMargin>
-              Delete folder
+              Delete task
             </Button>
           </div>
         }
