@@ -58,7 +58,7 @@ export function CreateProjectCard(props: CreateProjectCardProps) {
       </p>
       <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
         <Input
-          label="Name"
+          label="Project name"
           placeholder="Project name"
           inverted
           {...form.getInputProps("name")}

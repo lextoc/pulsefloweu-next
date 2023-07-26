@@ -66,7 +66,7 @@ export default function CreateTaskCard({ folder }: CreateTaskCardProps) {
       </p>
       <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
         <Input
-          label="Name"
+          label="Task name"
           placeholder="Task name"
           inverted
           {...form.getInputProps("name")}

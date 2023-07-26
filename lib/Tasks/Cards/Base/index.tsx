@@ -1,11 +1,15 @@
+import {
+  IconPlayerPauseFilled,
+  IconPlayerPlayFilled,
+} from "@tabler/icons-react";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
 import Link from "next/link";
 
 import { Task } from "@/api/types/tasks";
+import TaskMenu from "@/lib/Tasks/Menu";
 
-import TaskMenu from "../../Menu";
 import styles from "./index.module.css";
 
 export interface TaskCardProps {
@@ -40,6 +44,14 @@ export default function TaskCard({ task }: TaskCardProps) {
             </i>
           </small>
         </p>
+      </div>
+      <div className={`${styles.button} ${styles.buttonActive}`}>
+        <div className={styles.buttonInner} />
+        {/* <IconPlayerPlayFilled className={styles.buttonIcon} size="2.5rem" /> */}
+        <div className={styles.buttonTimer}>
+          <IconPlayerPauseFilled className={styles.buttonIcon} size="2.25rem" />
+          <div className={styles.buttonTimerText}>00:00:02</div>
+        </div>
       </div>
     </div>
   );

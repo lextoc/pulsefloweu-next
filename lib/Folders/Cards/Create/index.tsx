@@ -66,7 +66,7 @@ export default function CreateFolderCard({ project }: CreateFolderCardProps) {
       </p>
       <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
         <Input
-          label="Name"
+          label="Folder name"
           placeholder="Folder name"
           inverted
           {...form.getInputProps("name")}

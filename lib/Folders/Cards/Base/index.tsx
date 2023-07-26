@@ -4,9 +4,9 @@ import utc from "dayjs/plugin/utc";
 import Link from "next/link";
 
 import { Folder } from "@/api/types/folders";
+import FolderMenu from "@/lib/Folders/Menu";
 
 import styles from "./index.module.css";
-import FolderMenu from "../../Menu";
 
 export interface FolderCardProps {
   folder: Folder;

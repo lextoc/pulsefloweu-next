@@ -7,6 +7,7 @@
     rgba(var(--light-background), 0.5),
     rgb(var(--light-background))
   );
+  overflow: hidden;
 }
 
 .header {
@@ -26,7 +27,9 @@
   margin: 0.5rem 0.5rem 0;
   padding: 0.5rem;
   border: 2px solid transparent;
-  transition: border 150ms ease, background 150ms ease;
+  transition:
+    border 150ms ease,
+    background 150ms ease;
 }
 
 .link:focus,
@@ -49,5 +52,96 @@
 .timestamp {
   margin-top: auto;
   margin-bottom: 0;
-  padding-top: 1em;
+}
+
+.button {
+  position: relative;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4rem;
+  padding: 0.75rem 1rem;
+  background: radial-gradient(
+    rgb(255, 124, 0),
+    rgb(255, 137, 0),
+    rgb(255, 96, 0),
+    rgb(255, 124, 0)
+  );
+  background-size: 200% 200%;
+  background-position-y: 50%;
+  position: relative;
+  cursor: pointer;
+  transition: background 1s ease;
+}
+
+@keyframes active {
+  0% {
+    background-position-x: initial;
+  }
+  50% {
+    background-position-x: 100%;
+  }
+  100% {
+    background-position-x: initial;
+  }
+}
+
+.buttonActive {
+  animation: active 2s ease-in-out infinite;
+}
+
+.button:hover,
+.button:focus {
+  background-position-x: 50%;
+}
+
+.button:hover .buttonIcon,
+.button:focus .buttonIcon {
+  transform: scale(0.8);
+}
+
+.buttonInner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-top: 0.2em solid rgba(var(--secondary-bright), 0);
+  border-bottom: 0.2em solid rgba(var(--secondary-bright), 0.2);
+  border-bottom-right-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.buttonIcon {
+  position: relative;
+  transition: transform 1s ease;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  90% {
+    transform: scale(1);
+  }
+}
+
+.buttonActive .buttonIcon {
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+.buttonTimer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.buttonTimerText {
+  font-size: 1.25rem;
+  font-weight: 700;
 }
