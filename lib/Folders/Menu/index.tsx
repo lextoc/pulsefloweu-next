@@ -1,7 +1,6 @@
 "use client";
 
 import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
@@ -12,11 +11,11 @@ import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
-export interface FolderCardMenuProps {
+export interface FolderMenuProps {
   folder: Folder;
 }
 
-export default function FolderCardMenu({ folder }: FolderCardMenuProps) {
+export default function FolderMenu({ folder }: FolderMenuProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 

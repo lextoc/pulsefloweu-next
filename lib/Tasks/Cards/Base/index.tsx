@@ -5,8 +5,8 @@ import Link from "next/link";
 
 import { Task } from "@/api/types/tasks";
 
+import TaskMenu from "../../Menu";
 import styles from "./index.module.css";
-import TaskCardMenu from "./Menu";
 
 export interface TaskCardProps {
   task: Task;
@@ -26,19 +26,11 @@ export default function TaskCard({ task }: TaskCardProps) {
           <h3 className={styles.title}>{task.name}</h3>
           <p>Task</p>
         </Link>
-        <TaskCardMenu task={task} />
+        <TaskMenu task={task} />
       </header>
       <div className={styles.content}>
         <p>
-          This task has 8 tasks:
-          <br />
-          <ul>
-            <li>Spent 192 hours</li>
-            <li>This week 34 hours</li>
-            <br />
-            <li>Profit of £289</li>
-            <li>This week of £18</li>
-          </ul>
+          Here we will show a cost input field and at the bottom a play button.
         </p>
         <p className={styles.timestamp}>
           <small>

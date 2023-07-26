@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Folder } from "@/api/types/folders";
 
 import styles from "./index.module.css";
-import FolderCardMenu from "./Menu";
+import FolderMenu from "../../Menu";
 
 export interface FolderCardProps {
   folder: Folder;
@@ -26,7 +26,7 @@ export default function FolderCard({ folder }: FolderCardProps) {
           <h3 className={styles.title}>{folder.name}</h3>
           <p>Folder</p>
         </Link>
-        <FolderCardMenu folder={folder} />
+        <FolderMenu folder={folder} />
       </header>
       <div className={styles.content}>
         <p>

@@ -13,7 +13,7 @@ import { Folder } from "@/api/types/folders";
 import { Project } from "@/api/types/projects";
 import { Task } from "@/api/types/tasks";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
-import FolderCardMenu from "@/lib/Folders/Cards/Base/Menu";
+import FolderMenu from "@/lib/Folders/Menu";
 import TaskCard from "@/lib/Tasks/Cards/Base";
 import CreateTaskCard from "@/lib/Tasks/Cards/Create";
 
@@ -73,7 +73,7 @@ export function FolderDetail({ folderId }: IFolderDetailProps) {
         <div>
           <div className={styles.headerInner}>
             <h1>{folder.name}</h1>
-            <FolderCardMenu folder={folder} />
+            <FolderMenu folder={folder} />
           </div>
           <p>
             of{" "}

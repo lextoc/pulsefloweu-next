@@ -12,11 +12,11 @@ import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
-export interface TaskCardMenuProps {
+export interface TaskMenuProps {
   task: Task;
 }
 
-export default function TaskCardMenu({ task }: TaskCardMenuProps) {
+export default function TaskMenu({ task }: TaskMenuProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
@@ -28,9 +28,7 @@ export default function TaskCardMenu({ task }: TaskCardMenuProps) {
     let folderId = task.folder_id;
     destroy(endpoints.destroyTask(task.id)).then((data) => {
       if (data.success) {
-        queryClient.invalidateQueries([
-          endpoints.getTasksFromFolder(task.folder_id),
-        ]);
+        queryClient.invalidateQueries([endpoints.getTasksFromFolder(folderId)]);
         showSnackbar({
           message: "Task has been deleted",
         });

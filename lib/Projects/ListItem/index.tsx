@@ -8,7 +8,7 @@ import { Folder } from "@/api/types/folders";
 import { Project } from "@/api/types/projects";
 import FolderCard from "@/lib/Folders/Cards/Base";
 import CreateFolderCard from "@/lib/Folders/Cards/Create";
-import ProjectsListItemMenu from "@/lib/Projects/ListItem/Menu";
+import ProjectMenu from "@/lib/Projects/Menu";
 
 import styles from "./index.module.css";
 
@@ -33,7 +33,7 @@ export default function ProjectsListItem({
     <div id={`#project-${project.id}`}>
       <div className={styles.header}>
         <h2>{project.name}</h2>
-        <ProjectsListItemMenu project={project} />
+        <ProjectMenu project={project} />
       </div>
       <div className="cards">
         {folders.map((folder) => (

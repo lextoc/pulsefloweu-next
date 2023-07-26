@@ -12,13 +12,13 @@ import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
-export interface ProjectsListItemMenuProps {
+export interface ProjectMenuProps {
   project: Project;
 }
 
-export default function ProjectsListItemMenu({
+export default function ProjectMenu({
   project,
-}: ProjectsListItemMenuProps) {
+}: ProjectMenuProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
