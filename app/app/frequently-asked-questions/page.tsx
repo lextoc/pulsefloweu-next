@@ -25,9 +25,6 @@ export default function FrequentlyAskedQuestions(
       <hr />
       <h3>When will we be able to add a cost per hour to our timesheets?</h3>
       <p>After I've implemented functioning timesheets.</p>
-      <hr />
-      <h3>Will the cost per hour feature be free?</h3>
-      <p>Yes, but updating previous timesheets might come with a price.</p>
     </PaddingContainer>
   );
 }
