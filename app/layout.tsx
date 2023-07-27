@@ -10,13 +10,13 @@ import { cookies } from "next/headers";
 
 import validateToken from "@/api/auth/validateToken";
 import { User } from "@/api/types/auth";
-import NavigationProgress from "@/ui/Navigation/Progress";
-import Main from "@/ui/Shared/Main";
 import { AuthenticationProvider } from "@/lib/Authentication/Context";
 import NavigationMenu from "@/lib/Navigation/Menu";
 import SideNavigation from "@/lib/Navigation/Side";
 import QueryClientProvider from "@/lib/Shared/QueryClientProvider";
 import Snackbar from "@/lib/Shared/Snackbar";
+import NavigationProgress from "@/ui/Navigation/Progress";
+import Main from "@/ui/Shared/Main";
 
 const font = Lato({
   weight: ["300", "400", "700", "900"],

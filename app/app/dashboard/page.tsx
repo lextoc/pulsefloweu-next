@@ -5,10 +5,10 @@ import { useQuery } from "@tanstack/react-query";
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { Project } from "@/api/types/projects";
-import { Header } from "@/ui/Shared/Header";
-import PaddingContainer from "@/ui/Shared/PaddingContainer";
 import { ProjectCreateCard } from "@/lib/Projects/Cards/Create";
 import DashboardProjectListItem from "@/lib/Projects/ListItem";
+import { Header } from "@/ui/Shared/Header";
+import PaddingContainer from "@/ui/Shared/PaddingContainer";
 
 import styles from "./page.module.css";
 

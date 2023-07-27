@@ -6,10 +6,10 @@ import { useRouter } from "next/navigation";
 
 import { clearCookies, setCookies } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
+import { useSnackbarStore } from "@/stores/snackbar";
 import Button from "@/ui/Buttons/Base";
 import Input from "@/ui/Inputs/Base";
 import Form from "@/ui/Inputs/Form";
-import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
