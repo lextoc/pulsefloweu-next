@@ -1,4 +1,3 @@
-// h for host.. (prefix)
 const h = (pathname: string) => `${process.env.NEXT_PUBLIC_API}${pathname}`;
 
 export default {
