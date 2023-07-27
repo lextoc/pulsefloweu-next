@@ -6,7 +6,7 @@ import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { Folder } from "@/api/types/folders";
 import { Project } from "@/api/types/projects";
-import FolderCard from "@/lib/Folders/Cards/Base";
+import FoldersCard from "@/lib/Folders/Cards/Base";
 import FoldersCreateCard from "@/lib/Folders/Cards/Create";
 import ProjectMenu from "@/lib/Projects/Menu";
 
@@ -37,7 +37,7 @@ export default function ProjectsListItem({
       </div>
       <div className="cards">
         {folders.map((folder) => (
-          <FolderCard key={folder.id} folder={folder} />
+          <FoldersCard key={folder.id} folder={folder} />
         ))}
         <FoldersCreateCard project={project} />
       </div>
