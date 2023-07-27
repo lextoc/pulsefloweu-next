@@ -77,10 +77,8 @@ export default function TaskCard({ task }: TaskCardProps) {
   isActive = !!activeTimesheets.length;
 
   const onClick = () => {
-    if (!isActive) {
-      setIsExploding(true);
-      setInterval(() => setIsExploding(false), 3000);
-    }
+    setIsExploding(true);
+    setInterval(() => setIsExploding(false), 3000);
     const requestOptions = {
       method: "POST",
       headers: {
