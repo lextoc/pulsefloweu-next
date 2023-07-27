@@ -95,10 +95,10 @@ export function FolderDetail({ folderId }: IFolderDetailProps) {
       </header>
       <hr />
       <div className={`${styles.cards} cards`}>
+        <TasksCreateCard folder={folder} />
         {tasks.map((task) => (
           <TaskCard key={task.id} task={task} />
         ))}
-        <TasksCreateCard folder={folder} />
       </div>
     </PaddingContainer>
   );
