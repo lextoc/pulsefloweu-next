@@ -3,7 +3,7 @@
   width: 100%;
   text-decoration: none;
   border-radius: var(--border-radius);
-  margin: 0.5rem 0.5rem 0;
+  margin: 0 -0.5rem;
   padding: 0.5rem;
   border: 2px solid transparent;
   transition: border 150ms ease, background 150ms ease;
