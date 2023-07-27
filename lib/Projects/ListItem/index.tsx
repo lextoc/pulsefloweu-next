@@ -7,7 +7,7 @@ import getPage from "@/api/getPage";
 import { Folder } from "@/api/types/folders";
 import { Project } from "@/api/types/projects";
 import FolderCard from "@/lib/Folders/Cards/Base";
-import CreateFolderCard from "@/lib/Folders/Cards/Create";
+import FoldersCreateCard from "@/lib/Folders/Cards/Create";
 import ProjectMenu from "@/lib/Projects/Menu";
 
 import styles from "./index.module.css";
@@ -39,7 +39,7 @@ export default function ProjectsListItem({
         {folders.map((folder) => (
           <FolderCard key={folder.id} folder={folder} />
         ))}
-        <CreateFolderCard project={project} />
+        <FoldersCreateCard project={project} />
       </div>
       {!last && <hr className="divider" />}
     </div>

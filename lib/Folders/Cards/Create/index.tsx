@@ -8,17 +8,18 @@ import endpoints from "@/api/endpoints";
 import { CreateFolder } from "@/api/types/folders";
 import { Project } from "@/api/types/projects";
 import Button from "@/components/Buttons/Base";
+import Card from "@/components/Cards/Base";
 import Input from "@/components/Inputs/Base";
 import Form from "@/components/Inputs/Form";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
-export interface CreateFolderCardProps {
+export interface FoldersCreateCardProps {
   project: Project;
 }
 
-export default function CreateFolderCard({ project }: CreateFolderCardProps) {
+export default function FoldersCreateCard({ project }: FoldersCreateCardProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
@@ -58,23 +59,27 @@ export default function CreateFolderCard({ project }: CreateFolderCardProps) {
   });
 
   return (
-    <div className={styles.root}>
-      <h3>Create new folder</h3>
-      <p>
-        Enter a name and click on create to make a new folder. In this folder
-        you'll be able to create timesheets.
-      </p>
-      <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
-        <Input
-          label="Folder name"
-          placeholder="Folder name"
-          inverted
-          {...form.getInputProps("name")}
-        />
-        <div className={styles.submit}>
-          <Button type="submit">Create</Button>
-        </div>
-      </Form>
-    </div>
+    <Card
+      header={<h3>Create new folder</h3>}
+      content={
+        <>
+          <p>
+            Enter a name and click on create to make a new folder. In this
+            folder you'll be able to create timesheets.
+          </p>
+          <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
+            <Input
+              label="Folder name"
+              placeholder="Folder name"
+              inverted
+              {...form.getInputProps("name")}
+            />
+            <div className={styles.submit}>
+              <Button type="submit">Create</Button>
+            </div>
+          </Form>
+        </>
+      }
+    />
   );
 }
