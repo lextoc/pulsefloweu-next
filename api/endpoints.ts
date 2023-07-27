@@ -12,7 +12,8 @@ export default {
   destroyProject: (projectId: number) => h(`/projects/${projectId}`),
   destroyTask: (taskId: number) => h(`/tasks/${taskId}`),
   getFolder: (folderId: number) => h(`/folders/${folderId}`),
-  getFoldersFromProject: (projectId: number) => h(`/projects/${projectId}/folders`),
+  getFoldersFromProject: (projectId: number) =>
+    h(`/projects/${projectId}/folders`),
   getProject: (projectId: number) => h(`/projects/${projectId}`),
   getProjects: h("/projects"),
   getTasksFromFolder: (folderId: number) => h(`/folders/${folderId}/tasks`),

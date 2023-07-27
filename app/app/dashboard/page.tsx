@@ -7,7 +7,7 @@ import getPage from "@/api/getPage";
 import { Project } from "@/api/types/projects";
 import { Header } from "@/components/Shared/Header";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
-import { CreateProjectCard } from "@/lib/Projects/Cards/Create";
+import { ProjectCreateCard } from "@/lib/Projects/Cards/Create";
 import DashboardProjectListItem from "@/lib/Projects/ListItem";
 
 import styles from "./page.module.css";
@@ -37,7 +37,7 @@ export default function Dashboard(props: DashboardProps) {
             <DashboardProjectListItem key={project.id} project={project} />
           ))}
           <h2>Create project</h2>
-          <CreateProjectCard />
+          <ProjectCreateCard />
         </div>
       </PaddingContainer>
     </div>

@@ -1,3 +1,15 @@
+@keyframes moveAroundSmall {
+  0% {
+    transform: translate(-25%, -25%);
+  }
+  50% {
+    transform: translate(-50%, 25%);
+  }
+  100% {
+    transform: translate(-25%, -25%);
+  }
+}
+
 .root {
   display: flex;
   flex-direction: column;
@@ -10,6 +22,24 @@
     rgb(var(--light-background))
   );
   overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+.rootMovingBackground::before {
+  content: "";
+  display: block;
+  right: -10rem;
+  bottom: -15rem;
+  width: 30em;
+  height: 30rem;
+  border-radius: 20em;
+  background: rgba(var(--white), 0.4);
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  filter: blur(0.4rem);
+  animation: moveAroundSmall 30s ease-in-out infinite;
 }
 
 .header {
