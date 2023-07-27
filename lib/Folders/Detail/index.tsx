@@ -15,7 +15,7 @@ import { Task } from "@/api/types/tasks";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
 import FolderMenu from "@/lib/Folders/Menu";
 import TaskCard from "@/lib/Tasks/Cards/Base";
-import CreateTaskCard from "@/lib/Tasks/Cards/Create";
+import TasksCreateCard from "@/lib/Tasks/Cards/Create";
 
 import styles from "./index.module.css";
 
@@ -98,7 +98,7 @@ export function FolderDetail({ folderId }: IFolderDetailProps) {
         {tasks.map((task) => (
           <TaskCard key={task.id} task={task} />
         ))}
-        <CreateTaskCard folder={folder} />
+        <TasksCreateCard folder={folder} />
       </div>
     </PaddingContainer>
   );

@@ -8,17 +8,18 @@ import endpoints from "@/api/endpoints";
 import { Folder } from "@/api/types/folders";
 import { CreateTask } from "@/api/types/tasks";
 import Button from "@/components/Buttons/Base";
+import Card from "@/components/Cards/Base";
 import Input from "@/components/Inputs/Base";
 import Form from "@/components/Inputs/Form";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
 
-export interface CreateTaskCardProps {
+export interface TasksCreateCardProps {
   folder: Folder;
 }
 
-export default function CreateTaskCard({ folder }: CreateTaskCardProps) {
+export default function TasksCreateCard({ folder }: TasksCreateCardProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
@@ -58,23 +59,27 @@ export default function CreateTaskCard({ folder }: CreateTaskCardProps) {
   });
 
   return (
-    <div className={styles.root}>
-      <h3>Create new task</h3>
-      <p>
-        Enter a name and click on create to make a new task. In this task you'll
-        be able to create timesheets.
-      </p>
-      <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
-        <Input
-          label="Task name"
-          placeholder="Task name"
-          inverted
-          {...form.getInputProps("name")}
-        />
-        <div className={styles.submit}>
-          <Button type="submit">Create</Button>
-        </div>
-      </Form>
-    </div>
+    <Card
+      header={<h3>Create new task</h3>}
+      content={
+        <>
+          <p>
+            Enter a name and click on create to make a new task. In this task
+            you'll be able to create timesheets.
+          </p>
+          <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
+            <Input
+              label="Task name"
+              placeholder="Task name"
+              inverted
+              {...form.getInputProps("name")}
+            />
+            <div className={styles.submit}>
+              <Button type="submit">Create</Button>
+            </div>
+          </Form>
+        </>
+      }
+    />
   );
 }
