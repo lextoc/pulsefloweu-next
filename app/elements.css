@@ -12,7 +12,8 @@ h3,
 h4,
 h5,
 h6,
-p {
+p,
+li {
   line-height: 1.6em;
 }
 
@@ -37,8 +38,12 @@ h3 {
   color: rgb(var(--secondary));
 }
 
-p {
+p,
+li {
   color: rgba(var(--secondary), 0.8);
+}
+
+p {
   font-size: 1rem;
   margin-bottom: 2em;
 }

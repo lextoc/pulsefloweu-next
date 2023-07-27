@@ -14,6 +14,7 @@ import { Task } from "@/api/types/tasks";
 import { CreateTimesheet, Timesheet } from "@/api/types/timesheets";
 import TaskMenu from "@/lib/Tasks/Menu";
 import { useSnackbarStore } from "@/stores/snackbar";
+import { convertSecondsToHHmmss } from "@/utils/converters";
 
 import styles from "./index.module.css";
 
@@ -27,6 +28,7 @@ export default function TaskCard({ task }: TaskCardProps) {
 
   const [time, setTime] = useState(Date.now());
 
+  // For animating timer.
   useEffect(() => {
     const interval = setInterval(() => setTime(Date.now()), 1000);
     return () => {
@@ -39,20 +41,35 @@ export default function TaskCard({ task }: TaskCardProps) {
   let isActive = false;
 
   /**
-   * Fetch timesheets
+   * Fetch timesheets duration
    */
-  const timesheetQuery = useQuery({
-    queryKey: [endpoints.getTimesheetsFromTask(task?.id || -1)],
+  const timesheetDurationQuery = useQuery({
+    queryKey: [endpoints.getTimesheetsFromTask(task?.id || -1), ["total_duration"]],
+    queryFn: () =>
+      getPage(endpoints.getTimesheetsFromTask(task?.id || -1), {
+        total_duration: true,
+      }),
+  });
+
+  let timesheetsDuration: number | null = null;
+  if (timesheetDurationQuery.data) timesheetsDuration = timesheetDurationQuery.data;
+  console.log(`🚀 ~ timesheets #${task.id}:`, timesheetsDuration);
+
+  /**
+   * Fetch active timesheets
+   */
+  const activeTimesheetQuery = useQuery({
+    queryKey: [endpoints.getTimesheetsFromTask(task?.id || -1), "active"],
     queryFn: () =>
       getPage(endpoints.getTimesheetsFromTask(task?.id || -1), {
         active: true,
       }),
   });
 
-  let timesheets: Timesheet[] = [];
-  if (timesheetQuery.data?.success) timesheets = timesheetQuery.data?.data;
+  let activeTimesheets: Timesheet[] = [];
+  if (activeTimesheetQuery.data?.success) activeTimesheets = activeTimesheetQuery.data?.data;
 
-  isActive = !!timesheets.length;
+  isActive = !!activeTimesheets.length;
 
   const onClick = () => {
     const requestOptions = {
@@ -91,7 +108,7 @@ export default function TaskCard({ task }: TaskCardProps) {
     });
   };
 
-  const seconds = dayjs().diff(dayjs(timesheets?.[0]?.start_date), "seconds");
+  const seconds = dayjs().diff(dayjs(activeTimesheets?.[0]?.start_date), "seconds");
   const timer = new Date(seconds * 1000).toISOString().substring(11, 19);
 
   return (
@@ -99,12 +116,14 @@ export default function TaskCard({ task }: TaskCardProps) {
       <header className={styles.header}>
         <Link href={`/app/folders/${task.folder_id}/tasks/${task.id}`} className={styles.link}>
           <h3 className={styles.title}>{task.name}</h3>
-          <p>Task</p>
+          <p>Task #{task.id}</p>
         </Link>
         <TaskMenu task={task} />
       </header>
       <div className={styles.content}>
-        <p>Here we will show a cost input field and at the bottom a play button.</p>
+        <ul>
+          <li>Spent time of {convertSecondsToHHmmss(timesheetsDuration)}</li>
+        </ul>
         <p className={styles.timestamp}>
           <small>
             <i>Created on {dayjs(task.created_at).utc(true).format("Do MMMM, YYYY")}</i>
