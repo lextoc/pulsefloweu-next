@@ -21,6 +21,5 @@ module.exports = {
     "prettier/prettier": "warn",
     "react/react-in-jsx-scope": "off",
     "simple-import-sort/imports": "error",
-    "max-len": ["error", { code: 120 }],
   },
 };
