@@ -1,4 +1,4 @@
-import PaddingContainer from "@/ui/Shared/PaddingContainer";
+import PaddingContainer from "@/components/Shared/PaddingContainer";
 
 export interface IFrequentlyAskedQuestionsProps {}
 

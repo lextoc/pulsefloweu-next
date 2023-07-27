@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
 import { Task } from "@/api/types/tasks";
+import Button from "@/components/Buttons/Base";
+import Popover from "@/components/Overlays/Popover";
 import { useSnackbarStore } from "@/stores/snackbar";
-import Button from "@/ui/Buttons/Base";
-import Popover from "@/ui/Overlays/Popover";
 
 import styles from "./index.module.css";
 

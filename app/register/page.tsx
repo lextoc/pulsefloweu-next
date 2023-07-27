@@ -1,7 +1,7 @@
 import Link from "next/link";
 
+import Logo from "@/components/Shared/Logo";
 import RegisterForm from "@/lib/Authentication/RegisterForm";
-import Logo from "@/ui/Shared/Logo";
 
 import styles from "../page.module.css";
 

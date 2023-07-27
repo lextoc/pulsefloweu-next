@@ -7,10 +7,10 @@ import create from "@/api/create";
 import endpoints from "@/api/endpoints";
 import { CreateFolder } from "@/api/types/folders";
 import { Project } from "@/api/types/projects";
+import Button from "@/components/Buttons/Base";
+import Input from "@/components/Inputs/Base";
+import Form from "@/components/Inputs/Form";
 import { useSnackbarStore } from "@/stores/snackbar";
-import Button from "@/ui/Buttons/Base";
-import Input from "@/ui/Inputs/Base";
-import Form from "@/ui/Inputs/Form";
 
 import styles from "./index.module.css";
 

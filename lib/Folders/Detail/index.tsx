@@ -12,10 +12,10 @@ import getPage from "@/api/getPage";
 import { Folder } from "@/api/types/folders";
 import { Project } from "@/api/types/projects";
 import { Task } from "@/api/types/tasks";
+import PaddingContainer from "@/components/Shared/PaddingContainer";
 import FolderMenu from "@/lib/Folders/Menu";
 import TaskCard from "@/lib/Tasks/Cards/Base";
 import CreateTaskCard from "@/lib/Tasks/Cards/Create";
-import PaddingContainer from "@/ui/Shared/PaddingContainer";
 
 import styles from "./index.module.css";
 
