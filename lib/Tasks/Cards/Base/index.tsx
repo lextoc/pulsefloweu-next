@@ -114,7 +114,7 @@ export default function TaskCard({ task }: TaskCardProps) {
       <button className={`${styles.button} ${isActive ? styles.buttonActive : ""}`} onClick={onClick}>
         <div className={styles.buttonInner} />
         {!isActive ? (
-          <IconPlayerPlayFilled className={styles.buttonIcon} size="2.5rem" />
+          <IconPlayerPlayFilled className={styles.buttonIcon} size="2.25rem" />
         ) : (
           <div className={styles.buttonTimer}>
             <IconPlayerPauseFilled className={styles.buttonIcon} size="2.25rem" />
