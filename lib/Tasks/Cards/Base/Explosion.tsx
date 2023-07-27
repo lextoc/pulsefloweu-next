@@ -10,7 +10,7 @@ export default function Explosion(props: ExplosionProps) {
       <g fill="none" fill-rule="evenodd" transform="translate(467 392)">
         <circle
           className="main-circ"
-          fill="#E2264D"
+          fill="#FF7C00"
           opacity="0"
           cx="29.5"
           cy="29.5"
@@ -18,38 +18,38 @@ export default function Explosion(props: ExplosionProps) {
         />
 
         <g className="grp7" opacity="0" transform="translate(7 6)">
-          <circle className="oval1" fill="#9CD8C3" cx="2" cy="6" r="2" />
-          <circle className="oval2" fill="#8CE8C3" cx="5" cy="2" r="2" />
+          <circle className="oval1" fill="#FF7C00" cx="2" cy="6" r="2" />
+          <circle className="oval2" fill="#FFD500" cx="5" cy="2" r="2" />
         </g>
 
         <g className="grp6" opacity="0" transform="translate(0 28)">
-          <circle className="oval1" fill="#CC8EF5" cx="2" cy="7" r="2" />
-          <circle className="oval2" fill="#91D2FA" cx="3" cy="2" r="2" />
+          <circle className="oval1" fill="#FF7C00" cx="2" cy="7" r="2" />
+          <circle className="oval2" fill="#FFD500" cx="3" cy="2" r="2" />
         </g>
 
         <g className="grp3" opacity="0" transform="translate(52 28)">
-          <circle className="oval2" fill="#9CD8C3" cx="2" cy="7" r="2" />
-          <circle className="oval1" fill="#8CE8C3" cx="4" cy="2" r="2" />
+          <circle className="oval2" fill="#FF7C00" cx="2" cy="7" r="2" />
+          <circle className="oval1" fill="#FFD500" cx="4" cy="2" r="2" />
         </g>
 
         <g className="grp2" opacity="0" transform="translate(44 6)">
-          <circle className="oval2" fill="#CC8EF5" cx="5" cy="6" r="2" />
-          <circle className="oval1" fill="#CC8EF5" cx="2" cy="2" r="2" />
+          <circle className="oval2" fill="#FF7C00" cx="5" cy="6" r="2" />
+          <circle className="oval1" fill="#FFD500" cx="2" cy="2" r="2" />
         </g>
 
         <g className="grp5" opacity="0" transform="translate(14 50)">
-          <circle className="oval1" fill="#91D2FA" cx="6" cy="5" r="2" />
-          <circle className="oval2" fill="#91D2FA" cx="2" cy="2" r="2" />
+          <circle className="oval1" fill="#FF7C00" cx="6" cy="5" r="2" />
+          <circle className="oval2" fill="#FFD500" cx="2" cy="2" r="2" />
         </g>
 
         <g className="grp4" opacity="0" transform="translate(35 50)">
-          <circle className="oval1" fill="#F48EA7" cx="6" cy="5" r="2" />
-          <circle className="oval2" fill="#F48EA7" cx="2" cy="2" r="2" />
+          <circle className="oval1" fill="#FF7C00" cx="6" cy="5" r="2" />
+          <circle className="oval2" fill="#FFD500" cx="2" cy="2" r="2" />
         </g>
 
         <g className="grp1" opacity="0" transform="translate(24)">
-          <circle className="oval1" fill="#9FC7FA" cx="2.5" cy="3" r="2" />
-          <circle className="oval2" fill="#9FC7FA" cx="7.5" cy="2" r="2" />
+          <circle className="oval1" fill="#FF7C00" cx="2.5" cy="3" r="2" />
+          <circle className="oval2" fill="#FFD500" cx="7.5" cy="2" r="2" />
         </g>
       </g>
     </svg>
