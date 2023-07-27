@@ -160,25 +160,23 @@ export default function TaskCard({ task }: TaskCardProps) {
             onClick={onClick}
           >
             <div className={styles.buttonInner} />
-            <label>
-              <Explosion />
-              {!isActive ? (
-                <>
-                  <IconPlayerPlayFilled
-                    className={styles.buttonIcon}
-                    size="2.25rem"
-                  />
-                </>
-              ) : (
-                <div className={styles.buttonTimer}>
-                  <IconPlayerPauseFilled
-                    className={styles.buttonIcon}
-                    size="2.25rem"
-                  />
-                  <div className={styles.buttonTimerText}>{timer}</div>
-                </div>
-              )}
-            </label>
+            <Explosion />
+            {!isActive ? (
+              <>
+                <IconPlayerPlayFilled
+                  className={styles.buttonIcon}
+                  size="2.25rem"
+                />
+              </>
+            ) : (
+              <div className={styles.buttonTimer}>
+                <IconPlayerPauseFilled
+                  className={styles.buttonIcon}
+                  size="2.25rem"
+                />
+                <div className={styles.buttonTimerText}>{timer}</div>
+              </div>
+            )}
           </button>
         </>
       }
