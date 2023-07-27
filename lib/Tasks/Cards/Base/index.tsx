@@ -20,6 +20,7 @@ import TaskMenu from "@/lib/Tasks/Menu";
 import { useSnackbarStore } from "@/stores/snackbar";
 import { convertSecondsToHHmmss } from "@/utils/converters";
 
+import Explosion from "./Explosion";
 import styles from "./index.module.css";
 
 export interface TaskCardProps {
@@ -31,6 +32,7 @@ export default function TaskCard({ task }: TaskCardProps) {
   dayjs.extend(utc);
 
   const [time, setTime] = useState(Date.now());
+  const [isExploding, setIsExploding] = useState(false);
 
   // For animating timer.
   useEffect(() => {
@@ -56,7 +58,6 @@ export default function TaskCard({ task }: TaskCardProps) {
   let timesheetsDuration: number | null = null;
   if (timesheetDurationQuery.data)
     timesheetsDuration = timesheetDurationQuery.data;
-  console.log(`🚀 ~ timesheets #${task.id}:`, timesheetsDuration);
 
   /**
    * Fetch active timesheets
@@ -76,6 +77,8 @@ export default function TaskCard({ task }: TaskCardProps) {
   isActive = !!activeTimesheets.length;
 
   const onClick = () => {
+    setIsExploding(true);
+    setInterval(() => setIsExploding(false), 3000);
     const requestOptions = {
       method: "POST",
       headers: {
@@ -153,24 +156,29 @@ export default function TaskCard({ task }: TaskCardProps) {
           <button
             className={`${styles.button} ${
               isActive ? styles.buttonActive : ""
-            }`}
+            } ${isExploding ? "exploding" : ""}`}
             onClick={onClick}
           >
             <div className={styles.buttonInner} />
-            {!isActive ? (
-              <IconPlayerPlayFilled
-                className={styles.buttonIcon}
-                size="2.25rem"
-              />
-            ) : (
-              <div className={styles.buttonTimer}>
-                <IconPlayerPauseFilled
-                  className={styles.buttonIcon}
-                  size="2.25rem"
-                />
-                <div className={styles.buttonTimerText}>{timer}</div>
-              </div>
-            )}
+            <label>
+              <Explosion />
+              {!isActive ? (
+                <>
+                  <IconPlayerPlayFilled
+                    className={styles.buttonIcon}
+                    size="2.25rem"
+                  />
+                </>
+              ) : (
+                <div className={styles.buttonTimer}>
+                  <IconPlayerPauseFilled
+                    className={styles.buttonIcon}
+                    size="2.25rem"
+                  />
+                  <div className={styles.buttonTimerText}>{timer}</div>
+                </div>
+              )}
+            </label>
           </button>
         </>
       }

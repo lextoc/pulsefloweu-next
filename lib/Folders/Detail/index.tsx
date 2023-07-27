@@ -19,11 +19,11 @@ import TasksCreateCard from "@/lib/Tasks/Cards/Create";
 
 import styles from "./index.module.css";
 
-export interface IFolderDetailProps {
+export interface FoldersDetailProps {
   folderId?: number;
 }
 
-export function FolderDetail({ folderId }: IFolderDetailProps) {
+export default function FoldersDetail({ folderId }: FoldersDetailProps) {
   dayjs.extend(advancedFormat);
   dayjs.extend(utc);
 

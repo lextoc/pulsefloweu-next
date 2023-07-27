@@ -1,12 +1,12 @@
 import FoldersDetail from "@/lib/Folders/Detail";
 
-export interface IProjectFolderPageProps {
+export interface IFolderPageProps {
   params: {
     folderId: string;
   };
 }
 
-export default function ProjectFolderPage(props: IProjectFolderPageProps) {
+export default function FolderPage(props: IFolderPageProps) {
   if (!props.params.folderId) return null;
 
   const folderId = parseInt(props.params.folderId, 10);
