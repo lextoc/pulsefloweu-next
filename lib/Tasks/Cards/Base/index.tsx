@@ -77,8 +77,10 @@ export default function TaskCard({ task }: TaskCardProps) {
   isActive = !!activeTimesheets.length;
 
   const onClick = () => {
-    setIsExploding(true);
-    setInterval(() => setIsExploding(false), 3000);
+    if (!isActive) {
+      setIsExploding(true);
+      setInterval(() => setIsExploding(false), 3000);
+    }
     const requestOptions = {
       method: "POST",
       headers: {
@@ -124,6 +126,7 @@ export default function TaskCard({ task }: TaskCardProps) {
 
   return (
     <Card
+      withMovingBackground={isActive}
       header={
         <>
           <Link
@@ -139,7 +142,14 @@ export default function TaskCard({ task }: TaskCardProps) {
       content={
         <ul>
           {timesheetsDuration && (
-            <li>Spent time of {convertSecondsToHHmmss(timesheetsDuration)}</li>
+            <li>
+              Spent time of&nbsp;
+              <span
+                className={`${isExploding ? "main" : ""} ${styles.converter}`}
+              >
+                {convertSecondsToHHmmss(timesheetsDuration)}
+              </span>
+            </li>
           )}
         </ul>
       }
