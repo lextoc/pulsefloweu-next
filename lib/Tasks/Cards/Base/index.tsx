@@ -48,14 +48,9 @@ export default function TaskCard({ task }: TaskCardProps) {
    * Fetch timesheets duration
    */
   const timesheetDurationQuery = useQuery({
-    queryKey: [
-      endpoints.getTimesheetsFromTask(task?.id || -1),
-      ["total_duration"],
-    ],
+    queryKey: [endpoints.getTotalDurationOfTasksTimesheets(task?.id || -1)],
     queryFn: () =>
-      getPage(endpoints.getTimesheetsFromTask(task?.id || -1), {
-        total_duration: true,
-      }),
+      getPage(endpoints.getTotalDurationOfTasksTimesheets(task?.id || -1)),
   });
 
   let timesheetsDuration: number | null = null;

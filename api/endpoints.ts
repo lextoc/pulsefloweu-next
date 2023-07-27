@@ -18,5 +18,9 @@ export default {
   getProjects: h("/projects"),
   getTasksFromFolder: (folderId: number) => h(`/folders/${folderId}/tasks`),
   getTimesheetsFromTask: (taskId: number) => h(`/tasks/${taskId}/timesheets`),
+
+  //misc
+  getTotalDurationOfTasksTimesheets: (taskId: number) =>
+    h(`/misc/tasks/${taskId}/total_duration_of_timesheets`),
   stopTimesheets: h("/misc/stop/all"),
 };
