@@ -13,11 +13,6 @@
   gap: 1.5rem;
 }
 
-.cards > * {
-  display: flex;
-  flex-direction: column;
-}
-
 .main {
   color: rgb(var(--main));
 }

@@ -1,0 +1,29 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  max-width: 20rem;
+  border-radius: var(--border-radius);
+  background: linear-gradient(
+    to bottom right,
+    rgb(var(--light-background)),
+    rgba(var(--light-background), 0.5),
+    rgb(var(--light-background))
+  );
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  padding: 0.5rem 1rem 1rem;
+}
+
+.content {
+  padding: 0.5rem 1rem 1rem;
+}
+
+.footer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}

@@ -12,6 +12,7 @@ import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { Task } from "@/api/types/tasks";
 import { CreateTimesheet, Timesheet } from "@/api/types/timesheets";
+import Card from "@/components/Cards/Base";
 import TaskMenu from "@/lib/Tasks/Menu";
 import { useSnackbarStore } from "@/stores/snackbar";
 import { convertSecondsToHHmmss } from "@/utils/converters";
@@ -112,37 +113,41 @@ export default function TaskCard({ task }: TaskCardProps) {
   const timer = new Date(seconds * 1000).toISOString().substring(11, 19);
 
   return (
-    <div className={styles.root} id={`#task-${task.id}`}>
-      <header className={styles.header}>
-        <Link href={`/app/folders/${task.folder_id}/tasks/${task.id}`} className={styles.link}>
-          <h3 className={styles.title}>{task.name}</h3>
-          <p>Task #{task.id}</p>
-        </Link>
-        <TaskMenu task={task} />
-      </header>
-      <div className={styles.content}>
+    <Card
+      header={
+        <>
+          <Link href={`/app/folders/${task.folder_id}/tasks/${task.id}`} className={styles.link}>
+            <h3 className={styles.title}>{task.name}</h3>
+            <p>Task #{task.id}</p>
+          </Link>
+          <TaskMenu task={task} />
+        </>
+      }
+      content={
         <ul>
           <li>Spent time of {convertSecondsToHHmmss(timesheetsDuration)}</li>
         </ul>
-      </div>
-      <footer>
-        <p className={styles.timestamp}>
-          <small>
-            <i>Created on {dayjs(task.created_at).utc(true).format("Do MMMM, YYYY")}</i>
-          </small>
-        </p>
-        <button className={`${styles.button} ${isActive ? styles.buttonActive : ""}`} onClick={onClick}>
-          <div className={styles.buttonInner} />
-          {!isActive ? (
-            <IconPlayerPlayFilled className={styles.buttonIcon} size="2.25rem" />
-          ) : (
-            <div className={styles.buttonTimer}>
-              <IconPlayerPauseFilled className={styles.buttonIcon} size="2.25rem" />
-              <div className={styles.buttonTimerText}>{timer}</div>
-            </div>
-          )}
-        </button>
-      </footer>
-    </div>
+      }
+      footer={
+        <>
+          <p className={styles.timestamp}>
+            <small>
+              <i>Created on {dayjs(task.created_at).utc(true).format("Do MMMM, YYYY")}</i>
+            </small>
+          </p>
+          <button className={`${styles.button} ${isActive ? styles.buttonActive : ""}`} onClick={onClick}>
+            <div className={styles.buttonInner} />
+            {!isActive ? (
+              <IconPlayerPlayFilled className={styles.buttonIcon} size="2.25rem" />
+            ) : (
+              <div className={styles.buttonTimer}>
+                <IconPlayerPauseFilled className={styles.buttonIcon} size="2.25rem" />
+                <div className={styles.buttonTimerText}>{timer}</div>
+              </div>
+            )}
+          </button>
+        </>
+      }
+    />
   );
 }
