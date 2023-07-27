@@ -7,7 +7,7 @@
     "dev:prod_api": "next dev -p 3001",
     "build": "next build",
     "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
-    "lint": "next lint"
+    "lint": "next lint --fix"
   },
   "dependencies": {
     "@mantine/form": "^6.0.17",

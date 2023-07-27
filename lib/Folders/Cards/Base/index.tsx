@@ -19,7 +19,10 @@ export default function FolderCard({ folder }: FolderCardProps) {
   return (
     <div className={styles.root} id={`folder-${folder.id}`}>
       <header className={styles.header}>
-        <Link href={`/app/projects/${folder.project_id}/folders/${folder.id}`} className={styles.link}>
+        <Link
+          href={`/app/projects/${folder.project_id}/folders/${folder.id}`}
+          className={styles.link}
+        >
           <h3 className={styles.title}>{folder.name}</h3>
           <p>Folder</p>
         </Link>
@@ -39,7 +42,10 @@ export default function FolderCard({ folder }: FolderCardProps) {
         </p>
         <p className={styles.timestamp}>
           <small>
-            <i>Created on {dayjs(folder.created_at).utc(true).format("Do MMMM, YYYY")}</i>
+            <i>
+              Created on{" "}
+              {dayjs(folder.created_at).utc(true).format("Do MMMM, YYYY")}
+            </i>
           </small>
         </p>
       </div>

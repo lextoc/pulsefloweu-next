@@ -1,4 +1,7 @@
-import { IconPlayerPauseFilled, IconPlayerPlayFilled } from "@tabler/icons-react";
+import {
+  IconPlayerPauseFilled,
+  IconPlayerPlayFilled,
+} from "@tabler/icons-react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
@@ -45,7 +48,10 @@ export default function TaskCard({ task }: TaskCardProps) {
    * Fetch timesheets duration
    */
   const timesheetDurationQuery = useQuery({
-    queryKey: [endpoints.getTimesheetsFromTask(task?.id || -1), ["total_duration"]],
+    queryKey: [
+      endpoints.getTimesheetsFromTask(task?.id || -1),
+      ["total_duration"],
+    ],
     queryFn: () =>
       getPage(endpoints.getTimesheetsFromTask(task?.id || -1), {
         total_duration: true,
@@ -53,7 +59,8 @@ export default function TaskCard({ task }: TaskCardProps) {
   });
 
   let timesheetsDuration: number | null = null;
-  if (timesheetDurationQuery.data) timesheetsDuration = timesheetDurationQuery.data;
+  if (timesheetDurationQuery.data)
+    timesheetsDuration = timesheetDurationQuery.data;
   console.log(`🚀 ~ timesheets #${task.id}:`, timesheetsDuration);
 
   /**
@@ -68,7 +75,8 @@ export default function TaskCard({ task }: TaskCardProps) {
   });
 
   let activeTimesheets: Timesheet[] = [];
-  if (activeTimesheetQuery.data?.success) activeTimesheets = activeTimesheetQuery.data?.data;
+  if (activeTimesheetQuery.data?.success)
+    activeTimesheets = activeTimesheetQuery.data?.data;
 
   isActive = !!activeTimesheets.length;
 
@@ -97,7 +105,8 @@ export default function TaskCard({ task }: TaskCardProps) {
     }).then((data) => {
       if (data?.errors) {
         showSnackbar({
-          message: data?.errors?.full_messages?.join(" ") || data?.errors?.join(" "),
+          message:
+            data?.errors?.full_messages?.join(" ") || data?.errors?.join(" "),
           type: "error",
         });
       } else {
@@ -109,14 +118,20 @@ export default function TaskCard({ task }: TaskCardProps) {
     });
   };
 
-  const seconds = dayjs().diff(dayjs(activeTimesheets?.[0]?.start_date), "seconds");
+  const seconds = dayjs().diff(
+    dayjs(activeTimesheets?.[0]?.start_date),
+    "seconds",
+  );
   const timer = new Date(seconds * 1000).toISOString().substring(11, 19);
 
   return (
     <Card
       header={
         <>
-          <Link href={`/app/folders/${task.folder_id}/tasks/${task.id}`} className={styles.link}>
+          <Link
+            href={`/app/folders/${task.folder_id}/tasks/${task.id}`}
+            className={styles.link}
+          >
             <h3 className={styles.title}>{task.name}</h3>
             <p>Task #{task.id}</p>
           </Link>
@@ -125,23 +140,39 @@ export default function TaskCard({ task }: TaskCardProps) {
       }
       content={
         <ul>
-          <li>Spent time of {convertSecondsToHHmmss(timesheetsDuration)}</li>
+          {timesheetsDuration && (
+            <li>Spent time of {convertSecondsToHHmmss(timesheetsDuration)}</li>
+          )}
         </ul>
       }
       footer={
         <>
           <p className={styles.timestamp}>
             <small>
-              <i>Created on {dayjs(task.created_at).utc(true).format("Do MMMM, YYYY")}</i>
+              <i>
+                Created on{" "}
+                {dayjs(task.created_at).utc(true).format("Do MMMM, YYYY")}
+              </i>
             </small>
           </p>
-          <button className={`${styles.button} ${isActive ? styles.buttonActive : ""}`} onClick={onClick}>
+          <button
+            className={`${styles.button} ${
+              isActive ? styles.buttonActive : ""
+            }`}
+            onClick={onClick}
+          >
             <div className={styles.buttonInner} />
             {!isActive ? (
-              <IconPlayerPlayFilled className={styles.buttonIcon} size="2.25rem" />
+              <IconPlayerPlayFilled
+                className={styles.buttonIcon}
+                size="2.25rem"
+              />
             ) : (
               <div className={styles.buttonTimer}>
-                <IconPlayerPauseFilled className={styles.buttonIcon} size="2.25rem" />
+                <IconPlayerPauseFilled
+                  className={styles.buttonIcon}
+                  size="2.25rem"
+                />
                 <div className={styles.buttonTimerText}>{timer}</div>
               </div>
             )}

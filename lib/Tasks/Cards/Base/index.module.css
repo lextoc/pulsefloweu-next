@@ -42,7 +42,12 @@
   min-height: 4rem;
   padding: 0.75rem 1rem;
   position: relative;
-  background: radial-gradient(rgb(0, 84, 162), rgb(0, 78, 162), rgb(0, 74, 162), rgb(0, 70, 162));
+  background: radial-gradient(
+    rgb(0, 84, 162),
+    rgb(0, 78, 162),
+    rgb(0, 74, 162),
+    rgb(0, 70, 162)
+  );
   background-size: 200% 200%;
   background-position-y: 50%;
   cursor: pointer;
@@ -62,7 +67,12 @@
 }
 
 .buttonActive {
-  background: radial-gradient(rgb(255, 124, 0), rgb(255, 137, 0), rgb(255, 96, 0), rgb(255, 124, 0));
+  background: radial-gradient(
+    rgb(255, 124, 0),
+    rgb(255, 137, 0),
+    rgb(255, 96, 0),
+    rgb(255, 124, 0)
+  );
   background-size: 200% 200%;
   background-position-y: 50%;
   animation: active 2s ease-in-out infinite;

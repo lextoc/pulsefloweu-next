@@ -16,9 +16,7 @@ export interface ProjectMenuProps {
   project: Project;
 }
 
-export default function ProjectMenu({
-  project,
-}: ProjectMenuProps) {
+export default function ProjectMenu({ project }: ProjectMenuProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
