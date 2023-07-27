@@ -7,8 +7,8 @@ import { useContext } from "react";
 
 import { clearCookies } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
-import Button from "@/components/Buttons/Base";
-import Popover from "@/components/Overlays/Popover";
+import Button from "@/ui/Buttons/Base";
+import Popover from "@/ui/Overlays/Popover";
 import AuthenticationContext from "@/lib/Authentication/Context";
 
 import styles from "./index.module.css";

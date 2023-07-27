@@ -15,7 +15,7 @@ import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { Task } from "@/api/types/tasks";
 import { CreateTimesheet, Timesheet } from "@/api/types/timesheets";
-import Card from "@/components/Cards/Base";
+import Card from "@/ui/Cards/Base";
 import TaskMenu from "@/lib/Tasks/Menu";
 import { useSnackbarStore } from "@/stores/snackbar";
 import { convertSecondsToHHmmss } from "@/utils/converters";

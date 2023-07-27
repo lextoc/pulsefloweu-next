@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { Project } from "@/api/types/projects";
-import PaddingContainer from "@/components/Shared/PaddingContainer";
+import PaddingContainer from "@/ui/Shared/PaddingContainer";
 import ProjectsListItem from "@/lib/Projects/ListItem";
 
 export interface IProjectDetailProps {

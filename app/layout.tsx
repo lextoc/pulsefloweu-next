@@ -10,8 +10,8 @@ import { cookies } from "next/headers";
 
 import validateToken from "@/api/auth/validateToken";
 import { User } from "@/api/types/auth";
-import NavigationProgress from "@/components/Navigation/Progress";
-import Main from "@/components/Shared/Main";
+import NavigationProgress from "@/ui/Navigation/Progress";
+import Main from "@/ui/Shared/Main";
 import { AuthenticationProvider } from "@/lib/Authentication/Context";
 import NavigationMenu from "@/lib/Navigation/Menu";
 import SideNavigation from "@/lib/Navigation/Side";

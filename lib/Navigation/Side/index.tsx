@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import Logo from "@/components/Shared/Logo";
+import Logo from "@/ui/Shared/Logo";
 import SideNavigationLink from "@/lib/Navigation/Side/Link";
 import SideNavigationProjects from "@/lib/Navigation/Side/Projects";
 

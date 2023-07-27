@@ -6,10 +6,10 @@ import { useQueryClient } from "@tanstack/react-query";
 import create from "@/api/create";
 import endpoints from "@/api/endpoints";
 import { CreateProject } from "@/api/types/projects";
-import Button from "@/components/Buttons/Base";
-import Card from "@/components/Cards/Base";
-import Input from "@/components/Inputs/Base";
-import Form from "@/components/Inputs/Form";
+import Button from "@/ui/Buttons/Base";
+import Card from "@/ui/Cards/Base";
+import Input from "@/ui/Inputs/Base";
+import Form from "@/ui/Inputs/Form";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";

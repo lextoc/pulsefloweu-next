@@ -5,8 +5,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
 import { Folder } from "@/api/types/folders";
-import Button from "@/components/Buttons/Base";
-import Popover from "@/components/Overlays/Popover";
+import Button from "@/ui/Buttons/Base";
+import Popover from "@/ui/Overlays/Popover";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";

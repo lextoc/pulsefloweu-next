@@ -1,4 +1,4 @@
-import { Label } from "@/components/Inputs/Label";
+import { Label } from "@/ui/Inputs/Label";
 
 import styles from "./index.module.css";
 
