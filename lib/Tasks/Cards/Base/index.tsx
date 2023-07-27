@@ -124,23 +124,25 @@ export default function TaskCard({ task }: TaskCardProps) {
         <ul>
           <li>Spent time of {convertSecondsToHHmmss(timesheetsDuration)}</li>
         </ul>
+      </div>
+      <footer>
         <p className={styles.timestamp}>
           <small>
             <i>Created on {dayjs(task.created_at).utc(true).format("Do MMMM, YYYY")}</i>
           </small>
         </p>
-      </div>
-      <button className={`${styles.button} ${isActive ? styles.buttonActive : ""}`} onClick={onClick}>
-        <div className={styles.buttonInner} />
-        {!isActive ? (
-          <IconPlayerPlayFilled className={styles.buttonIcon} size="2.25rem" />
-        ) : (
-          <div className={styles.buttonTimer}>
-            <IconPlayerPauseFilled className={styles.buttonIcon} size="2.25rem" />
-            <div className={styles.buttonTimerText}>{timer}</div>
-          </div>
-        )}
-      </button>
+        <button className={`${styles.button} ${isActive ? styles.buttonActive : ""}`} onClick={onClick}>
+          <div className={styles.buttonInner} />
+          {!isActive ? (
+            <IconPlayerPlayFilled className={styles.buttonIcon} size="2.25rem" />
+          ) : (
+            <div className={styles.buttonTimer}>
+              <IconPlayerPauseFilled className={styles.buttonIcon} size="2.25rem" />
+              <div className={styles.buttonTimerText}>{timer}</div>
+            </div>
+          )}
+        </button>
+      </footer>
     </div>
   );
 }

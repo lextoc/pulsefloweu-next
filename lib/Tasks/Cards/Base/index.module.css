@@ -46,10 +46,21 @@
   display: flex;
   flex-direction: column;
   padding: 0.5rem 1rem 1rem;
-  min-height: 14rem;
+}
+
+.root footer p {
+  padding: 0.5rem 1rem 1rem;
+}
+
+.root footer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
 }
 
 .timestamp {
+  padding-top: 3rem;
   margin-top: auto;
   margin-bottom: 0;
 }
