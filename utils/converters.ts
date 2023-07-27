@@ -11,7 +11,7 @@ export const convertSecondsToHHmmss = (seconds: number | null) => {
     minutes = "0" + minutes;
   }
   if (_seconds < 10) {
-    _seconds = "0" + seconds;
+    _seconds = "0" + _seconds;
   }
   return hours + ":" + minutes + ":" + _seconds;
 };
