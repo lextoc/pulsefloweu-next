@@ -20,7 +20,5 @@ export default {
   getTimeEntriesFromTask: (taskId: number) => h(`/tasks/${taskId}/time_entries`),
 
   //misc
-  getTotalDurationOfTasksTimeEntries: (taskId: number) =>
-    h(`/misc/tasks/${taskId}/total_duration_of_time_entries`),
   stopTimeEntries: h("/misc/stop/all"),
 };

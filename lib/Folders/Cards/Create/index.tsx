@@ -65,7 +65,7 @@ export default function FoldersCreateCard({ project }: FoldersCreateCardProps) {
         <>
           <p>
             Enter a name and click on create to make a new folder. In this
-            folder you'll be able to create timeEntries.
+            folder you'll be able to create time entries.
           </p>
           <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
             <Input

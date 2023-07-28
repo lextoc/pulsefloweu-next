@@ -29,25 +29,26 @@ export default function SideNavigation(props: SideNavigationProps) {
         <SideNavigationLink
           href="/app/timers"
           title="Get started"
-          sub="View your active timers"
+          sub="Start timing tasks via timers"
+          wip
         />
         <SideNavigationLink
           href="/app/dashboard"
           title="Dashboard"
           sub="Manage your projects"
         />
-        <SideNavigationLink
+        {/* <SideNavigationLink
           href="/app/timeline"
           title="Calendar"
-          sub="Use a timeline for inserting timeEntries"
+          sub="Use a timeline for inserting time entries"
           wip
-        />
-        <SideNavigationLink
-          href="/app/invoices"
-          title="Invoice generator"
-          sub="Create an invoice for a specific date range"
+        /> */}
+        {/* <SideNavigationLink
+          href="/app/timesheets"
+          title="Timesheets generator"
+          sub="Generate timesheets for a specific date range"
           wip
-        />
+        /> */}
         <SideNavigationProjects />
       </div>
     </div>

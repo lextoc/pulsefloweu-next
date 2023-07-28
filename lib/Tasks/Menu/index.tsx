@@ -22,7 +22,7 @@ export default function TaskMenu({ task }: TaskMenuProps) {
 
   const onDelete = () => {
     const hasAgreed = window.confirm(
-      "Destroying your task will also remove all its tasks and timeEntries. Are you sure?",
+      "Destroying your task will also remove all its tasks and time entries. Are you sure?",
     );
     if (!hasAgreed) return;
     let folderId = task.folder_id;

@@ -12,18 +12,10 @@ export default function Home() {
         <div>
           <Logo />
           <p>
-            Use Tracky,{" "}
-            <a
-              className={styles.openSource}
-              href="https://github.com/lextoc/tracky-next"
-              target="_blank"
-            >
-              an open-source website
-            </a>{" "}
-            that will remain <strong>free forever</strong>, for tracking your
-            tasks with timeEntries. You can create an{" "}
-            <strong>infinite amount of projects</strong> that can be brought to
-            order with folders in each of them containing your tasks.
+            Use tracky as your tool for time entries and generating timesheets
+            with cost-per-hour functionality. Invite people and manage them by
+            assigning them the correct permissions. Momentarily everything will
+            be free up until x amount of users (still has to be decided).
           </p>
         </div>
       </div>

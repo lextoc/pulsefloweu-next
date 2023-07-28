@@ -65,7 +65,7 @@ export default function TasksCreateCard({ folder }: TasksCreateCardProps) {
         <>
           <p>
             Enter a name and click on create to make a new task. In this task
-            you'll be able to create timeEntries.
+            you'll be able to create time entries.
           </p>
           <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
             <Input

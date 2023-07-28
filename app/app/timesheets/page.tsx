@@ -11,9 +11,9 @@ export default function Dashboard(props: DashboardProps) {
       <Header>
         <PaddingContainer>
           <h1>
-            Invoice generator <span className="wip" />
+            Timesheets generator <span className="wip" />
           </h1>
-          <p>Create an invoice for a specific date range</p>
+          <p>Generate timesheets for a specific date range</p>
         </PaddingContainer>
       </Header>
       <PaddingContainer>

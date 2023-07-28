@@ -47,19 +47,6 @@ export default function TaskCard({ task }: TaskCardProps) {
   let isActive = false;
 
   /**
-   * Fetch timeEntries duration
-   */
-  const timeEntryDurationQuery = useQuery({
-    queryKey: [endpoints.getTotalDurationOfTasksTimeEntries(task?.id || -1)],
-    queryFn: () =>
-      getPage(endpoints.getTotalDurationOfTasksTimeEntries(task?.id || -1)),
-  });
-
-  let timeEntriesDuration: number | null = null;
-  if (timeEntryDurationQuery.data)
-    timeEntriesDuration = timeEntryDurationQuery.data;
-
-  /**
    * Fetch active timeEntries
    */
   const activeTimeEntryQuery = useQuery({
@@ -139,13 +126,13 @@ export default function TaskCard({ task }: TaskCardProps) {
       }
       content={
         <ul>
-          {timeEntriesDuration && (
+          {task.total_duration_of_time_entries && (
             <li>
               Spent time of&nbsp;
               <span
                 className={`${isExploding ? "main" : ""} ${styles.converter}`}
               >
-                {convertSecondsToHHmmss(timeEntriesDuration)}
+                {convertSecondsToHHmmss(task.total_duration_of_time_entries)}
               </span>
             </li>
           )}

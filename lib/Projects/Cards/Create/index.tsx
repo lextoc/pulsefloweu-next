@@ -58,7 +58,7 @@ export function ProjectCreateCard(props: ProjectCreateCardProps) {
         <>
           <p>
             Enter a name and click on create to make a new project. You'll be
-            able to categorize your projects' timeEntries in folders.
+            able to categorize your projects' time entries in folders.
           </p>
           <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
             <Input
