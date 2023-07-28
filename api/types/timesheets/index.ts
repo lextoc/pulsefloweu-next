@@ -1,4 +1,4 @@
-export interface Timesheet {
+export interface TimeEntry {
   id: number;
   start_date: string;
   end_date: string;
@@ -9,7 +9,7 @@ export interface Timesheet {
   updated_at: string;
 }
 
-export type CreateTimesheet = Omit<
-  Timesheet,
+export type CreateTimeEntry = Omit<
+  TimeEntry,
   "id" | "user_id" | "end_date" | "created_at" | "updated_at"
 >;

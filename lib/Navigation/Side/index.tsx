@@ -39,7 +39,7 @@ export default function SideNavigation(props: SideNavigationProps) {
         <SideNavigationLink
           href="/app/timeline"
           title="Calendar"
-          sub="Use a timeline for inserting timesheets"
+          sub="Use a timeline for inserting timeEntries"
           wip
         />
         <SideNavigationLink
@@ -47,11 +47,6 @@ export default function SideNavigation(props: SideNavigationProps) {
           title="Invoice generator"
           sub="Create an invoice for a specific date range"
           wip
-        />
-        <SideNavigationLink
-          href="/app/frequently-asked-questions"
-          title="Frequently asked questions"
-          sub="Information about Tracky"
         />
         <SideNavigationProjects />
       </div>

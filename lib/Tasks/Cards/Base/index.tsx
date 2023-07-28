@@ -14,7 +14,7 @@ import create from "@/api/create";
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { Task } from "@/api/types/tasks";
-import { CreateTimesheet, Timesheet } from "@/api/types/timesheets";
+import { CreateTimeEntry, TimeEntry } from "@/api/types/timeEntries";
 import Card from "@/components/Cards/Base";
 import TaskMenu from "@/lib/Tasks/Menu";
 import { useSnackbarStore } from "@/stores/snackbar";
@@ -47,34 +47,34 @@ export default function TaskCard({ task }: TaskCardProps) {
   let isActive = false;
 
   /**
-   * Fetch timesheets duration
+   * Fetch timeEntries duration
    */
-  const timesheetDurationQuery = useQuery({
-    queryKey: [endpoints.getTotalDurationOfTasksTimesheets(task?.id || -1)],
+  const timeEntryDurationQuery = useQuery({
+    queryKey: [endpoints.getTotalDurationOfTasksTimeEntries(task?.id || -1)],
     queryFn: () =>
-      getPage(endpoints.getTotalDurationOfTasksTimesheets(task?.id || -1)),
+      getPage(endpoints.getTotalDurationOfTasksTimeEntries(task?.id || -1)),
   });
 
-  let timesheetsDuration: number | null = null;
-  if (timesheetDurationQuery.data)
-    timesheetsDuration = timesheetDurationQuery.data;
+  let timeEntriesDuration: number | null = null;
+  if (timeEntryDurationQuery.data)
+    timeEntriesDuration = timeEntryDurationQuery.data;
 
   /**
-   * Fetch active timesheets
+   * Fetch active timeEntries
    */
-  const activeTimesheetQuery = useQuery({
-    queryKey: [endpoints.getTimesheetsFromTask(task?.id || -1), "active"],
+  const activeTimeEntryQuery = useQuery({
+    queryKey: [endpoints.getTimeEntriesFromTask(task?.id || -1), "active"],
     queryFn: () =>
-      getPage(endpoints.getTimesheetsFromTask(task?.id || -1), {
+      getPage(endpoints.getTimeEntriesFromTask(task?.id || -1), {
         active: true,
       }),
   });
 
-  let activeTimesheets: Timesheet[] = [];
-  if (activeTimesheetQuery.data?.success)
-    activeTimesheets = activeTimesheetQuery.data?.data;
+  let activeTimeEntries: TimeEntry[] = [];
+  if (activeTimeEntryQuery.data?.success)
+    activeTimeEntries = activeTimeEntryQuery.data?.data;
 
-  isActive = !!activeTimesheets.length;
+  isActive = !!activeTimeEntries.length;
 
   const onClick = () => {
     setIsExploding(true);
@@ -86,7 +86,7 @@ export default function TaskCard({ task }: TaskCardProps) {
         ...getHeaders(),
       },
     };
-    fetch(endpoints.stopTimesheets, requestOptions)
+    fetch(endpoints.stopTimeEntries, requestOptions)
       .then((response) => {
         return response.json();
       })
@@ -94,8 +94,8 @@ export default function TaskCard({ task }: TaskCardProps) {
         queryClient.invalidateQueries();
       });
     if (isActive) return;
-    create<{ timesheet: CreateTimesheet }>(endpoints.createTimesheet, {
-      timesheet: {
+    create<{ time_entry: CreateTimeEntry }>(endpoints.createTimeEntry, {
+      time_entry: {
         start_date: dayjs().format(),
         folder_id: task.folder_id,
         task_id: task.id,
@@ -110,14 +110,14 @@ export default function TaskCard({ task }: TaskCardProps) {
       } else {
         queryClient.invalidateQueries();
         showSnackbar({
-          message: "Timesheet has been created",
+          message: "TimeEntry has been created",
         });
       }
     });
   };
 
   const seconds = dayjs().diff(
-    dayjs(activeTimesheets?.[0]?.start_date),
+    dayjs(activeTimeEntries?.[0]?.start_date),
     "seconds",
   );
   const timer = new Date(seconds * 1000).toISOString().substring(11, 19);
@@ -139,13 +139,13 @@ export default function TaskCard({ task }: TaskCardProps) {
       }
       content={
         <ul>
-          {timesheetsDuration && (
+          {timeEntriesDuration && (
             <li>
               Spent time of&nbsp;
               <span
                 className={`${isExploding ? "main" : ""} ${styles.converter}`}
               >
-                {convertSecondsToHHmmss(timesheetsDuration)}
+                {convertSecondsToHHmmss(timeEntriesDuration)}
               </span>
             </li>
           )}

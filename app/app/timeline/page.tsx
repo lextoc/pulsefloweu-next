@@ -13,7 +13,7 @@ export default function Dashboard(props: DashboardProps) {
           <h1>
             Your calendar <span className="wip" />
           </h1>
-          <p>Use a timeline for inserting timesheets</p>
+          <p>Use a timeline for inserting timeEntries</p>
         </PaddingContainer>
       </Header>
       <PaddingContainer>

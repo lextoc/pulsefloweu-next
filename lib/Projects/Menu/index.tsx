@@ -22,7 +22,7 @@ export default function ProjectMenu({ project }: ProjectMenuProps) {
 
   const onDelete = () => {
     const hasAgreed = window.confirm(
-      "Destroying your project will also remove all its folders, tasks and timesheets. Are you sure?",
+      "Destroying your project will also remove all its folders, tasks and timeEntries. Are you sure?",
     );
     if (!hasAgreed) return;
     let projectId = project.id;

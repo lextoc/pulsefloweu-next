@@ -21,7 +21,7 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
 
   const onDelete = () => {
     const hasAgreed = window.confirm(
-      "Destroying your folder will also remove all its tasks and timesheets. Are you sure?",
+      "Destroying your folder will also remove all its tasks and timeEntries. Are you sure?",
     );
     if (!hasAgreed) return;
     let projectId = folder.project_id;

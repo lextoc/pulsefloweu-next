@@ -7,7 +7,7 @@ export default {
   createFolder: h("/folders"),
   createProject: h("/projects"),
   createTask: h("/tasks"),
-  createTimesheet: h("/timesheets"),
+  createTimeEntry: h("/time_entries"),
   destroyFolder: (folderId: number) => h(`/folders/${folderId}`),
   destroyProject: (projectId: number) => h(`/projects/${projectId}`),
   destroyTask: (taskId: number) => h(`/tasks/${taskId}`),
@@ -17,10 +17,10 @@ export default {
   getProject: (projectId: number) => h(`/projects/${projectId}`),
   getProjects: h("/projects"),
   getTasksFromFolder: (folderId: number) => h(`/folders/${folderId}/tasks`),
-  getTimesheetsFromTask: (taskId: number) => h(`/tasks/${taskId}/timesheets`),
+  getTimeEntriesFromTask: (taskId: number) => h(`/tasks/${taskId}/time_entries`),
 
   //misc
-  getTotalDurationOfTasksTimesheets: (taskId: number) =>
-    h(`/misc/tasks/${taskId}/total_duration_of_timesheets`),
-  stopTimesheets: h("/misc/stop/all"),
+  getTotalDurationOfTasksTimeEntries: (taskId: number) =>
+    h(`/misc/tasks/${taskId}/total_duration_of_time_entries`),
+  stopTimeEntries: h("/misc/stop/all"),
 };

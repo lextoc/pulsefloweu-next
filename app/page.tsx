@@ -21,7 +21,7 @@ export default function Home() {
               an open-source website
             </a>{" "}
             that will remain <strong>free forever</strong>, for tracking your
-            tasks with timesheets. You can create an{" "}
+            tasks with timeEntries. You can create an{" "}
             <strong>infinite amount of projects</strong> that can be brought to
             order with folders in each of them containing your tasks.
           </p>
