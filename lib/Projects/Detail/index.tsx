@@ -13,6 +13,7 @@ import PaddingContainer from "@/components/Shared/PaddingContainer";
 import FoldersCard from "@/lib/Folders/Cards/Base";
 import FoldersCreateCard from "@/lib/Folders/Cards/Create";
 import ProjectMenu from "@/lib/Projects/Menu";
+import { useNavigationStore } from "@/stores/navigation";
 
 import styles from "./index.module.css";
 
@@ -30,6 +31,9 @@ export default function ProjectDetail({ projectId }: IProjectDetailProps) {
 
   let project: Project | null = null;
   if (query.data?.success) project = query.data?.data;
+
+  const set = useNavigationStore((state) => state.set);
+  set({ menuTitle: `Viewing project "${project?.name || ""}"` });
 
   const searchParams = useSearchParams();
   const current = new URLSearchParams(Array.from(searchParams.entries()));

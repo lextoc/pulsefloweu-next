@@ -18,6 +18,7 @@ import PaddingContainer from "@/components/Shared/PaddingContainer";
 import FolderMenu from "@/lib/Folders/Menu";
 import TaskCard from "@/lib/Tasks/Cards/Base";
 import TasksCreateCard from "@/lib/Tasks/Cards/Create";
+import { useNavigationStore } from "@/stores/navigation";
 
 import styles from "./index.module.css";
 
@@ -43,6 +44,9 @@ export default function FoldersDetail({ folderId }: FoldersDetailProps) {
 
   let folder: Folder | null = null;
   if (query.data?.success) folder = query.data?.data;
+
+  const set = useNavigationStore((state) => state.set);
+  set({ menuTitle: `Viewing folder "${folder?.name || ""}"` });
 
   /**
    * Fetch project

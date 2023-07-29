@@ -19,6 +19,39 @@
   backdrop-filter: blur(0.5rem);
 }
 
+.menuTitle {
+  height: 100%;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.menuTitleInner {
+  display: flex;
+  align-items: center;
+}
+
+.backButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5rem;
+  background: 0;
+  border: 0;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  border-radius: 100%;
+  height: 2rem;
+  width: 2rem;
+  transition: background 150ms ease;
+}
+
+.backButton:focus,
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .menu {
   cursor: pointer;
   border: 0;
