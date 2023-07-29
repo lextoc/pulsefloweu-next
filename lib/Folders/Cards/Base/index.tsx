@@ -41,15 +41,17 @@ export default function FoldersCard({ folder }: FoldersCardProps) {
             <li>Profit of £289</li>
             <li>This week of £18</li>
           </ul> */}
-          <p className={styles.timestamp}>
-            <small>
-              <i>
-                Created on{" "}
-                {dayjs(folder.created_at).utc(true).format("Do MMMM, YYYY")}
-              </i>
-            </small>
-          </p>
         </div>
+      }
+      footer={
+        <p className={styles.timestamp}>
+          <small>
+            <i>
+              Created on{" "}
+              {dayjs(folder.created_at).utc(true).format("Do MMMM, YYYY")}
+            </i>
+          </small>
+        </p>
       }
     />
   );
