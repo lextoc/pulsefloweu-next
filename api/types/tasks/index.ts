@@ -10,5 +10,5 @@ export interface Task {
 
 export type CreateTask = Omit<
   Task,
-  "id" | "user_id" | "created_at" | "updated_at"
+  "id" | "user_id" | "created_at" | "updated_at" | "total_duration_of_time_entries"
 >;

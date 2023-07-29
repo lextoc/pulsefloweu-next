@@ -60,6 +60,7 @@ export default function TasksCreateCard({ folder }: TasksCreateCardProps) {
 
   return (
     <Card
+      withMovingBackground
       header={<h3>Create new task</h3>}
       content={
         <>
