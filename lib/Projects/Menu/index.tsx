@@ -137,8 +137,8 @@ export default function ProjectMenu({ project }: ProjectMenuProps) {
       >
         <h2>Delete project?</h2>
         <p>
-          Are you absolute sure you want to delete this project "{project.name}"
-          and delete all of its' tasks and time entries?
+          Are you absolutely sure you want to delete this project "
+          {project.name}" and delete all of its' tasks and time entries?
         </p>
         <Input
           label="Type DELETE in capitals"

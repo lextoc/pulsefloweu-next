@@ -135,8 +135,8 @@ export default function TaskMenu({ task }: TaskMenuProps) {
       >
         <h2>Delete task?</h2>
         <p>
-          Are you absolute sure you want to delete this task "{task.name}"
-          and delete all of its' tasks and time entries?
+          Are you absolutely sure you want to delete this task "{task.name}" and
+          delete all of its' tasks and time entries?
         </p>
         <Input
           label="Type DELETE in capitals"
