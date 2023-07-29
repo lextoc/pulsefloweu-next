@@ -54,16 +54,17 @@ export default function Dashboard(props: DashboardProps) {
   let timeEntriesByDate: any = {};
   const format = "dddd DD MMMM YYYY";
   timeEntries.forEach((timeEntry) => {
-    if (
-      Array.isArray(
-        timeEntriesByDate[dayjs(timeEntry.start_date).format(format)],
-      )
-    ) {
-      timeEntriesByDate[dayjs(timeEntry.start_date).format(format)].push(
-        timeEntry,
-      );
+    let _format = dayjs(timeEntry.start_date).isSame(dayjs(), "day")
+      ? "[Today]"
+      : dayjs(timeEntry.start_date).isSame(dayjs().subtract(1, "day"), "day")
+      ? "[Yesterday]"
+      : format;
+    const entries =
+      timeEntriesByDate[dayjs(timeEntry.start_date).format(_format)];
+    if (Array.isArray(entries)) {
+      entries.push(timeEntry);
     } else {
-      timeEntriesByDate[dayjs(timeEntry.start_date).format(format)] = [
+      timeEntriesByDate[dayjs(timeEntry.start_date).format(_format)] = [
         timeEntry,
       ];
     }
