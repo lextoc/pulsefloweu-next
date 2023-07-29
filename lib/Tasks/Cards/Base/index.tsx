@@ -14,7 +14,7 @@ import create from "@/api/create";
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { Task } from "@/api/types/tasks";
-import { CreateTimeEntry, TimeEntry } from "@/api/types/timeEntries";
+import { CreateTimeEntry, TimeEntry } from "@/api/types/time-entries";
 import Card from "@/components/Cards/Base";
 import TaskMenu from "@/lib/Tasks/Menu";
 import { useSnackbarStore } from "@/stores/snackbar";
@@ -126,7 +126,7 @@ export default function TaskCard({ task }: TaskCardProps) {
       }
       content={
         <ul>
-          {task.total_duration_of_time_entries && (
+          {(task.total_duration_of_time_entries || 0) > 0 && (
             <li>
               Spent time of&nbsp;
               <span
