@@ -91,7 +91,7 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
               onClick={() => setIsEditModalOpen(true)}
               noMargin
             >
-              Edit
+              Edit folder
             </Button>
             <Button
               variant="subtle"
@@ -99,7 +99,7 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
               onClick={() => setIsDeleteModalOpen(true)}
               noMargin
             >
-              Delete
+              Delete folder
             </Button>
           </div>
         }
