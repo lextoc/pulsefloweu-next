@@ -11,6 +11,7 @@ export interface FormProps
 export default function Form({ children, ...props }: FormProps) {
   return (
     <form {...props} className={styles.root}>
+      <input type="submit" className={styles.submit} />
       {children}
     </form>
   );
