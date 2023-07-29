@@ -14,6 +14,7 @@ import create from "@/api/create";
 import endpoints from "@/api/endpoints";
 import { CreateTimeEntry, TimeEntry } from "@/api/types/time-entries";
 import Explosion from "@/lib/Tasks/Cards/Base/Explosion";
+import TimeEntryMenu from "@/lib/TimeEntries/Menu";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./TimeEntry.module.css";
@@ -128,6 +129,7 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
           ""}
         &nbsp;&nbsp;&nbsp;&nbsp;
         <strong>{timer}</strong>
+        <TimeEntryMenu timeEntry={timeEntry} />
       </div>
     </div>
   );
