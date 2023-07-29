@@ -40,11 +40,12 @@ export default function SideNavigationProject({
           <strong>{project.name}</strong>
         </div>
       </Link>
-      {folders.map((folder) => (
-        <Link
-          key={folder.id}
-          href={`/app/projects/${folder.project_id}/folders/${folder.id}`}
-          className={`${styles.folderLink}
+      <div className={styles.folderLinks}>
+        {folders.map((folder) => (
+          <Link
+            key={folder.id}
+            href={`/app/projects/${folder.project_id}/folders/${folder.id}`}
+            className={`${styles.folderLink}
           ${
             pathname.startsWith(
               `/app/projects/${folder.project_id}/folders/${folder.id}`,
@@ -53,10 +54,11 @@ export default function SideNavigationProject({
               : ""
           }
         `}
-        >
-          <div className={styles.inner}>{folder.name}</div>
-        </Link>
-      ))}
+          >
+            <div className={styles.inner}>{folder.name}</div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

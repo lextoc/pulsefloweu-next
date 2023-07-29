@@ -7,6 +7,11 @@
   border-bottom: 0;
 }
 
+.folderLinks {
+  max-height: 11.5rem;
+  overflow-y: auto;
+}
+
 .link,
 .folderLink {
   display: block;
