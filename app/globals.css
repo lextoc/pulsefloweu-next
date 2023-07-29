@@ -13,6 +13,17 @@
   gap: 1.5rem;
 }
 
+.buttons-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttons-right > div,
+.buttons-right > a,
+.buttons-right > button {
+  margin-left: 1rem;
+}
+
 .main {
   color: rgb(var(--main));
 }

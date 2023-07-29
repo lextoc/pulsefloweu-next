@@ -21,18 +21,16 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const onEdit = () => {
     setIsModalOpen(true);
   };
 
   const onDelete = () => {
-    const hasAgreed = window.confirm(
-      "Destroying your folder will also remove all its tasks and time entries. Are you sure?",
-    );
-    if (!hasAgreed) return;
     let projectId = folder.project_id;
     destroy(endpoints.destroyFolder(folder.id)).then((data) => {
+      console.log("🚀  data:", data);
       if (data.success) {
         queryClient.invalidateQueries([
           endpoints.getFoldersFromProject(projectId),
@@ -40,6 +38,7 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
         showSnackbar({
           message: "Folder has been deleted",
         });
+        setIsDeleteModalOpen(false);
       } else {
         showSnackbar({
           message: data?.errors?.join(" "),
@@ -54,13 +53,40 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
       <Modal isOpen={isModalOpen} close={() => setIsModalOpen(false)}>
         <h2>Edit folder ({folder.name})</h2>
       </Modal>
+      <Modal
+        isOpen={isDeleteModalOpen}
+        close={() => setIsDeleteModalOpen(false)}
+      >
+        <h2>Delete folder? ({folder.name})</h2>
+        <p>
+          Are you absolute sure you want to delete this folder and all of its'
+          tasks and time entries?
+        </p>
+        <div className="buttons-right">
+          <Button
+            variant="subtle"
+            onClick={() => setIsDeleteModalOpen(false)}
+            noMargin
+          >
+            Cancel
+          </Button>
+          <Button danger onClick={() => onDelete()} noMargin>
+            Delete folder
+          </Button>
+        </div>
+      </Modal>
       <Popover
         content={
           <div className={styles.menu}>
             <Button variant="subtle" onClick={onEdit} noMargin>
               Edit
             </Button>
-            <Button variant="subtle" danger onClick={onDelete} noMargin>
+            <Button
+              variant="subtle"
+              danger
+              onClick={() => setIsDeleteModalOpen(true)}
+              noMargin
+            >
               Delete folder
             </Button>
           </div>
