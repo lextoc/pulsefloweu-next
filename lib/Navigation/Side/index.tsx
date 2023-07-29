@@ -27,6 +27,7 @@ export default function SideNavigation(props: SideNavigationProps) {
         </Link>
       </div>
       <div className={styles.inner}>
+        <SideNavigationRunningTimers />
         {/* <SideNavigationLink
           href="/app/timers"
           title="Get started"
@@ -50,7 +51,6 @@ export default function SideNavigation(props: SideNavigationProps) {
           sub="Generate timesheets for a specific date range"
           wip
         /> */}
-        <SideNavigationRunningTimers />
         <SideNavigationProjects />
       </div>
     </div>

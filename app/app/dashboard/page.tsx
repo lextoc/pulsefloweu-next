@@ -17,7 +17,7 @@ export interface DashboardProps {}
 
 export default function Dashboard(props: DashboardProps) {
   const set = useNavigationStore((state) => state.set);
-  set({ menuTitle: "Create projects and manage permissions" });
+  set({ menuTitle: "Create projects and manage memberships and permissions" });
 
   const query = useQuery({
     queryKey: [endpoints.getProjects],
