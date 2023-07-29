@@ -57,10 +57,10 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
         isOpen={isDeleteModalOpen}
         close={() => setIsDeleteModalOpen(false)}
       >
-        <h2>Delete folder? ({folder.name})</h2>
+        <h2>Delete folder?</h2>
         <p>
-          Are you absolute sure you want to delete this folder and all of its'
-          tasks and time entries?
+          Are you absolute sure you want to delete this folder "{folder.name}"
+          and delete all of its' tasks and time entries?
         </p>
         <div className="buttons-right">
           <Button

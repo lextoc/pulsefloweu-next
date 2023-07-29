@@ -25,7 +25,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     border: 0,
     boxShadow: "0 0.5rem 5rem rgba(var(--secondary), 0.15)",
-    minWidth: "36rem",
+    width: "36rem",
     borderRadius: "var(--border-radius)",
     maxHeight: "90vh",
   },
