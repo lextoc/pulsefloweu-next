@@ -62,12 +62,11 @@
 
 .secondSidebar,
 .thirdSidebar {
-  position: fixed;
-  top: 3rem;
+  top: 0;
   left: 0;
   bottom: 0;
   overflow: hidden;
-  width: var(--sidebar-width);
+  width: 22rem;
 }
 
 .secondSidebar::before {
