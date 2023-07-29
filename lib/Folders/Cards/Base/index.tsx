@@ -9,14 +9,14 @@ import FolderMenu from "@/lib/Folders/Menu";
 
 import styles from "./index.module.css";
 
+dayjs.extend(advancedFormat);
+dayjs.extend(utc);
+
 export interface FoldersCardProps {
   folder: Folder;
 }
 
 export default function FoldersCard({ folder }: FoldersCardProps) {
-  dayjs.extend(advancedFormat);
-  dayjs.extend(utc);
-
   return (
     <Card
       header={

@@ -28,12 +28,12 @@ export default function SideNavigation(props: SideNavigationProps) {
       </div>
       <div className={styles.inner}>
         <SideNavigationRunningTimers />
-        {/* <SideNavigationLink
+        <SideNavigationLink
           href="/app/timers"
           title="Get started"
-          sub="Start timing tasks via timers"
+          sub="Start inserting time entries for your tasks"
           wip
-        /> */}
+        />
         <SideNavigationLink
           href="/app/dashboard"
           title="Dashboard"

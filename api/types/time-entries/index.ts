@@ -7,11 +7,21 @@ export interface TimeEntry {
   task_id: number;
   created_at: string;
   updated_at: string;
+  task_name: string;
+  folder_name: string;
+  project_name: string;
 }
 
 export type CreateTimeEntry = Omit<
   TimeEntry,
-  "id" | "user_id" | "end_date" | "created_at" | "updated_at"
+  | "id"
+  | "user_id"
+  | "end_date"
+  | "created_at"
+  | "updated_at"
+  | "task_name"
+  | "folder_name"
+  | "project_name"
 >;
 
 export interface TimeEntryWithTaskName extends TimeEntry {

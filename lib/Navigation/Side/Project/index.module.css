@@ -10,6 +10,19 @@
 .folderLinks {
   max-height: 11.5rem;
   overflow-y: auto;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  scrollbar-width: 0.25rem;
+}
+
+.folderLinks::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.folderLinks::-webkit-scrollbar-track {
+}
+
+.folderLinks::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .link,

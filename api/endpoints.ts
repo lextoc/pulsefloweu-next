@@ -13,6 +13,8 @@ export default {
   destroyTask: (taskId: number) => h(`/tasks/${taskId}`),
   getRunningTimers: h("/misc/running_timers"),
   getTask: (taskId: number) => h(`/tasks/${taskId}`),
+  getTasks: h("/tasks"),
+  getTimeEntries: h("/time_entries"),
   getFolder: (folderId: number) => h(`/folders/${folderId}`),
   getFoldersFromProject: (projectId: number) =>
     h(`/projects/${projectId}/folders`),

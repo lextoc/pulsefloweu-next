@@ -1,0 +1,58 @@
+.leftTask {
+  display: flex;
+  align-items: center;
+  margin: 0 0.25rem;
+  padding: 0.5rem;
+  border-bottom: 0.1rem solid rgba(255, 255, 255, 0.1);
+}
+
+.leftTaskLink {
+  text-decoration: none;
+}
+
+.leftTaskLink:focus .leftTaskName,
+.leftTaskLink:hover .leftTaskName {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.leftTaskLink:focus .leftTaskSub,
+.leftTaskLink:hover .leftTaskSub {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.leftTaskName,
+.leftTaskSub {
+  line-height: 1.4em;
+}
+
+.leftTaskName {
+  font-weight: 700;
+  color: rgba(255, 255, 255, 1);
+}
+
+.leftTaskSub {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+}
+
+.leftPlay {
+  position: relative;
+  flex-shrink: 0;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 1);
+}
+
+.leftPlay svg {
+  transition: color 50ms ease;
+}
+
+.leftPlay:focus svg,
+.leftPlay:hover svg {
+  color: rgb(var(--main));
+}

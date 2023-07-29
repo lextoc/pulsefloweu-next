@@ -2,7 +2,7 @@ import {
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
 } from "@tabler/icons-react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
@@ -12,9 +12,8 @@ import { useEffect, useState } from "react";
 import { getHeaders } from "@/api/cookies";
 import create from "@/api/create";
 import endpoints from "@/api/endpoints";
-import getPage from "@/api/getPage";
 import { Task } from "@/api/types/tasks";
-import { CreateTimeEntry, TimeEntry } from "@/api/types/time-entries";
+import { CreateTimeEntry } from "@/api/types/time-entries";
 import Card from "@/components/Cards/Base";
 import TaskMenu from "@/lib/Tasks/Menu";
 import { useSnackbarStore } from "@/stores/snackbar";

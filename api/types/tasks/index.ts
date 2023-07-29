@@ -1,3 +1,5 @@
+import { TimeEntry } from "../time-entries";
+
 export interface Task {
   id: number;
   name: string;
@@ -6,9 +8,19 @@ export interface Task {
   created_at: string;
   updated_at: string;
   total_duration_of_time_entries: number;
+  folder_name: string;
+  project_name: string;
+  active_time_entries: TimeEntry[];
 }
 
 export type CreateTask = Omit<
   Task,
-  "id" | "user_id" | "created_at" | "updated_at" | "total_duration_of_time_entries"
+  | "id"
+  | "user_id"
+  | "created_at"
+  | "updated_at"
+  | "total_duration_of_time_entries"
+  | "folder_name"
+  | "project_name"
+  | "active_time_entries"
 >;

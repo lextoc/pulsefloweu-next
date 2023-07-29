@@ -18,6 +18,8 @@ import SideNavigation from "@/lib/Navigation/Side";
 import QueryClientProvider from "@/lib/Shared/QueryClientProvider";
 import Snackbar from "@/lib/Shared/Snackbar";
 
+import styles from "./layout.module.css";
+
 const font = Lato({
   weight: ["300", "400", "700", "900"],
   subsets: ["latin"],

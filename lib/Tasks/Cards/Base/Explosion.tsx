@@ -8,15 +8,6 @@ export default function Explosion(props: ExplosionProps) {
       xmlns="http://www.w3.org/2000/svg"
     >
       <g fill="none" fillRule="evenodd" transform="translate(467 392)">
-        <circle
-          className="main-circ"
-          fill="#FF7C00"
-          opacity="0"
-          cx="29.5"
-          cy="29.5"
-          r="1.5"
-        />
-
         <g className="grp7" opacity="0" transform="translate(7 6)">
           <circle className="oval1" fill="#FF7C00" cx="2" cy="6" r="2" />
           <circle className="oval2" fill="#FFD500" cx="5" cy="2" r="2" />
