@@ -4,11 +4,13 @@ import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
+import { useSearchParams } from "next/navigation";
 
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { Task } from "@/api/types/tasks";
 import { TimeEntry } from "@/api/types/time-entries";
+import Pagination from "@/components/Navigation/Pagination";
 import { Header } from "@/components/Shared/Header";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
 import { useNavigationStore } from "@/stores/navigation";
@@ -26,6 +28,10 @@ export default function Dashboard(props: DashboardProps) {
   const set = useNavigationStore((state) => state.set);
   set({ menuTitle: "Start timing your tasks" });
 
+  const searchParams = useSearchParams();
+  const current = new URLSearchParams(Array.from(searchParams.entries()));
+  const page = current.get("page");
+
   const tasksQuery = useQuery({
     queryKey: [endpoints.getTasks],
     queryFn: () => getPage(endpoints.getTasks),
@@ -35,8 +41,11 @@ export default function Dashboard(props: DashboardProps) {
   if (tasksQuery.data?.success) tasks = tasksQuery.data?.data;
 
   const timeEntriesQuery = useQuery({
-    queryKey: [endpoints.getTimeEntries],
-    queryFn: () => getPage(endpoints.getTimeEntries),
+    queryKey: [endpoints.getTimeEntries, page],
+    queryFn: () =>
+      getPage(endpoints.getTimeEntries, {
+        page,
+      }),
   });
 
   let timeEntries: TimeEntry[] = [];
@@ -93,6 +102,7 @@ export default function Dashboard(props: DashboardProps) {
               </>
             );
           })}
+          <Pagination {...timeEntriesQuery.data?.meta} />
         </PaddingContainer>
       </div>
     </div>
