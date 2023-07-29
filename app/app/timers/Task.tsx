@@ -93,7 +93,7 @@ export default function TimersTask({ task }: TimersTaskProps) {
           } ${isExploding ? "exploding" : ""}`}
           onClick={() => toggleTaskTimer(task)}
         >
-          <Explosion />
+          {/* <Explosion /> */}
           {task.active_time_entries.length ? (
             <IconPlayerPauseFilled size="1.25rem" />
           ) : (

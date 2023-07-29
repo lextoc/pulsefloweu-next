@@ -32,7 +32,6 @@ export default function SideNavigation(props: SideNavigationProps) {
           href="/app/timers"
           title="Get started"
           sub="Start inserting time entries for your tasks"
-          wip
         />
         <SideNavigationLink
           href="/app/dashboard"
