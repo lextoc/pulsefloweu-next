@@ -68,3 +68,7 @@
   display: flex;
   align-items: center;
 }
+
+.timeEntryNameLink {
+  text-decoration: none;
+}

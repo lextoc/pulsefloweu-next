@@ -6,6 +6,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { getHeaders } from "@/api/cookies";
@@ -109,17 +110,22 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
             <IconPlayerPlayFilled size="1.25rem" />
           )}
         </button>
-        <div>
+        <Link
+          href={`/app/folders/${timeEntry.folder_id}`}
+          className={styles.timeEntryNameLink}
+        >
           <div className={styles.timeEntryName}>{timeEntry.task_name}</div>
           <div className={styles.timeEntrySub}>
             {timeEntry.project_name} - {timeEntry.folder_name}
           </div>
-        </div>
+        </Link>
       </div>
       <div className={styles.timeEntryRight}>
-        {dayjs(timeEntry.start_date).format("HH:mm")} –{" "}
+        {timeEntry.end_date ? "" : "Started at"}{" "}
+        {dayjs(timeEntry.start_date).format("HH:mm")}{" "}
+        {timeEntry.end_date ? "–" : ""}{" "}
         {(timeEntry.end_date && dayjs(timeEntry.end_date).format("HH:mm")) ||
-          "still running"}
+          ""}
         &nbsp;&nbsp;&nbsp;&nbsp;
         <strong>{timer}</strong>
       </div>

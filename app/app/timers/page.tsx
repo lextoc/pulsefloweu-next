@@ -52,7 +52,7 @@ export default function Dashboard(props: DashboardProps) {
   if (timeEntriesQuery.data?.success) timeEntries = timeEntriesQuery.data?.data;
 
   let timeEntriesByDate: any = {};
-  const format = "DD MMMM YYYY";
+  const format = "dddd DD MMMM YYYY";
   timeEntries.forEach((timeEntry) => {
     if (
       Array.isArray(
