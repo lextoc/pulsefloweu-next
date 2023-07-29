@@ -23,6 +23,8 @@ export default function Pagination({
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  if (!current_page) return null;
+
   const onClick = (page: number) => {
     const current = new URLSearchParams(Array.from(searchParams.entries()));
     if (current.delete) current.delete("page");
