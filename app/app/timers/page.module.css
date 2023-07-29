@@ -128,3 +128,7 @@
   filter: blur(0.1rem);
   animation: moveAround 60s ease-in-out infinite;
 }
+
+.dayList {
+  margin-bottom: 2rem;
+}

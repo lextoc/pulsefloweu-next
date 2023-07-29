@@ -81,7 +81,6 @@ export default function Dashboard(props: DashboardProps) {
         <div className={styles.sidebar}>
           <div className={styles.secondSidebar} />
           <div className={styles.thirdSidebar} />
-          {/* PUT ROLE DROPDOWN HERE */}
           {tasks.map((task) => (
             <TimersTask key={task.id} task={task} />
           ))}
@@ -89,17 +88,17 @@ export default function Dashboard(props: DashboardProps) {
         <PaddingContainer withBottomGap>
           <p>
             Form for creating a new task here, creating it automatically starts
-            a time entry
+            a time entry. Also (eventually) put role dropdown here somewhere.
           </p>
           <h2>Your time entries</h2>
           {Object.keys(timeEntriesByDate).map((date) => {
             return (
-              <>
+              <div className={styles.dayList}>
                 <h3>{date}</h3>
                 {timeEntriesByDate[date].map((timeEntry: TimeEntry) => (
                   <TimersTimeEntry key={timeEntry.id} timeEntry={timeEntry} />
                 ))}
-              </>
+              </div>
             );
           })}
           <Pagination {...timeEntriesQuery.data?.meta} />
