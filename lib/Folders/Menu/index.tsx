@@ -28,13 +28,23 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const form = useForm<Partial<Omit<Folder, "project_id">>>({
+  const editForm = useForm<Partial<Omit<Folder, "project_id">>>({
     initialValues: {
       name: folder.name,
     },
 
     validate: {
       // email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+    },
+  });
+
+  const deleteForm = useForm({
+    initialValues: {
+      delete: "",
+    },
+
+    validate: {
+      delete: (value) => (value === "DELETE" ? null : "Type DELETE"),
     },
   });
 
@@ -105,11 +115,11 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
       <Modal isOpen={isEditModalOpen} close={() => setIsEditModalOpen(false)}>
         <h2>Edit folder</h2>
         <p>Editing the "{folder.name}" folder.</p>
-        <Form onSubmit={form.onSubmit((values) => onEdit(values))}>
+        <Form onSubmit={editForm.onSubmit((values) => onEdit(values))}>
           <Input
             label="Folder name"
             placeholder="Folder name"
-            {...form.getInputProps("name")}
+            {...editForm.getInputProps("name")}
           />
           <div className="buttons-right">
             <Button variant="subtle" onClick={() => setIsEditModalOpen(false)}>
@@ -128,11 +138,20 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
           Are you absolute sure you want to delete this folder "{folder.name}"
           and delete all of its' tasks and time entries?
         </p>
+        <Input
+          label="Type DELETE in capitals"
+          placeholder="Type DELETE"
+          {...deleteForm.getInputProps("delete")}
+        />
         <div className="buttons-right">
           <Button variant="subtle" onClick={() => setIsDeleteModalOpen(false)}>
             Cancel
           </Button>
-          <Button danger onClick={() => onDelete()}>
+          <Button
+            disabled={!deleteForm.isValid()}
+            danger
+            onClick={() => onDelete()}
+          >
             Delete folder
           </Button>
         </div>

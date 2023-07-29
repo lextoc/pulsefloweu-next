@@ -28,13 +28,23 @@ export default function ProjectMenu({ project }: ProjectMenuProps) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const form = useForm<Partial<Omit<Project, "project_id">>>({
+  const editForm = useForm<Partial<Omit<Project, "project_id">>>({
     initialValues: {
       name: project.name,
     },
 
     validate: {
       // email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+    },
+  });
+
+  const deleteForm = useForm({
+    initialValues: {
+      delete: "",
+    },
+
+    validate: {
+      delete: (value) => (value === "DELETE" ? null : "Type DELETE"),
     },
   });
 
@@ -107,11 +117,11 @@ export default function ProjectMenu({ project }: ProjectMenuProps) {
       <Modal isOpen={isEditModalOpen} close={() => setIsEditModalOpen(false)}>
         <h2>Edit project</h2>
         <p>Editing the "{project.name}" project.</p>
-        <Form onSubmit={form.onSubmit((values) => onEdit(values))}>
+        <Form onSubmit={editForm.onSubmit((values) => onEdit(values))}>
           <Input
             label="Project name"
             placeholder="Project name"
-            {...form.getInputProps("name")}
+            {...editForm.getInputProps("name")}
           />
           <div className="buttons-right">
             <Button variant="subtle" onClick={() => setIsEditModalOpen(false)}>
@@ -130,11 +140,20 @@ export default function ProjectMenu({ project }: ProjectMenuProps) {
           Are you absolute sure you want to delete this project "{project.name}"
           and delete all of its' tasks and time entries?
         </p>
+        <Input
+          label="Type DELETE in capitals"
+          placeholder="Type DELETE"
+          {...deleteForm.getInputProps("delete")}
+        />
         <div className="buttons-right">
           <Button variant="subtle" onClick={() => setIsDeleteModalOpen(false)}>
             Cancel
           </Button>
-          <Button danger onClick={() => onDelete()}>
+          <Button
+            disabled={!deleteForm.isValid()}
+            danger
+            onClick={() => onDelete()}
+          >
             Delete project
           </Button>
         </div>
