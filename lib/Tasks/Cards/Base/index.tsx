@@ -77,8 +77,11 @@ export default function TaskCard({ task }: TaskCardProps) {
       .then((response) => {
         return response.json();
       })
-      .then((res) => {
+      .then(() => {
         queryClient.invalidateQueries();
+        showSnackbar({
+          message: "Time entry has been updated",
+        });
       });
     if (isActive) return;
     create<{ time_entry: CreateTimeEntry }>(endpoints.createTimeEntry, {
