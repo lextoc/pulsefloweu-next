@@ -6,7 +6,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { getHeaders } from "@/api/cookies";
 import create from "@/api/create";
@@ -73,6 +73,22 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
     });
   };
 
+  const seconds = dayjs(timeEntry.end_date || undefined).diff(
+    dayjs(timeEntry.start_date),
+    "seconds",
+  );
+  const timer = new Date(seconds * 1000).toISOString().substring(11, 19);
+  const [time, setTime] = useState(Date.now());
+  // For animating timer.
+  useEffect(() => {
+    if (!timeEntry.end_date) {
+      const interval = setInterval(() => setTime(Date.now()), 1000);
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, []);
+
   return (
     <div
       className={`${styles.timeEntry} ${
@@ -104,6 +120,8 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
         {dayjs(timeEntry.start_date).format("HH:mm")} –{" "}
         {(timeEntry.end_date && dayjs(timeEntry.end_date).format("HH:mm")) ||
           "still running"}
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <strong>{timer}</strong>
       </div>
     </div>
   );
