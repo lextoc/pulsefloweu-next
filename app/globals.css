@@ -41,6 +41,12 @@
   margin-left: 0.35rem;
 }
 
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* copied from https://codepen.io/robeen/pen/PbvJjy/ */
 .explosion {
   cursor: pointer;

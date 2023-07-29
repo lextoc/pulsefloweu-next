@@ -33,7 +33,7 @@
 
 .sidebar {
   flex-shrink: 0;
-  width: 22rem;
+  width: var(--sidebar-width);
   background: rgb(var(--secondary-bright));
   border-right: 0.1rem solid rgba(255, 255, 255, 0.1);
   color: rgb(var(--secondary));
@@ -66,7 +66,7 @@
   left: 0;
   bottom: 0;
   overflow: hidden;
-  width: 22rem;
+  width: var(--sidebar-width);
 }
 
 .secondSidebar::before {
