@@ -1,9 +1,6 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import dayjs from "dayjs";
-import advancedFormat from "dayjs/plugin/advancedFormat";
-import utc from "dayjs/plugin/utc";
 
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
@@ -15,9 +12,7 @@ import { useNavigationStore } from "@/stores/navigation";
 
 import styles from "./page.module.css";
 import TimersTask from "./Task";
-
-dayjs.extend(advancedFormat);
-dayjs.extend(utc);
+import TimersTimeEntry from "./TimeEntry";
 
 export interface DashboardProps {}
 
@@ -63,23 +58,9 @@ export default function Dashboard(props: DashboardProps) {
             Form for creating a new task here, creating it automatically starts
             a time entry
           </p>
+          <h3>Your time entries</h3>
           {timeEntries.map((timeEntry) => (
-            <div key={timeEntry.id} className={styles.timeEntry}>
-              <div className={styles.timeEntryLeft}>
-                <div className={styles.timeEntryName}>
-                  {timeEntry.task_name}
-                </div>
-                <div className={styles.timeEntrySub}>
-                  {timeEntry.project_name} • {timeEntry.folder_name}
-                </div>
-              </div>
-              <div className={styles.timeEntryRight}>
-                {dayjs(timeEntry.start_date).format("HH:mm")}-
-                {(timeEntry.end_date &&
-                  dayjs(timeEntry.end_date).format("HH:mm")) ||
-                  "still running"}
-              </div>
-            </div>
+            <TimersTimeEntry key={timeEntry.id} timeEntry={timeEntry} />
           ))}
         </PaddingContainer>
       </div>

@@ -128,36 +128,3 @@
   filter: blur(0.1rem);
   animation: moveAround 60s ease-in-out infinite;
 }
-
-.timeEntry {
-  display: flex;
-  padding: 0.75rem 0.5rem;
-  border-bottom: 0.1rem solid rgba(var(--secondary), 0.1);
-  color: rgba(var(--secondary), 0.8);
-  max-width: 80rem;
-}
-
-.timeEntryName,
-.timeEntrySub {
-  line-height: 1.4em;
-}
-
-.timeEntryName {
-  color: rgba(var(--secondary), 1);
-  font-weight: 700;
-}
-
-.timeEntrySub {
-  font-size: 0.9rem;
-}
-
-.timeEntryLeft {
-  margin-right: 2rem;
-}
-
-.timeEntryRight {
-  flex-shrink: 0;
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-}

@@ -6,33 +6,31 @@ import { useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
-import Link from "next/link";
 import { useState } from "react";
 
 import { getHeaders } from "@/api/cookies";
 import create from "@/api/create";
 import endpoints from "@/api/endpoints";
-import { Task } from "@/api/types/tasks";
-import { CreateTimeEntry } from "@/api/types/time-entries";
+import { CreateTimeEntry, TimeEntry } from "@/api/types/time-entries";
 import Explosion from "@/lib/Tasks/Cards/Base/Explosion";
 import { useSnackbarStore } from "@/stores/snackbar";
 
-import styles from "./Task.module.css";
-
-export interface TimersTaskProps {
-  task: Task;
-}
+import styles from "./TimeEntry.module.css";
 
 dayjs.extend(advancedFormat);
 dayjs.extend(utc);
 
-export default function TimersTask({ task }: TimersTaskProps) {
+export interface TimersTimeEntryProps {
+  timeEntry: TimeEntry;
+}
+
+export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
   const [isExploding, setIsExploding] = useState(false);
 
-  const toggleTaskTimer = (task: Task) => {
+  const toggleTaskTimer = () => {
     setIsExploding(true);
     setTimeout(() => setIsExploding(false), 1000);
     const requestOptions = {
@@ -52,12 +50,12 @@ export default function TimersTask({ task }: TimersTaskProps) {
           message: "Time entry has been updated",
         });
       });
-    if (task.active_time_entries.length) return;
+    if (!timeEntry.end_date) return;
     create<{ time_entry: CreateTimeEntry }>(endpoints.createTimeEntry, {
       time_entry: {
         start_date: dayjs().format(),
-        folder_id: task.folder_id,
-        task_id: task.id,
+        folder_id: timeEntry.folder_id,
+        task_id: timeEntry.task_id,
       },
     }).then((data) => {
       if (data?.errors) {
@@ -76,30 +74,36 @@ export default function TimersTask({ task }: TimersTaskProps) {
   };
 
   return (
-    <div className={styles.root}>
-      <div className={styles.leftTask}>
-        <Link
-          className={styles.leftTaskLink}
-          href={`/app/folders/${task.folder_id}`}
-        >
-          <div className={styles.leftTaskName}>{task.name}</div>
-          <div className={styles.leftTaskSub}>
-            {task.project_name} - {task.folder_name}
-          </div>
-        </Link>
+    <div
+      className={`${styles.timeEntry} ${
+        timeEntry.end_date ? "" : styles.active
+      }`}
+    >
+      <div className={styles.timeEntryLeft}>
         <button
-          className={`${styles.leftPlay} ${
-            task.active_time_entries.length ? styles.leftPlayActive : ""
-          } ${isExploding ? "exploding" : ""}`}
-          onClick={() => toggleTaskTimer(task)}
+          className={`${styles.timeEntryButton} ${
+            isExploding ? "exploding" : ""
+          }`}
+          onClick={() => toggleTaskTimer()}
         >
           <Explosion />
-          {task.active_time_entries.length ? (
+          {!timeEntry.end_date ? (
             <IconPlayerPauseFilled size="1.25rem" />
           ) : (
             <IconPlayerPlayFilled size="1.25rem" />
           )}
         </button>
+        <div>
+          <div className={styles.timeEntryName}>{timeEntry.task_name}</div>
+          <div className={styles.timeEntrySub}>
+            {timeEntry.project_name} - {timeEntry.folder_name}
+          </div>
+        </div>
+      </div>
+      <div className={styles.timeEntryRight}>
+        {dayjs(timeEntry.start_date).format("HH:mm")} –{" "}
+        {(timeEntry.end_date && dayjs(timeEntry.end_date).format("HH:mm")) ||
+          "still running"}
       </div>
     </div>
   );
