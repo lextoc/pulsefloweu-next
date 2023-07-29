@@ -30,7 +30,7 @@ export interface TaskCardProps {
   task: Task;
 }
 
-export default function TaskCard({ task }: TaskCardProps) {
+export default function TasksCard({ task }: TaskCardProps) {
   const [time, setTime] = useState(Date.now());
   const [isExploding, setIsExploding] = useState(false);
 
@@ -46,22 +46,7 @@ export default function TaskCard({ task }: TaskCardProps) {
   const showSnackbar = useSnackbarStore((state) => state.show);
   let isActive = false;
 
-  /**
-   * Fetch active timeEntries
-   */
-  const activeTimeEntryQuery = useQuery({
-    queryKey: [endpoints.getTimeEntriesFromTask(task?.id || -1), "active"],
-    queryFn: () =>
-      getPage(endpoints.getTimeEntriesFromTask(task?.id || -1), {
-        active: true,
-      }),
-  });
-
-  let activeTimeEntries: TimeEntry[] = [];
-  if (activeTimeEntryQuery.data?.success)
-    activeTimeEntries = activeTimeEntryQuery.data?.data;
-
-  isActive = !!activeTimeEntries.length;
+  isActive = !!task.active_time_entries.length;
 
   const onClick = () => {
     setIsExploding(true);
@@ -107,7 +92,7 @@ export default function TaskCard({ task }: TaskCardProps) {
   };
 
   const seconds = dayjs().diff(
-    dayjs(activeTimeEntries?.[0]?.start_date),
+    dayjs(task.active_time_entries?.[0]?.start_date),
     "seconds",
   );
   const timer = new Date(seconds * 1000).toISOString().substring(11, 19);
