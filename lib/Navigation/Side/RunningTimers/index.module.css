@@ -13,38 +13,60 @@
   }
 }
 
-.button {
+.wrapper {
   margin: 1rem 0.5rem;
-  padding: 0.5rem 1rem;
   background: rgba(var(--secondary-bright), 0.4);
   border-radius: var(--border-radius);
   display: flex;
   align-items: center;
   position: relative;
-  text-align: left;
-  cursor: pointer;
   width: calc(100% - 1rem);
+  border-bottom: 0.15rem solid rgba(var(--secondary-bright), 0.4);
+  transition: border 250ms ease;
+  overflow: hidden;
 }
 
 .left {
-  padding-right: 1rem;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  text-decoration: none;
+}
+
+.left:focus .name,
+.left:hover .name {
+  color: white;
 }
 
 .name {
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 0.25rem;
   line-height: 1.2em;
+  transition: color 150ms ease;
 }
 
 .timer {
   color: rgba(255, 255, 255, 0.4);
 }
 
-.icon {
-  width: 2rem;
-  height: 100%;
-  color: rgb(255, 255, 255);
+.iconButton {
+  margin-left: auto;
+  height: 3rem;
+  width: 3rem;
   flex-shrink: 0;
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.iconButton:hover .icon,
+.iconButton:focus .icon {
+  transform: scale(1.2);
+  animation: none;
+}
+
+.icon {
+  color: rgb(255, 255, 255);
   animation: pulse 2s ease-in-out infinite;
 }

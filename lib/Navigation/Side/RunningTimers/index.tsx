@@ -6,6 +6,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { getHeaders } from "@/api/cookies";
@@ -73,15 +74,20 @@ export default function SideNavigationRunningTimers(
   return (
     <>
       {timeEntries.map((timeEntry) => (
-        <button className={styles.button} onClick={onClick}>
-          <div className={styles.left}>
-          <div className={styles.name}>{timeEntry.task_name}</div>
-          <div className={styles.timer}>{timer}</div>
-          </div>
-          <div className={styles.icon}>
-            <IconPlayerPauseFilled />
-          </div>
-        </button>
+        <div className={styles.wrapper}>
+          <Link
+            href={`/app/folders/${timeEntry.folder_id}`}
+            className={styles.left}
+          >
+            <div className={styles.name}>{timeEntry.task_name}</div>
+            <div className={styles.timer}>{timer}</div>
+          </Link>
+          <button className={styles.iconButton} onClick={onClick}>
+            <div className={styles.icon}>
+              <IconPlayerPauseFilled />
+            </div>
+          </button>
+        </div>
       ))}
     </>
   );
