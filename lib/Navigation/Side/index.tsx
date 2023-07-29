@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import Logo from "@/components/Shared/Logo";
 import SideNavigationLink from "@/lib/Navigation/Side/Link";
 import SideNavigationProjects from "@/lib/Navigation/Side/Projects";
+import SideNavigationRunningTimers from "@/lib/Navigation/Side/RunningTimers";
 
 import styles from "./index.module.css";
 
@@ -26,12 +27,12 @@ export default function SideNavigation(props: SideNavigationProps) {
         </Link>
       </div>
       <div className={styles.inner}>
-        <SideNavigationLink
+        {/* <SideNavigationLink
           href="/app/timers"
           title="Get started"
           sub="Start timing tasks via timers"
           wip
-        />
+        /> */}
         <SideNavigationLink
           href="/app/dashboard"
           title="Dashboard"
@@ -49,6 +50,7 @@ export default function SideNavigation(props: SideNavigationProps) {
           sub="Generate timesheets for a specific date range"
           wip
         /> */}
+        <SideNavigationRunningTimers />
         <SideNavigationProjects />
       </div>
     </div>

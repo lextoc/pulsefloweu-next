@@ -80,3 +80,8 @@ li::before {
   font-size: 0.7em;
   transform: translateY(-0.3em)
 }
+
+button {
+  background: 0;
+  border: 0;
+}

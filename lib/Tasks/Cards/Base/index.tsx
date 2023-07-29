@@ -23,14 +23,14 @@ import { convertSecondsToHHmmss } from "@/utils/converters";
 import Explosion from "./Explosion";
 import styles from "./index.module.css";
 
+dayjs.extend(advancedFormat);
+dayjs.extend(utc);
+
 export interface TaskCardProps {
   task: Task;
 }
 
 export default function TaskCard({ task }: TaskCardProps) {
-  dayjs.extend(advancedFormat);
-  dayjs.extend(utc);
-
   const [time, setTime] = useState(Date.now());
   const [isExploding, setIsExploding] = useState(false);
 

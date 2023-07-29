@@ -1,0 +1,88 @@
+import {
+  IconPlayerPauseFilled,
+  IconPlayerPlayFilled,
+} from "@tabler/icons-react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+import utc from "dayjs/plugin/utc";
+import { useEffect, useState } from "react";
+
+import { getHeaders } from "@/api/cookies";
+import endpoints from "@/api/endpoints";
+import getPage from "@/api/getPage";
+import { TimeEntryWithTaskName } from "@/api/types/time-entries";
+import { useSnackbarStore } from "@/stores/snackbar";
+
+import styles from "./index.module.css";
+
+dayjs.extend(advancedFormat);
+dayjs.extend(utc);
+
+export interface SideNavigationRunningTimersProps {}
+
+export default function SideNavigationRunningTimers(
+  props: SideNavigationRunningTimersProps,
+) {
+  const queryClient = useQueryClient();
+  const showSnackbar = useSnackbarStore((state) => state.show);
+
+  const [time, setTime] = useState(Date.now());
+
+  // For animating timer.
+  useEffect(() => {
+    const interval = setInterval(() => setTime(Date.now()), 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  const query = useQuery({
+    queryKey: [endpoints.getRunningTimers],
+    queryFn: () => getPage(endpoints.getRunningTimers),
+  });
+
+  let timeEntries: TimeEntryWithTaskName[] = [];
+  if (query.data?.success) timeEntries = query.data?.data;
+
+  const onClick = () => {
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...getHeaders(),
+      },
+    };
+    fetch(endpoints.stopTimeEntries, requestOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then(() => {
+        queryClient.invalidateQueries();
+        showSnackbar({
+          message: "Time entry has been updated",
+        });
+      });
+  };
+
+  if (!timeEntries.length) return null;
+
+  const seconds = dayjs().diff(dayjs(timeEntries?.[0]?.start_date), "seconds");
+  const timer = new Date(seconds * 1000).toISOString().substring(11, 19);
+
+  return (
+    <>
+      {timeEntries.map((timeEntry) => (
+        <button className={styles.button} onClick={onClick}>
+          <div className={styles.left}>
+          <div className={styles.name}>{timeEntry.task_name}</div>
+          <div className={styles.timer}>{timer}</div>
+          </div>
+          <div className={styles.icon}>
+            <IconPlayerPauseFilled />
+          </div>
+        </button>
+      ))}
+    </>
+  );
+}

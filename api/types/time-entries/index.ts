@@ -13,3 +13,7 @@ export type CreateTimeEntry = Omit<
   TimeEntry,
   "id" | "user_id" | "end_date" | "created_at" | "updated_at"
 >;
+
+export interface TimeEntryWithTaskName extends TimeEntry {
+  task_name: string;
+}

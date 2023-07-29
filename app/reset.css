@@ -204,7 +204,8 @@ time,
 mark,
 audio,
 video,
-input {
+input,
+button {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }
