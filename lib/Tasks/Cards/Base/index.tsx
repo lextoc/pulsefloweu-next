@@ -97,7 +97,7 @@ export default function TaskCard({ task }: TaskCardProps) {
       } else {
         queryClient.invalidateQueries();
         showSnackbar({
-          message: "TimeEntry has been created",
+          message: "Time entry has been created",
         });
       }
     });

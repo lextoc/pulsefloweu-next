@@ -32,18 +32,15 @@ export default function FoldersCard({ folder }: FoldersCardProps) {
         </>
       }
       content={
-        <>
-          <p>
-            This folder has 8 tasks:
+        <div className={styles.content}>
+          <p>This folder has 8 tasks:</p>
+          <ul>
+            <li>Spent 192 hours</li>
+            <li>This week 34 hours</li>
             <br />
-            <ul>
-              <li>Spent 192 hours</li>
-              <li>This week 34 hours</li>
-              <br />
-              <li>Profit of £289</li>
-              <li>This week of £18</li>
-            </ul>
-          </p>
+            <li>Profit of £289</li>
+            <li>This week of £18</li>
+          </ul>
           <p className={styles.timestamp}>
             <small>
               <i>
@@ -52,7 +49,7 @@ export default function FoldersCard({ folder }: FoldersCardProps) {
               </i>
             </small>
           </p>
-        </>
+        </div>
       }
     />
   );

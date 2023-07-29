@@ -23,6 +23,10 @@
   margin: 0;
 }
 
+.content p {
+  margin-bottom: 0;
+}
+
 .timestamp {
   margin-top: auto;
   margin-bottom: 0;
