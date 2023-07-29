@@ -49,7 +49,7 @@ export default function SideNavigationProject({
           ${
             pathname.startsWith(
               `/app/projects/${folder.project_id}/folders/${folder.id}`,
-            )
+            ) || pathname.startsWith(`/app/folders/${folder.id}`)
               ? styles.folderLinkActive
               : ""
           }
