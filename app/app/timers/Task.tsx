@@ -81,6 +81,7 @@ export default function TimersTask({ task }: TimersTaskProps) {
         <Link
           className={styles.leftTaskLink}
           href={`/app/folders/${task.folder_id}`}
+          title={task.name}
         >
           <div className={`${styles.leftTaskName} ellipsis`}>{task.name}</div>
           <div className={`${styles.leftTaskSub} ellipsis`}>
