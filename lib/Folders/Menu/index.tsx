@@ -64,9 +64,7 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
     let projectId = folder.project_id;
     destroy(endpoints.destroyFolder(folder.id)).then((data) => {
       if (data.success) {
-        queryClient.invalidateQueries([
-          endpoints.getFoldersFromProject(projectId),
-        ]);
+        queryClient.invalidateQueries();
         showSnackbar({
           message: "Folder has been deleted",
         });
