@@ -65,7 +65,7 @@ export default function TaskCard({ task }: TaskCardProps) {
 
   const onClick = () => {
     setIsExploding(true);
-    setInterval(() => setIsExploding(false), 3000);
+    setTimeout(() => setIsExploding(false), 3000);
     const requestOptions = {
       method: "POST",
       headers: {

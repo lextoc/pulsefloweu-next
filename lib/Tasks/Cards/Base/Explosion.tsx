@@ -7,7 +7,7 @@ export default function Explosion(props: ExplosionProps) {
       viewBox="467 392 58 57"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g fill="none" fill-rule="evenodd" transform="translate(467 392)">
+      <g fill="none" fillRule="evenodd" transform="translate(467 392)">
         <circle
           className="main-circ"
           fill="#FF7C00"
