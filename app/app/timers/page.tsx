@@ -1,6 +1,9 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+import utc from "dayjs/plugin/utc";
 
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
@@ -13,6 +16,9 @@ import { useNavigationStore } from "@/stores/navigation";
 import styles from "./page.module.css";
 import TimersTask from "./Task";
 import TimersTimeEntry from "./TimeEntry";
+
+dayjs.extend(advancedFormat);
+dayjs.extend(utc);
 
 export interface DashboardProps {}
 
@@ -36,6 +42,24 @@ export default function Dashboard(props: DashboardProps) {
   let timeEntries: TimeEntry[] = [];
   if (timeEntriesQuery.data?.success) timeEntries = timeEntriesQuery.data?.data;
 
+  let timeEntriesByDate: any = {};
+  const format = "DD MMMM YYYY";
+  timeEntries.forEach((timeEntry) => {
+    if (
+      Array.isArray(
+        timeEntriesByDate[dayjs(timeEntry.start_date).format(format)],
+      )
+    ) {
+      timeEntriesByDate[dayjs(timeEntry.start_date).format(format)].push(
+        timeEntry,
+      );
+    } else {
+      timeEntriesByDate[dayjs(timeEntry.start_date).format(format)] = [
+        timeEntry,
+      ];
+    }
+  });
+
   return (
     <div className={styles.root}>
       <Header>
@@ -58,10 +82,17 @@ export default function Dashboard(props: DashboardProps) {
             Form for creating a new task here, creating it automatically starts
             a time entry
           </p>
-          <h3>Your time entries</h3>
-          {timeEntries.map((timeEntry) => (
-            <TimersTimeEntry key={timeEntry.id} timeEntry={timeEntry} />
-          ))}
+          <h2>Your time entries</h2>
+          {Object.keys(timeEntriesByDate).map((date) => {
+            return (
+              <>
+                <h3>{date}</h3>
+                {timeEntriesByDate[date].map((timeEntry: TimeEntry) => (
+                  <TimersTimeEntry key={timeEntry.id} timeEntry={timeEntry} />
+                ))}
+              </>
+            );
+          })}
         </PaddingContainer>
       </div>
     </div>
