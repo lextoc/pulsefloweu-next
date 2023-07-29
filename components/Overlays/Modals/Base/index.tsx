@@ -13,6 +13,8 @@ export interface ModalProps {
 const customStyles = {
   overlay: {
     zIndex: 1000,
+    backdropFilter: "blur(0.05rem)",
+    background: "rgba(0, 0, 0, 0.15)",
   },
   content: {
     top: "50%",
