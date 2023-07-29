@@ -8,7 +8,7 @@ import { Project } from "@/api/types/projects";
 import { Header } from "@/components/Shared/Header";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
 import { ProjectCreateCard } from "@/lib/Projects/Cards/Create";
-import DashboardProjectListItem from "@/lib/Projects/ListItem";
+import ProjectsListItem from "@/lib/Projects/ListItem";
 
 import styles from "./page.module.css";
 
@@ -25,7 +25,7 @@ export default function Dashboard(props: DashboardProps) {
 
   return (
     <div className={styles.root}>
-      <Header>
+      <Header main>
         <PaddingContainer>
           <h1>Dashboard</h1>
           <p>Manage your projects</p>
@@ -33,9 +33,11 @@ export default function Dashboard(props: DashboardProps) {
       </Header>
       <PaddingContainer>
         <div className="content">
-          {projects.map((project) => (
-            <DashboardProjectListItem key={project.id} project={project} />
-          ))}
+          <div className={styles.content}>
+            {projects.map((project) => (
+              <ProjectsListItem key={project.id} project={project} />
+            ))}
+          </div>
           <h2>Create project</h2>
           <ProjectCreateCard />
         </div>

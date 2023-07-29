@@ -19,9 +19,10 @@ import styles from "./index.module.css";
 
 export interface ProjectMenuProps {
   project: Project;
+  white?: boolean;
 }
 
-export default function ProjectMenu({ project }: ProjectMenuProps) {
+export default function ProjectMenu({ project, white }: ProjectMenuProps) {
   const { replace } = useRouter();
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
@@ -94,6 +95,7 @@ export default function ProjectMenu({ project }: ProjectMenuProps) {
   return (
     <div className={styles.root}>
       <Popover
+        white
         content={
           <div className={styles.menu}>
             <Button
