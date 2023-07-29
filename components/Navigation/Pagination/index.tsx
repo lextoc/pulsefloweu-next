@@ -30,6 +30,8 @@ export default function Pagination({
     router.push(`${pathname}?${current.toString()}`);
   };
 
+  if (total_count <= per_page) return null;
+
   return (
     <div className={styles.root}>
       <div className={styles.pagination}>
