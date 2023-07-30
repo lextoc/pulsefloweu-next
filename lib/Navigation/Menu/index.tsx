@@ -2,7 +2,7 @@
 
 import { IconChevronLeft, IconMenu2 } from "@tabler/icons-react";
 import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useContext } from "react";
 
 import { clearCookies } from "@/api/cookies";
@@ -21,12 +21,15 @@ export default function NavigationMenu(props: NavigationMenuProps) {
   const queryClient = useQueryClient();
   const user = useContext(AuthenticationContext);
   const { push } = useRouter();
+  const pathname = usePathname();
 
   const onSignOut = () => {
     clearCookies();
     push("/");
     queryClient.invalidateQueries([endpoints.authValidateToken]);
   };
+
+  if (!pathname.startsWith("/app")) return null;
 
   return (
     <div className={styles.wrapper}>
