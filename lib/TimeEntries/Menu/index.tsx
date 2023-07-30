@@ -133,10 +133,7 @@ export default function TimeEntryMenu({ timeEntry }: TimeEntryMenuProps) {
           <Button variant="subtle" onClick={() => setIsDeleteModalOpen(false)}>
             Cancel
           </Button>
-          <Button
-            danger
-            onClick={() => onDelete()}
-          >
+          <Button danger onClick={() => onDelete()}>
             Delete time entry
           </Button>
         </div>
