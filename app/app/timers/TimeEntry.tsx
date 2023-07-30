@@ -115,8 +115,6 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
       .set("minutes", parseInt(minutes, 10))
       .format();
 
-    console.log("🚀  newStartDate:", newStartDate);
-    console.log("🚀  newEndDate:", newEndDate);
     updateDate(newStartDate, newEndDate);
   };
 
@@ -143,6 +141,7 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
   );
   const timer = new Date(seconds * 1000).toISOString().substring(11, 19);
   const [time, setTime] = useState(Date.now());
+
   // For animating timer.
   useEffect(() => {
     if (!timeEntry.end_date) {
@@ -152,6 +151,11 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
       };
     }
   }, []);
+
+  useEffect(() => {
+    console.log("🚀  timeEntry:", timeEntry.end_date);
+    form.reset();
+  }, [timeEntry]);
 
   return (
     <div
@@ -164,9 +168,9 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
         >
           <Explosion />
           {!timeEntry.end_date ? (
-            <IconPlayerPauseFilled size="1.25rem" />
+            <IconPlayerPauseFilled className={styles.playIcon} />
           ) : (
-            <IconPlayerPlayFilled size="1.25rem" />
+            <IconPlayerPlayFilled className={styles.playIcon} />
           )}
         </button>
         <Link

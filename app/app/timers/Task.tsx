@@ -96,9 +96,9 @@ export default function TimersTask({ task }: TimersTaskProps) {
         >
           {/* <Explosion /> */}
           {task.active_time_entries.length ? (
-            <IconPlayerPauseFilled size="1.25rem" />
+            <IconPlayerPauseFilled className={styles.playIcon} />
           ) : (
-            <IconPlayerPlayFilled size="1.25rem" />
+            <IconPlayerPlayFilled className={styles.playIcon} />
           )}
         </button>
       </div>

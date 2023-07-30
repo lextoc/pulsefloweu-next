@@ -26,8 +26,8 @@ const font = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Tracky • The open-source time tracking website",
-  description: "The open-source time tracking website",
+  title: "Tracky",
+  description: "",
 };
 
 export default async function RootLayout({

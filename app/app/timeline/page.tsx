@@ -3,9 +3,9 @@ import PaddingContainer from "@/components/Shared/PaddingContainer";
 
 import styles from "./page.module.css";
 
-export interface DashboardProps {}
+export interface AppTimelineProps {}
 
-export default function Dashboard(props: DashboardProps) {
+export default function AppTimeline(props: AppTimelineProps) {
   return (
     <div className={styles.root}>
       <Header>

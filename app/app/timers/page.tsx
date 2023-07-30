@@ -22,9 +22,9 @@ import TimersTimeEntry from "./TimeEntry";
 dayjs.extend(advancedFormat);
 dayjs.extend(utc);
 
-export interface DashboardProps {}
+export interface AppTimersProps {}
 
-export default function Dashboard(props: DashboardProps) {
+export default function AppTimers(props: AppTimersProps) {
   const set = useNavigationStore((state) => state.set);
   set({ menuTitle: "Start timing your tasks" });
 
@@ -84,7 +84,7 @@ export default function Dashboard(props: DashboardProps) {
           <div className={styles.thirdSidebar} />
           <h4 className={styles.yourTasks}>Your recently used tasks</h4>
           {tasks.map((task) => (
-            <TimersTask key={task.id} task={task} />
+            <TimersTask key={`timers-task-${task.id}`} task={task} />
           ))}
         </div>
         <PaddingContainer withBottomGap>
@@ -95,10 +95,13 @@ export default function Dashboard(props: DashboardProps) {
           <h2>Your time entries</h2>
           {Object.keys(timeEntriesByDate).map((date) => {
             return (
-              <div className={styles.dayList}>
+              <div key={date} className={styles.dayList}>
                 <h3>{date}</h3>
                 {timeEntriesByDate[date].map((timeEntry: TimeEntry) => (
-                  <TimersTimeEntry key={timeEntry.id} timeEntry={timeEntry} />
+                  <TimersTimeEntry
+                    key={`timers-time-entry-${timeEntry.id}`}
+                    timeEntry={timeEntry}
+                  />
                 ))}
               </div>
             );

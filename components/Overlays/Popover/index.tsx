@@ -30,7 +30,7 @@ export default function ({ content, white }: PopoverProps) {
         onClick={() => setIsOpen(!isOpen)}
       >
         <IconDotsVertical
-          size="1rem"
+          className={styles.dots}
           color={white ? "white" : "rgb(6, 31, 54)"}
         />
       </button>

@@ -4,9 +4,9 @@ import Logo from "@/components/Shared/Logo";
 
 import styles from "../page.module.css";
 
-export interface RegisterProps {}
+export interface ForgotPasswordProps {}
 
-export default function Register(props: RegisterProps) {
+export default function ForgotPassword(props: ForgotPasswordProps) {
   return (
     <div className={styles.loginWrapper}>
       <div className={styles.logoWrapper}>

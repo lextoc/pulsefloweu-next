@@ -13,9 +13,9 @@ import { useNavigationStore } from "@/stores/navigation";
 
 import styles from "./page.module.css";
 
-export interface DashboardProps {}
+export interface AppDashboardProps {}
 
-export default function Dashboard(props: DashboardProps) {
+export default function AppDashboard(props: AppDashboardProps) {
   const set = useNavigationStore((state) => state.set);
   set({ menuTitle: "Create projects and manage memberships and permissions" });
 

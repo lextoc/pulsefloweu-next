@@ -1,12 +1,12 @@
 import TaskDetail from "@/lib/Tasks/Detail";
 
-export interface IFolderTaskPageProps {
+export interface AppFoldersTasksProps {
   params: {
     taskId: string;
   };
 }
 
-export default function FolderTaskPage(props: IFolderTaskPageProps) {
+export default function AppFoldersTasks(props: AppFoldersTasksProps) {
   if (!props.params.taskId) return null;
 
   const taskId = parseInt(props.params.taskId, 10);

@@ -18,7 +18,7 @@ export default function ProjectsListItem({ project }: ProjectsListItemProps) {
       <Link href={`/app/projects/${project.id}`} className={styles.button}>
         <h2>{project.name}</h2>
         <div className={styles.buttonArrow}>
-          <IconArrowBigRightLines size="2.5rem" />
+          <IconArrowBigRightLines className={styles.arrow} />
         </div>
       </Link>
     </div>

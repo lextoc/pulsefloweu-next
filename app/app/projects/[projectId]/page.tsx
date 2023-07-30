@@ -1,12 +1,12 @@
 import ProjectDetail from "@/lib/Projects/Detail";
 
-export interface IProjectPageProps {
+export interface AppProjectsProps {
   params: {
     projectId: string;
   };
 }
 
-export default function ProjectPage(props: IProjectPageProps) {
+export default function AppProjects(props: AppProjectsProps) {
   if (!props.params.projectId) return null;
 
   const projectId = parseInt(props.params.projectId, 10);

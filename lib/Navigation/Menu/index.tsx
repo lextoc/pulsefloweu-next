@@ -47,7 +47,7 @@ export default function NavigationMenu(props: NavigationMenuProps) {
           </div>
         </div>
         <button className={styles.menu}>
-          <IconMenu2 size="1rem" color="white" />
+          <IconMenu2 color="white" />
         </button>
         <div className={styles.account}>
           {user?.email && (
