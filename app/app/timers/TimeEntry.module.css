@@ -1,7 +1,7 @@
 .root {
   display: flex;
   padding: 0.75rem 1.5rem;
-  border-bottom: 0.1rem solid rgba(var(--secondary), 0.1);
+  border-bottom: 0.15rem solid rgba(var(--secondary-bright), 0.1);
   color: rgba(var(--secondary), 0.8);
   max-width: 100rem;
   border-radius: var(--border-radius);
