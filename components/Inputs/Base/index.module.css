@@ -8,6 +8,10 @@
   border-radius: 0.2rem;
 }
 
+.root[disabled] {
+  pointer-events: none;
+}
+
 .root[type="time"] {
   font-family: inherit;
   min-width: 4.5rem;

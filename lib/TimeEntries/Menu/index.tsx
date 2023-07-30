@@ -37,16 +37,6 @@ export default function TimeEntryMenu({ timeEntry }: TimeEntryMenuProps) {
     },
   });
 
-  const deleteForm = useForm({
-    initialValues: {
-      delete: "",
-    },
-
-    validate: {
-      delete: (value) => (value === "DELETE" ? null : "Type DELETE"),
-    },
-  });
-
   const onEdit = (values: Partial<CreateTimeEntry>) => {
     update<{ time_entry: Partial<CreateTimeEntry> }>(
       endpoints.getTimeEntry(timeEntry.id),
@@ -94,13 +84,13 @@ export default function TimeEntryMenu({ timeEntry }: TimeEntryMenuProps) {
       <Popover
         content={
           <div className={styles.menu}>
-            <Button
+            {/* <Button
               variant="subtle"
               onClick={() => setIsEditModalOpen(true)}
               noMargin
             >
               Edit time entry
-            </Button>
+            </Button> */}
             <Button
               variant="subtle"
               danger
@@ -139,17 +129,11 @@ export default function TimeEntryMenu({ timeEntry }: TimeEntryMenuProps) {
       >
         <h2>Delete time entry?</h2>
         <p>Are you absolutely sure you want to delete this time entry?</p>
-        <Input
-          label="Type DELETE in capitals"
-          placeholder="Type DELETE"
-          {...deleteForm.getInputProps("delete")}
-        />
         <div className="buttons-right">
           <Button variant="subtle" onClick={() => setIsDeleteModalOpen(false)}>
             Cancel
           </Button>
           <Button
-            disabled={!deleteForm.isValid()}
             danger
             onClick={() => onDelete()}
           >

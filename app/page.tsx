@@ -14,8 +14,7 @@ export default function Home() {
           <p>
             Use tracky as your tool for time entries and generating timesheets
             with cost-per-hour functionality. Invite people and manage them by
-            assigning them the correct permissions. Momentarily everything will
-            be free up until x amount of users (still has to be decided).
+            assigning them the correct permissions.
           </p>
         </div>
       </div>

@@ -5,6 +5,7 @@ import {
 import { useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
+import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -13,6 +14,7 @@ import { getHeaders } from "@/api/cookies";
 import create from "@/api/create";
 import endpoints from "@/api/endpoints";
 import { CreateTimeEntry, TimeEntry } from "@/api/types/time-entries";
+import update from "@/api/update";
 import Input from "@/components/Inputs/Base";
 import Explosion from "@/lib/Tasks/Cards/Base/Explosion";
 import TimeEntryMenu from "@/lib/TimeEntries/Menu";
@@ -20,6 +22,7 @@ import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./TimeEntry.module.css";
 
+dayjs.extend(timezone);
 dayjs.extend(advancedFormat);
 dayjs.extend(utc);
 
@@ -76,6 +79,34 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
     });
   };
 
+  const onTimeChange = (field: string, value: string) => {
+    const hours = value.split(":")[0];
+    const minutes = value.split(":")[1];
+
+    let newDate = dayjs(timeEntry.end_date)
+      .set("hours", parseInt(hours, 10))
+      .set("minutes", parseInt(minutes, 10));
+
+    updateDate(field, newDate.tz(dayjs.tz.guess()).toISOString());
+  };
+
+  const updateDate = (field, date) => {
+    console.log("🚀  field, date:", field, date);
+    update<{ time_entry: Partial<CreateTimeEntry> }>(
+      endpoints.getTimeEntry(timeEntry.id),
+      {
+        time_entry: {
+          [field]: date,
+        },
+      },
+    ).then(() => {
+      queryClient.invalidateQueries();
+      showSnackbar({
+        message: "Time entry has been updated",
+      });
+    });
+  };
+
   const seconds = dayjs(timeEntry.end_date || undefined).diff(
     dayjs(timeEntry.start_date),
     "seconds",
@@ -126,6 +157,7 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
           transparent
           small
           disabled={!timeEntry.end_date}
+          onChange={(e) => onTimeChange("start_date", e?.currentTarget?.value)}
         />
         <span className={styles.separator}>–</span>
         <Input
@@ -134,6 +166,7 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
           transparent
           small
           disabled={!timeEntry.end_date}
+          onChange={(e) => onTimeChange("end_date", e?.currentTarget?.value)}
         />
         <span className={styles.timer}>{timer}</span>
         <TimeEntryMenu timeEntry={timeEntry} />
