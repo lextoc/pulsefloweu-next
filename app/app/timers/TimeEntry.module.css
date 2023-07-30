@@ -83,6 +83,10 @@
   margin-left: 2rem;
 }
 
+.active .timer {
+  color: rgb(var(--main));
+}
+
 .input {
   margin-left: 1rem;
 }

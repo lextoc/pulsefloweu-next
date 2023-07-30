@@ -47,6 +47,12 @@
   white-space: nowrap;
 }
 
+.avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+}
+
 /* copied from https://codepen.io/robeen/pen/PbvJjy/ */
 .explosion {
   cursor: pointer;

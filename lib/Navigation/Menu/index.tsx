@@ -3,6 +3,7 @@
 import { useForm } from "@mantine/form";
 import { IconChevronLeft, IconMenu2 } from "@tabler/icons-react";
 import { useQueryClient } from "@tanstack/react-query";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
@@ -24,6 +25,7 @@ export interface ProfileFormValues {
   firstName: string;
   lastName: string;
   username: string;
+  avatar: Blob | string;
 }
 
 export interface NavigationMenuProps {}
@@ -36,6 +38,7 @@ export default function NavigationMenu(props: NavigationMenuProps) {
   const { push } = useRouter();
   const pathname = usePathname();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [file, setFile] = useState<Blob | null>(null);
 
   const onSignOut = () => {
     clearCookies();
@@ -48,6 +51,7 @@ export default function NavigationMenu(props: NavigationMenuProps) {
       firstName: user?.first_name || "",
       lastName: user?.last_name || "",
       username: user?.username || "",
+      avatar: user?.avatar || "",
     },
 
     validate: {
@@ -56,14 +60,17 @@ export default function NavigationMenu(props: NavigationMenuProps) {
   });
 
   const onSubmit = (values: ProfileFormValues) => {
-    update(endpoints.auth, {
-      first_name: values.firstName,
-      last_name: values.lastName,
-      username: values.username,
-    }).then((data) => {
-      if (data?.errors) {
+    const formData = new FormData();
+
+    formData.append("first_name", `${values.firstName || user?.first_name}`);
+    formData.append("last_name", `${values.lastName || user?.last_name}`);
+    formData.append("username", `${values.username || user?.username}`);
+    if (file) formData.append("avatar", file);
+
+    update<FormData>(endpoints.auth, formData).then((data) => {
+      if (data?.errors || data?.error) {
         showSnackbar({
-          message: data?.errors?.join(" "),
+          message: data?.errors?.join(" ") || "Something went wrong",
           type: "error",
         });
       } else {
@@ -79,8 +86,14 @@ export default function NavigationMenu(props: NavigationMenuProps) {
       firstName: user?.first_name,
       lastName: user?.last_name,
       username: user?.username,
+      avatar: user?.avatar,
     });
   }, [isEditModalOpen]);
+
+  const saveAvatarLocally = (event: any) => {
+    const file = event?.target?.files?.[0] || null;
+    setFile(file);
+  };
 
   if (!pathname.startsWith("/app")) return null;
 
@@ -105,7 +118,17 @@ export default function NavigationMenu(props: NavigationMenuProps) {
         <div className={styles.account}>
           {user?.email && (
             <div className={styles.signedInAs}>
-              Signed in as<strong>{user?.username}</strong>
+              Signed in as
+              {user?.avatar && (
+                <Image
+                  src={user?.avatar}
+                  alt={`${user?.first_name} ${user?.last_name}`}
+                  width={80}
+                  height={80}
+                  className={`${styles.avatar} avatar`}
+                />
+              )}
+              <strong>{user?.username}</strong>
             </div>
           )}
           <Popover
@@ -130,7 +153,17 @@ export default function NavigationMenu(props: NavigationMenuProps) {
       <Modal isOpen={isEditModalOpen} close={() => setIsEditModalOpen(false)}>
         <h1>Edit profile</h1>
         <p>Please fill in your profile details correctly.</p>
-        <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
+        <Form
+          onSubmit={form.onSubmit((values) => onSubmit(values))}
+          encType="multipart/form-data"
+        >
+          <Input
+            type="file"
+            label="Avatar"
+            placeholder="Avatar"
+            accept="image/*"
+            onChange={(event) => saveAvatarLocally(event)}
+          />
           <Input
             label="First name"
             {...form.getInputProps("firstName")}
@@ -147,6 +180,9 @@ export default function NavigationMenu(props: NavigationMenuProps) {
             placeholder="Username"
           />
           <div className="buttons-right">
+            <Button variant="subtle" onClick={() => setIsEditModalOpen(false)}>
+              Cancel
+            </Button>
             <Button type="submit">Save</Button>
           </div>
         </Form>

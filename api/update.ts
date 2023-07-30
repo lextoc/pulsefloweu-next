@@ -1,13 +1,17 @@
 import { getHeaders } from "@/api/cookies";
 
-export default function update<T>(endpoint: string, values: T) {
+export default function update<T = object | FormData>(
+  endpoint: string,
+  values: T,
+  method: "PATCH" | "PUT" = "PATCH",
+) {
   const requestOptions: any = {
-    method: "PATCH",
+    method,
     headers: {
       "Content-Type": "application/json",
       ...getHeaders(),
     },
-    body: JSON.stringify(values),
+    body: values instanceof FormData ? values : JSON.stringify(values),
   };
 
   if (values instanceof FormData) {
