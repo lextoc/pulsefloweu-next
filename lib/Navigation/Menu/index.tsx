@@ -43,7 +43,7 @@ export default function NavigationMenu(props: NavigationMenuProps) {
             >
               <IconChevronLeft />
             </button>
-            {menuTitle}
+            {/* {menuTitle} */}
           </div>
         </div>
         <button className={styles.menu}>
@@ -52,16 +52,13 @@ export default function NavigationMenu(props: NavigationMenuProps) {
         <div className={styles.account}>
           {user?.email && (
             <div className={styles.signedInAs}>
-              Signed in as<strong>{user?.email}</strong>
+              Signed in as<strong>{user?.username}</strong>
             </div>
           )}
           <Popover
             white
             content={
               <>
-                {/* <p>
-                  Signed in as<strong>{user?.email}</strong>
-                </p> */}
                 <Button noMargin variant="subtle" onClick={onSignOut}>
                   Sign out
                 </Button>

@@ -6,7 +6,7 @@
   top: 0;
   padding: 2rem;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.4);
   border-radius: var(--border-radius);
   backdrop-filter: blur(0.1rem);
 }

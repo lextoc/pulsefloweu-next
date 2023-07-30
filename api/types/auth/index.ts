@@ -8,9 +8,10 @@ export interface User {
   allow_password_change?: boolean;
   email?: string;
   id?: number;
-  image?: string;
-  name?: string;
-  nickname?: string;
+  avatar?: string;
+  first_name?: string;
+  last_name?: string;
+  username?: string;
   provider?: string;
   uid?: string;
 }

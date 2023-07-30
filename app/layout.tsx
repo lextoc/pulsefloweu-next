@@ -15,6 +15,7 @@ import Main from "@/components/Shared/Main";
 import { AuthenticationProvider } from "@/lib/Authentication/Context";
 import NavigationMenu from "@/lib/Navigation/Menu";
 import SideNavigation from "@/lib/Navigation/Side";
+import { Onboarding } from "@/lib/Onboarding";
 import QueryClientProvider from "@/lib/Shared/QueryClientProvider";
 import Snackbar from "@/lib/Shared/Snackbar";
 
@@ -68,6 +69,7 @@ export default async function RootLayout({
       <body className={font.className}>
         <QueryClientProvider>
           <AuthenticationProvider initialUser={user}>
+            <Onboarding />
             <NavigationProgress />
             <NavigationMenu />
             <SideNavigation />
