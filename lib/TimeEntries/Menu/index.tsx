@@ -73,7 +73,6 @@ export default function TimeEntryMenu({ timeEntry }: TimeEntryMenuProps) {
   };
 
   const onDelete = () => {
-    let folderId = timeEntry.folder_id;
     destroy(endpoints.destroyTimeEntry(timeEntry.id)).then((data) => {
       if (data.success) {
         queryClient.invalidateQueries();
@@ -117,9 +116,14 @@ export default function TimeEntryMenu({ timeEntry }: TimeEntryMenuProps) {
         <h2>Edit time entry</h2>
         <Form onSubmit={editForm.onSubmit((values) => onEdit(values))}>
           <Input
-            label="TimeEntry name"
-            placeholder="TimeEntry name"
-            {...editForm.getInputProps("name")}
+            label="Start time"
+            placeholder="Start time"
+            {...editForm.getInputProps("start_date")}
+          />
+          <Input
+            label="End time"
+            placeholder="End time"
+            {...editForm.getInputProps("end_date")}
           />
           <div className="buttons-right">
             <Button variant="subtle" onClick={() => setIsEditModalOpen(false)}>

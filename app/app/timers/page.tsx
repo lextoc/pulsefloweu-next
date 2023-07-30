@@ -82,6 +82,7 @@ export default function Dashboard(props: DashboardProps) {
         <div className={styles.sidebar}>
           <div className={styles.secondSidebar} />
           <div className={styles.thirdSidebar} />
+          <h4 className={styles.yourTasks}>Your recently used tasks</h4>
           {tasks.map((task) => (
             <TimersTask key={task.id} task={task} />
           ))}

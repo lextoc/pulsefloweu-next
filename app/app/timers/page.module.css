@@ -128,6 +128,12 @@
   animation: moveAround 60s ease-in-out infinite;
 }
 
+.yourTasks {
+  color: white;
+  margin: 1rem;
+  text-align: center;
+}
+
 .dayList {
   margin-bottom: 2rem;
 }

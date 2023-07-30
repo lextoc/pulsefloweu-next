@@ -13,6 +13,7 @@ import { getHeaders } from "@/api/cookies";
 import create from "@/api/create";
 import endpoints from "@/api/endpoints";
 import { CreateTimeEntry, TimeEntry } from "@/api/types/time-entries";
+import Input from "@/components/Inputs/Base";
 import Explosion from "@/lib/Tasks/Cards/Base/Explosion";
 import TimeEntryMenu from "@/lib/TimeEntries/Menu";
 import { useSnackbarStore } from "@/stores/snackbar";
@@ -93,15 +94,11 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
 
   return (
     <div
-      className={`${styles.timeEntry} ${
-        timeEntry.end_date ? "" : styles.active
-      }`}
+      className={`${styles.root} ${timeEntry.end_date ? "" : styles.active}`}
     >
-      <div className={styles.timeEntryLeft}>
+      <div className={styles.left}>
         <button
-          className={`${styles.timeEntryButton} ${
-            isExploding ? "exploding" : ""
-          }`}
+          className={`${styles.button} ${isExploding ? "exploding" : ""}`}
           onClick={() => toggleTaskTimer()}
         >
           <Explosion />
@@ -113,22 +110,32 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
         </button>
         <Link
           href={`/app/folders/${timeEntry.folder_id}`}
-          className={styles.timeEntryNameLink}
+          className={styles.nameLink}
         >
-          <div className={styles.timeEntryName}>{timeEntry.task_name}</div>
-          <div className={styles.timeEntrySub}>
+          <div className={styles.name}>{timeEntry.task_name}</div>
+          <div className={styles.sub}>
             {timeEntry.project_name} - {timeEntry.folder_name}
           </div>
         </Link>
       </div>
-      <div className={styles.timeEntryRight}>
-        {timeEntry.end_date ? "" : "Started at"}{" "}
-        {dayjs(timeEntry.start_date).format("HH:mm")}{" "}
-        {timeEntry.end_date ? "–" : ""}{" "}
-        {(timeEntry.end_date && dayjs(timeEntry.end_date).format("HH:mm")) ||
-          ""}
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <strong>{timer}</strong>
+      <div className={styles.right}>
+        <Input
+          className={styles.input}
+          type="time"
+          value={dayjs(timeEntry.start_date).format("HH:mm")}
+          transparent
+          small
+          disabled={!timeEntry.end_date}
+        />
+        <span className={styles.separator}>–</span>
+        <Input
+          type="time"
+          value={dayjs(timeEntry.end_date).format("HH:mm")}
+          transparent
+          small
+          disabled={!timeEntry.end_date}
+        />
+        <span className={styles.timer}>{timer}</span>
         <TimeEntryMenu timeEntry={timeEntry} />
       </div>
     </div>

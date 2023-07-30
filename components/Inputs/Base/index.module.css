@@ -8,6 +8,15 @@
   border-radius: 0.2rem;
 }
 
+.root[type="time"] {
+  font-family: inherit;
+  min-width: 4.5rem;
+}
+
+.small {
+  padding: 0.5rem;
+}
+
 .root:hover {
   border-bottom: 2px solid rgba(var(--secondary-bright), 0.4);
 }
@@ -19,6 +28,11 @@
 
 .inverted {
   background: white;
+}
+
+.transparent {
+  background: 0;
+  border-bottom: 2px solid rgba(var(--secondary-bright), 0);
 }
 
 .root::placeholder {
