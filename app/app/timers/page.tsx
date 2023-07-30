@@ -88,10 +88,10 @@ export default function AppTimers(props: AppTimersProps) {
           ))}
         </div>
         <PaddingContainer withBottomGap>
-          <p>
+          {/* <p>
             Form for creating a new task here, creating it automatically starts
             a time entry. Also (eventually) put role dropdown here somewhere.
-          </p>
+          </p> */}
           <h2>Your time entries</h2>
           {Object.keys(timeEntriesByDate).map((date) => {
             return (
