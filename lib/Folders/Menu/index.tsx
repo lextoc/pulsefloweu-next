@@ -133,7 +133,7 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
         isOpen={isDeleteModalOpen}
         close={() => setIsDeleteModalOpen(false)}
       >
-        <h2>Delete folder?</h2>
+        <h2>Delete folder</h2>
         <p>
           Are you absolutely sure you want to delete this folder "{folder.name}"
           and delete all of its' tasks and time entries?

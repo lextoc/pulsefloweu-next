@@ -133,7 +133,7 @@ export default function TaskMenu({ task }: TaskMenuProps) {
         isOpen={isDeleteModalOpen}
         close={() => setIsDeleteModalOpen(false)}
       >
-        <h2>Delete task?</h2>
+        <h2>Delete task</h2>
         <p>
           Are you absolutely sure you want to delete this task "{task.name}" and
           delete all of its' tasks and time entries?

@@ -137,7 +137,7 @@ export default function ProjectMenu({ project, white }: ProjectMenuProps) {
         isOpen={isDeleteModalOpen}
         close={() => setIsDeleteModalOpen(false)}
       >
-        <h2>Delete project?</h2>
+        <h2>Delete project</h2>
         <p>
           Are you absolutely sure you want to delete this project "
           {project.name}" and delete all of its' tasks and time entries?

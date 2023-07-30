@@ -127,7 +127,7 @@ export default function TimeEntryMenu({ timeEntry }: TimeEntryMenuProps) {
         isOpen={isDeleteModalOpen}
         close={() => setIsDeleteModalOpen(false)}
       >
-        <h2>Delete time entry?</h2>
+        <h2>Delete time entry</h2>
         <p>Are you absolutely sure you want to delete this time entry?</p>
         <div className="buttons-right">
           <Button variant="subtle" onClick={() => setIsDeleteModalOpen(false)}>
