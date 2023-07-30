@@ -2,8 +2,10 @@
 
 import { useForm } from "@mantine/form";
 import { useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
+import { clearCookies } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
 import update from "@/api/update";
 import Button from "@/components/Buttons/Base";
@@ -24,6 +26,7 @@ export interface OnboardingProps {}
 export function Onboarding(props: OnboardingProps) {
   const showSnackbar = useSnackbarStore((state) => state.show);
   const queryClient = useQueryClient();
+  const { push } = useRouter();
 
   const user = useContext(AuthenticationContext);
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +38,12 @@ export function Onboarding(props: OnboardingProps) {
   ) {
     setIsOpen(true);
   }
+
+  const onSignOut = () => {
+    clearCookies();
+    push("/");
+    queryClient.invalidateQueries([endpoints.authValidateToken]);
+  };
 
   const form = useForm<OnboardingFormValues>({
     initialValues: {
@@ -89,6 +98,9 @@ export function Onboarding(props: OnboardingProps) {
             placeholder="Username"
           />
           <div className="buttons-right">
+            <Button variant="subtle" onClick={onSignOut}>
+              Sign out
+            </Button>
             <Button type="submit">Save and continue</Button>
           </div>
         </Form>
