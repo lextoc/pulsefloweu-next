@@ -23,3 +23,7 @@
   font-weight: 700;
   color: rgb(var(--secondary));
 }
+
+.contentTitle {
+  margin-top: 1rem;
+}

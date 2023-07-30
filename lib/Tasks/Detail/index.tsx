@@ -113,6 +113,7 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
           </div>
         </header>
         <hr />
+        <h2 className={styles.contentTitle}>Your time entries</h2>
         {Object.keys(timeEntriesByDate).map((date) => {
           return (
             <div key={date} className={styles.dayList}>
