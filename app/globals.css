@@ -14,6 +14,14 @@
   margin: 1rem 0;
 }
 
+.big-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(32rem, 40rem));
+  grid-template-rows: 1fr;
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
 .buttons-right {
   display: flex;
   justify-content: flex-end;

@@ -1,0 +1,51 @@
+.root {
+  padding: 0.5rem;
+  background: rgb(var(--light-background));
+  border-radius: var(--border-radius);
+}
+
+.header {
+  display: flex;
+  padding-right: 1rem;
+}
+
+.button {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  display: block;
+  border: 0;
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    border 150ms ease;
+  color: rgb(var(--secondary));
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  border: 2px solid rgba(var(--secondary-bright), 0);
+}
+
+.button:focus,
+.button:hover {
+  background: rgb(var(--light-background));
+  border: 2px solid rgba(var(--secondary-bright), 0.05);
+}
+
+.button h2,
+.button p {
+  margin-bottom: 0;
+}
+
+.content {
+  padding: 0 1rem 1rem;
+}
+
+.folderLink {
+  text-decoration: none;
+  color: rgba(var(--secondary), 0.8);
+}
+
+.folderLink:hover,
+.folderLink:focus {
+  text-decoration: underline;
+}

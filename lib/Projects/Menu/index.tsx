@@ -95,7 +95,7 @@ export default function ProjectMenu({ project, white }: ProjectMenuProps) {
   return (
     <div className={styles.root}>
       <Popover
-        white
+        white={white}
         content={
           <div className={styles.menu}>
             <Button
