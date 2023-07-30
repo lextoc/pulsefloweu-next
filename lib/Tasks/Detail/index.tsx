@@ -5,11 +5,13 @@ import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { Task } from "@/api/types/tasks";
 import { TimeEntry } from "@/api/types/time-entries";
+import Pagination from "@/components/Navigation/Pagination";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
 import TimeEntriesListItem from "@/lib/TimeEntries/ListItem";
 
@@ -24,6 +26,10 @@ dayjs.extend(advancedFormat);
 dayjs.extend(utc);
 
 export default function TasksDetail({ taskId }: TasksDetailProps) {
+  const searchParams = useSearchParams();
+  const current = new URLSearchParams(Array.from(searchParams.entries()));
+  const page = current.get("page");
+
   /** * Fetch task
    */
   const query = useQuery({
@@ -38,12 +44,34 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
    * Fetch time entries
    */
   const timeEntriesQuery = useQuery({
-    queryKey: [endpoints.getTimeEntriesFromTask(taskId!)],
-    queryFn: () => getPage(endpoints.getTimeEntriesFromTask(taskId!)),
+    queryKey: [endpoints.getTimeEntriesFromTask(taskId!), page],
+    queryFn: () =>
+      getPage(endpoints.getTimeEntriesFromTask(taskId!), {
+        page,
+      }),
   });
 
-  let timeEntries: TimeEntry[] | null = null;
+  let timeEntries: TimeEntry[] = [];
   if (timeEntriesQuery.data?.success) timeEntries = timeEntriesQuery.data?.data;
+
+  let timeEntriesByDate: any = {};
+  const format = "dddd DD MMMM YYYY";
+  timeEntries?.forEach((timeEntry) => {
+    let _format = dayjs(timeEntry.start_date).isSame(dayjs(), "day")
+      ? "[Today]"
+      : dayjs(timeEntry.start_date).isSame(dayjs().subtract(1, "day"), "day")
+      ? "[Yesterday]"
+      : format;
+    const entries =
+      timeEntriesByDate[dayjs(timeEntry.start_date).format(_format)];
+    if (Array.isArray(entries)) {
+      entries.push(timeEntry);
+    } else {
+      timeEntriesByDate[dayjs(timeEntry.start_date).format(_format)] = [
+        timeEntry,
+      ];
+    }
+  });
 
   return (
     <div>
@@ -85,9 +113,20 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
           </div>
         </header>
         <hr />
-        {timeEntries?.map((timeEntry) => (
-          <TimeEntriesListItem key={timeEntry.id} timeEntry={timeEntry} />
-        ))}
+        {Object.keys(timeEntriesByDate).map((date) => {
+          return (
+            <div key={date} className={styles.dayList}>
+              <h3>{date}</h3>
+              {timeEntriesByDate[date].map((timeEntry: TimeEntry) => (
+                <TimeEntriesListItem
+                  key={`timers-time-entry-${timeEntry.id}`}
+                  timeEntry={timeEntry}
+                />
+              ))}
+            </div>
+          );
+        })}
+        <Pagination {...timeEntriesQuery.data?.meta} />
       </PaddingContainer>
     </div>
   );
