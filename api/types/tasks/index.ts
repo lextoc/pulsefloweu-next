@@ -24,4 +24,5 @@ export type CreateTask = Omit<
   | "folder_name"
   | "project_name"
   | "active_time_entries"
+  | "project_id"
 >;
