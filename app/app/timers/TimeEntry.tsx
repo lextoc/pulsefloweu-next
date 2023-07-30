@@ -5,7 +5,7 @@ import {
   IconPlayerPlayFilled,
 } from "@tabler/icons-react";
 import { useQueryClient } from "@tanstack/react-query";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
@@ -95,26 +95,40 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
   const [dates] = useDebouncedValue(form.getTransformedValues(), 3000);
 
   useEffect(() => {
+    // TODO
+    let newStartDate = setHoursAndMinutes(
+      dayjs(timeEntry.start_date),
+      dates.startDate,
+    );
+    let newEndDate = setHoursAndMinutes(
+      dayjs(timeEntry.end_date),
+      dates.endDate,
+    );
+    if (
+      !dayjs(timeEntry.start_date).isValid() ||
+      !dayjs(newStartDate).isValid() ||
+      !dayjs(newEndDate).isValid() ||
+      !dayjs(timeEntry.end_date).isValid() ||
+      (dayjs(newStartDate).isSame(dayjs(timeEntry.start_date), "minutes") &&
+        dayjs(newEndDate).isSame(dayjs(timeEntry.end_date), "minutes"))
+    )
+      return;
     onTimeChange(dates.startDate, dates.endDate);
   }, [dates]);
 
+  const setHoursAndMinutes = (date: Dayjs, value: string): string => {
+    const hours = value.split(":")[0];
+    const minutes = value.split(":")[1];
+
+    return date
+      .set("hours", parseInt(hours, 10))
+      .set("minutes", parseInt(minutes, 10))
+      .format();
+  };
+
   const onTimeChange = (start: string, end: string) => {
-    let hours = start.split(":")[0];
-    let minutes = start.split(":")[1];
-
-    let newStartDate = dayjs(timeEntry.start_date)
-      .set("hours", parseInt(hours, 10))
-      .set("minutes", parseInt(minutes, 10))
-      .format();
-
-    hours = end.split(":")[0];
-    minutes = end.split(":")[1];
-
-    let newEndDate = dayjs(timeEntry.end_date)
-      .set("hours", parseInt(hours, 10))
-      .set("minutes", parseInt(minutes, 10))
-      .format();
-
+    let newStartDate = setHoursAndMinutes(dayjs(timeEntry.start_date), start);
+    let newEndDate = setHoursAndMinutes(dayjs(timeEntry.end_date), end);
     updateDate(newStartDate, newEndDate);
   };
 
@@ -153,8 +167,10 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
   }, []);
 
   useEffect(() => {
-    console.log("🚀  timeEntry:", timeEntry.end_date);
-    form.reset();
+    form.setValues({
+      startDate: dayjs(timeEntry.start_date).format("HH:mm"),
+      endDate: dayjs(timeEntry.end_date).format("HH:mm"),
+    });
   }, [timeEntry]);
 
   return (
