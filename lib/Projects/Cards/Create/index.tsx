@@ -2,6 +2,7 @@
 
 import { useForm } from "@mantine/form";
 import { useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 import create from "@/api/create";
 import endpoints from "@/api/endpoints";
@@ -17,6 +18,7 @@ import styles from "./index.module.css";
 export interface ProjectCreateCardProps {}
 
 export function ProjectCreateCard(props: ProjectCreateCardProps) {
+  const { push } = useRouter();
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
@@ -32,10 +34,11 @@ export function ProjectCreateCard(props: ProjectCreateCardProps) {
         });
       } else {
         form.reset();
-        queryClient.invalidateQueries([endpoints.getProjects]);
+        queryClient.invalidateQueries();
         showSnackbar({
           message: "Project has been created",
         });
+        push(`/app/projects/${data?.data?.id}`);
       }
     });
   };
