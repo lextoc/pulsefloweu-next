@@ -17,7 +17,11 @@ export default function AppTimesheets(props: AppTimesheetsProps) {
         </PaddingContainer>
       </Header>
       <PaddingContainer>
-        <p>We're currently not working on this feature but it will be there.</p>
+        <p>Timesheet generator requirements:</p>
+        <ul>
+          <li>Select one project</li>
+          <li>Select (multiple) folder(s)</li>
+        </ul>
       </PaddingContainer>
     </div>
   );

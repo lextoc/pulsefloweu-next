@@ -32,7 +32,9 @@ export interface TimeEntriesListItemProps {
   timeEntry: TimeEntry;
 }
 
-export default function TimeEntriesListItem({ timeEntry }: TimeEntriesListItemProps) {
+export default function TimeEntriesListItem({
+  timeEntry,
+}: TimeEntriesListItemProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
@@ -110,10 +112,16 @@ export default function TimeEntriesListItem({ timeEntry }: TimeEntriesListItemPr
       !dayjs(newStartDate).isValid() ||
       !dayjs(newEndDate).isValid() ||
       !dayjs(timeEntry.end_date).isValid() ||
+      dayjs(newStartDate).isAfter(dayjs(newEndDate)) ||
       (dayjs(newStartDate).isSame(dayjs(timeEntry.start_date), "minutes") &&
         dayjs(newEndDate).isSame(dayjs(timeEntry.end_date), "minutes"))
-    )
+    ) {
+      form.setValues({
+        startDate: dayjs(timeEntry.start_date).format("HH:mm"),
+        endDate: dayjs(timeEntry.end_date).format("HH:mm"),
+      });
       return;
+    }
     onTimeChange(dates.startDate, dates.endDate);
   }, [dates]);
 
@@ -217,6 +225,7 @@ export default function TimeEntriesListItem({ timeEntry }: TimeEntriesListItemPr
           transparent
           small
           disabled={!timeEntry.end_date}
+          min={form.getInputProps("startDate").value}
           {...form.getInputProps("endDate")}
         />
         <span className={styles.timer}>{timer}</span>

@@ -44,12 +44,12 @@ export default function SideNavigation(props: SideNavigationProps) {
           sub="Use a timeline for inserting time entries"
           wip
         /> */}
-        {/* <SideNavigationLink
+        <SideNavigationLink
           href="/app/timesheets"
           title="Timesheets generator"
           sub="Generate timesheets for a specific date range"
           wip
-        /> */}
+        />
         <SideNavigationProjects />
       </div>
     </div>
