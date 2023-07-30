@@ -1,3 +1,5 @@
+"use client";
+
 import { IconX } from "@tabler/icons-react";
 import { createPortal } from "react-dom";
 import { default as ReactModal } from "react-modal";

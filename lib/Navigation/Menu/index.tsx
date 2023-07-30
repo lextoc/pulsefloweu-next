@@ -109,7 +109,7 @@ export default function NavigationMenu(props: NavigationMenuProps) {
             >
               <IconChevronLeft />
             </button>
-            {/* {menuTitle} */}
+            {menuTitle}
           </div>
         </div>
         <button className={styles.menu}>
