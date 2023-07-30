@@ -1,3 +1,5 @@
+import { useForm } from "@mantine/form";
+import { useDebouncedValue } from "@mantine/hooks";
 import {
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
@@ -79,24 +81,52 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
     });
   };
 
-  const onTimeChange = (field: string, value: string) => {
-    const hours = value.split(":")[0];
-    const minutes = value.split(":")[1];
+  const form = useForm({
+    initialValues: {
+      startDate: dayjs(timeEntry.start_date).format("HH:mm"),
+      endDate: dayjs(timeEntry.end_date).format("HH:mm"),
+    },
 
-    let newDate = dayjs(timeEntry.end_date)
+    validate: {
+      // email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+    },
+  });
+
+  const [dates] = useDebouncedValue(form.getTransformedValues(), 3000);
+
+  useEffect(() => {
+    onTimeChange(dates.startDate, dates.endDate);
+  }, [dates]);
+
+  const onTimeChange = (start: string, end: string) => {
+    let hours = start.split(":")[0];
+    let minutes = start.split(":")[1];
+
+    let newStartDate = dayjs(timeEntry.start_date)
       .set("hours", parseInt(hours, 10))
-      .set("minutes", parseInt(minutes, 10));
+      .set("minutes", parseInt(minutes, 10))
+      .format();
 
-    updateDate(field, newDate.tz(dayjs.tz.guess()).toISOString());
+    hours = end.split(":")[0];
+    minutes = end.split(":")[1];
+
+    let newEndDate = dayjs(timeEntry.end_date)
+      .set("hours", parseInt(hours, 10))
+      .set("minutes", parseInt(minutes, 10))
+      .format();
+
+    console.log("🚀  newStartDate:", newStartDate);
+    console.log("🚀  newEndDate:", newEndDate);
+    updateDate(newStartDate, newEndDate);
   };
 
-  const updateDate = (field, date) => {
-    console.log("🚀  field, date:", field, date);
-    update<{ time_entry: Partial<CreateTimeEntry> }>(
+  const updateDate = (startDate: string, endDate: string) => {
+    update<{ time_entry: Partial<TimeEntry> }>(
       endpoints.getTimeEntry(timeEntry.id),
       {
         time_entry: {
-          [field]: date,
+          start_date: startDate,
+          end_date: endDate,
         },
       },
     ).then(() => {
@@ -153,20 +183,18 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
         <Input
           className={styles.input}
           type="time"
-          value={dayjs(timeEntry.start_date).format("HH:mm")}
           transparent
           small
           disabled={!timeEntry.end_date}
-          onChange={(e) => onTimeChange("start_date", e?.currentTarget?.value)}
+          {...form.getInputProps("startDate")}
         />
         <span className={styles.separator}>–</span>
         <Input
           type="time"
-          value={dayjs(timeEntry.end_date).format("HH:mm")}
           transparent
           small
           disabled={!timeEntry.end_date}
-          onChange={(e) => onTimeChange("end_date", e?.currentTarget?.value)}
+          {...form.getInputProps("endDate")}
         />
         <span className={styles.timer}>{timer}</span>
         <TimeEntryMenu timeEntry={timeEntry} />
