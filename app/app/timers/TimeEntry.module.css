@@ -9,6 +9,7 @@
 
 .isUpdating {
   border-bottom-color: rgb(var(--main));
+  background: rgba(var(--main), 0.04);
 }
 
 .active {
