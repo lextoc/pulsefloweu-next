@@ -13,11 +13,11 @@ import { TimeEntry } from "@/api/types/time-entries";
 import Pagination from "@/components/Navigation/Pagination";
 import { Header } from "@/components/Shared/Header";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
+import TimeEntriesListItem from "@/lib/TimeEntries/ListItem";
 import { useNavigationStore } from "@/stores/navigation";
 
 import styles from "./page.module.css";
 import TimersTask from "./Task";
-import TimersTimeEntry from "./TimeEntry";
 
 dayjs.extend(advancedFormat);
 dayjs.extend(utc);
@@ -98,7 +98,7 @@ export default function AppTimers(props: AppTimersProps) {
               <div key={date} className={styles.dayList}>
                 <h3>{date}</h3>
                 {timeEntriesByDate[date].map((timeEntry: TimeEntry) => (
-                  <TimersTimeEntry
+                  <TimeEntriesListItem
                     key={`timers-time-entry-${timeEntry.id}`}
                     timeEntry={timeEntry}
                   />

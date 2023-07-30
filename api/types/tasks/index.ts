@@ -10,6 +10,7 @@ export interface Task {
   total_duration_of_time_entries: number;
   folder_name: string;
   project_name: string;
+  project_id: number;
   active_time_entries: TimeEntry[];
 }
 

@@ -22,17 +22,17 @@ import Explosion from "@/lib/Tasks/Cards/Base/Explosion";
 import TimeEntryMenu from "@/lib/TimeEntries/Menu";
 import { useSnackbarStore } from "@/stores/snackbar";
 
-import styles from "./TimeEntry.module.css";
+import styles from "./index.module.css";
 
 dayjs.extend(timezone);
 dayjs.extend(advancedFormat);
 dayjs.extend(utc);
 
-export interface TimersTimeEntryProps {
+export interface TimeEntriesListItemProps {
   timeEntry: TimeEntry;
 }
 
-export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
+export default function TimeEntriesListItem({ timeEntry }: TimeEntriesListItemProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
@@ -193,7 +193,7 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
           )}
         </button>
         <Link
-          href={`/app/folders/${timeEntry.folder_id}`}
+          href={`/app/folders/${timeEntry.folder_id}/tasks/${timeEntry.task_id}`}
           className={styles.nameLink}
         >
           <div className={styles.name}>{timeEntry.task_name}</div>

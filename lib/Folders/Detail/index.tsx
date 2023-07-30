@@ -22,14 +22,14 @@ import { useNavigationStore } from "@/stores/navigation";
 
 import styles from "./index.module.css";
 
+dayjs.extend(advancedFormat);
+dayjs.extend(utc);
+
 export interface FoldersDetailProps {
   folderId?: number;
 }
 
 export default function FoldersDetail({ folderId }: FoldersDetailProps) {
-  dayjs.extend(advancedFormat);
-  dayjs.extend(utc);
-
   const searchParams = useSearchParams();
   const current = new URLSearchParams(Array.from(searchParams.entries()));
   const page = current.get("page");
