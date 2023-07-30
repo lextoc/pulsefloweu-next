@@ -9,11 +9,11 @@
 
 .isUpdating {
   border-bottom-color: rgb(var(--main));
-  background: rgba(var(--main), 0.04);
+  background: rgba(var(--secondary-bright), 0.04);
 }
 
 .active {
-  background: rgb(var(--light-background));
+  background: rgba(var(--secondary-bright), 0.04);
 }
 
 .active .name {
