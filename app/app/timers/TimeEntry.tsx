@@ -93,9 +93,10 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
   });
 
   const [dates] = useDebouncedValue(form.getTransformedValues(), 3000);
+  const isEnteringNewValues =
+    JSON.stringify(dates) !== JSON.stringify(form.getTransformedValues());
 
   useEffect(() => {
-    // TODO
     let newStartDate = setHoursAndMinutes(
       dayjs(timeEntry.start_date),
       dates.startDate,
@@ -175,7 +176,9 @@ export default function TimersTimeEntry({ timeEntry }: TimersTimeEntryProps) {
 
   return (
     <div
-      className={`${styles.root} ${timeEntry.end_date ? "" : styles.active}`}
+      className={`${styles.root} ${timeEntry.end_date ? "" : styles.active} ${
+        isEnteringNewValues ? styles.isUpdating : ""
+      }`}
     >
       <div className={styles.left}>
         <button

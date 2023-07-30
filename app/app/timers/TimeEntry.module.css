@@ -7,6 +7,10 @@
   border-radius: var(--border-radius);
 }
 
+.isUpdating {
+  border-bottom-color: rgb(var(--main));
+}
+
 .active {
   background: rgb(var(--light-background));
 }
