@@ -51,7 +51,7 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
       }),
   });
 
-  let timeEntriesByDate: TimeEntry[] = [];
+  let timeEntriesByDate: any = {};
   if (timeEntriesQuery.data?.success)
     timeEntriesByDate = timeEntriesQuery.data?.data;
 
