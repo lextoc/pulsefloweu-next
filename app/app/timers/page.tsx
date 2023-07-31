@@ -48,27 +48,23 @@ export default function AppTimers(props: AppTimersProps) {
       }),
   });
 
-  let timeEntries: TimeEntry[] = [];
-  if (timeEntriesQuery.data?.success) timeEntries = timeEntriesQuery.data?.data;
-
   let timeEntriesByDate: any = {};
-  const format = "dddd DD MMMM YYYY";
-  timeEntries.forEach((timeEntry) => {
-    let _format = dayjs(timeEntry.start_date).isSame(dayjs(), "day")
-      ? "[Today]"
-      : dayjs(timeEntry.start_date).isSame(dayjs().subtract(1, "day"), "day")
-      ? "[Yesterday]"
-      : format;
-    const entries =
-      timeEntriesByDate[dayjs(timeEntry.start_date).format(_format)];
-    if (Array.isArray(entries)) {
-      entries.push(timeEntry);
-    } else {
-      timeEntriesByDate[dayjs(timeEntry.start_date).format(_format)] = [
-        timeEntry,
-      ];
-    }
-  });
+  if (timeEntriesQuery.data?.success)
+    timeEntriesByDate = timeEntriesQuery.data?.data;
+
+  const getDateFormat = (date: string) => {
+    if (dayjs().isSame(dayjs(date), "day")) return "Today";
+    if (dayjs().subtract(1, "day").isSame(dayjs(date), "day"))
+      return "Yesterday";
+    return dayjs(date).format("dddd DD MMMM YYYY");
+  };
+
+  const getDuration = (seconds: number) => {
+    const timer = new Date(seconds * 1000).toISOString().substring(11, 19);
+    return timer;
+  };
+
+  console.log("🚀  timeEntriesByDate:", timeEntriesByDate);
 
   return (
     <div className={styles.root}>
@@ -96,13 +92,20 @@ export default function AppTimers(props: AppTimersProps) {
           {Object.keys(timeEntriesByDate).map((date) => {
             return (
               <div key={date} className={styles.dayList}>
-                <h3>{date}</h3>
-                {timeEntriesByDate[date].map((timeEntry: TimeEntry) => (
-                  <TimeEntriesListItem
-                    key={`timers-time-entry-${timeEntry.id}`}
-                    timeEntry={timeEntry}
-                  />
-                ))}
+                <h3>
+                  {getDateFormat(date)}{" "}
+                  <span className={styles.duration}>
+                    {getDuration(timeEntriesByDate[date].data.total_duration)}
+                  </span>
+                </h3>
+                {timeEntriesByDate[date].time_entries.map(
+                  (timeEntry: TimeEntry) => (
+                    <TimeEntriesListItem
+                      key={`timers-time-entry-${timeEntry.id}`}
+                      timeEntry={timeEntry}
+                    />
+                  ),
+                )}
               </div>
             );
           })}
