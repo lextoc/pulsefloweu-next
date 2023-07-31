@@ -85,7 +85,7 @@ export default function TimersTask({ task }: TimersTaskProps) {
         >
           <div className={`${styles.leftTaskName} ellipsis`}>{task.name}</div>
           <div className={`${styles.leftTaskSub} ellipsis`}>
-            {task.project_name} - {task.folder_name}
+            {task.folder_name} - {task.project_name}
           </div>
         </Link>
         <button

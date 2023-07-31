@@ -206,7 +206,7 @@ export default function TimeEntriesListItem({
         >
           <div className={styles.name}>{timeEntry.task_name}</div>
           <div className={styles.sub}>
-            {timeEntry.project_name} - {timeEntry.folder_name}
+            {timeEntry.folder_name} - {timeEntry.project_name}
           </div>
         </Link>
       </div>
