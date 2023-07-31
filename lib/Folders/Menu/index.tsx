@@ -136,7 +136,7 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
         <h2>Delete folder</h2>
         <p>
           Are you absolutely sure you want to delete this folder "{folder.name}"
-          and delete all of its' tasks and time entries?
+          and delete all of its tasks and time entries?
         </p>
         <Input
           label="Type DELETE in capitals"
