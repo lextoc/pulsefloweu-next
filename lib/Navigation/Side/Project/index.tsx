@@ -36,7 +36,7 @@ export default function SideNavigationProject({
           pathname === `/app/projects/${project.id}` ? styles.linkActive : ""
         }`}
       >
-        <div className={styles.inner}>
+        <div className={`${styles.inner} break-word`}>
           <strong>{project.name}</strong>
         </div>
       </Link>
@@ -55,7 +55,7 @@ export default function SideNavigationProject({
           }
         `}
           >
-            <div className={styles.inner}>{folder.name}</div>
+            <div className={`${styles.inner} break-word`}>{folder.name}</div>
           </Link>
         ))}
       </div>

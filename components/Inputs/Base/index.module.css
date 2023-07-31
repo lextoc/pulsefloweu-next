@@ -1,4 +1,4 @@
-.root {
+.input {
   border: 0;
   background: rgba(var(--secondary), 0.05);
   border-bottom: 2px solid rgba(var(--secondary-bright), 0.1);
@@ -8,11 +8,11 @@
   border-radius: 0.2rem;
 }
 
-.root[disabled] {
+.input[disabled] {
   pointer-events: none;
 }
 
-.root[type="time"] {
+.input[type="time"] {
   font-family: inherit;
   min-width: 4.5rem;
 }
@@ -21,12 +21,12 @@
   padding: 0.5rem;
 }
 
-.root:hover {
+.input:hover {
   border-bottom: 2px solid rgba(var(--secondary-bright), 0.4);
 }
 
-.root:focus,
-.root:active {
+.input:focus,
+.input:active {
   border-bottom: 2px solid rgba(var(--secondary-bright), 1);
 }
 
@@ -39,6 +39,27 @@
   border-bottom: 2px solid rgba(var(--secondary-bright), 0);
 }
 
-.root::placeholder {
+.input::placeholder {
   color: rgba(0, 0, 0, 0.4);
+}
+
+.rootCheckbox {
+  display: flex;
+  align-items: center;
+}
+
+.rootCheckbox label {
+  padding-left: 1rem;
+  cursor: pointer;
+  padding-bottom: 0.75rem;
+  user-select: none;
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.checkbox {
+  width: 1rem;
+  height: 1rem;
 }

@@ -1,0 +1,25 @@
+.inputs {
+  display: flex;
+}
+
+.input {
+  width: 20rem;
+  margin-right: 2rem;
+}
+
+.foldersCheckbox {
+  display: flex;
+  align-items: center;
+}
+
+.foldersCheckbox > label {
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  padding-left: 1rem;
+}
+
+.timesheetsWrapper {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgb(var(--light-background));
+}

@@ -1,0 +1,35 @@
+.root {
+  text-align: left;
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  background: linear-gradient(
+    to bottom right,
+    rgb(var(--light-background)),
+    rgba(var(--light-background), 0.5),
+    rgb(var(--light-background))
+  );
+  padding: 0.5rem 1rem 1rem;
+  border: 2px solid transparent;
+  transition:
+    border 150ms ease,
+    background 150ms ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.active {
+  background: rgb(255, 255, 255);
+  border-color: rgba(var(--secondary), 0.1);
+}
+
+.footer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.footer > div {
+  margin-top: auto;
+}

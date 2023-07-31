@@ -1,5 +1,6 @@
 import { Header } from "@/components/Shared/Header";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
+import TimesheetsGenerator from "@/lib/Misc/TimesheetsGenerator";
 
 import styles from "./page.module.css";
 
@@ -16,12 +17,8 @@ export default function AppTimesheets(props: AppTimesheetsProps) {
           <p>Generate timesheets for a specific date range</p>
         </PaddingContainer>
       </Header>
-      <PaddingContainer>
-        <p>Timesheet generator requirements:</p>
-        <ul>
-          <li>Select one project</li>
-          <li>Select (multiple) folder(s)</li>
-        </ul>
+      <PaddingContainer withBottomGap>
+        <TimesheetsGenerator />
       </PaddingContainer>
     </div>
   );

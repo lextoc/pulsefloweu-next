@@ -13,6 +13,7 @@ export default {
   destroyTask: (taskId: number) => h(`/tasks/${taskId}`),
   destroyTimeEntry: (timeEntryId: number) => h(`/time_entries/${timeEntryId}`),
   getRunningTimers: h("/misc/running_timers"),
+  getTimesheets: h("/misc/timesheets"),
   getTimeEntry: (timeEntryId: number) => h(`/time_entries/${timeEntryId}`),
   getTask: (taskId: number) => h(`/tasks/${taskId}`),
   getTasks: h("/tasks"),

@@ -61,6 +61,10 @@
   border-radius: 100%;
 }
 
+.break-word {
+  word-break: break-word;
+}
+
 /* copied from https://codepen.io/robeen/pen/PbvJjy/ */
 .explosion {
   cursor: pointer;

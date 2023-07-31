@@ -11,6 +11,7 @@ h6,
 p,
 li {
   line-height: 1.6em;
+  word-break: break-word;
 }
 
 h1 {
