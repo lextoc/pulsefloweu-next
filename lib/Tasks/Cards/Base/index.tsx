@@ -119,7 +119,9 @@ export default function TasksCard({ task }: TaskCardProps) {
               <span
                 className={`${isExploding ? "main" : ""} ${styles.converter}`}
               >
-                {transformSecondsToHumanReadableString(task.total_duration_of_time_entries)}
+                {transformSecondsToHumanReadableString(
+                  task.total_duration_of_time_entries,
+                )}
               </span>
             </li>
           )}

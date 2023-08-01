@@ -6,5 +6,9 @@ export interface LabelProps {
 }
 
 export function Label({ children, htmlFor }: LabelProps) {
-  return <label htmlFor={htmlFor} className={styles.root}>{children}</label>;
+  return (
+    <label htmlFor={htmlFor} className={styles.root}>
+      {children}
+    </label>
+  );
 }
