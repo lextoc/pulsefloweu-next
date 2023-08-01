@@ -25,9 +25,6 @@ export default async function validateToken(
   else
     _cookies = getCookies(cookies as ReadonlyRequestCookies | RequestCookies);
 
-  if (_cookies === false)
-    return { success: false, errors: ["No valid cookies"] };
-
   const response = await fetch(endpoints.authValidateToken, {
     headers: {
       ..._cookies,
