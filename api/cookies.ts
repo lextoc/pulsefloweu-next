@@ -6,23 +6,22 @@ import { Cookies } from "@/api/types/auth";
 function getCookie(name: string) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts?.pop()?.split(";").shift();
+  return parts.length === 2 ? parts.pop()?.split(";").shift() : undefined;
 }
 
 export function getCookies(
-  cookies: ReadonlyRequestCookies | RequestCookies,
+  cookies: ReadonlyRequestCookies | RequestCookies
 ): false | Cookies {
-  if (
-    !cookies.get("access-token")?.value ||
-    !cookies.get("client")?.value ||
-    !cookies.get("uid")?.value
-  )
-    return false;
+  const accessToken = cookies.get("access-token")?.value;
+  const client = cookies.get("client")?.value;
+  const uid = cookies.get("uid")?.value;
+
+  if (!accessToken || !client || !uid) return false;
 
   return {
-    ["access-token"]: cookies.get("access-token")!.value,
-    client: cookies.get("client")!.value,
-    uid: cookies.get("uid")!.value,
+    "access-token": accessToken,
+    client,
+    uid,
   };
 }
 
@@ -40,8 +39,8 @@ export function clearCookies() {
 
 export function getHeaders() {
   return {
-    "access-token": getCookie("access-token")!,
-    client: getCookie("client")!,
-    uid: getCookie("uid")!,
+    "access-token": getCookie("access-token"),
+    client: getCookie("client"),
+    uid: getCookie("uid"),
   };
 }
