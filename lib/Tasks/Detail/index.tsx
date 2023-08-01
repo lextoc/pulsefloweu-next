@@ -14,6 +14,7 @@ import { TimeEntry } from "@/api/types/time-entries";
 import Pagination from "@/components/Navigation/Pagination";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
 import TimeEntriesListItem from "@/lib/TimeEntries/ListItem";
+import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
 import TaskMenu from "../Menu";
 import styles from "./index.module.css";
@@ -60,11 +61,6 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
     if (dayjs().subtract(1, "day").isSame(dayjs(date), "day"))
       return "Yesterday";
     return dayjs(date).format("dddd DD MMMM YYYY");
-  };
-
-  const getDuration = (seconds: number) => {
-    const timer = new Date(seconds * 1000).toISOString().substring(11, 19);
-    return timer;
   };
 
   return (
@@ -114,7 +110,9 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
               <h3 className={styles.dayTitle}>
                 {getDateFormat(date)}{" "}
                 <span className={styles.duration}>
-                  {getDuration(timeEntriesByDate[date].data.total_duration)}
+                  {transformSecondsToHumanReadableString(
+                    timeEntriesByDate[date].data.total_duration,
+                  )}
                 </span>
               </h3>
               {timeEntriesByDate[date].time_entries.map(

@@ -17,7 +17,7 @@ import { CreateTimeEntry } from "@/api/types/time-entries";
 import Card from "@/components/Cards/Base";
 import TaskMenu from "@/lib/Tasks/Menu";
 import { useSnackbarStore } from "@/stores/snackbar";
-import { convertSecondsToHHmmss } from "@/utils/converters";
+import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
 import Explosion from "./Explosion";
 import styles from "./index.module.css";
@@ -119,7 +119,7 @@ export default function TasksCard({ task }: TaskCardProps) {
               <span
                 className={`${isExploding ? "main" : ""} ${styles.converter}`}
               >
-                {convertSecondsToHHmmss(task.total_duration_of_time_entries)}
+                {transformSecondsToHumanReadableString(task.total_duration_of_time_entries)}
               </span>
             </li>
           )}

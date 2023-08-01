@@ -14,6 +14,7 @@ import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { TimeEntryWithTaskName } from "@/api/types/time-entries";
 import { useSnackbarStore } from "@/stores/snackbar";
+import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
 import styles from "./index.module.css";
 
@@ -69,7 +70,6 @@ export default function SideNavigationRunningTimers(
   if (!timeEntries.length) return null;
 
   const seconds = dayjs().diff(dayjs(timeEntries?.[0]?.start_date), "seconds");
-  const timer = new Date(seconds * 1000).toISOString().substring(11, 19);
 
   return (
     <>
@@ -80,7 +80,9 @@ export default function SideNavigationRunningTimers(
             className={styles.left}
           >
             <div className={styles.name}>{timeEntry.task_name}</div>
-            <div className={styles.timer}>{timer}</div>
+            <div className={styles.timer}>
+              {transformSecondsToHumanReadableString(seconds)}
+            </div>
           </Link>
           <button className={styles.iconButton} onClick={onClick}>
             <div className={styles.icon}>

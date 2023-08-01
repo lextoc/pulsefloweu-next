@@ -15,6 +15,7 @@ import { Header } from "@/components/Shared/Header";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
 import TimeEntriesListItem from "@/lib/TimeEntries/ListItem";
 import { useNavigationStore } from "@/stores/navigation";
+import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
 import styles from "./page.module.css";
 import TimersTask from "./Task";
@@ -59,13 +60,6 @@ export default function AppTimers(props: AppTimersProps) {
     return dayjs(date).format("dddd DD MMMM YYYY");
   };
 
-  const getDuration = (seconds: number) => {
-    const timer = new Date(seconds * 1000).toISOString().substring(11, 19);
-    return timer;
-  };
-
-  console.log("🚀  timeEntriesByDate:", timeEntriesByDate);
-
   return (
     <div className={styles.root}>
       <Header>
@@ -95,7 +89,9 @@ export default function AppTimers(props: AppTimersProps) {
                 <h3>
                   {getDateFormat(date)}{" "}
                   <span className={styles.duration}>
-                    {getDuration(timeEntriesByDate[date].data.total_duration)}
+                    {transformSecondsToHumanReadableString(
+                      timeEntriesByDate[date].data.total_duration,
+                    )}
                   </span>
                 </h3>
                 {timeEntriesByDate[date].time_entries.map(

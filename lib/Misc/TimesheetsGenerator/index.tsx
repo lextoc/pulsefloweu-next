@@ -17,6 +17,7 @@ import { TimeEntry } from "@/api/types/time-entries";
 import Button from "@/components/Buttons/Base";
 import Input from "@/components/Inputs/Base";
 import { useNavigationStore } from "@/stores/navigation";
+import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
 import styles from "./index.module.css";
 import TimesheetsGeneratorProjectsButton from "./ProjectButton";
@@ -107,14 +108,9 @@ export default function TimesheetsGenerator(props: TimesheetsGeneratorProps) {
       });
   };
 
-  const getDurationFromSeconds = (seconds: number) => {
-    const timer = new Date(seconds * 1000).toISOString().substring(11, 19);
-    return timer;
-  };
-
   const getDurationFromDates = (start: string, end: string) => {
     const seconds = dayjs(end).diff(dayjs(start), "seconds");
-    return getDurationFromSeconds(seconds);
+    return transformSecondsToHumanReadableString(seconds);
   };
 
   return (
@@ -215,7 +211,7 @@ export default function TimesheetsGenerator(props: TimesheetsGeneratorProps) {
                       <td></td>
                       <td>
                         <strong>
-                          {getDurationFromSeconds(
+                          {transformSecondsToHumanReadableString(
                             timesheetsData?.data?.time_entries[date]
                               ?.total_duration,
                           )}

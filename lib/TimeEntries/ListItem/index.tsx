@@ -21,6 +21,7 @@ import Input from "@/components/Inputs/Base";
 import Explosion from "@/lib/Tasks/Cards/Base/Explosion";
 import TimeEntryMenu from "@/lib/TimeEntries/Menu";
 import { useSnackbarStore } from "@/stores/snackbar";
+import { transformSecondsToTimer } from "@/utils/helpers";
 
 import styles from "./index.module.css";
 
@@ -162,7 +163,6 @@ export default function TimeEntriesListItem({
     dayjs(timeEntry.start_date),
     "seconds",
   );
-  const timer = new Date(seconds * 1000).toISOString().substring(11, 19);
   const [time, setTime] = useState(Date.now());
 
   // For animating timer.
@@ -228,7 +228,7 @@ export default function TimeEntriesListItem({
           min={form.getInputProps("startDate").value}
           {...form.getInputProps("endDate")}
         />
-        <span className={styles.timer}>{timer}</span>
+        <span className={styles.timer}>{transformSecondsToTimer(seconds)}</span>
         <TimeEntryMenu timeEntry={timeEntry} />
       </div>
     </div>
