@@ -208,7 +208,9 @@ export default function TimesheetsGenerator(props: TimesheetsGeneratorProps) {
                   <>
                     <tr>
                       <td>
-                        <strong>{date}</strong>
+                        <strong>
+                          {dayjs(date).format("dddd DD MMMM YYYY")}
+                        </strong>
                       </td>
                       <td></td>
                       <td>
@@ -226,7 +228,11 @@ export default function TimesheetsGenerator(props: TimesheetsGeneratorProps) {
                       <>
                         <tr>
                           <td>{time_entry.task_name}</td>
-                          <td>{time_entry.start_date}</td>
+                          <td>
+                            {dayjs(time_entry.start_date).format(
+                              "DD MMMM YYYY [at] HH:mm",
+                            )}
+                          </td>
                           <td>
                             {getDurationFromDates(
                               time_entry.start_date,
