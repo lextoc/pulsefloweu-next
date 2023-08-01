@@ -18,8 +18,37 @@
   padding-left: 1rem;
 }
 
+.foldersPicker {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.foldersPicker > div {
+  margin-right: 4rem;
+  margin-bottom: 2rem;
+}
+
 .timesheetsWrapper {
   margin-top: 1rem;
   padding: 1rem;
   background: rgb(var(--light-background));
+  border-radius: var(--border-radius);
+}
+
+.topDetails {
+  display: flex;
+  align-items: flex-start;
+}
+
+.topDetails > div {
+  margin-right: 6rem;
+}
+
+.buttonWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.buttonWrapper > * {
+  margin-right: 2.5rem;
 }

@@ -65,6 +65,25 @@
   word-break: break-word;
 }
 
+.table th{
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: left;
+  background: rgb(var(--secondary-bright));
+  color: white;
+}
+
+.table th,
+.table td {
+  padding: 0.5rem 6rem 0.5rem 0.5rem;
+  border: 0.15rem solid rgba(var(--secondary), 0.2);
+}
+
+.empty {
+  background: rgba(var(--secondary), 0.2);
+}
+
 /* copied from https://codepen.io/robeen/pen/PbvJjy/ */
 .explosion {
   cursor: pointer;

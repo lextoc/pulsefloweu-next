@@ -28,20 +28,26 @@ export default function Input({
 
   return (
     <div
-      className={`${styles.root} ${type === "checkbox" ? styles.rootCheckbox : ""}`}
+      className={`${styles.root} ${
+        type === "checkbox" || type === "radio" ? styles.rootCheckbox : ""
+      }`}
     >
-      {type !== "checkbox" && label && <Label>{label}</Label>}
+      {type !== "checkbox" && type !== "radio" && label && (
+        <Label>{label}</Label>
+      )}
       <input
         id={id}
         className={`${styles.input} ${
-          type === "checkbox" ? styles.checkbox : ""
+          type === "checkbox" || type === "radio" ? styles.checkbox : ""
         } ${inverted ? styles.inverted : ""} ${
           transparent ? styles.transparent : ""
         } ${small ? styles.small : ""} ${className}`}
         type={type}
         {...props}
       />
-      {type === "checkbox" && label && <Label htmlFor={id}>{label}</Label>}
+      {(type === "checkbox" || type === "radio") && label && (
+        <Label htmlFor={id}>{label}</Label>
+      )}
     </div>
   );
 }

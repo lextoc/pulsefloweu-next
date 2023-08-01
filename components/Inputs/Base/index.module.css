@@ -53,10 +53,11 @@
   cursor: pointer;
   padding-bottom: 0.75rem;
   user-select: none;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 400;
   text-transform: none;
   letter-spacing: 0;
+  transform: translateY(0.05em);
 }
 
 .checkbox {

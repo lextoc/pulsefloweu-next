@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
 import queryString from "query-string";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { getHeaders } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
@@ -33,6 +33,11 @@ export default function TimesheetsGenerator(props: TimesheetsGeneratorProps) {
   const [timesheetsData, setTimesheetsData] = useState<any>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedFolders, setSelectedFolders] = useState<number[]>([]);
+  const [per, setPer] = useState("day");
+
+  useEffect(() => {
+    setSelectedFolders([]);
+  }, [selectedProject]);
 
   const query = useQuery({
     queryKey: [endpoints.getProjects],
@@ -81,8 +86,13 @@ export default function TimesheetsGenerator(props: TimesheetsGeneratorProps) {
   };
 
   const fetchTimesheets = () => {
+    setTimesheetsData(null);
     return fetch(
-      `${endpoints.getTimesheets}${`?${queryString.stringify({
+      `${
+        per === "day"
+          ? endpoints.getTimesheetsPerDay
+          : endpoints.getTimesheetsPerWeek
+      }${`?${queryString.stringify({
         ["folder_ids[]"]: selectedFolders,
         from: form.getInputProps("from").value,
         to: form.getInputProps("to").value,
@@ -97,9 +107,18 @@ export default function TimesheetsGenerator(props: TimesheetsGeneratorProps) {
       });
   };
 
+  const getDurationFromSeconds = (seconds: number) => {
+    const timer = new Date(seconds * 1000).toISOString().substring(11, 19);
+    return timer;
+  };
+
+  const getDurationFromDates = (start: string, end: string) => {
+    const seconds = dayjs(end).diff(dayjs(start), "seconds");
+    return getDurationFromSeconds(seconds);
+  };
+
   return (
     <div>
-      <h2>Select date range</h2>
       <div className={styles.inputs}>
         <Input
           className={styles.input}
@@ -114,8 +133,6 @@ export default function TimesheetsGenerator(props: TimesheetsGeneratorProps) {
           {...form.getInputProps("to")}
         />
       </div>
-      <hr className="divider" />
-      <h2>Select project</h2>
       <div className="cards">
         {projects.map((_project) => (
           <TimesheetsGeneratorProjectsButton
@@ -128,35 +145,106 @@ export default function TimesheetsGenerator(props: TimesheetsGeneratorProps) {
       </div>
       {selectedProject && (
         <>
-          <hr className="divider" />
-          <h2>Select folders</h2>
-          {folders.map((folder) => (
-            <div key={folder.id} className={styles.foldersCheckbox}>
-              <Input
-                label={folder.name}
-                type="checkbox"
-                onClick={() => toggleFolder(folder.id)}
-              />
-            </div>
-          ))}
-          <Button onClick={fetchTimesheets}>Generate timesheet</Button>
+          <div className={styles.foldersPicker}>
+            {folders.map((folder) => (
+              <div key={folder.id} className={styles.foldersCheckbox}>
+                <Input
+                  label={folder.name}
+                  type="checkbox"
+                  onClick={() => toggleFolder(folder.id)}
+                />
+              </div>
+            ))}
+          </div>
+          <div className={styles.buttonWrapper}>
+            <Button noMargin onClick={fetchTimesheets}>
+              Generate timesheet
+            </Button>
+            <Input
+              label="Per day"
+              type="radio"
+              onClick={() => setPer("day")}
+              checked={per === "day"}
+            />
+            <Input
+              label="Per week"
+              type="radio"
+              onClick={() => setPer("week")}
+              checked={per === "week"}
+            />
+          </div>
         </>
       )}
       {timesheetsData && (
         <>
           <div className={styles.timesheetsWrapper}>
-            <p>
-              <strong>{timesheetsData?.data?.from_date}</strong> Start date
-              <br />
-              <strong>{timesheetsData?.data?.to_date}</strong> End date
+            <p className={styles.topDetails}>
+              <div>
+                Start date
+                <br />
+                <strong>{timesheetsData?.data?.from_date}</strong>
+              </div>
+              <div>
+                End date
+                <br />
+                <strong>{timesheetsData?.data?.to_date}</strong>
+              </div>
+              <div>
+                View type
+                <br />
+                <strong>per {timesheetsData?.data?.view_type}</strong>
+              </div>
             </p>
-            {timesheetsData.data?.time_entries?.map((time_entry: TimeEntry) => (
-              <>
-              <div className={styles.timeEntry}>
-                </div>
-                <pre>{JSON.stringify(time_entry, null, 2)}</pre>
-              </>
-            ))}
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Task</th>
+                  <th>Start time</th>
+                  <th>Duration</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(timesheetsData?.data?.time_entries).map((date) => (
+                  <>
+                    <tr>
+                      <td>
+                        <strong>{date}</strong>
+                      </td>
+                      <td></td>
+                      <td>
+                        <strong>
+                          {getDurationFromSeconds(
+                            timesheetsData?.data?.time_entries[date]
+                              ?.total_duration,
+                          )}
+                        </strong>
+                      </td>
+                    </tr>
+                    {timesheetsData?.data?.time_entries?.[
+                      date
+                    ]?.time_entries.map((time_entry: TimeEntry) => (
+                      <>
+                        <tr>
+                          <td>{time_entry.task_name}</td>
+                          <td>{time_entry.start_date}</td>
+                          <td>
+                            {getDurationFromDates(
+                              time_entry.start_date,
+                              time_entry.end_date,
+                            )}
+                          </td>
+                        </tr>
+                      </>
+                    ))}
+                    <tr>
+                      <td className="empty"></td>
+                      <td className="empty"></td>
+                      <td className="empty"></td>
+                    </tr>
+                  </>
+                ))}
+              </tbody>
+            </table>
           </div>
         </>
       )}
