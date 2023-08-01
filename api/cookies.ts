@@ -6,17 +6,15 @@ import { Cookies } from "@/api/types/auth";
 function getCookie(name: string) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
-  return parts.length === 2 ? parts.pop()?.split(";").shift() : undefined;
+  return parts.length === 2 ? parts.pop()?.split(";").shift() : "";
 }
 
 export function getCookies(
-  cookies: ReadonlyRequestCookies | RequestCookies
-): false | Cookies {
-  const accessToken = cookies.get("access-token")?.value;
-  const client = cookies.get("client")?.value;
-  const uid = cookies.get("uid")?.value;
-
-  if (!accessToken || !client || !uid) return false;
+  cookies: ReadonlyRequestCookies | RequestCookies,
+): Cookies {
+  const accessToken = cookies.get("access-token")?.value || "";
+  const client = cookies.get("client")?.value || "";
+  const uid = cookies.get("uid")?.value || "";
 
   return {
     "access-token": accessToken,
@@ -39,8 +37,8 @@ export function clearCookies() {
 
 export function getHeaders() {
   return {
-    "access-token": getCookie("access-token"),
-    client: getCookie("client"),
-    uid: getCookie("uid"),
+    "access-token": getCookie("access-token") || "",
+    client: getCookie("client") || "",
+    uid: getCookie("uid") || "",
   };
 }
