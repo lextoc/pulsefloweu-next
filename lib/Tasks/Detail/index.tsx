@@ -67,8 +67,6 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
     return timer;
   };
 
-  console.log("🚀  timeEntriesByDate:", timeEntriesByDate);
-
   return (
     <div>
       <PaddingContainer withBottomGap>
