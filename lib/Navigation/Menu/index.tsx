@@ -42,8 +42,9 @@ export default function NavigationMenu(props: NavigationMenuProps) {
 
   const onSignOut = () => {
     clearCookies();
-    push("/");
-    queryClient.invalidateQueries([endpoints.authValidateToken]);
+    queryClient.invalidateQueries([endpoints.authValidateToken]).then(() => {
+      push("/");
+    });
   };
 
   const form = useForm<ProfileFormValues>({

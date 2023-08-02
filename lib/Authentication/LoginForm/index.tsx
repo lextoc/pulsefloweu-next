@@ -55,8 +55,11 @@ export default function LoginForm(props: LoginFormProps) {
             client: client!,
             uid: data.data.uid,
           });
-          queryClient.invalidateQueries([endpoints.authValidateToken]);
-          push("/app/dashboard");
+          queryClient
+            .invalidateQueries([endpoints.authValidateToken])
+            .then(() => {
+              push("/app/dashboard");
+            });
         }
       });
   };
