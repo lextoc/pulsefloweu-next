@@ -214,6 +214,7 @@ export default function TimeEntriesListItem({
       </div>
       <div className={styles.right}>
         <Input
+          className={styles.input}
           type="date"
           transparent
           small

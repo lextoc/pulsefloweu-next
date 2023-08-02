@@ -12,7 +12,8 @@
   pointer-events: none;
 }
 
-.input[type="time"] {
+.input[type="time"],
+.input[type="date"] {
   font-family: inherit;
   min-width: 4.5rem;
 }
