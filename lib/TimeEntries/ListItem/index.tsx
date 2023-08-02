@@ -88,6 +88,7 @@ export default function TimeEntriesListItem({
     initialValues: {
       startDate: dayjs(timeEntry.start_date).format("HH:mm"),
       endDate: dayjs(timeEntry.end_date).format("HH:mm"),
+      date: dayjs(timeEntry.start_date).format("YYYY-MM-DD"),
     },
 
     validate: {
@@ -101,11 +102,11 @@ export default function TimeEntriesListItem({
 
   useEffect(() => {
     let newStartDate = setHoursAndMinutes(
-      dayjs(timeEntry.start_date),
+      dayjs(dates.date),
       dates.startDate,
     );
     let newEndDate = setHoursAndMinutes(
-      dayjs(timeEntry.end_date),
+      dayjs(dates.date),
       dates.endDate,
     );
     if (
@@ -120,6 +121,7 @@ export default function TimeEntriesListItem({
       form.setValues({
         startDate: dayjs(timeEntry.start_date).format("HH:mm"),
         endDate: dayjs(timeEntry.end_date).format("HH:mm"),
+        date: dayjs(timeEntry.start_date).format("YYYY-MM-DD"),
       });
       return;
     }
@@ -137,8 +139,8 @@ export default function TimeEntriesListItem({
   };
 
   const onTimeChange = (start: string, end: string) => {
-    let newStartDate = setHoursAndMinutes(dayjs(timeEntry.start_date), start);
-    let newEndDate = setHoursAndMinutes(dayjs(timeEntry.end_date), end);
+    let newStartDate = setHoursAndMinutes(dayjs(form.values.date), start);
+    let newEndDate = setHoursAndMinutes(dayjs(form.values.date), end);
     updateDate(newStartDate, newEndDate);
   };
 
@@ -211,6 +213,13 @@ export default function TimeEntriesListItem({
         </Link>
       </div>
       <div className={styles.right}>
+        <Input
+          type="date"
+          transparent
+          small
+          disabled={!timeEntry.end_date}
+          {...form.getInputProps("date")}
+        />
         <Input
           className={styles.input}
           type="time"
