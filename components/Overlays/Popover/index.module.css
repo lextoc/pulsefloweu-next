@@ -32,3 +32,7 @@
   font-size: 1rem;
   height: 1rem;
 }
+
+.blankButton {
+  font: inherit;
+}

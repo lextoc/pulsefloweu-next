@@ -1,3 +1,27 @@
 .root {
   background: rgb(var(--light-background));
 }
+
+.dropdowns {
+  margin-top: 0.5rem;
+}
+
+.dropdown {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  margin-right: 2rem;
+}
+
+.dropdown > svg {
+  margin-left: 0.5rem;
+  color: rgb(var(--main));
+  height: 1.25em;
+}
+
+.dropdownButtons {
+  display: flex;
+  flex-direction: column;
+  max-height: 30rem;
+  overflow-y: auto;
+}

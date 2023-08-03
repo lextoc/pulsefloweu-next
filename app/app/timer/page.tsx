@@ -69,7 +69,7 @@ export default function AppTimer(props: AppTimerProps) {
           ))}
         </div>
         <div className={styles.right}>
-          {/* <NewTask /> */}
+          <NewTask />
           <PaddingContainer withBottomGap>
             <h2>Your time entries</h2>
             {Object.keys(timeEntries).map((date) => {
