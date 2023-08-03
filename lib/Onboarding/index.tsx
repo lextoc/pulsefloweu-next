@@ -29,14 +29,14 @@ export function Onboarding(props: OnboardingProps) {
   const { push } = useRouter();
 
   const user = useContext(AuthenticationContext);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isUserModalOpen, setIsUserModalOpen] = useState(false);
 
   if (
-    !isOpen &&
+    !isUserModalOpen &&
     user?.email &&
     (!user?.first_name || !user?.last_name || !user?.username)
   ) {
-    setIsOpen(true);
+    setIsUserModalOpen(true);
   }
 
   const onSignOut = () => {
@@ -71,7 +71,7 @@ export function Onboarding(props: OnboardingProps) {
         });
       } else {
         queryClient.invalidateQueries().then(() => {
-          setIsOpen(false);
+          setIsUserModalOpen(false);
         });
       }
     });
@@ -79,7 +79,7 @@ export function Onboarding(props: OnboardingProps) {
 
   return (
     <>
-      <Modal isOpen={isOpen} close={() => false}>
+      <Modal isOpen={isUserModalOpen} close={() => false}>
         <h1>Onboarding</h1>
         <p>Please fill in your details before continuing.</p>
         <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
