@@ -15,7 +15,18 @@
 .input[type="time"],
 .input[type="date"] {
   font-family: inherit;
-  min-width: 4.5rem;
+}
+
+.input[type="time"] {
+  width: 4.25em;
+}
+
+.input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
 }
 
 .small {

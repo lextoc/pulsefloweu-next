@@ -1,13 +1,11 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
 import { useSearchParams } from "next/navigation";
 
 import endpoints from "@/api/endpoints";
-import getPage from "@/api/getPage";
 import { Task } from "@/api/types/tasks";
 import { TimeEntry } from "@/api/types/time-entries";
 import Pagination from "@/components/Navigation/Pagination";
@@ -18,6 +16,7 @@ import TimeEntriesListItem from "@/lib/TimeEntries/ListItem";
 import { useNavigationStore } from "@/stores/navigation";
 import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
+import NewTask from "./NewTask";
 import styles from "./page.module.css";
 import TimerTask from "./Task";
 
@@ -69,36 +68,37 @@ export default function AppTimer(props: AppTimerProps) {
             <TimerTask key={`timers-task-${task.id}`} task={task} />
           ))}
         </div>
-        <PaddingContainer withBottomGap>
-          {/* <p>
-            Form for creating a new task here, creating it automatically starts
-            a time entry. Also (eventually) put role dropdown here somewhere.
-          </p> */}
-          <h2>Your time entries</h2>
-          {Object.keys(timeEntries).map((date) => {
-            return (
-              <div key={date} className={styles.dayList}>
-                <h3>
-                  {getDateFormat(date)}{" "}
-                  <span className={styles.duration}>
-                    {transformSecondsToHumanReadableString(
-                      //@ts-ignore
-                      timeEntries[date].data.total_duration,
-                    )}
-                  </span>
-                </h3>
-                {/* @ts-ignore */}
-                {timeEntries[date].time_entries.map((timeEntry: TimeEntry) => (
-                  <TimeEntriesListItem
-                    key={`timers-time-entry-${timeEntry.id}`}
-                    timeEntry={timeEntry}
-                  />
-                ))}
-              </div>
-            );
-          })}
-          <Pagination {...timeEntriesData?.meta} />
-        </PaddingContainer>
+        <div className={styles.right}>
+          <NewTask />
+          <PaddingContainer withBottomGap>
+            <h2>Your time entries</h2>
+            {Object.keys(timeEntries).map((date) => {
+              return (
+                <div key={date} className={styles.dayList}>
+                  <h3>
+                    {getDateFormat(date)}{" "}
+                    <span className={styles.duration}>
+                      {transformSecondsToHumanReadableString(
+                        //@ts-ignore
+                        timeEntries[date].data.total_duration,
+                      )}
+                    </span>
+                  </h3>
+                  {/* @ts-ignore */}
+                  {timeEntries[date].time_entries.map(
+                    (timeEntry: TimeEntry) => (
+                      <TimeEntriesListItem
+                        key={`timers-time-entry-${timeEntry.id}`}
+                        timeEntry={timeEntry}
+                      />
+                    ),
+                  )}
+                </div>
+              );
+            })}
+            <Pagination {...timeEntriesData?.meta} />
+          </PaddingContainer>
+        </div>
       </div>
     </div>
   );

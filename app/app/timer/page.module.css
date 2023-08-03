@@ -145,3 +145,7 @@
   display: inline-block;
   padding-left: 0.75rem;
 }
+
+.right {
+  width: 100%;
+}
