@@ -82,10 +82,12 @@ export default function AppTimer(props: AppTimerProps) {
                   {getDateFormat(date)}{" "}
                   <span className={styles.duration}>
                     {transformSecondsToHumanReadableString(
+                      //@ts-ignore
                       timeEntries[date].data.total_duration,
                     )}
                   </span>
                 </h3>
+                {/* @ts-ignore */}
                 {timeEntries[date].time_entries.map((timeEntry: TimeEntry) => (
                   <TimeEntriesListItem
                     key={`timers-time-entry-${timeEntry.id}`}

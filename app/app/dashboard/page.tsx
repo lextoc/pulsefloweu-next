@@ -17,7 +17,9 @@ export default function AppDashboard(props: AppDashboardProps) {
   const set = useNavigationStore((state) => state.set);
   set({ menuTitle: "Create projects and manage memberships and permissions" });
 
-  const { data: projectsData } = useFetchArray<Project>(endpoints.projects.main);
+  const { data: projectsData } = useFetchArray<Project>(
+    endpoints.projects.main,
+  );
   const projects: Project[] = projectsData?.success ? projectsData.data : [];
 
   return (

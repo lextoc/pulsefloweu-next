@@ -59,7 +59,7 @@ export function Onboarding(props: OnboardingProps) {
   });
 
   const onSubmit = (values: OnboardingFormValues) => {
-    update(endpoints.auth, {
+    update(endpoints.auth.main, {
       first_name: values.firstName,
       last_name: values.lastName,
       username: values.username,
