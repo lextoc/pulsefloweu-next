@@ -52,9 +52,8 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
       }),
   });
 
-  let timeEntriesByDate: any = {};
-  if (timeEntriesQuery.data?.success)
-    timeEntriesByDate = timeEntriesQuery.data?.data;
+  let timeEntries: any = {};
+  if (timeEntriesQuery.data?.success) timeEntries = timeEntriesQuery.data?.data;
 
   const getDateFormat = (date: string) => {
     if (dayjs().isSame(dayjs(date), "day")) return "Today";
@@ -104,25 +103,23 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
         </header>
         <hr />
         <h2 className={styles.contentTitle}>Your time entries</h2>
-        {Object.keys(timeEntriesByDate).map((date: string) => {
+        {Object.keys(timeEntries).map((date: string) => {
           return (
             <div key={date} className={styles.dayList}>
               <h3 className={styles.dayTitle}>
                 {getDateFormat(date)}{" "}
                 <span className={styles.duration}>
                   {transformSecondsToHumanReadableString(
-                    timeEntriesByDate[date].data.total_duration,
+                    timeEntries[date].data.total_duration,
                   )}
                 </span>
               </h3>
-              {timeEntriesByDate[date].time_entries.map(
-                (timeEntry: TimeEntry) => (
-                  <TimeEntriesListItem
-                    key={`timer-time-entry-${timeEntry.id}`}
-                    timeEntry={timeEntry}
-                  />
-                ),
-              )}
+              {timeEntries[date].time_entries.map((timeEntry: TimeEntry) => (
+                <TimeEntriesListItem
+                  key={`timer-time-entry-${timeEntry.id}`}
+                  timeEntry={timeEntry}
+                />
+              ))}
             </div>
           );
         })}
