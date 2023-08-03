@@ -16,6 +16,7 @@ import { Project } from "@/api/types/projects";
 import { TimeEntry } from "@/api/types/time-entries";
 import Button from "@/components/Buttons/Base";
 import Input from "@/components/Inputs/Base";
+import { useFetchArray } from "@/hooks/useQueryBase";
 import { useNavigationStore } from "@/stores/navigation";
 import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
@@ -40,13 +41,8 @@ export default function TimesheetsGenerator(props: TimesheetsGeneratorProps) {
     setSelectedFolders([]);
   }, [selectedProject]);
 
-  const query = useQuery({
-    queryKey: [endpoints.getProjects],
-    queryFn: () => getPage(endpoints.getProjects),
-  });
-
-  let projects: Project[] = [];
-  if (query.data?.success) projects = query.data?.data;
+  const { data: projectsData } = useFetchArray<Project>(endpoints.getProjects);
+  const projects: Project[] = projectsData?.success ? projectsData.data : [];
 
   const foldersQuery = useQuery({
     queryKey: [endpoints.getFoldersFromProject(selectedProject?.id || -1)],

@@ -1,12 +1,10 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-
 import endpoints from "@/api/endpoints";
-import getPage from "@/api/getPage";
 import { Project } from "@/api/types/projects";
 import { Header } from "@/components/Shared/Header";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
+import { useFetchArray } from "@/hooks/useQueryBase";
 import { ProjectCreateCard } from "@/lib/Projects/Cards/Create";
 import ProjectsLargeCard from "@/lib/Projects/Cards/Large";
 import { useNavigationStore } from "@/stores/navigation";
@@ -19,13 +17,8 @@ export default function AppDashboard(props: AppDashboardProps) {
   const set = useNavigationStore((state) => state.set);
   set({ menuTitle: "Create projects and manage memberships and permissions" });
 
-  const query = useQuery({
-    queryKey: [endpoints.getProjects],
-    queryFn: () => getPage(endpoints.getProjects),
-  });
-
-  let projects: Project[] = [];
-  if (query.data?.success) projects = query.data?.data;
+  const { data: projectsData } = useFetchArray<Project>(endpoints.getProjects);
+  const projects: Project[] = projectsData?.success ? projectsData.data : [];
 
   return (
     <div className={styles.root}>
