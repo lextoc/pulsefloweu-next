@@ -39,7 +39,7 @@ export default function TimeEntryMenu({ timeEntry }: TimeEntryMenuProps) {
 
   const onEdit = (values: Partial<CreateTimeEntry>) => {
     update<{ time_entry: Partial<CreateTimeEntry> }>(
-      endpoints.getTimeEntry(timeEntry.id),
+      endpoints.timeEntries.detail(timeEntry.id),
       {
         time_entry: {
           ...values,
@@ -63,7 +63,7 @@ export default function TimeEntryMenu({ timeEntry }: TimeEntryMenuProps) {
   };
 
   const onDelete = () => {
-    destroy(endpoints.destroyTimeEntry(timeEntry.id)).then((data) => {
+    destroy(endpoints.timeEntries.detail(timeEntry.id)).then((data) => {
       if (data.success) {
         queryClient.invalidateQueries();
         showSnackbar({

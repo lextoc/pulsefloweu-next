@@ -49,11 +49,14 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
   });
 
   const onEdit = (values: Partial<CreateFolder>) => {
-    update<{ folder: Partial<CreateFolder> }>(endpoints.getFolder(folder.id), {
-      folder: {
-        ...values,
+    update<{ folder: Partial<CreateFolder> }>(
+      endpoints.folders.detail(folder.id),
+      {
+        folder: {
+          ...values,
+        },
       },
-    }).then((data) => {
+    ).then((data) => {
       if (data?.errors) {
         showSnackbar({
           message:
@@ -72,7 +75,7 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
 
   const onDelete = () => {
     let projectId = folder.project_id;
-    destroy(endpoints.destroyFolder(folder.id)).then((data) => {
+    destroy(endpoints.folders.detail(folder.id)).then((data) => {
       if (data.success) {
         queryClient.invalidateQueries();
         showSnackbar({

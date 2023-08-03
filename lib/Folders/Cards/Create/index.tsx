@@ -24,7 +24,7 @@ export default function FoldersCreateCard({ project }: FoldersCreateCardProps) {
   const showSnackbar = useSnackbarStore((state) => state.show);
 
   const onSubmit = (values: Omit<CreateFolder, "project_id">) => {
-    create<{ folder: CreateFolder }>(endpoints.createFolder, {
+    create<{ folder: CreateFolder }>(endpoints.folders.main, {
       folder: {
         project_id: project.id,
         ...values,

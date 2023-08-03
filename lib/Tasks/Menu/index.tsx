@@ -49,7 +49,7 @@ export default function TaskMenu({ task }: TaskMenuProps) {
   });
 
   const onEdit = (values: Partial<CreateTask>) => {
-    update<{ task: Partial<CreateTask> }>(endpoints.getTask(task.id), {
+    update<{ task: Partial<CreateTask> }>(endpoints.tasks.detail(task.id), {
       task: {
         ...values,
       },
@@ -72,7 +72,7 @@ export default function TaskMenu({ task }: TaskMenuProps) {
 
   const onDelete = () => {
     let folderId = task.folder_id;
-    destroy(endpoints.destroyTask(task.id)).then((data) => {
+    destroy(endpoints.tasks.detail(task.id)).then((data) => {
       if (data.success) {
         queryClient.invalidateQueries();
         showSnackbar({

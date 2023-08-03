@@ -57,7 +57,7 @@ export default function TasksCard({ task }: TaskCardProps) {
         ...getHeaders(),
       },
     };
-    fetch(endpoints.stopTimeEntries, requestOptions)
+    fetch(endpoints.misc.stopAll, requestOptions)
       .then((response) => {
         return response.json();
       })
@@ -68,7 +68,7 @@ export default function TasksCard({ task }: TaskCardProps) {
         });
       });
     if (isActive) return;
-    create<{ time_entry: CreateTimeEntry }>(endpoints.createTimeEntry, {
+    create<{ time_entry: CreateTimeEntry }>(endpoints.timeEntries.main, {
       time_entry: {
         start_date: dayjs().format(),
         folder_id: task.folder_id,

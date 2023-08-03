@@ -21,7 +21,7 @@ export function ProjectCreateCard(props: ProjectCreateCardProps) {
   const showSnackbar = useSnackbarStore((state) => state.show);
 
   const onSubmit = (values: CreateProject) => {
-    create<{ project: CreateProject }>(endpoints.createProject, {
+    create<{ project: CreateProject }>(endpoints.projects.main, {
       project: values,
     }).then((data) => {
       if (data?.errors) {

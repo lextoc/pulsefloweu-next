@@ -22,10 +22,10 @@ import styles from "./index.module.css";
 dayjs.extend(advancedFormat);
 dayjs.extend(utc);
 
-export interface SideNavigationRunningTimersProps {}
+export interface SideNavigationRunningTimeEntriesProps {}
 
-export default function SideNavigationRunningTimers(
-  props: SideNavigationRunningTimersProps,
+export default function SideNavigationRunningTimeEntries(
+  props: SideNavigationRunningTimeEntriesProps,
 ) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
@@ -41,7 +41,7 @@ export default function SideNavigationRunningTimers(
   }, []);
 
   const { data: timeEntriesData } = useFetchArray<TimeEntryWithTaskName>(
-    endpoints.getRunningTimers,
+    endpoints.misc.runningTimeEntries,
   );
   const timeEntries: TimeEntryWithTaskName[] = timeEntriesData?.success
     ? timeEntriesData.data
@@ -55,7 +55,7 @@ export default function SideNavigationRunningTimers(
         ...getHeaders(),
       },
     };
-    fetch(endpoints.stopTimeEntries, requestOptions)
+    fetch(endpoints.misc.stopAll, requestOptions)
       .then((response) => {
         return response.json();
       })

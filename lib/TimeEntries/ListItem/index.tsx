@@ -51,7 +51,7 @@ export default function TimeEntriesListItem({
         ...getHeaders(),
       },
     };
-    fetch(endpoints.stopTimeEntries, requestOptions)
+    fetch(endpoints.misc.stopAll, requestOptions)
       .then((response) => {
         return response.json();
       })
@@ -62,7 +62,7 @@ export default function TimeEntriesListItem({
         });
       });
     if (!timeEntry.end_date) return;
-    create<{ time_entry: CreateTimeEntry }>(endpoints.createTimeEntry, {
+    create<{ time_entry: CreateTimeEntry }>(endpoints.timeEntries.main, {
       time_entry: {
         start_date: dayjs().format(),
         folder_id: timeEntry.folder_id,
@@ -101,14 +101,8 @@ export default function TimeEntriesListItem({
     JSON.stringify(dates) !== JSON.stringify(form.getTransformedValues());
 
   useEffect(() => {
-    let newStartDate = setHoursAndMinutes(
-      dayjs(dates.date),
-      dates.startDate,
-    );
-    let newEndDate = setHoursAndMinutes(
-      dayjs(dates.date),
-      dates.endDate,
-    );
+    let newStartDate = setHoursAndMinutes(dayjs(dates.date), dates.startDate);
+    let newEndDate = setHoursAndMinutes(dayjs(dates.date), dates.endDate);
     if (
       !dayjs(timeEntry.start_date).isValid() ||
       !dayjs(newStartDate).isValid() ||
@@ -146,7 +140,7 @@ export default function TimeEntriesListItem({
 
   const updateDate = (startDate: string, endDate: string) => {
     update<{ time_entry: Partial<TimeEntry> }>(
-      endpoints.getTimeEntry(timeEntry.id),
+      endpoints.timeEntries.detail(timeEntry.id),
       {
         time_entry: {
           start_date: startDate,

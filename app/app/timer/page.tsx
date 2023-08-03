@@ -19,14 +19,14 @@ import { useNavigationStore } from "@/stores/navigation";
 import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
 import styles from "./page.module.css";
-import TimersTask from "./Task";
+import TimerTask from "./Task";
 
 dayjs.extend(advancedFormat);
 dayjs.extend(utc);
 
-export interface AppTimersProps {}
+export interface AppTimerProps {}
 
-export default function AppTimers(props: AppTimersProps) {
+export default function AppTimer(props: AppTimerProps) {
   const set = useNavigationStore((state) => state.set);
   set({ menuTitle: "Start timing your tasks" });
 
@@ -34,20 +34,16 @@ export default function AppTimers(props: AppTimersProps) {
   const current = new URLSearchParams(Array.from(searchParams.entries()));
   const page = current.get("page");
 
-  const { data: tasksData } = useFetchArray<Task>(endpoints.getTasks);
+  const { data: tasksData } = useFetchArray<Task>(endpoints.tasks.main);
   const tasks: Task[] = tasksData?.success ? tasksData.data : [];
 
-  const timeEntriesQuery = useQuery({
-    queryKey: [endpoints.getTimeEntries, page],
-    queryFn: () =>
-      getPage(endpoints.getTimeEntries, {
-        page,
-      }),
-  });
-
-  let timeEntriesByDate: any = {};
-  if (timeEntriesQuery.data?.success)
-    timeEntriesByDate = timeEntriesQuery.data?.data;
+  const { data: timeEntriesData } = useFetchArray<TimeEntry>(
+    endpoints.timeEntries.main,
+    { page },
+  );
+  const timeEntries: TimeEntry[] = timeEntriesData?.success
+    ? timeEntriesData.data
+    : [];
 
   const getDateFormat = (date: string) => {
     if (dayjs().isSame(dayjs(date), "day")) return "Today";
@@ -70,7 +66,7 @@ export default function AppTimers(props: AppTimersProps) {
           <div className={styles.thirdSidebar} />
           <h4 className={styles.yourTasks}>Your recently used tasks</h4>
           {tasks.map((task) => (
-            <TimersTask key={`timers-task-${task.id}`} task={task} />
+            <TimerTask key={`timers-task-${task.id}`} task={task} />
           ))}
         </div>
         <PaddingContainer withBottomGap>
@@ -79,29 +75,27 @@ export default function AppTimers(props: AppTimersProps) {
             a time entry. Also (eventually) put role dropdown here somewhere.
           </p> */}
           <h2>Your time entries</h2>
-          {Object.keys(timeEntriesByDate).map((date) => {
+          {Object.keys(timeEntries).map((date) => {
             return (
               <div key={date} className={styles.dayList}>
                 <h3>
                   {getDateFormat(date)}{" "}
                   <span className={styles.duration}>
                     {transformSecondsToHumanReadableString(
-                      timeEntriesByDate[date].data.total_duration,
+                      timeEntries[date].data.total_duration,
                     )}
                   </span>
                 </h3>
-                {timeEntriesByDate[date].time_entries.map(
-                  (timeEntry: TimeEntry) => (
-                    <TimeEntriesListItem
-                      key={`timers-time-entry-${timeEntry.id}`}
-                      timeEntry={timeEntry}
-                    />
-                  ),
-                )}
+                {timeEntries[date].time_entries.map((timeEntry: TimeEntry) => (
+                  <TimeEntriesListItem
+                    key={`timers-time-entry-${timeEntry.id}`}
+                    timeEntry={timeEntry}
+                  />
+                ))}
               </div>
             );
           })}
-          <Pagination {...timeEntriesQuery.data?.meta} />
+          <Pagination {...timeEntriesData?.meta} />
         </PaddingContainer>
       </div>
     </div>

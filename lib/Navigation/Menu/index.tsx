@@ -42,7 +42,7 @@ export default function NavigationMenu(props: NavigationMenuProps) {
 
   const onSignOut = () => {
     clearCookies();
-    queryClient.invalidateQueries([endpoints.authValidateToken]).then(() => {
+    queryClient.invalidateQueries([endpoints.auth.validateToken]).then(() => {
       push("/");
     });
   };
@@ -68,7 +68,7 @@ export default function NavigationMenu(props: NavigationMenuProps) {
     formData.append("username", `${values.username || user?.username}`);
     if (file) formData.append("avatar", file);
 
-    update<FormData>(endpoints.auth, formData).then((data) => {
+    update<FormData>(endpoints.auth.main, formData).then((data) => {
       if (data?.errors || data?.error) {
         showSnackbar({
           message: data?.errors?.join(" ") || "Something went wrong",

@@ -26,8 +26,8 @@ export default function ProjectDetail({ projectId }: IProjectDetailProps) {
   if (!projectId) return null;
 
   const query = useQuery({
-    queryKey: [endpoints.getProject(projectId)],
-    queryFn: () => getPage(endpoints.getProject(projectId)),
+    queryKey: [endpoints.projects.detail(projectId)],
+    queryFn: () => getPage(endpoints.projects.detail(projectId)),
   });
 
   let project: Project | null = null;
@@ -41,7 +41,7 @@ export default function ProjectDetail({ projectId }: IProjectDetailProps) {
   const page = current.get("page");
 
   const { data: foldersData } = useFetchArray<Folder>(
-    endpoints.getFoldersFromProject(projectId),
+    endpoints.projects.folders(projectId),
     { page },
   );
   const folders: Folder[] = foldersData?.success ? foldersData.data : [];

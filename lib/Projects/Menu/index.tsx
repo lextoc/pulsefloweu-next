@@ -51,7 +51,7 @@ export default function ProjectMenu({ project, white }: ProjectMenuProps) {
 
   const onEdit = (values: Partial<CreateProject>) => {
     update<{ project: Partial<CreateProject> }>(
-      endpoints.getProject(project.id),
+      endpoints.projects.detail(project.id),
       {
         project: {
           ...values,
@@ -75,7 +75,7 @@ export default function ProjectMenu({ project, white }: ProjectMenuProps) {
   };
 
   const onDelete = () => {
-    destroy(endpoints.destroyProject(project.id)).then((data) => {
+    destroy(endpoints.projects.detail(project.id)).then((data) => {
       if (data.success) {
         queryClient.invalidateQueries();
         showSnackbar({

@@ -35,7 +35,7 @@ export default function LoginForm(props: LoginFormProps) {
     let accessToken: string | null = null;
     let client: string | null = null;
 
-    fetch(endpoints.authSignIn, requestOptions)
+    fetch(endpoints.auth.signIn, requestOptions)
       .then((response) => {
         accessToken = response.headers.get("access-token");
         client = response.headers.get("client");
@@ -56,7 +56,7 @@ export default function LoginForm(props: LoginFormProps) {
             uid: data.data.uid,
           });
           queryClient
-            .invalidateQueries([endpoints.authValidateToken])
+            .invalidateQueries([endpoints.auth.validateToken])
             .then(() => {
               push("/app/dashboard");
             });

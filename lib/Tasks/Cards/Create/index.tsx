@@ -24,7 +24,7 @@ export default function TasksCreateCard({ folder }: TasksCreateCardProps) {
   const showSnackbar = useSnackbarStore((state) => state.show);
 
   const onSubmit = (values: Omit<CreateTask, "folder_id">) => {
-    create<{ task: CreateTask }>(endpoints.createTask, {
+    create<{ task: CreateTask }>(endpoints.tasks.main, {
       task: {
         folder_id: folder.id,
         ...values,
@@ -38,9 +38,7 @@ export default function TasksCreateCard({ folder }: TasksCreateCardProps) {
         });
       } else {
         form.reset();
-        queryClient.invalidateQueries([
-          endpoints.getTasksFromFolder(folder.id!),
-        ]);
+        queryClient.invalidateQueries([endpoints.folders.tasks(folder.id!)]);
         showSnackbar({
           message: "Task has been created",
         });

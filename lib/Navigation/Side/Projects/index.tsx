@@ -12,7 +12,9 @@ export interface SideNavigationProjectsProps {}
 export default function SideNavigationProjects(
   props: SideNavigationProjectsProps,
 ) {
-  const { data: projectsData } = useFetchArray<Project>(endpoints.getProjects);
+  const { data: projectsData } = useFetchArray<Project>(
+    endpoints.projects.main,
+  );
   const projects: Project[] = projectsData?.success ? projectsData.data : [];
 
   if (!projects.length) return null;

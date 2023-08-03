@@ -41,11 +41,13 @@ export default function TimesheetsGenerator(props: TimesheetsGeneratorProps) {
     setSelectedFolders([]);
   }, [selectedProject]);
 
-  const { data: projectsData } = useFetchArray<Project>(endpoints.getProjects);
+  const { data: projectsData } = useFetchArray<Project>(
+    endpoints.projects.main,
+  );
   const projects: Project[] = projectsData?.success ? projectsData.data : [];
 
   const { data: foldersData } = useFetchArray<Folder>(
-    endpoints.getFoldersFromProject(selectedProject?.id || -1),
+    endpoints.projects.folders(selectedProject?.id || -1),
   );
   const folders: Folder[] = foldersData?.success ? foldersData.data : [];
 
@@ -83,8 +85,8 @@ export default function TimesheetsGenerator(props: TimesheetsGeneratorProps) {
     return fetch(
       `${
         per === "day"
-          ? endpoints.getTimesheetsPerDay
-          : endpoints.getTimesheetsPerWeek
+          ? endpoints.misc.timesheetsPerDay
+          : endpoints.misc.timesheetsPerWeek
       }${`?${queryString.stringify({
         ["folder_ids[]"]: selectedFolders,
         from: form.getInputProps("from").value,

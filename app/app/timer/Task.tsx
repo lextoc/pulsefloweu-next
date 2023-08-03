@@ -19,14 +19,14 @@ import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./Task.module.css";
 
-export interface TimersTaskProps {
+export interface TimerTaskProps {
   task: Task;
 }
 
 dayjs.extend(advancedFormat);
 dayjs.extend(utc);
 
-export default function TimersTask({ task }: TimersTaskProps) {
+export default function TimerTask({ task }: TimerTaskProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
@@ -42,7 +42,7 @@ export default function TimersTask({ task }: TimersTaskProps) {
         ...getHeaders(),
       },
     };
-    fetch(endpoints.stopTimeEntries, requestOptions)
+    fetch(endpoints.misc.stopAll, requestOptions)
       .then((response) => {
         return response.json();
       })
@@ -53,7 +53,7 @@ export default function TimersTask({ task }: TimersTaskProps) {
         });
       });
     if (task.active_time_entries.length) return;
-    create<{ time_entry: CreateTimeEntry }>(endpoints.createTimeEntry, {
+    create<{ time_entry: CreateTimeEntry }>(endpoints.timeEntries.main, {
       time_entry: {
         start_date: dayjs().format(),
         folder_id: task.folder_id,

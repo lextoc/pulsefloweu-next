@@ -35,7 +35,7 @@ export default function RegisterForm(props: RegisterFormProps) {
     let accessToken: string | null = null;
     let client: string | null = null;
 
-    fetch(endpoints.auth, requestOptions)
+    fetch(endpoints.auth.main, requestOptions)
       .then((response) => {
         accessToken = response.headers.get("access-token");
         client = response.headers.get("client");
@@ -54,7 +54,7 @@ export default function RegisterForm(props: RegisterFormProps) {
             client: client!,
             uid: data.data.uid,
           });
-          queryClient.invalidateQueries([endpoints.authValidateToken]);
+          queryClient.invalidateQueries([endpoints.auth.validateToken]);
           push("/app/dashboard");
         }
       });

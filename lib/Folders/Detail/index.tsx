@@ -39,8 +39,8 @@ export default function FoldersDetail({ folderId }: FoldersDetailProps) {
    * Fetch folder
    */
   const query = useQuery({
-    queryKey: [endpoints.getFolder(folderId!)],
-    queryFn: () => getPage(endpoints.getFolder(folderId!)),
+    queryKey: [endpoints.folders.detail(folderId!)],
+    queryFn: () => getPage(endpoints.folders.detail(folderId!)),
   });
 
   let folder: Folder | null = null;
@@ -53,8 +53,8 @@ export default function FoldersDetail({ folderId }: FoldersDetailProps) {
    * Fetch project
    */
   const projectQuery = useQuery({
-    queryKey: [endpoints.getProject(folder?.project_id || -1)],
-    queryFn: () => getPage(endpoints.getProject(folder?.project_id || -1)),
+    queryKey: [endpoints.projects.detail(folder?.project_id || -1)],
+    queryFn: () => getPage(endpoints.projects.detail(folder?.project_id || -1)),
   });
 
   let project: Project | null = null;
@@ -64,7 +64,7 @@ export default function FoldersDetail({ folderId }: FoldersDetailProps) {
    * Fetch tasks
    */
   const { data: tasksData } = useFetchArray<Task>(
-    endpoints.getTasksFromFolder(folder?.id || -1),
+    endpoints.folders.tasks(folder?.id || -1),
     { page },
   );
   const tasks: Task[] = tasksData?.success ? tasksData.data : [];

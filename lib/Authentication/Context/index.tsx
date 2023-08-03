@@ -22,7 +22,7 @@ export function AuthenticationProvider({
   initialUser,
 }: AuthenticationProviderProps) {
   const query = useQuery({
-    queryKey: [endpoints.authValidateToken],
+    queryKey: [endpoints.auth.validateToken],
     queryFn: () => validateToken(getHeaders()),
     initialData: { success: true, data: initialUser },
   });

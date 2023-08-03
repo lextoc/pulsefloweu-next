@@ -41,7 +41,7 @@ export function Onboarding(props: OnboardingProps) {
 
   const onSignOut = () => {
     clearCookies();
-    queryClient.invalidateQueries([endpoints.authValidateToken]).then(() => {
+    queryClient.invalidateQueries([endpoints.auth.validateToken]).then(() => {
       push("/");
     });
   };

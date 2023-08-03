@@ -34,8 +34,8 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
   /** * Fetch task
    */
   const query = useQuery({
-    queryKey: [endpoints.getTask(taskId!)],
-    queryFn: () => getPage(endpoints.getTask(taskId!)),
+    queryKey: [endpoints.tasks.detail(taskId!)],
+    queryFn: () => getPage(endpoints.tasks.detail(taskId!)),
   });
 
   let task: Task | null = null;
@@ -45,9 +45,9 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
    * Fetch time entries
    */
   const timeEntriesQuery = useQuery({
-    queryKey: [endpoints.getTimeEntriesFromTask(taskId!), page],
+    queryKey: [endpoints.tasks.timeEntries(taskId!), page],
     queryFn: () =>
-      getPage(endpoints.getTimeEntriesFromTask(taskId!), {
+      getPage(endpoints.tasks.timeEntries(taskId!), {
         page,
       }),
   });
@@ -118,7 +118,7 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
               {timeEntriesByDate[date].time_entries.map(
                 (timeEntry: TimeEntry) => (
                   <TimeEntriesListItem
-                    key={`timers-time-entry-${timeEntry.id}`}
+                    key={`timer-time-entry-${timeEntry.id}`}
                     timeEntry={timeEntry}
                   />
                 ),
