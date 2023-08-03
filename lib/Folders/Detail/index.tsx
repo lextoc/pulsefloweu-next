@@ -15,6 +15,7 @@ import { Project } from "@/api/types/projects";
 import { Task } from "@/api/types/tasks";
 import Pagination from "@/components/Navigation/Pagination";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
+import { useFetchArray } from "@/hooks/useQueryBase";
 import FolderMenu from "@/lib/Folders/Menu";
 import TasksCard from "@/lib/Tasks/Cards/Base";
 import TasksCreateCard from "@/lib/Tasks/Cards/Create";
@@ -62,16 +63,11 @@ export default function FoldersDetail({ folderId }: FoldersDetailProps) {
   /**
    * Fetch tasks
    */
-  const taskQuery = useQuery({
-    queryKey: [endpoints.getTasksFromFolder(folder?.id || -1), page],
-    queryFn: () =>
-      getPage(endpoints.getTasksFromFolder(folder?.id || -1), {
-        page,
-      }),
-  });
-
-  let tasks: Task[] = [];
-  if (taskQuery.data?.success) tasks = taskQuery.data?.data;
+  const { data: tasksData } = useFetchArray<Task>(
+    endpoints.getTasksFromFolder(folder?.id || -1),
+    { page },
+  );
+  const tasks: Task[] = tasksData?.success ? tasksData.data : [];
 
   if (!folder) return null;
 
@@ -111,7 +107,7 @@ export default function FoldersDetail({ folderId }: FoldersDetailProps) {
           <TasksCard key={task.id} task={task} />
         ))}
       </div>
-      <Pagination {...taskQuery.data?.meta} />
+      <Pagination {...tasksData?.meta} />
     </PaddingContainer>
   );
 }

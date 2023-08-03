@@ -13,6 +13,7 @@ import { TimeEntry } from "@/api/types/time-entries";
 import Pagination from "@/components/Navigation/Pagination";
 import { Header } from "@/components/Shared/Header";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
+import { useFetchArray } from "@/hooks/useQueryBase";
 import TimeEntriesListItem from "@/lib/TimeEntries/ListItem";
 import { useNavigationStore } from "@/stores/navigation";
 import { transformSecondsToHumanReadableString } from "@/utils/helpers";
@@ -33,13 +34,8 @@ export default function AppTimers(props: AppTimersProps) {
   const current = new URLSearchParams(Array.from(searchParams.entries()));
   const page = current.get("page");
 
-  const tasksQuery = useQuery({
-    queryKey: [endpoints.getTasks],
-    queryFn: () => getPage(endpoints.getTasks),
-  });
-
-  let tasks: Task[] = [];
-  if (tasksQuery.data?.success) tasks = tasksQuery.data?.data;
+  const { data: tasksData } = useFetchArray<Task>(endpoints.getTasks);
+  const tasks: Task[] = tasksData?.success ? tasksData.data : [];
 
   const timeEntriesQuery = useQuery({
     queryKey: [endpoints.getTimeEntries, page],

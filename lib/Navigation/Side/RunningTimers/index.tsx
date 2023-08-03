@@ -13,6 +13,7 @@ import { getHeaders } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { TimeEntryWithTaskName } from "@/api/types/time-entries";
+import { useFetchArray } from "@/hooks/useQueryBase";
 import { useSnackbarStore } from "@/stores/snackbar";
 import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
@@ -39,13 +40,12 @@ export default function SideNavigationRunningTimers(
     };
   }, []);
 
-  const query = useQuery({
-    queryKey: [endpoints.getRunningTimers],
-    queryFn: () => getPage(endpoints.getRunningTimers),
-  });
-
-  let timeEntries: TimeEntryWithTaskName[] = [];
-  if (query.data?.success) timeEntries = query.data?.data;
+  const { data: timeEntriesData } = useFetchArray<TimeEntryWithTaskName>(
+    endpoints.getRunningTimers,
+  );
+  const timeEntries: TimeEntryWithTaskName[] = timeEntriesData?.success
+    ? timeEntriesData.data
+    : [];
 
   const onClick = () => {
     const requestOptions = {

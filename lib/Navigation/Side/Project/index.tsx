@@ -1,13 +1,12 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import endpoints from "@/api/endpoints";
-import getPage from "@/api/getPage";
 import { Folder } from "@/api/types/folders";
 import { Project } from "@/api/types/projects";
+import { useFetchArray } from "@/hooks/useQueryBase";
 
 import styles from "./index.module.css";
 
@@ -20,13 +19,10 @@ export default function SideNavigationProject({
 }: SideNavigationProjectProps) {
   const pathname = usePathname();
 
-  const query = useQuery({
-    queryKey: [endpoints.getFoldersFromProject(project.id!)],
-    queryFn: () => getPage(endpoints.getFoldersFromProject(project.id!)),
-  });
-
-  let folders: Folder[] = [];
-  if (query.data?.success) folders = query.data?.data;
+  const { data: foldersData } = useFetchArray<Folder>(
+    endpoints.getFoldersFromProject(project.id || -1),
+  );
+  const folders: Folder[] = foldersData?.success ? foldersData.data : [];
 
   return (
     <div className={styles.root}>

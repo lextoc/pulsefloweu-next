@@ -44,14 +44,10 @@ export default function TimesheetsGenerator(props: TimesheetsGeneratorProps) {
   const { data: projectsData } = useFetchArray<Project>(endpoints.getProjects);
   const projects: Project[] = projectsData?.success ? projectsData.data : [];
 
-  const foldersQuery = useQuery({
-    queryKey: [endpoints.getFoldersFromProject(selectedProject?.id || -1)],
-    queryFn: () =>
-      getPage(endpoints.getFoldersFromProject(selectedProject?.id || -1)),
-  });
-
-  let folders: Folder[] = [];
-  if (foldersQuery.data?.success) folders = foldersQuery.data?.data;
+  const { data: foldersData } = useFetchArray<Folder>(
+    endpoints.getFoldersFromProject(selectedProject?.id || -1),
+  );
+  const folders: Folder[] = foldersData?.success ? foldersData.data : [];
 
   const form = useForm({
     initialValues: {

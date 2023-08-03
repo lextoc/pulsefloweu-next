@@ -3,12 +3,12 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import styles from "./index.module.css";
 
 export interface PaginationProps {
-  current_page: number;
-  next_page: number | null;
-  per_page: number;
-  prev_page: number | null;
-  total_pages: number;
-  total_count: number;
+  current_page?: number;
+  next_page?: number | null;
+  per_page?: number;
+  prev_page?: number | null;
+  total_pages?: number;
+  total_count?: number;
 }
 
 export default function Pagination({
@@ -32,7 +32,7 @@ export default function Pagination({
     router.push(`${pathname}?${current.toString()}`);
   };
 
-  if (total_count <= per_page) return null;
+  if (!total_count || !per_page || total_count <= per_page) return null;
 
   return (
     <div className={styles.root}>
