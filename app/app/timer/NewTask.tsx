@@ -8,7 +8,7 @@ export default function NewTask(props: NewTaskProps) {
   return (
     <div className={styles.root}>
       <PaddingContainer>
-        <div>hi</div>
+        <div>new task form here</div>
       </PaddingContainer>
     </div>
   );
