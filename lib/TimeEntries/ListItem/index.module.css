@@ -108,6 +108,10 @@
 }
 
 @media (max-width: 40rem) {
+  .root {
+    padding-top: 2rem;
+  }
+
   .left {
     margin-right: 0.5rem;
   }
