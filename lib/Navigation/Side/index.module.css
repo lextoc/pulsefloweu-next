@@ -204,10 +204,12 @@
 
   .mobileOverlay {
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    top: -100vh;
+    right: -100vw;
+    bottom: -100vh;
+    left: -100vw;
+    width: 300vw;
+    height: 300vh;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(1rem);
     z-index: 1;
