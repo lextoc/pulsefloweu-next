@@ -1,3 +1,4 @@
+import { useTimeout } from "@mantine/hooks";
 import Link from "next/link";
 
 import { useNavigationStore } from "@/stores/navigation";
@@ -20,8 +21,14 @@ export default function SideNavigationLink({
 }: SideNavigationLinkProps) {
   const set = useNavigationStore((state) => state.set);
 
+  const { start } = useTimeout(
+    () => set({ shouldToggleMobileMenu: false }),
+    50,
+  );
+
   const onClick = () => {
     set({ shouldToggleMobileMenu: true });
+    start();
   };
 
   return (

@@ -1,3 +1,4 @@
+import { useTimeout } from "@mantine/hooks";
 import {
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
@@ -33,6 +34,11 @@ export default function SideNavigationRunningTimeEntries(
   const [time, setTime] = useState(Date.now());
   const set = useNavigationStore((state) => state.set);
 
+  const { start } = useTimeout(
+    () => set({ shouldToggleMobileMenu: false }),
+    50,
+  );
+
   // For animating timer.
   useEffect(() => {
     const interval = setInterval(() => setTime(Date.now()), 1000);
@@ -62,6 +68,7 @@ export default function SideNavigationRunningTimeEntries(
       })
       .then(() => {
         set({ shouldToggleMobileMenu: true });
+        start();
         queryClient.invalidateQueries();
         showSnackbar({
           message: "Time entry has been updated",

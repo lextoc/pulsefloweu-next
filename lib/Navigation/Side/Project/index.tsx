@@ -1,5 +1,6 @@
 "use client";
 
+import { useTimeout } from "@mantine/hooks";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -25,8 +26,15 @@ export default function SideNavigationProject({
   );
   const folders: Folder[] = foldersData?.success ? foldersData.data : [];
   const set = useNavigationStore((state) => state.set);
+
+  const { start } = useTimeout(
+    () => set({ shouldToggleMobileMenu: false }),
+    50,
+  );
+
   const onLinkClick = () => {
     set({ shouldToggleMobileMenu: true });
+    start();
   };
 
   return (
