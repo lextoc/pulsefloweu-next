@@ -21,8 +21,13 @@ export default function SideNavigation(props: SideNavigationProps) {
   const isMobileMenuOpen = useNavigationStore(
     (state) => state.isMobileMenuOpen,
   );
+  const set = useNavigationStore((state) => state.set);
 
   if (!pathname.startsWith("/app")) return null;
+
+  const onLinkClick = () => {
+    set({ shouldToggleMobileMenu: true });
+  };
 
   return (
     <div
@@ -33,7 +38,7 @@ export default function SideNavigation(props: SideNavigationProps) {
       <div className={styles.secondRoot} />
       <div className={styles.thirdRoot} />
       <div className={styles.logoWrapper}>
-        <Link href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo} onClick={onLinkClick}>
           <Logo small white noLink />
         </Link>
       </div>

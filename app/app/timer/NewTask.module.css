@@ -1,14 +1,26 @@
 .root {
-  background: rgb(var(--light-background));
+  background: linear-gradient(
+    to bottom right,
+    rgba(var(--light-background), 0.2),
+    rgba(var(--light-background), 0.2),
+    rgb(var(--light-background)),
+    rgba(var(--light-background), 0.5)
+  );
 }
 
 .dropdowns {
   margin-top: 0.5rem;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-.dropdowns label {
+.dropdownWrapper {
+  display: flex;
+  margin: 0 1rem 0 0;
+}
+
+.dropdownWrapper label {
   font-size: 0.8rem;
   display: flex;
   align-items: center;
@@ -22,7 +34,6 @@
   font-size: 0.8rem;
   display: flex;
   align-items: center;
-  margin-right: 1rem;
   color: rgba(var(--secondary), 0.9);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -39,4 +50,14 @@
   flex-direction: column;
   max-height: 30rem;
   overflow-y: auto;
+}
+
+@media (max-width: 1199px) {
+  .dropdownWrapper {
+    margin: 0 auto;
+  }
+
+  .dropdown {
+    padding: 1rem;
+  }
 }

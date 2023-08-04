@@ -7,6 +7,7 @@ import endpoints from "@/api/endpoints";
 import { Folder } from "@/api/types/folders";
 import { Project } from "@/api/types/projects";
 import { useFetchArray } from "@/hooks/useQueryBase";
+import { useNavigationStore } from "@/stores/navigation";
 
 import styles from "./index.module.css";
 
@@ -23,6 +24,10 @@ export default function SideNavigationProject({
     endpoints.projects.folders(project.id || -1),
   );
   const folders: Folder[] = foldersData?.success ? foldersData.data : [];
+  const set = useNavigationStore((state) => state.set);
+  const onLinkClick = () => {
+    set({ shouldToggleMobileMenu: true });
+  };
 
   return (
     <div className={styles.root}>
@@ -31,6 +36,7 @@ export default function SideNavigationProject({
         className={`${styles.link} ${
           pathname === `/app/projects/${project.id}` ? styles.linkActive : ""
         }`}
+        onClick={onLinkClick}
       >
         <div className={`${styles.inner} break-word`}>
           <strong>{project.name}</strong>
@@ -41,15 +47,14 @@ export default function SideNavigationProject({
           <Link
             key={folder.id}
             href={`/app/projects/${folder.project_id}/folders/${folder.id}`}
-            className={`${styles.folderLink}
-          ${
-            pathname.startsWith(
-              `/app/projects/${folder.project_id}/folders/${folder.id}`,
-            ) || pathname.startsWith(`/app/folders/${folder.id}`)
-              ? styles.folderLinkActive
-              : ""
-          }
-        `}
+            className={`${styles.folderLink} ${
+              pathname.startsWith(
+                `/app/projects/${folder.project_id}/folders/${folder.id}`,
+              ) || pathname.startsWith(`/app/folders/${folder.id}`)
+                ? styles.folderLinkActive
+                : ""
+            }`}
+            onClick={onLinkClick}
           >
             <div className={`${styles.inner} break-word`}>{folder.name}</div>
           </Link>

@@ -149,3 +149,9 @@
 .right {
   width: 100%;
 }
+
+@media (max-width: 1199px) {
+  .sidebar {
+    display: none;
+  }
+}

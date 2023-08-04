@@ -1,5 +1,6 @@
 .root {
   display: flex;
+  flex-wrap: wrap;
   padding: 0.75rem 1.5rem;
   border-bottom: 0.15rem solid rgba(var(--secondary-bright), 0.1);
   color: rgba(var(--secondary), 0.8);
@@ -73,6 +74,9 @@
   margin-left: auto;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 100%;
 }
 
 .nameLink {
@@ -101,4 +105,16 @@
 .playIcon {
   font-size: 1.25rem;
   height: 1.25rem;
+}
+
+@media (max-width: 40rem) {
+  .left {
+    margin-right: 0.5rem;
+  }
+
+  .input,
+  .separator,
+  .inputLastTime {
+    display: none;
+  }
 }

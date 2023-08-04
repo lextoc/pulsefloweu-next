@@ -14,6 +14,7 @@ import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { TimeEntryWithTaskName } from "@/api/types/time-entries";
 import { useFetchArray } from "@/hooks/useQueryBase";
+import { useNavigationStore } from "@/stores/navigation";
 import { useSnackbarStore } from "@/stores/snackbar";
 import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
@@ -29,8 +30,8 @@ export default function SideNavigationRunningTimeEntries(
 ) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
-
   const [time, setTime] = useState(Date.now());
+  const set = useNavigationStore((state) => state.set);
 
   // For animating timer.
   useEffect(() => {
@@ -60,6 +61,7 @@ export default function SideNavigationRunningTimeEntries(
         return response.json();
       })
       .then(() => {
+        set({ shouldToggleMobileMenu: true });
         queryClient.invalidateQueries();
         showSnackbar({
           message: "Time entry has been updated",
@@ -78,6 +80,7 @@ export default function SideNavigationRunningTimeEntries(
           <Link
             href={`/app/folders/${timeEntry.folder_id}/tasks/${timeEntry.task_id}`}
             className={styles.left}
+            onClick={() => set({ shouldToggleMobileMenu: true })}
           >
             <div className={styles.name}>{timeEntry.task_name}</div>
             <div className={styles.timer}>

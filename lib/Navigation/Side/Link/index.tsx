@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { useNavigationStore } from "@/stores/navigation";
+
 import { LinkActive } from "../LinkActive";
 import styles from "./index.module.css";
 
@@ -16,8 +18,14 @@ export default function SideNavigationLink({
   sub,
   wip,
 }: SideNavigationLinkProps) {
+  const set = useNavigationStore((state) => state.set);
+
+  const onClick = () => {
+    set({ shouldToggleMobileMenu: true });
+  };
+
   return (
-    <Link href={href} className={styles.root}>
+    <Link href={href} className={styles.root} onClick={() => onClick()}>
       <LinkActive href={href} />
       <div className={styles.inner}>
         <strong>

@@ -225,6 +225,7 @@ export default function TimeEntriesListItem({
         />
         <span className={styles.separator}>–</span>
         <Input
+          className={styles.inputLastTime}
           type="time"
           transparent
           small

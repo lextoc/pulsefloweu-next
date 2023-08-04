@@ -13,6 +13,7 @@ export interface InputProps
   inverted?: boolean;
   transparent?: boolean;
   small?: boolean;
+  main?: boolean;
 }
 
 export default function Input({
@@ -22,6 +23,7 @@ export default function Input({
   transparent,
   small,
   className,
+  main,
   ...props
 }: InputProps) {
   const id = useId();
@@ -41,7 +43,7 @@ export default function Input({
           type === "checkbox" || type === "radio" ? styles.checkbox : ""
         } ${inverted ? styles.inverted : ""} ${
           transparent ? styles.transparent : ""
-        } ${small ? styles.small : ""} ${className}`}
+        } ${small ? styles.small : ""} ${className || ""}`}
         type={type}
         {...props}
       />
