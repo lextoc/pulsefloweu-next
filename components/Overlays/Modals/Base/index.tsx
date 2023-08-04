@@ -44,7 +44,7 @@ export default function Modal({ isOpen, close, children }: ModalProps) {
           style={customStyles}
         >
           <button className={styles.closeButton} onClick={() => close()}>
-            <IconX />
+            <IconX size="1rem" />
           </button>
           {isOpen && <>{children}</>}
         </ReactModal>,

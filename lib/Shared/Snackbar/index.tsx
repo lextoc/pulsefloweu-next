@@ -42,7 +42,7 @@ export default function Snackbar(props: SnackbarProps) {
         onClick={hide}
       >
         <span>{message}</span>
-        <IconX />
+        <IconX size="1rem" />
       </div>
     </div>
   );

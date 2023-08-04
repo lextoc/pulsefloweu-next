@@ -151,7 +151,7 @@ export default function NewTask(props: NewTaskProps) {
                           (project) => project.id === selectedProjectId,
                         )?.name
                       : "Select project"}
-                    <IconCaretDown />
+                    <IconCaretDown size="1rem" />
                   </div>
                 }
               />
@@ -180,7 +180,7 @@ export default function NewTask(props: NewTaskProps) {
                       ? folders.find((folder) => folder.id === selectedFolderId)
                           ?.name
                       : "Select folder"}
-                    <IconCaretDown />
+                    <IconCaretDown size="1rem" />
                   </div>
                 }
               />

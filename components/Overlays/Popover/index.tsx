@@ -44,6 +44,7 @@ export default function ({ content, white, button, id }: PopoverProps) {
           <IconDotsVertical
             className={styles.dots}
             color={white ? "white" : "rgb(6, 31, 54)"}
+            size="1rem"
           />
         </button>
       )}

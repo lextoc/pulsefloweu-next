@@ -134,13 +134,13 @@ export default function NavigationMenu(props: NavigationMenuProps) {
               onClick={() => history.back()}
               type="submit"
             >
-              <IconChevronLeft />
+              <IconChevronLeft size="1rem" />
             </button>
             {menuTitle}
           </div>
         </div>
         <button className={styles.menu} onClick={onMobileMenuClick}>
-          <IconMenu2 color="white" />
+          <IconMenu2 size="1rem" color="white" />
         </button>
         <div className={styles.account}>
           {user?.email && (
