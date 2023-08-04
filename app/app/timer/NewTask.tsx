@@ -4,7 +4,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
-import { useState } from "react";
+import { useId, useState } from "react";
 
 import { getHeaders } from "@/api/cookies";
 import create from "@/api/create";
@@ -64,7 +64,7 @@ export default function NewTask(props: NewTaskProps) {
         ...values,
       },
     }).then((data) => {
-      const taskId = data?.data.id
+      const taskId = data?.data.id;
       const requestOptions = {
         method: "POST",
         headers: {
@@ -113,6 +113,9 @@ export default function NewTask(props: NewTaskProps) {
     },
   });
 
+  const projectId = useId();
+  const folderId = useId();
+
   return (
     <div className={styles.root}>
       <PaddingContainer>
@@ -123,7 +126,9 @@ export default function NewTask(props: NewTaskProps) {
             {...form.getInputProps("name")}
           />
           <div className={styles.dropdowns}>
+            <label htmlFor={projectId}>Project:</label>
             <Popover
+              id={projectId}
               content={
                 <div className={styles.dropdownButtons}>
                   {projects.map((project) => (
@@ -148,7 +153,9 @@ export default function NewTask(props: NewTaskProps) {
                 </div>
               }
             />
+            <label htmlFor={folderId}>Folder:</label>
             <Popover
+              id={folderId}
               content={
                 <div className={styles.dropdownButtons}>
                   {folders.map((folder) => (

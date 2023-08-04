@@ -35,4 +35,5 @@
 
 .blankButton {
   font: inherit;
+  cursor: pointer;
 }

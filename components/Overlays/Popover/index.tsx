@@ -8,9 +8,10 @@ export interface PopoverProps {
   content: React.ReactNode;
   white?: boolean;
   button?: React.ReactNode;
+  id?: string;
 }
 
-export default function ({ content, white, button }: PopoverProps) {
+export default function ({ content, white, button, id }: PopoverProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <Popover
@@ -26,13 +27,15 @@ export default function ({ content, white, button }: PopoverProps) {
     >
       {button ? (
         <button
-          className={styles.blankButon}
+          id={id}
+          className={styles.blankButton}
           onClick={() => setIsOpen(!isOpen)}
         >
           {button}
         </button>
       ) : (
         <button
+          id={id}
           className={`${styles.menuButton} ${
             white ? styles.menuButtonWhite : ""
           }`}
