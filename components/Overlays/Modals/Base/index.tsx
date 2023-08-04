@@ -28,6 +28,7 @@ const customStyles = {
     border: 0,
     boxShadow: "0 0.5rem 5rem rgba(var(--secondary), 0.15)",
     width: "36rem",
+    maxWidth: "100%",
     borderRadius: "var(--border-radius)",
     maxHeight: "90vh",
   },
