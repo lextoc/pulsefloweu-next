@@ -115,7 +115,7 @@ export default function NavigationMenu(props: NavigationMenuProps) {
     if (!shouldToggleMobileMenu) return;
     setTimeout(() => {
       set({ isMobileMenuOpen: !isMobileMenuOpen });
-    }, 0); // fixes zustand error (batches updates together otherwise)
+    }, 10); // fixes zustand error (batches updates together otherwise)
   }, [shouldToggleMobileMenu]);
 
   const onMobileMenuClick = () => {

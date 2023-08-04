@@ -39,7 +39,9 @@ export default function AppDashboard(props: AppDashboardProps) {
           </div>
           <div className={styles.create}>
             <h2>Create project</h2>
-            <ProjectCreateCard />
+            <div className="cards">
+              <ProjectCreateCard />
+            </div>
           </div>
         </div>
       </PaddingContainer>
