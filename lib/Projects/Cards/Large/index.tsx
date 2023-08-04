@@ -33,7 +33,7 @@ export default function ProjectsLargeCard({ project }: ProjectsLargeCardProps) {
       <div className={styles.content}>
         <ul>
           {folders.map((folder) => (
-            <li>
+            <li key={folder.id}>
               <Link
                 className={styles.folderLink}
                 href={`/app/projects/${project.id}/folders/${folder.id}`}

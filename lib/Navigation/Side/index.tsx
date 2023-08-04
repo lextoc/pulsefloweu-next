@@ -7,6 +7,7 @@ import Logo from "@/components/Shared/Logo";
 import SideNavigationLink from "@/lib/Navigation/Side/Link";
 import SideNavigationProjects from "@/lib/Navigation/Side/Projects";
 import SideNavigationRunningTimeEntries from "@/lib/Navigation/Side/RunningTimeEntries";
+import { useNavigationStore } from "@/stores/navigation";
 
 import styles from "./index.module.css";
 
@@ -14,11 +15,21 @@ export interface SideNavigationProps {}
 
 export default function SideNavigation(props: SideNavigationProps) {
   const pathname = usePathname();
+  const shouldToggleMobileMenu = useNavigationStore(
+    (state) => state.shouldToggleMobileMenu,
+  );
+  const isMobileMenuOpen = useNavigationStore(
+    (state) => state.isMobileMenuOpen,
+  );
 
   if (!pathname.startsWith("/app")) return null;
 
   return (
-    <div className={styles.root}>
+    <div
+      className={`${styles.root} ${
+        shouldToggleMobileMenu ? styles.moveOut : ""
+      } ${isMobileMenuOpen ? styles.moveIn : ""}`}
+    >
       <div className={styles.secondRoot} />
       <div className={styles.thirdRoot} />
       <div className={styles.logoWrapper}>

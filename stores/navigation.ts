@@ -2,6 +2,8 @@ import { create } from "zustand";
 
 interface NavigationData {
   menuTitle?: string;
+  shouldToggleMobileMenu?: boolean;
+  isMobileMenuOpen?: boolean;
 }
 
 interface NavigationState extends NavigationData {
@@ -11,9 +13,11 @@ interface NavigationState extends NavigationData {
 export const useNavigationStore = create<NavigationState>()((_set) => ({
   data: {
     menuTitle: "",
+    shouldToggleMobileMenu: false,
+    isMobileMenuOpen: false,
   },
   set: (data) =>
     _set(() => ({
-      ...data
+      ...data,
     })),
 }));

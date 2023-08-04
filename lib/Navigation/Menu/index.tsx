@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "@mantine/form";
+import { useTimeout } from "@mantine/hooks";
 import { IconChevronLeft, IconMenu2 } from "@tabler/icons-react";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
@@ -33,12 +34,26 @@ export interface NavigationMenuProps {}
 export default function NavigationMenu(props: NavigationMenuProps) {
   const showSnackbar = useSnackbarStore((state) => state.show);
   const menuTitle = useNavigationStore((state) => state.menuTitle);
+  const shouldToggleMobileMenu = useNavigationStore(
+    (state) => state.shouldToggleMobileMenu,
+  );
+  const isMobileMenuOpen = useNavigationStore(
+    (state) => state.isMobileMenuOpen,
+  );
+  const set = useNavigationStore((state) => state.set);
+
   const queryClient = useQueryClient();
   const user = useContext(AuthenticationContext);
   const { push } = useRouter();
   const pathname = usePathname();
+
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [file, setFile] = useState<Blob | null>(null);
+
+  const { start } = useTimeout(
+    () => set({ shouldToggleMobileMenu: false }),
+    250,
+  );
 
   const onSignOut = () => {
     clearCookies();
@@ -96,11 +111,22 @@ export default function NavigationMenu(props: NavigationMenuProps) {
     setFile(file);
   };
 
-  if (!pathname.startsWith("/app")) return null;
+  useEffect(() => {
+    if (!shouldToggleMobileMenu) return;
+    setTimeout(() => {
+      set({ isMobileMenuOpen: !isMobileMenuOpen });
+    }, 0); // fixes zustand error (batches updates together otherwise)
+  }, [shouldToggleMobileMenu]);
 
+  const onMobileMenuClick = () => {
+    set({ shouldToggleMobileMenu: true });
+    start();
+  };
+
+  if (!pathname.startsWith("/app")) return null;
   return (
     <div className={styles.wrapper}>
-      <div className={styles.root}>
+      <div className={`${styles.root} ${isMobileMenuOpen ? styles.open : ""}`}>
         <div className={styles.menuTitle}>
           <div className={styles.menuTitleInner}>
             <button
@@ -113,13 +139,13 @@ export default function NavigationMenu(props: NavigationMenuProps) {
             {menuTitle}
           </div>
         </div>
-        <button className={styles.menu}>
+        <button className={styles.menu} onClick={onMobileMenuClick}>
           <IconMenu2 color="white" />
         </button>
         <div className={styles.account}>
           {user?.email && (
             <div className={styles.signedInAs}>
-              Signed in as
+              <span>Signed in as</span>
               {user?.avatar && (
                 <Image
                   src={user?.avatar}

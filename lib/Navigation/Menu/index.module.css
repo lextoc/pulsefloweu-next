@@ -17,6 +17,7 @@
   justify-content: space-between;
   height: var(--menu-height);
   backdrop-filter: blur(0.5rem);
+  transition: padding 150ms ease;
 }
 
 .menuTitle {
@@ -92,26 +93,6 @@
   justify-content: space-between;
 }
 
-@media (max-width: 1199px) {
-  .signedInAs {
-    display: none;
-  }
-
-  .root {
-    padding-left: 0;
-  }
-
-  .account {
-    padding: 0 0.5rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .menu {
-    display: none;
-  }
-}
-
 .dropdown {
   display: flex;
   flex-direction: column;
@@ -120,4 +101,32 @@
 
 .avatar {
   margin-left: 1rem;
+}
+
+@media (max-width: 1199px) {
+  .signedInAs span {
+    display: none;
+  }
+
+  .root {
+    padding-left: 0;
+  }
+
+  .root.open {
+    padding-left: var(--sidebar-width);
+  }
+
+  .account {
+    padding: 0 0.5rem;
+  }
+
+  .menuTitle {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .menu {
+    display: none;
+  }
 }

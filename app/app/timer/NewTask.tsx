@@ -133,6 +133,7 @@ export default function NewTask(props: NewTaskProps) {
                 <div className={styles.dropdownButtons}>
                   {projects.map((project) => (
                     <Button
+                      key={`task-form-project-${project.id}`}
                       variant="subtle"
                       noMargin
                       onClick={() => setSelectedProjectId(project.id)}
@@ -160,6 +161,7 @@ export default function NewTask(props: NewTaskProps) {
                 <div className={styles.dropdownButtons}>
                   {folders.map((folder) => (
                     <Button
+                      key={`task-form-folder-${folder.id}`}
                       variant="subtle"
                       noMargin
                       onClick={() => setSelectedFolderId(folder.id)}
