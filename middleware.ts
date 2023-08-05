@@ -19,7 +19,7 @@ export async function middleware(request: NextRequest) {
   const isSignedIn = response.success;
 
   if (isSignedIn && publicRoutes.includes(pathname))
-    return NextResponse.redirect(new URL("/app/dashboard", request.url));
+    return NextResponse.redirect(new URL("/app/timer", request.url));
 
   if (!isSignedIn && pathname.startsWith("/app/")) {
     const response = NextResponse.redirect(new URL("/", request.url));

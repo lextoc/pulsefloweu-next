@@ -58,7 +58,7 @@ export default function LoginForm(props: LoginFormProps) {
           queryClient
             .invalidateQueries([endpoints.auth.validateToken])
             .then(() => {
-              push("/app/dashboard");
+              push("/app/timer");
             });
         }
       });
