@@ -83,7 +83,7 @@ export default function SideNavigationRunningTimeEntries(
   return (
     <>
       {timeEntries.map((timeEntry) => (
-        <div className={styles.wrapper}>
+        <div key={timeEntry.id} className={styles.wrapper}>
           <Link
             href={`/app/folders/${timeEntry.folder_id}/tasks/${timeEntry.task_id}`}
             className={styles.left}

@@ -10,7 +10,7 @@ interface NavigationState extends NavigationData {
   set: (data: Partial<NavigationData>) => void;
 }
 
-export const useNavigationStore = create<NavigationState>()((_set) => ({
+export const useNavigationStore = create<NavigationState>((_set) => ({
   data: {
     menuTitle: "",
     shouldToggleMobileMenu: false,

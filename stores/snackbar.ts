@@ -11,7 +11,7 @@ interface SnackbarState extends SnackbarData {
   hide: () => void;
 }
 
-export const useSnackbarStore = create<SnackbarState>()((set) => ({
+export const useSnackbarStore = create<SnackbarState>((set) => ({
   data: {
     message: "",
     type: "",

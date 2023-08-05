@@ -9,6 +9,7 @@ import endpoints from "@/api/endpoints";
 import Button from "@/components/Buttons/Base";
 import Input from "@/components/Inputs/Base";
 import Form from "@/components/Inputs/Form";
+import { useAuthenticationStore } from "@/stores/authentication";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
@@ -32,13 +33,13 @@ export default function RegisterForm(props: RegisterFormProps) {
       body: JSON.stringify(values),
     };
 
-    let accessToken: string | null = null;
-    let client: string | null = null;
+    let accessToken: string | undefined = undefined;
+    let client: string | undefined = undefined;
 
     fetch(endpoints.auth.main, requestOptions)
       .then((response) => {
-        accessToken = response.headers.get("access-token");
-        client = response.headers.get("client");
+        accessToken = response.headers.get("access-token") || undefined;
+        client = response.headers.get("client") || undefined;
         return response.json();
       })
       .then((data) => {

@@ -32,13 +32,13 @@ export default function LoginForm(props: LoginFormProps) {
       body: JSON.stringify(values),
     };
 
-    let accessToken: string | null = null;
-    let client: string | null = null;
+    let accessToken: string | undefined = undefined;
+    let client: string | undefined = undefined;
 
     fetch(endpoints.auth.signIn, requestOptions)
       .then((response) => {
-        accessToken = response.headers.get("access-token");
-        client = response.headers.get("client");
+        accessToken = response.headers.get("access-token") || undefined;
+        client = response.headers.get("client") || undefined;
         return response.json();
       })
       .then((data) => {

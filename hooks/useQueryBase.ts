@@ -6,6 +6,10 @@ import {
 import queryString from "query-string";
 
 import { getHeaders } from "@/api/cookies";
+import {
+  AuthenticationData,
+  useAuthenticationStore,
+} from "@/stores/authentication";
 
 async function fetchData(endpoint: string, requestOptions?: RequestInit) {
   const response = await fetch(endpoint, requestOptions);
@@ -28,13 +32,13 @@ interface Response<T> {
   meta: Meta;
 }
 
-const defaultRequestOptions: RequestInit = {
+const defaultRequestOptions = (headers: AuthenticationData): RequestInit => ({
   method: "GET",
   headers: {
     "Content-Type": "application/json",
-    ...getHeaders(),
+    ...headers,
   },
-};
+});
 
 export function useFetch<T>(
   endpoint: string,
@@ -42,8 +46,14 @@ export function useFetch<T>(
   requestOptions?: RequestInit,
   options?: UseQueryOptions<Response<T>, unknown>,
 ): UseQueryResult<Response<T>, unknown> {
+  const accessToken = useAuthenticationStore((state) => state.accessToken);
+  const client = useAuthenticationStore((state) => state.client);
+  const uid = useAuthenticationStore((state) => state.uid);
+
+  const headers = { ["access-token"]: accessToken, client, uid };
+
   const mergedOptions = {
-    ...defaultRequestOptions,
+    ...defaultRequestOptions(headers),
     ...requestOptions,
   };
 
@@ -54,7 +64,7 @@ export function useFetch<T>(
         `${endpoint}${params ? `?${queryString.stringify(params)}` : ""}`,
         mergedOptions,
       ),
-    enabled: !!getHeaders()["access-token"],
+    enabled: !!headers["access-token"],
     ...options,
   });
 }
