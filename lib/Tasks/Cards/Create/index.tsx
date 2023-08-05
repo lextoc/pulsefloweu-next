@@ -38,7 +38,7 @@ export default function TasksCreateCard({ folder }: TasksCreateCardProps) {
         });
       } else {
         form.reset();
-        queryClient.invalidateQueries([endpoints.folders.tasks(folder.id!)]);
+        queryClient.invalidateQueries();
         showSnackbar({
           message: "Task has been created",
         });

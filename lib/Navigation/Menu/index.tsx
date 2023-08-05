@@ -17,6 +17,7 @@ import Form from "@/components/Inputs/Form";
 import Modal from "@/components/Overlays/Modals/Base";
 import Popover from "@/components/Overlays/Popover";
 import AuthenticationContext from "@/lib/Authentication/Context";
+import { useAuthenticationStore } from "@/stores/authentication";
 import { useNavigationStore } from "@/stores/navigation";
 import { useSnackbarStore } from "@/stores/snackbar";
 
@@ -41,10 +42,10 @@ export default function NavigationMenu(props: NavigationMenuProps) {
     (state) => state.isMobileMenuOpen,
   );
   const set = useNavigationStore((state) => state.set);
+  const clearAuthentication = useAuthenticationStore((state) => state.clear);
 
   const queryClient = useQueryClient();
   const user = useContext(AuthenticationContext);
-  const { push } = useRouter();
   const pathname = usePathname();
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -57,8 +58,9 @@ export default function NavigationMenu(props: NavigationMenuProps) {
 
   const onSignOut = () => {
     clearCookies();
+    clearAuthentication();
     queryClient.invalidateQueries([endpoints.auth.validateToken]).then(() => {
-      push("/");
+      queryClient.invalidateQueries();
     });
   };
 

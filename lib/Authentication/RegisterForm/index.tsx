@@ -44,7 +44,6 @@ export default function RegisterForm(props: RegisterFormProps) {
       })
       .then((data) => {
         if (data?.errors) {
-          clearCookies();
           showSnackbar({
             message: data?.errors?.full_messages?.join(" "),
             type: "error",

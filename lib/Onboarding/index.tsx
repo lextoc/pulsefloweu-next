@@ -18,6 +18,7 @@ import Form from "@/components/Inputs/Form";
 import Modal from "@/components/Overlays/Modals/Base";
 import { useFetch } from "@/hooks/useQueryBase";
 import AuthenticationContext from "@/lib/Authentication/Context";
+import { useAuthenticationStore } from "@/stores/authentication";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 export interface UserFormValues {
@@ -49,6 +50,7 @@ export function Onboarding(props: OnboardingProps) {
     isFetched: isProjectsFetched,
   } = useFetch<Project[]>(endpoints.projects.main);
   const projects: Project[] = projectsData?.success ? projectsData.data : [];
+  const clearAuthentication = useAuthenticationStore((state) => state.clear);
 
   if (
     !isUserModalOpen &&
@@ -74,8 +76,9 @@ export function Onboarding(props: OnboardingProps) {
 
   const onSignOut = () => {
     clearCookies();
+    clearAuthentication();
     queryClient.invalidateQueries([endpoints.auth.validateToken]).then(() => {
-      push("/");
+      queryClient.invalidateQueries();
     });
   };
 

@@ -13,8 +13,7 @@ export interface MainProps {
 
 export default function Main({ children }: MainProps) {
   const pathname = usePathname();
-  const user = useContext(AuthenticationContext);
-  const hasNavigation = user && pathname.startsWith("/app");
+  const hasNavigation = pathname.startsWith("/app");
 
   return (
     <main

@@ -43,7 +43,6 @@ export default function LoginForm(props: LoginFormProps) {
       })
       .then((data) => {
         if (data?.errors) {
-          clearCookies();
           showSnackbar({
             message:
               data?.errors?.full_messages?.join(" ") || data?.errors?.join(" "),

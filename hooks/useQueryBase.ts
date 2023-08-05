@@ -64,7 +64,7 @@ export function useFetch<T>(
         `${endpoint}${params ? `?${queryString.stringify(params)}` : ""}`,
         mergedOptions,
       ),
-    enabled: !!headers["access-token"],
+    enabled: !!headers["access-token"] && !!headers.client && !!headers.uid,
     ...options,
   });
 }
