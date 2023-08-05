@@ -56,6 +56,8 @@ export function Onboarding(props: OnboardingProps) {
     (!user?.first_name || !user?.last_name || !user?.username)
   ) {
     setIsUserModalOpen(true);
+  } else {
+    if (isUserModalOpen) setIsUserModalOpen(false);
   }
 
   if (
@@ -66,6 +68,8 @@ export function Onboarding(props: OnboardingProps) {
     isProjectsFetched
   ) {
     setIsOnboardingModalOpen(true);
+  } else {
+    if (isOnboardingModalOpen) setIsOnboardingModalOpen(false);
   }
 
   const onSignOut = () => {
