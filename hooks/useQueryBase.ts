@@ -22,6 +22,12 @@ interface Meta {
   total_count: number;
 }
 
+interface Response<T> {
+  data: T;
+  success: boolean;
+  meta: Meta;
+}
+
 const defaultRequestOptions: RequestInit = {
   method: "GET",
   headers: {
@@ -34,14 +40,14 @@ export function useFetch<T>(
   endpoint: string,
   params?: object,
   requestOptions?: RequestInit,
-  options?: UseQueryOptions<{ data: T; success: boolean; meta: Meta }, unknown>,
-): UseQueryResult<{ data: T; success: boolean; meta: Meta }, unknown> {
+  options?: UseQueryOptions<Response<T>, unknown>,
+): UseQueryResult<Response<T>, unknown> {
   const mergedOptions = {
     ...defaultRequestOptions,
     ...requestOptions,
   };
 
-  return useQuery<{ data: T; success: boolean; meta: Meta }, unknown>({
+  return useQuery<Response<T>, unknown>({
     queryKey: [endpoint, params],
     queryFn: () =>
       fetchData(

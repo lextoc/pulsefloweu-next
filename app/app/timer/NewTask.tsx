@@ -123,68 +123,68 @@ export default function NewTask(props: NewTaskProps) {
             placeholder="New task name"
             {...form.getInputProps("name")}
           />
-          <div className={styles.dropdowns}>
-            <div className={styles.dropdownWrapper}>
-              <label htmlFor={projectId}>Project:</label>
-              <Popover
-                id={projectId}
-                content={
-                  <div className={styles.dropdownButtons}>
-                    {projects.map((project) => (
-                      <Button
-                        key={`task-form-project-${project.id}`}
-                        variant="subtle"
-                        noMargin
-                        onClick={() => setSelectedProjectId(project.id)}
-                      >
-                        {project.name}
-                      </Button>
-                    ))}
-                  </div>
-                }
-                button={
-                  <div className={styles.dropdown}>
-                    {selectedProjectId
-                      ? projects.find(
-                          (project) => project.id === selectedProjectId,
-                        )?.name
-                      : "Select project"}
-                    <IconCaretDown size="1rem" />
-                  </div>
-                }
-              />
-            </div>
-            <div className={styles.dropdownWrapper}>
-              <label htmlFor={folderId}>Folder:</label>
-              <Popover
-                id={folderId}
-                content={
-                  <div className={styles.dropdownButtons}>
-                    {folders.map((folder) => (
-                      <Button
-                        key={`task-form-folder-${folder.id}`}
-                        variant="subtle"
-                        noMargin
-                        onClick={() => setSelectedFolderId(folder.id)}
-                      >
-                        {folder.name}
-                      </Button>
-                    ))}
-                  </div>
-                }
-                button={
-                  <div className={styles.dropdown}>
-                    {selectedFolderId
-                      ? folders.find((folder) => folder.id === selectedFolderId)
-                          ?.name
-                      : "Select folder"}
-                    <IconCaretDown size="1rem" />
-                  </div>
-                }
-              />
-            </div>
-          </div>
         </Form>
+        <div className={styles.dropdowns}>
+          <div className={styles.dropdownWrapper}>
+            <label htmlFor={projectId}>Project:</label>
+            <Popover
+              id={projectId}
+              content={
+                <div className={styles.dropdownButtons}>
+                  {projects.map((project) => (
+                    <Button
+                      key={`task-form-project-${project.id}`}
+                      variant="subtle"
+                      noMargin
+                      onClick={() => setSelectedProjectId(project.id)}
+                    >
+                      {project.name}
+                    </Button>
+                  ))}
+                </div>
+              }
+              button={
+                <div className={styles.dropdown}>
+                  {selectedProjectId
+                    ? projects.find(
+                        (project) => project.id === selectedProjectId,
+                      )?.name
+                    : "Select project"}
+                  <IconCaretDown size="1rem" />
+                </div>
+              }
+            />
+          </div>
+          <div className={styles.dropdownWrapper}>
+            <label htmlFor={folderId}>Folder:</label>
+            <Popover
+              id={folderId}
+              content={
+                <div className={styles.dropdownButtons}>
+                  {folders.map((folder) => (
+                    <Button
+                      key={`task-form-folder-${folder.id}`}
+                      variant="subtle"
+                      noMargin
+                      onClick={() => setSelectedFolderId(folder.id)}
+                    >
+                      {folder.name}
+                    </Button>
+                  ))}
+                </div>
+              }
+              button={
+                <div className={styles.dropdown}>
+                  {selectedFolderId
+                    ? folders.find((folder) => folder.id === selectedFolderId)
+                        ?.name
+                    : "Select folder"}
+                  <IconCaretDown size="1rem" />
+                </div>
+              }
+            />
+          </div>
+        </div>
       </PaddingContainer>
     </div>
   );
