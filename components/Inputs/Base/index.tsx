@@ -14,6 +14,7 @@ export interface InputProps
   transparent?: boolean;
   small?: boolean;
   main?: boolean;
+  fullWidth?: boolean;
 }
 
 export default function Input({
@@ -24,6 +25,7 @@ export default function Input({
   small,
   className,
   main,
+  fullWidth,
   ...props
 }: InputProps) {
   const id = useId();
@@ -43,7 +45,9 @@ export default function Input({
           type === "checkbox" || type === "radio" ? styles.checkbox : ""
         } ${inverted ? styles.inverted : ""} ${
           transparent ? styles.transparent : ""
-        } ${small ? styles.small : ""} ${className || ""}`}
+        } ${small ? styles.small : ""} ${className || ""} ${
+          fullWidth ? styles.fullWidth : ""
+        }`}
         type={type}
         {...props}
       />
