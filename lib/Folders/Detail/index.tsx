@@ -15,7 +15,7 @@ import { Project } from "@/api/types/projects";
 import { Task } from "@/api/types/tasks";
 import Pagination from "@/components/Navigation/Pagination";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
-import { useFetchArray } from "@/hooks/useQueryBase";
+import { useFetch } from "@/hooks/useQueryBase";
 import FolderMenu from "@/lib/Folders/Menu";
 import TasksCard from "@/lib/Tasks/Cards/Base";
 import TasksCreateCard from "@/lib/Tasks/Cards/Create";
@@ -63,7 +63,7 @@ export default function FoldersDetail({ folderId }: FoldersDetailProps) {
   /**
    * Fetch tasks
    */
-  const { data: tasksData } = useFetchArray<Task>(
+  const { data: tasksData } = useFetch<Task[]>(
     endpoints.folders.tasks(folder?.id || -1),
     { page },
   );

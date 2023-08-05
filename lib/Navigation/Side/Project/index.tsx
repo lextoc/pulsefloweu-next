@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import endpoints from "@/api/endpoints";
 import { Folder } from "@/api/types/folders";
 import { Project } from "@/api/types/projects";
-import { useFetchArray } from "@/hooks/useQueryBase";
+import { useFetch } from "@/hooks/useQueryBase";
 import { useNavigationStore } from "@/stores/navigation";
 
 import styles from "./index.module.css";
@@ -21,7 +21,7 @@ export default function SideNavigationProject({
 }: SideNavigationProjectProps) {
   const pathname = usePathname();
 
-  const { data: foldersData } = useFetchArray<Folder>(
+  const { data: foldersData } = useFetch<Folder[]>(
     endpoints.projects.folders(project.id || -1),
   );
   const folders: Folder[] = foldersData?.success ? foldersData.data : [];

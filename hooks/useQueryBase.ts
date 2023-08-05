@@ -30,27 +30,25 @@ const defaultRequestOptions: RequestInit = {
   },
 };
 
-export function useFetchArray<T>(
+export function useFetch<T>(
   endpoint: string,
   params?: object,
   requestOptions?: RequestInit,
-  options?: UseQueryOptions<
-    { data: T[]; success: boolean; meta: Meta },
-    unknown
-  >,
-): UseQueryResult<{ data: T[]; success: boolean; meta: Meta }, unknown> {
+  options?: UseQueryOptions<{ data: T; success: boolean; meta: Meta }, unknown>,
+): UseQueryResult<{ data: T; success: boolean; meta: Meta }, unknown> {
   const mergedOptions = {
     ...defaultRequestOptions,
     ...requestOptions,
   };
 
-  return useQuery<{ data: T[]; success: boolean; meta: Meta }, unknown>({
+  return useQuery<{ data: T; success: boolean; meta: Meta }, unknown>({
     queryKey: [endpoint, params],
     queryFn: () =>
       fetchData(
         `${endpoint}${params ? `?${queryString.stringify(params)}` : ""}`,
         mergedOptions,
       ),
+    enabled: !!getHeaders()["access-token"],
     ...options,
   });
 }

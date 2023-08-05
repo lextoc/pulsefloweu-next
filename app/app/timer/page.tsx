@@ -11,7 +11,7 @@ import { TimeEntry } from "@/api/types/time-entries";
 import Pagination from "@/components/Navigation/Pagination";
 import { Header } from "@/components/Shared/Header";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
-import { useFetchArray } from "@/hooks/useQueryBase";
+import { useFetch } from "@/hooks/useQueryBase";
 import TimeEntriesListItem from "@/lib/TimeEntries/ListItem";
 import { useNavigationStore } from "@/stores/navigation";
 import { transformSecondsToHumanReadableString } from "@/utils/helpers";
@@ -33,10 +33,10 @@ export default function AppTimer(props: AppTimerProps) {
   const current = new URLSearchParams(Array.from(searchParams.entries()));
   const page = current.get("page");
 
-  const { data: tasksData } = useFetchArray<Task>(endpoints.tasks.main);
+  const { data: tasksData } = useFetch<Task[]>(endpoints.tasks.main);
   const tasks: Task[] = tasksData?.success ? tasksData.data : [];
 
-  const { data: timeEntriesData } = useFetchArray<TimeEntry>(
+  const { data: timeEntriesData } = useFetch<TimeEntry[]>(
     endpoints.timeEntries.main,
     { page },
   );
@@ -63,7 +63,9 @@ export default function AppTimer(props: AppTimerProps) {
         <div className={styles.sidebar}>
           <div className={styles.secondSidebar} />
           <div className={styles.thirdSidebar} />
-          <h4 className={styles.yourTasks}>Your recently used tasks</h4>
+          <h4 className={styles.yourTasks}>
+            {tasks.length > 0 ? "Your recently used tasks" : "No tasks yet"}
+          </h4>
           {tasks.map((task) => (
             <TimerTask key={`timers-task-${task.id}`} task={task} />
           ))}
@@ -71,7 +73,9 @@ export default function AppTimer(props: AppTimerProps) {
         <div className={styles.right}>
           <NewTask />
           <PaddingContainer withBottomGap>
-            <h2>Your time entries</h2>
+            <h2>
+              {timeEntries.length ? "Your time entries" : "No time entries yet"}
+            </h2>
             {Object.keys(timeEntries).map((date) => {
               return (
                 <div key={date} className={styles.dayList}>

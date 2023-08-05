@@ -4,7 +4,7 @@ import endpoints from "@/api/endpoints";
 import { Project } from "@/api/types/projects";
 import { Header } from "@/components/Shared/Header";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
-import { useFetchArray } from "@/hooks/useQueryBase";
+import { useFetch } from "@/hooks/useQueryBase";
 import { ProjectCreateCard } from "@/lib/Projects/Cards/Create";
 import ProjectsLargeCard from "@/lib/Projects/Cards/Large";
 import { useNavigationStore } from "@/stores/navigation";
@@ -17,9 +17,7 @@ export default function AppDashboard(props: AppDashboardProps) {
   const set = useNavigationStore((state) => state.set);
   set({ menuTitle: "Create projects and manage memberships and permissions" });
 
-  const { data: projectsData } = useFetchArray<Project>(
-    endpoints.projects.main,
-  );
+  const { data: projectsData } = useFetch<Project[]>(endpoints.projects.main);
   const projects: Project[] = projectsData?.success ? projectsData.data : [];
 
   return (

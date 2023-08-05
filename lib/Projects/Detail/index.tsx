@@ -10,7 +10,7 @@ import { Project } from "@/api/types/projects";
 import Pagination from "@/components/Navigation/Pagination";
 import { Header } from "@/components/Shared/Header";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
-import { useFetchArray } from "@/hooks/useQueryBase";
+import { useFetch } from "@/hooks/useQueryBase";
 import FoldersCard from "@/lib/Folders/Cards/Base";
 import FoldersCreateCard from "@/lib/Folders/Cards/Create";
 import ProjectMenu from "@/lib/Projects/Menu";
@@ -40,7 +40,7 @@ export default function ProjectDetail({ projectId }: IProjectDetailProps) {
   const current = new URLSearchParams(Array.from(searchParams.entries()));
   const page = current.get("page");
 
-  const { data: foldersData } = useFetchArray<Folder>(
+  const { data: foldersData } = useFetch<Folder[]>(
     endpoints.projects.folders(projectId),
     { page },
   );

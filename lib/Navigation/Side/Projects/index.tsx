@@ -2,7 +2,7 @@
 
 import endpoints from "@/api/endpoints";
 import { Project } from "@/api/types/projects";
-import { useFetchArray } from "@/hooks/useQueryBase";
+import { useFetch } from "@/hooks/useQueryBase";
 
 import SideNavigationProject from "../Project";
 import styles from "./index.module.css";
@@ -12,9 +12,7 @@ export interface SideNavigationProjectsProps {}
 export default function SideNavigationProjects(
   props: SideNavigationProjectsProps,
 ) {
-  const { data: projectsData } = useFetchArray<Project>(
-    endpoints.projects.main,
-  );
+  const { data: projectsData } = useFetch<Project[]>(endpoints.projects.main);
   const projects: Project[] = projectsData?.success ? projectsData.data : [];
 
   if (!projects.length) return null;

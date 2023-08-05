@@ -18,7 +18,7 @@ import Input from "@/components/Inputs/Base";
 import Form from "@/components/Inputs/Form";
 import Popover from "@/components/Overlays/Popover";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
-import { useFetchArray } from "@/hooks/useQueryBase";
+import { useFetch } from "@/hooks/useQueryBase";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./NewTask.module.css";
@@ -36,9 +36,7 @@ export default function NewTask(props: NewTaskProps) {
     null,
   );
 
-  const { data: projectsData } = useFetchArray<Project>(
-    endpoints.projects.main,
-  );
+  const { data: projectsData } = useFetch<Project[]>(endpoints.projects.main);
   const projects: Project[] = projectsData?.success ? projectsData.data : [];
 
   if (!selectedProjectId && projects.length) {
@@ -47,7 +45,7 @@ export default function NewTask(props: NewTaskProps) {
 
   const [selectedFolderId, setSelectedFolderId] = useState<number | null>(null);
 
-  const { data: foldersData } = useFetchArray<Folder>(
+  const { data: foldersData } = useFetch<Folder[]>(
     endpoints.projects.folders(selectedProjectId || -1),
   );
   const folders: Folder[] = foldersData?.success ? foldersData.data : [];

@@ -14,7 +14,7 @@ import { getHeaders } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
 import getPage from "@/api/getPage";
 import { TimeEntryWithTaskName } from "@/api/types/time-entries";
-import { useFetchArray } from "@/hooks/useQueryBase";
+import { useFetch } from "@/hooks/useQueryBase";
 import { useNavigationStore } from "@/stores/navigation";
 import { useSnackbarStore } from "@/stores/snackbar";
 import { transformSecondsToHumanReadableString } from "@/utils/helpers";
@@ -47,7 +47,7 @@ export default function SideNavigationRunningTimeEntries(
     };
   }, []);
 
-  const { data: timeEntriesData } = useFetchArray<TimeEntryWithTaskName>(
+  const { data: timeEntriesData } = useFetch<TimeEntryWithTaskName[]>(
     endpoints.misc.runningTimeEntries,
   );
   const timeEntries: TimeEntryWithTaskName[] = timeEntriesData?.success
