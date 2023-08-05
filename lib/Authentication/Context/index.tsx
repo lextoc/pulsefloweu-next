@@ -25,7 +25,6 @@ export function AuthenticationProvider({
 }: AuthenticationProviderProps) {
   const pathname = usePathname();
   const { push } = useRouter();
-  const queryClient = useQueryClient();
 
   const query = useQuery({
     queryKey: [endpoints.auth.validateToken],

@@ -4,7 +4,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 
 import { getHeaders } from "@/api/cookies";
 import create from "@/api/create";
@@ -53,6 +53,10 @@ export default function NewTask(props: NewTaskProps) {
   if (!selectedFolderId && folders.length) {
     setSelectedFolderId(folders[0].id);
   }
+
+  useEffect(() => {
+    setSelectedFolderId(null);
+  }, [selectedProjectId]);
 
   const onSubmit = (values: Omit<CreateTask, "folder_id">) => {
     if (!selectedFolderId) return;
