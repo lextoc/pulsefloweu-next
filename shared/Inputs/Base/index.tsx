@@ -13,7 +13,6 @@ export interface InputProps
   inverted?: boolean;
   transparent?: boolean;
   small?: boolean;
-  main?: boolean;
   fullWidth?: boolean;
 }
 
@@ -24,7 +23,6 @@ export default function Input({
   transparent,
   small,
   className,
-  main,
   fullWidth,
   ...props
 }: InputProps) {
@@ -37,7 +35,7 @@ export default function Input({
       }`}
     >
       {type !== "checkbox" && type !== "radio" && label && (
-        <Label>{label}</Label>
+        <Label htmlFor={id}>{label}</Label>
       )}
       <input
         id={id}
