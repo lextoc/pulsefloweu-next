@@ -10,7 +10,7 @@ export interface TimeEntry {
   task_name: string;
   folder_name: string;
   project_name: string;
-  project_id: string;
+  project_id: number;
 }
 
 export type CreateTimeEntry = Omit<

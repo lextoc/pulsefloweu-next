@@ -92,16 +92,17 @@ export function TimeEntriesMenuEditModal({
   const onTimeChange = (start: string, end: string) => {
     let newStartDate = setHoursAndMinutes(dayjs(editForm.values.date), start);
     let newEndDate = setHoursAndMinutes(dayjs(editForm.values.date), end);
-    updateDate(newStartDate, newEndDate);
+    _update(newStartDate, newEndDate);
   };
 
-  const updateDate = (startDate: string, endDate: string) => {
+  const _update = (startDate?: string, endDate?: string, taskId?: number) => {
     update<{ time_entry: Partial<TimeEntry> }>(
       endpoints.timeEntries.detail(timeEntry.id),
       {
         time_entry: {
           start_date: startDate,
           end_date: endDate,
+          task_id: taskId,
         },
       },
     ).then(() => {
@@ -116,7 +117,11 @@ export function TimeEntriesMenuEditModal({
     <Modal isOpen={isOpen} close={() => close()}>
       <h2>Edit time entry</h2>
       <p>Your changes will go through as you enter them.</p>
-      <TaskSelectInput projectId={timeEntry.project_id} />
+      <TaskSelectInput
+        projectId={timeEntry.project_id}
+        taskId={timeEntry.task_id}
+        setTaskId={(taskId: number) => _update(undefined, undefined, taskId)}
+      />
       <Input
         label="Date"
         type="date"

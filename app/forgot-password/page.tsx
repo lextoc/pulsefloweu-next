@@ -15,8 +15,9 @@ export default function ForgotPassword(props: ForgotPasswordProps) {
       <div className={styles.login}>
         <h1>Forgot password?</h1>
         <p>
-          Please <a href="mailto:alexander.claes10@gmail.com">send an email</a>{" "}
-          to resolve this. We're working on this feature.
+          Please{" "}
+          <a href="mailto:alexander.claes10@gmail.com">send me an email</a> to
+          resolve this.
         </p>
       </div>
       <div className={styles.links}>

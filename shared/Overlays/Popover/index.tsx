@@ -18,7 +18,7 @@ export default function ({ content, white, button, id }: PopoverProps) {
       isOpen={isOpen}
       positions={["bottom"]}
       onClickOutside={() => setIsOpen(false)}
-      containerStyle={{ zIndex: "250" }}
+      containerStyle={{ zIndex: "2000" }}
       content={
         <div className={styles.menu} onClick={() => setIsOpen(false)}>
           {content}

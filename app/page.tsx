@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import Logo from "@/shared/Shared/Logo";
 import LoginForm from "@/domains/Authentication/LoginForm";
+import Logo from "@/shared/Shared/Logo";
 
 import styles from "./page.module.css";
 
@@ -12,9 +12,8 @@ export default function Home() {
         <div>
           <Logo />
           <p>
-            Use tracky as your tool for time entries and generating timesheets
-            with cost-per-hour functionality. Invite people and manage them by
-            assigning them the correct permissions.
+            Use tracky as your tool for time entries and generating timesheets,
+            for free.
           </p>
         </div>
       </div>

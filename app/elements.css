@@ -79,10 +79,12 @@ li::before {
   padding: 0.25em 1.25em 0 0;
   color: rgb(var(--main));
   font-size: 0.7em;
-  transform: translateY(-0.3em)
+  transform: translateY(-0.3em);
 }
 
 button {
   background: 0;
   border: 0;
+  margin: 0;
+  padding: 0;
 }

@@ -1,3 +1,8 @@
+.root {
+  position: relative;
+  text-align: left;
+}
+
 .input {
   border: 0;
   background: rgba(var(--secondary), 0.05);
@@ -79,4 +84,10 @@
 
 .input.fullWidth {
   width: 100%;
+}
+
+.right {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
