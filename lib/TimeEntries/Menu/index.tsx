@@ -46,6 +46,14 @@ export default function TimeEntryMenu({ timeEntry }: TimeEntryMenuProps) {
     },
   });
 
+  useEffect(() => {
+    editForm.setValues({
+      start_date: dayjs(timeEntry.start_date).format("HH:mm"),
+      end_date: dayjs(timeEntry.end_date).format("HH:mm"),
+      date: dayjs(timeEntry.start_date).format("YYYY-MM-DD"),
+    });
+  }, [timeEntry]);
+
   const [dates] = useDebouncedValue(editForm.getTransformedValues(), 1000);
 
   useEffect(() => {

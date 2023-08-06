@@ -51,6 +51,8 @@ export default function AppTimer(props: AppTimerProps) {
     return dayjs(date).format("dddd DD MMMM YYYY");
   };
 
+  const hasTimeEntries = Object.keys(timeEntries).length > 0;
+
   return (
     <div className={styles.root}>
       <Header>
@@ -74,7 +76,7 @@ export default function AppTimer(props: AppTimerProps) {
           <NewTask />
           <PaddingContainer withBottomGap>
             <h2>
-              {timeEntries.length ? "Your time entries" : "No time entries yet"}
+              {hasTimeEntries ? "Your time entries" : "No time entries yet"}
             </h2>
             {Object.keys(timeEntries).map((date) => {
               return (
