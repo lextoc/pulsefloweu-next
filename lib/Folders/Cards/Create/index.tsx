@@ -58,7 +58,7 @@ export default function FoldersCreateCard({ project }: FoldersCreateCardProps) {
 
   return (
     <Card
-      withMovingBackground
+      hasMovingBackground
       header={<h3>Create new folder</h3>}
       content={
         <>

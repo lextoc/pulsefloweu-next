@@ -2,16 +2,16 @@ import styles from "./index.module.css";
 
 export interface CardProps {
   header: React.ReactNode;
-  content: React.ReactNode;
+  content?: React.ReactNode;
   footer?: React.ReactNode;
-  withMovingBackground?: boolean;
+  hasMovingBackground?: boolean;
 }
 
 export default function Card({
   header,
   content,
   footer,
-  withMovingBackground,
+  hasMovingBackground: withMovingBackground,
 }: CardProps) {
   return (
     <article
@@ -20,8 +20,8 @@ export default function Card({
       }`}
     >
       <header className={styles.header}>{header}</header>
-      <div className={styles.content}>{content}</div>
-      <footer className={styles.footer}>{footer}</footer>
+      {content && <div className={styles.content}>{content}</div>}
+      {footer && <footer className={styles.footer}>{footer}</footer>}
     </article>
   );
 }

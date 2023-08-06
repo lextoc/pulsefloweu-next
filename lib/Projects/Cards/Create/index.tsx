@@ -52,7 +52,7 @@ export function ProjectCreateCard(props: ProjectCreateCardProps) {
 
   return (
     <Card
-      withMovingBackground
+      hasMovingBackground
       header={<h3>Create new project</h3>}
       content={
         <>
