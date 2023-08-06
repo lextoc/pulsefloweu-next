@@ -53,23 +53,21 @@ export function Onboarding(props: OnboardingProps) {
   const clearAuthentication = useAuthenticationStore((state) => state.clear);
 
   if (
-    !isUserModalOpen &&
     user?.email &&
     (!user?.first_name || !user?.last_name || !user?.username)
   ) {
-    setIsUserModalOpen(true);
+    if (!isUserModalOpen) setIsUserModalOpen(true);
   } else {
     if (isUserModalOpen) setIsUserModalOpen(false);
   }
 
   if (
-    !isOnboardingModalOpen &&
     projects.length <= 0 &&
     !isProjectsLoading &&
     user?.email &&
     isProjectsFetched
   ) {
-    setIsOnboardingModalOpen(true);
+    if (!isOnboardingModalOpen) setIsOnboardingModalOpen(true);
   } else {
     if (isOnboardingModalOpen) setIsOnboardingModalOpen(false);
   }

@@ -1,4 +1,6 @@
-export const transformSecondsToHumanReadableString = (seconds: number | null) => {
+export const transformSecondsToHumanReadableString = (
+  seconds: number | null,
+) => {
   if (!seconds) return null;
   const days = Math.floor(seconds / 86400);
   const remainingSeconds = seconds % 86400;
@@ -9,7 +11,7 @@ export const transformSecondsToHumanReadableString = (seconds: number | null) =>
   const minutes = Math.floor(remainingMinutes / 60);
   const remainingSecondsFinal = remainingMinutes % 60;
 
-  let formattedDuration = '';
+  let formattedDuration = "";
 
   if (days > 0) {
     formattedDuration += `${days}d `;
@@ -19,8 +21,8 @@ export const transformSecondsToHumanReadableString = (seconds: number | null) =>
     formattedDuration += `${hours}h `;
   }
 
-  const formattedMinutes = minutes.toString().padStart(2, '0');
-  const formattedSeconds = remainingSecondsFinal.toString().padStart(2, '0');
+  const formattedMinutes = minutes.toString().padStart(2, "0");
+  const formattedSeconds = remainingSecondsFinal.toString().padStart(2, "0");
 
   formattedDuration += `${formattedMinutes}m ${formattedSeconds}s`;
 
