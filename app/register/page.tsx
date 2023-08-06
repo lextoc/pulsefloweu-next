@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import Logo from "@/shared/Shared/Logo";
 import RegisterForm from "@/domains/Authentication/RegisterForm";
+import Logo from "@/shared/Shared/Logo";
 
 import styles from "../page.module.css";
 
