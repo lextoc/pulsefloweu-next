@@ -53,7 +53,6 @@ export default function AppTimer(props: AppTimerProps) {
 
   const hasTimeEntries = Object.keys(timeEntries).length > 0;
 
-  console.info(tasks);
   return (
     <div className={styles.root}>
       <Header>
