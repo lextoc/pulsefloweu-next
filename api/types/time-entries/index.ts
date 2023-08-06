@@ -23,6 +23,7 @@ export type CreateTimeEntry = Omit<
   | "task_name"
   | "folder_name"
   | "project_name"
+  | "project_id"
 >;
 
 export interface TimeEntryWithTaskName extends TimeEntry {
