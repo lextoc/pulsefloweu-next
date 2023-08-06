@@ -8,11 +8,11 @@ import { useSearchParams } from "next/navigation";
 import endpoints from "@/api/endpoints";
 import { Task } from "@/api/types/tasks";
 import { TimeEntry } from "@/api/types/time-entries";
-import Pagination from "@/components/Navigation/Pagination";
-import { Header } from "@/components/Shared/Header";
-import PaddingContainer from "@/components/Shared/PaddingContainer";
+import TimeEntriesListItem from "@/domains/TimeEntries/ListItem";
 import { useFetch } from "@/hooks/useQueryBase";
-import TimeEntriesListItem from "@/lib/TimeEntries/ListItem";
+import Pagination from "@/shared/Navigation/Pagination";
+import { Header } from "@/shared/Shared/Header";
+import PaddingContainer from "@/shared/Shared/PaddingContainer";
 import { useNavigationStore } from "@/stores/navigation";
 import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 

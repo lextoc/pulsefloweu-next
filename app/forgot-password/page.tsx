@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import Logo from "@/components/Shared/Logo";
+import Logo from "@/shared/Shared/Logo";
 
 import styles from "../page.module.css";
 

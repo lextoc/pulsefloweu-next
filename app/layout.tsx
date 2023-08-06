@@ -10,14 +10,14 @@ import { cookies } from "next/headers";
 
 import validateToken from "@/api/auth/validateToken";
 import { User } from "@/api/types/auth";
-import NavigationProgress from "@/components/Navigation/Progress";
-import Main from "@/components/Shared/Main";
-import { AuthenticationProvider } from "@/lib/Authentication/Context";
-import NavigationMenu from "@/lib/Navigation/Menu";
-import SideNavigation from "@/lib/Navigation/Side";
-import { Onboarding } from "@/lib/Onboarding";
-import QueryClientProvider from "@/lib/Shared/QueryClientProvider";
-import Snackbar from "@/lib/Shared/Snackbar";
+import { AuthenticationProvider } from "@/domains/Authentication/Context";
+import NavigationMenu from "@/domains/Navigation/Menu";
+import SideNavigation from "@/domains/Navigation/Side";
+import { Onboarding } from "@/domains/Onboarding";
+import QueryClientProvider from "@/domains/Shared/QueryClientProvider";
+import Snackbar from "@/domains/Shared/Snackbar";
+import NavigationProgress from "@/shared/Navigation/Progress";
+import Main from "@/shared/Shared/Main";
 
 import styles from "./layout.module.css";
 

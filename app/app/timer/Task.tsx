@@ -14,7 +14,7 @@ import create from "@/api/create";
 import endpoints from "@/api/endpoints";
 import { Task } from "@/api/types/tasks";
 import { CreateTimeEntry } from "@/api/types/time-entries";
-import Explosion from "@/lib/Tasks/Cards/Base/Explosion";
+import Explosion from "@/domains/Tasks/Cards/Base/Explosion";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./Task.module.css";
