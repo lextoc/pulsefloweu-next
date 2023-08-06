@@ -80,10 +80,12 @@ export default function LoginForm(props: LoginFormProps) {
         label="Email address"
         placeholder="Email"
         autoComplete="email"
+        name="email"
         {...form.getInputProps("email")}
       />
       <Input
         label="Password"
+        name="password"
         type="password"
         placeholder="Password"
         autoComplete="current-password"

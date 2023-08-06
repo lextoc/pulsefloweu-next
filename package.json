@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "lint": "next lint --fix",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "e2e": "cypress open"
   },
   "dependencies": {
     "@mantine/form": "^6.0.17",
@@ -38,6 +39,7 @@
     "@types/react": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
+    "cypress": "^12.17.3",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^5.0.0",
