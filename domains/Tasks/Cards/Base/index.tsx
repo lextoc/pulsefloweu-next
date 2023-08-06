@@ -14,8 +14,8 @@ import create from "@/api/create";
 import endpoints from "@/api/endpoints";
 import { Task } from "@/api/types/tasks";
 import { CreateTimeEntry } from "@/api/types/time-entries";
-import Card from "@/shared/Cards/Base";
 import TaskMenu from "@/domains/Tasks/Menu";
+import Card from "@/shared/Cards/Base";
 import { useSnackbarStore } from "@/stores/snackbar";
 import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
@@ -142,6 +142,7 @@ export default function TasksCard({ task }: TaskCardProps) {
               isActive ? styles.buttonActive : ""
             } ${isExploding ? "exploding" : ""}`}
             onClick={onClick}
+            data-testid="task-base-timer"
           >
             <div className={styles.buttonInner} />
             <Explosion />

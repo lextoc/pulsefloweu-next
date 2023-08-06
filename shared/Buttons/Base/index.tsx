@@ -12,6 +12,7 @@ export interface ButtonProps
   nextLink?: string;
   danger?: boolean;
   noMargin?: boolean;
+  testid?: string;
 }
 
 export default function Button({
@@ -20,6 +21,7 @@ export default function Button({
   nextLink,
   danger,
   noMargin,
+  testid,
   ...props
 }: ButtonProps) {
   const classNames = `${variant === "subtle" ? styles.subtle : styles.root} ${
@@ -28,14 +30,14 @@ export default function Button({
 
   if (nextLink) {
     return (
-      <Link className={classNames} href={nextLink}>
+      <Link className={classNames} href={nextLink} data-testid={testid}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button className={classNames} {...props}>
+    <button className={classNames} {...props} data-testid={testid}>
       {children}
     </button>
   );

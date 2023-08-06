@@ -161,6 +161,7 @@ export default function NavigationMenu(props: NavigationMenuProps) {
             </div>
           )}
           <Popover
+            testid="profile-popover"
             white
             content={
               <div className={styles.dropdown}>
@@ -171,7 +172,12 @@ export default function NavigationMenu(props: NavigationMenuProps) {
                 >
                   Edit profile
                 </Button>
-                <Button noMargin variant="subtle" onClick={onSignOut}>
+                <Button
+                  testid="signout-button"
+                  noMargin
+                  variant="subtle"
+                  onClick={onSignOut}
+                >
                   Sign out
                 </Button>
               </div>
