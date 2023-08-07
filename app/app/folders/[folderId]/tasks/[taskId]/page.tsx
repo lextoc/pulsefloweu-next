@@ -1,4 +1,4 @@
-import TaskDetail from "@/domains/Tasks/Detail";
+import TaskDetail from "@/modules/Tasks/Detail";
 
 export interface AppFoldersTasksProps {
   params: {

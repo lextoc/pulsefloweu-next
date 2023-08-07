@@ -1,6 +1,6 @@
-import TimesheetsGenerator from "@/domains/Misc/TimesheetsGenerator";
-import { Header } from "@/shared/Shared/Header";
-import PaddingContainer from "@/shared/Shared/PaddingContainer";
+import TimesheetsGenerator from "@/modules/Misc/TimesheetsGenerator";
+import { Header } from "@/components/Shared/Header";
+import PaddingContainer from "@/components/Shared/PaddingContainer";
 
 import styles from "./page.module.css";
 

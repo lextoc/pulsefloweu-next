@@ -2,11 +2,11 @@
 
 import endpoints from "@/api/endpoints";
 import { Project } from "@/api/types/projects";
-import { ProjectCreateCard } from "@/domains/Projects/Cards/Create";
-import ProjectsLargeCard from "@/domains/Projects/Cards/Large";
+import { ProjectCreateCard } from "@/modules/Projects/Cards/Create";
+import ProjectsLargeCard from "@/modules/Projects/Cards/Large";
 import { useFetch } from "@/hooks/useQueryBase";
-import { Header } from "@/shared/Shared/Header";
-import PaddingContainer from "@/shared/Shared/PaddingContainer";
+import { Header } from "@/components/Shared/Header";
+import PaddingContainer from "@/components/Shared/PaddingContainer";
 import { useNavigationStore } from "@/stores/navigation";
 
 import styles from "./page.module.css";

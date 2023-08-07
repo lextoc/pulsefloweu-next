@@ -1,4 +1,4 @@
-import FoldersDetail from "@/domains/Folders/Detail";
+import FoldersDetail from "@/modules/Folders/Detail";
 
 export interface AppProjectsFoldersProps {
   params: {

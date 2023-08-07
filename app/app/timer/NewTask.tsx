@@ -14,11 +14,11 @@ import { Project } from "@/api/types/projects";
 import { CreateTask } from "@/api/types/tasks";
 import { CreateTimeEntry } from "@/api/types/time-entries";
 import { useFetch } from "@/hooks/useQueryBase";
-import Button from "@/shared/Buttons/Base";
-import Input from "@/shared/Inputs/Base";
-import Form from "@/shared/Inputs/Form";
-import Popover from "@/shared/Overlays/Popover";
-import PaddingContainer from "@/shared/Shared/PaddingContainer";
+import Button from "@/components/Buttons/Base";
+import Input from "@/components/Inputs/Base";
+import Form from "@/components/Inputs/Form";
+import Popover from "@/components/Overlays/Popover";
+import PaddingContainer from "@/components/Shared/PaddingContainer";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./NewTask.module.css";

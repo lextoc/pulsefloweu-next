@@ -1,4 +1,4 @@
-import ProjectDetail from "@/domains/Projects/Detail";
+import ProjectDetail from "@/modules/Projects/Detail";
 
 export interface AppProjectsProps {
   params: {
