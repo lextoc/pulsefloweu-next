@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form component matches snapshot 1`] = `
+<div>
+  <form
+    class="root"
+  >
+    <input
+      class="submit"
+      type="submit"
+    />
+    <div>
+      Form Content
+    </div>
+  </form>
+</div>
+`;

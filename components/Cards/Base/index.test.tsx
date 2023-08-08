@@ -56,4 +56,9 @@ describe("Card component", () => {
 
     expect(cardElement).toBeNull();
   });
+
+  it("matches snapshot", () => {
+    const { container } = render(<Card {...defaultProps} />);
+    expect(container).toMatchSnapshot();
+  });
 });

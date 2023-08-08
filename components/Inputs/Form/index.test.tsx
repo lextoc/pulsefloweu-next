@@ -28,7 +28,7 @@ describe("Form component", () => {
   it("renders a submit button", () => {
     const { getByRole } = render(<Form {...defaultProps} />);
 
-    const submitButton = getByRole("button", { type: "submit" });
+    const submitButton = getByRole("button");
 
     expect(submitButton).toBeInTheDocument();
   });
@@ -39,5 +39,10 @@ describe("Form component", () => {
     const submitButton = container.querySelector(".submit");
 
     expect(submitButton).toBeInTheDocument();
+  });
+
+  it("matches snapshot", () => {
+    const { container } = render(<Form {...defaultProps} />);
+    expect(container).toMatchSnapshot();
   });
 });

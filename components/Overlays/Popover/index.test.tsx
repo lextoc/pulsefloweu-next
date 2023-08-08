@@ -61,4 +61,9 @@ describe("Popover component", () => {
     const popoverContent = screen.getByText("Custom Content");
     expect(popoverContent).toBeInTheDocument();
   });
+
+  it("matches snapshot", () => {
+    const { container } = render(<Popover {...defaultProps} />);
+    expect(container).toMatchSnapshot();
+  });
 });

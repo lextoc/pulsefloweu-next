@@ -5,7 +5,6 @@ import React from "react";
 
 import NavigationProgress, { INavigationProgressProps } from "./index";
 
-// Mock @tanstack/react-query module
 jest.mock("@tanstack/react-query", () => ({
   useIsFetching: jest.fn(),
 }));
@@ -33,5 +32,10 @@ describe("NavigationProgress component", () => {
       container.querySelector(".root.isFetching");
 
     expect(navigationProgressElement).toBeNull();
+  });
+
+  it("matches snapshot", () => {
+    const { container } = render(<NavigationProgress />);
+    expect(container).toMatchSnapshot();
   });
 });

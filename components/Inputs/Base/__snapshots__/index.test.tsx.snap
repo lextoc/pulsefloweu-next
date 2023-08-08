@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input component matches snapshot 1`] = `
+<div>
+  <div
+    class="root "
+  >
+    <label
+      class="root"
+      for=":r5:"
+    >
+      Input Label
+    </label>
+    <input
+      class="input      "
+      id=":r5:"
+      type="text"
+    />
+  </div>
+</div>
+`;

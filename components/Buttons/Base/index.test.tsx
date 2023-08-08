@@ -50,4 +50,9 @@ describe("Button component", () => {
 
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
+
+  test("matches snapshot", () => {
+    const { container } = render(<Button {...defaultProps} />);
+    expect(container).toMatchSnapshot();
+  });
 });

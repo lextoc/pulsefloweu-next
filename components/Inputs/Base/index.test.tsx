@@ -49,4 +49,9 @@ describe("Input component", () => {
 
     expect(inputElement).toBeInTheDocument();
   });
+
+  it("matches snapshot", () => {
+    const { container } = render(<Input {...defaultProps} />);
+    expect(container).toMatchSnapshot();
+  });
 });

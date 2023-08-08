@@ -25,4 +25,9 @@ describe("Label component", () => {
 
     expect(labelElement).toBeInTheDocument();
   });
+
+  it("matches snapshot", () => {
+    const { container } = render(<Label {...defaultProps} />);
+    expect(container).toMatchSnapshot();
+  });
 });

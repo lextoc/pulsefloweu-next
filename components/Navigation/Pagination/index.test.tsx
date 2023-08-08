@@ -5,7 +5,6 @@ import React from "react";
 
 import Pagination, { PaginationProps } from "./index";
 
-// Mock next/navigation module
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
   usePathname: jest.fn(),
@@ -79,5 +78,10 @@ describe("Pagination component", () => {
     const pagination = container.querySelector(".pagination");
 
     expect(pagination).toBeNull();
+  });
+
+  it("matches snapshot", () => {
+    const { container } = render(<Pagination {...defaultProps} />);
+    expect(container).toMatchSnapshot();
   });
 });

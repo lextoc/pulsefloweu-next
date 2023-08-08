@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popover component matches snapshot 1`] = `
+<div>
+  <button
+    class="blankButton"
+  >
+    <div>
+      Click me
+    </div>
+  </button>
+</div>
+`;
