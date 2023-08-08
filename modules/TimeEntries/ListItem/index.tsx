@@ -17,9 +17,9 @@ import create from "@/api/create";
 import endpoints from "@/api/endpoints";
 import { CreateTimeEntry, TimeEntry } from "@/api/types/time-entries";
 import update from "@/api/update";
-import Explosion from "@/modules/Tasks/Cards/Base/Explosion";
-import TimeEntryMenu from "@/modules/TimeEntries/Menu";
 import Input from "@/components/Inputs/Base";
+import Explosion from "@/components/Shared/Explosion";
+import TimeEntryMenu from "@/modules/TimeEntries/Menu";
 import { useSnackbarStore } from "@/stores/snackbar";
 import { transformSecondsToTimer } from "@/utils/helpers";
 
@@ -185,11 +185,8 @@ export default function TimeEntriesListItem({
       }`}
     >
       <div className={styles.left}>
-        <button
-          className={`${styles.button} ${isExploding ? "exploding" : ""}`}
-          onClick={() => toggleTaskTimer()}
-        >
-          <Explosion />
+        <button className={styles.button} onClick={() => toggleTaskTimer()}>
+          <Explosion isExploding={isExploding} />
           {!timeEntry.end_date ? (
             <IconPlayerPauseFilled className={styles.playIcon} />
           ) : (

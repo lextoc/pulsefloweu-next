@@ -14,12 +14,12 @@ import create from "@/api/create";
 import endpoints from "@/api/endpoints";
 import { Task } from "@/api/types/tasks";
 import { CreateTimeEntry } from "@/api/types/time-entries";
-import TaskMenu from "@/modules/Tasks/Menu";
 import Card from "@/components/Cards/Base";
+import TaskMenu from "@/modules/Tasks/Menu";
 import { useSnackbarStore } from "@/stores/snackbar";
 import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
-import Explosion from "./Explosion";
+import Explosion from "../../../../components/Shared/Explosion";
 import styles from "./index.module.css";
 
 dayjs.extend(advancedFormat);
@@ -140,12 +140,12 @@ export default function TasksCard({ task }: TaskCardProps) {
           <button
             className={`${styles.button} ${
               isActive ? styles.buttonActive : ""
-            } ${isExploding ? "exploding" : ""}`}
+            }`}
             onClick={onClick}
             data-testid="task-base-timer"
           >
             <div className={styles.buttonInner} />
-            <Explosion />
+            <Explosion isExploding={isExploding} />
             {!isActive ? (
               <>
                 <IconPlayerPlayFilled

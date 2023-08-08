@@ -14,7 +14,7 @@ import create from "@/api/create";
 import endpoints from "@/api/endpoints";
 import { Task } from "@/api/types/tasks";
 import { CreateTimeEntry } from "@/api/types/time-entries";
-import Explosion from "@/modules/Tasks/Cards/Base/Explosion";
+import Explosion from "@/components/Shared/Explosion";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./Task.module.css";
@@ -91,10 +91,10 @@ export default function TimerTask({ task }: TimerTaskProps) {
         <button
           className={`${styles.leftPlay} ${
             task.active_time_entries.length ? styles.leftPlayActive : ""
-          } ${isExploding ? "exploding" : ""}`}
+          }`}
           onClick={() => toggleTaskTimer(task)}
         >
-          {/* <Explosion /> */}
+          <Explosion isExploding={isExploding} />
           {task.active_time_entries.length ? (
             <IconPlayerPauseFilled className={styles.playIcon} />
           ) : (
