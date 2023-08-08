@@ -2,6 +2,7 @@
 
 import { useForm } from "@mantine/form";
 import { useQueryClient } from "@tanstack/react-query";
+import Yup from "yup";
 
 import create from "@/api/create";
 import endpoints from "@/api/endpoints";
@@ -46,7 +47,12 @@ export function ProjectCreateCard(props: ProjectCreateCardProps) {
     },
 
     validate: {
-      // email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+      name: (value) => {
+        return Yup.string()
+          .required("Name is required")
+          .max(100, "Name must be at most 100 characters")
+          .validateSync(value);
+      },
     },
   });
 

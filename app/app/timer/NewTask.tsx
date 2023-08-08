@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
 import { useEffect, useId, useState } from "react";
+import Yup from "yup";
 
 import { getHeaders } from "@/api/cookies";
 import create from "@/api/create";
@@ -111,7 +112,12 @@ export default function NewTask(props: NewTaskProps) {
     },
 
     validate: {
-      // email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+      name: (value) => {
+        return Yup.string()
+          .required("Name is required")
+          .max(100, "Name must be at most 100 characters")
+          .validateSync(value);
+      },
     },
   });
 
