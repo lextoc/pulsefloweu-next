@@ -8,11 +8,11 @@ import { useSearchParams } from "next/navigation";
 import endpoints from "@/api/endpoints";
 import { Task } from "@/api/types/tasks";
 import { TimeEntry } from "@/api/types/time-entries";
-import TimeEntriesListItem from "@/modules/TimeEntries/ListItem";
-import { useFetch } from "@/hooks/useQueryBase";
 import Pagination from "@/components/Navigation/Pagination";
 import { Header } from "@/components/Shared/Header";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
+import { useFetch } from "@/hooks/useQueryBase";
+import TimeEntriesListItem from "@/modules/TimeEntries/ListItem";
 import { useNavigationStore } from "@/stores/navigation";
 import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
@@ -33,10 +33,12 @@ export default function AppTimer(props: AppTimerProps) {
   const current = new URLSearchParams(Array.from(searchParams.entries()));
   const page = current.get("page");
 
-  const { data: tasksData } = useFetch<Task[]>(endpoints.tasks.main);
+  const { data: tasksData, isFetched: isTasksFetched } = useFetch<Task[]>(
+    endpoints.tasks.main,
+  );
   const tasks: Task[] = tasksData?.success ? tasksData.data : [];
 
-  const { data: timeEntriesData } = useFetch<TimeEntry[]>(
+  const { data: timeEntriesData, isFetched } = useFetch<TimeEntry[]>(
     endpoints.timeEntries.main,
     { page },
   );
@@ -66,7 +68,11 @@ export default function AppTimer(props: AppTimerProps) {
           <div className={styles.secondSidebar} />
           <div className={styles.thirdSidebar} />
           <h4 className={styles.yourTasks}>
-            {tasks.length > 0 ? "Your recently used tasks" : "No tasks yet"}
+            {tasks.length > 0
+              ? "Your recently used tasks"
+              : isTasksFetched
+              ? "No tasks yet"
+              : ""}
           </h4>
           {tasks.map((task) => (
             <TimerTask key={`timers-task-${task.id}`} task={task} />
@@ -76,7 +82,11 @@ export default function AppTimer(props: AppTimerProps) {
           <NewTask />
           <PaddingContainer withBottomGap>
             <h2>
-              {hasTimeEntries ? "Your time entries" : "No time entries yet"}
+              {hasTimeEntries
+                ? "Your time entries"
+                : isFetched
+                ? "No time entries yet"
+                : ""}
             </h2>
             {Object.keys(timeEntries).map((date) => {
               return (
