@@ -1,3 +1,4 @@
+import { expect } from "@jest/globals";
 import { fireEvent, render } from "@testing-library/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
