@@ -43,7 +43,7 @@
   margin-bottom: 0.25rem;
   line-height: 1.2em;
   font-size: 0.9rem;
-  transition: color 150ms ease;
+  transition: color 50ms ease;
 }
 
 .timer {
