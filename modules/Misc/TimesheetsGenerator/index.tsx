@@ -34,6 +34,7 @@ export default function TimesheetsGenerator() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedFolders, setSelectedFolders] = useState<number[]>([]);
   const [per, setPer] = useState("day");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setSelectedFolders([]);
@@ -78,6 +79,7 @@ export default function TimesheetsGenerator() {
 
   const fetchTimesheets = () => {
     setTimesheetsData(null);
+    setIsLoading(true);
     return fetch(
       `${
         per === "day"
@@ -140,7 +142,8 @@ export default function TimesheetsGenerator() {
 
         // Remove the link from the document
         document.body.removeChild(downloadLink);
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const getDurationFromDates = (start: string, end: string) => {
@@ -176,6 +179,7 @@ export default function TimesheetsGenerator() {
       </div>
       {selectedProject && (
         <>
+          <hr className="divider" />
           <div className={styles.foldersPicker}>
             {folders.map((folder) => (
               <div key={folder.id} className={styles.foldersCheckbox}>
@@ -187,8 +191,9 @@ export default function TimesheetsGenerator() {
               </div>
             ))}
           </div>
+          <hr className="divider" />
           <div className={styles.buttonWrapper}>
-            <Button noMargin onClick={fetchTimesheets}>
+            <Button disabled={isLoading} noMargin onClick={fetchTimesheets}>
               Generate timesheet
             </Button>
             <Input
@@ -204,6 +209,7 @@ export default function TimesheetsGenerator() {
               checked={per === "week"}
             />
           </div>
+          <hr className="divider" />
         </>
       )}
       {timesheetsData && (
