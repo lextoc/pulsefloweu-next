@@ -3,6 +3,7 @@
 exports[`Button component matches snapshot 1`] = `
 <div>
   <button
+    aria-disabled="false"
     class="root  "
   >
     Click me
