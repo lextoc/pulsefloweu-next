@@ -13,18 +13,20 @@ export interface TimeEntry {
   project_id: number;
 }
 
-export type CreateTimeEntry = Omit<
-  TimeEntry,
-  | "id"
-  | "user_id"
-  | "end_date"
-  | "created_at"
-  | "updated_at"
-  | "task_name"
-  | "folder_name"
-  | "project_name"
-  | "project_id"
->;
+export type CreateTimeEntry = {
+  time_entry: Omit<
+    TimeEntry,
+    | "id"
+    | "user_id"
+    | "end_date"
+    | "created_at"
+    | "updated_at"
+    | "task_name"
+    | "folder_name"
+    | "project_name"
+    | "project_id"
+  >;
+};
 
 export interface TimeEntryWithTaskName extends TimeEntry {
   task_name: string;

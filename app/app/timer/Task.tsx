@@ -53,7 +53,7 @@ export default function TimerTask({ task }: TimerTaskProps) {
         });
       });
     if (task.active_time_entries.length) return;
-    create<{ time_entry: CreateTimeEntry }>(endpoints.timeEntries.main, {
+    create<CreateTimeEntry>(endpoints.timeEntries.main, {
       time_entry: {
         start_date: dayjs().format(),
         folder_id: task.folder_id,

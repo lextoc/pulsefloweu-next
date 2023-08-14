@@ -21,5 +21,9 @@ module.exports = {
     "prettier/prettier": "warn",
     "react/react-in-jsx-scope": "off",
     "simple-import-sort/imports": "error",
+    "no-unused-vars": [
+      "warn",
+      { vars: "all", args: "after-used", ignoreRestSiblings: false },
+    ],
   },
 };

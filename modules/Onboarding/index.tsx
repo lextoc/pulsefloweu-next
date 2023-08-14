@@ -2,7 +2,6 @@
 
 import { useForm } from "@mantine/form";
 import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
 import { clearCookies } from "@/api/cookies";
@@ -38,7 +37,6 @@ export interface OnboardingProps {}
 export function Onboarding(props: OnboardingProps) {
   const showSnackbar = useSnackbarStore((state) => state.show);
   const queryClient = useQueryClient();
-  const { push } = useRouter();
 
   const user = useContext(AuthenticationContext);
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
@@ -113,7 +111,7 @@ export function Onboarding(props: OnboardingProps) {
 
   const onSubmitProject = (values: ProjectFormValues) => {
     if (!values.projectName || !values.folderName || !values.taskName) return;
-    create<{ project: CreateProject }>(endpoints.projects.main, {
+    create<CreateProject>(endpoints.projects.main, {
       project: { name: values.projectName },
     }).then((data) => {
       if (data?.errors) {
@@ -123,7 +121,7 @@ export function Onboarding(props: OnboardingProps) {
         });
       } else {
         const projectId = data.data?.id;
-        create<{ folder: CreateFolder }>(endpoints.folders.main, {
+        create<CreateFolder>(endpoints.folders.main, {
           folder: { project_id: projectId, name: values.folderName },
         }).then((data) => {
           if (data?.errors) {
@@ -133,7 +131,7 @@ export function Onboarding(props: OnboardingProps) {
             });
           } else {
             const folderId = data.data?.id;
-            create<{ task: CreateTask }>(endpoints.tasks.main, {
+            create<CreateTask>(endpoints.tasks.main, {
               task: { name: values.taskName, folder_id: folderId },
             }).then((data) => {
               if (data?.errors) {

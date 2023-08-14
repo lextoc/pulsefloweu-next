@@ -41,3 +41,7 @@ export const transformSecondsToTimer = (seconds: number | null) => {
 
   return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 };
+
+export type RecursivePartial<T> = {
+  [P in keyof T]?: RecursivePartial<T[P]>;
+};

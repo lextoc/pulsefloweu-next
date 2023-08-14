@@ -62,7 +62,7 @@ export default function TimeEntriesListItem({
         });
       });
     if (!timeEntry.end_date) return;
-    create<{ time_entry: CreateTimeEntry }>(endpoints.timeEntries.main, {
+    create<CreateTimeEntry>(endpoints.timeEntries.main, {
       time_entry: {
         start_date: dayjs().format(),
         folder_id: timeEntry.folder_id,

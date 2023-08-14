@@ -15,6 +15,7 @@ import Form from "@/components/Inputs/Form";
 import Modal from "@/components/Overlays/Modals/Base";
 import Popover from "@/components/Overlays/Popover";
 import { useSnackbarStore } from "@/stores/snackbar";
+import { RecursivePartial } from "@/utils/helpers";
 
 import styles from "./index.module.css";
 
@@ -30,17 +31,21 @@ export default function ProjectMenu({ project, white }: ProjectMenuProps) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const editForm = useForm<Partial<Omit<Project, "project_id">>>({
+  const editForm = useForm<RecursivePartial<CreateProject>>({
     initialValues: {
-      name: project.name,
+      project: {
+        name: project.name,
+      },
     },
 
     validate: {
-      name: (value) => {
-        return Yup.string()
-          .required("Name is required")
-          .max(100, "Name must be at most 100 characters")
-          .validateSync(value);
+      project: {
+        name: (value) => {
+          return Yup.string()
+            .required("Name is required")
+            .max(100, "Name must be at most 100 characters")
+            .validateSync(value);
+        },
       },
     },
   });
@@ -55,14 +60,10 @@ export default function ProjectMenu({ project, white }: ProjectMenuProps) {
     },
   });
 
-  const onEdit = (values: Partial<CreateProject>) => {
-    update<{ project: Partial<CreateProject> }>(
+  const onEdit = (values: RecursivePartial<CreateProject>) => {
+    update<RecursivePartial<CreateProject>>(
       endpoints.projects.detail(project.id),
-      {
-        project: {
-          ...values,
-        },
-      },
+      values,
     ).then((data) => {
       if (data?.errors) {
         showSnackbar({

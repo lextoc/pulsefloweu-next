@@ -82,7 +82,7 @@ export default function NewTask(props: NewTaskProps) {
           return response.json();
         })
         .then(() => {
-          create<{ time_entry: CreateTimeEntry }>(endpoints.timeEntries.main, {
+          create<CreateTimeEntry>(endpoints.timeEntries.main, {
             time_entry: {
               start_date: dayjs().format(),
               folder_id: selectedFolderId,

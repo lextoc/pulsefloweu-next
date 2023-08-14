@@ -15,6 +15,7 @@ import Form from "@/components/Inputs/Form";
 import Modal from "@/components/Overlays/Modals/Base";
 import Popover from "@/components/Overlays/Popover";
 import { useSnackbarStore } from "@/stores/snackbar";
+import { RecursivePartial } from "@/utils/helpers";
 
 import styles from "./index.module.css";
 
@@ -29,17 +30,20 @@ export default function TaskMenu({ task }: TaskMenuProps) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const editForm = useForm<Partial<Omit<Task, "project_id">>>({
+  const editForm = useForm<RecursivePartial<CreateTask>>({
     initialValues: {
-      name: task.name,
+      task: {
+        name: task.name,
+      },
     },
-
     validate: {
-      name: (value) => {
-        return Yup.string()
-          .required("Name is required")
-          .max(100, "Name must be at most 100 characters")
-          .validateSync(value);
+      task: {
+        name: (value) => {
+          return Yup.string()
+            .required("Name is required")
+            .max(100, "Name must be at most 100 characters")
+            .validateSync(value);
+        },
       },
     },
   });
@@ -54,12 +58,15 @@ export default function TaskMenu({ task }: TaskMenuProps) {
     },
   });
 
-  const onEdit = (values: Partial<CreateTask>) => {
-    update<{ task: Partial<CreateTask> }>(endpoints.tasks.detail(task.id), {
-      task: {
-        ...values,
+  const onEdit = (values: RecursivePartial<CreateTask>) => {
+    update<{ task: RecursivePartial<CreateTask> }>(
+      endpoints.tasks.detail(task.id),
+      {
+        task: {
+          ...values,
+        },
       },
-    }).then((data) => {
+    ).then((data) => {
       if (data?.errors) {
         showSnackbar({
           message:
