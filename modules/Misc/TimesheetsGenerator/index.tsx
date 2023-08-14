@@ -95,6 +95,51 @@ export default function TimesheetsGenerator() {
       })
       .then((data) => {
         setTimesheetsData(data);
+
+        if (!Object.keys(data?.data?.time_entries).length) return;
+
+        console.info(data?.data);
+        const csvContent = [
+          "Date,Task,Start Time,Duration",
+          ...Object.keys(data?.data?.time_entries).flatMap((date) => [
+            `"${date}", "${data?.data
+              ?.view_type}", "", "${transformSecondsToHumanReadableString(
+              data?.data?.time_entries[date]?.total_duration,
+            )}"`,
+            ...data?.data?.time_entries[date]?.time_entries.map(
+              (time_entry: TimeEntry) =>
+                `"${dayjs(time_entry.start_date).format("YYYY-MM-DD")}","${
+                  time_entry.task_name
+                }","${dayjs(time_entry.start_date).format(
+                  "HH:mm",
+                )}","${getDurationFromDates(
+                  time_entry.start_date,
+                  time_entry.end_date,
+                )}"`,
+            ),
+          ]),
+        ].join("\n");
+
+        // Create a Blob containing the CSV data
+        const csvBlob = new Blob([csvContent], {
+          type: "text/csv;charset=utf-8",
+        });
+
+        // Create a download link
+        const downloadLink = document.createElement("a");
+        downloadLink.href = URL.createObjectURL(csvBlob);
+        downloadLink.download = "timesheets.csv";
+        downloadLink.style.display = "none";
+
+        // Append the link to the document and trigger the click event
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+
+        // Clean up the URL object after download
+        URL.revokeObjectURL(downloadLink.href);
+
+        // Remove the link from the document
+        document.body.removeChild(downloadLink);
       });
   };
 
