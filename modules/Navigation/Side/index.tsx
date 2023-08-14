@@ -79,7 +79,6 @@ export default function SideNavigation() {
             href="/app/timesheets"
             title="Timesheets generator"
             sub="Generate timesheets for a specific date range"
-            wip
           />
           <SideNavigationProjects />
         </div>

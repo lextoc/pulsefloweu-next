@@ -153,6 +153,7 @@ export default function TimesheetsGenerator() {
 
   return (
     <div>
+      <h2>Choose date range</h2>
       <div className="cards">
         <Input
           className={styles.input}
@@ -167,6 +168,8 @@ export default function TimesheetsGenerator() {
           {...form.getInputProps("to")}
         />
       </div>
+      <hr className="divider" />
+      <h2>Choose project</h2>
       <div className="cards">
         {projects.map((_project) => (
           <TimesheetsGeneratorProjectsButton
@@ -180,6 +183,7 @@ export default function TimesheetsGenerator() {
       {selectedProject && (
         <>
           <hr className="divider" />
+          <h2>Select folders</h2>
           <div className={styles.foldersPicker}>
             {folders.map((folder) => (
               <div key={folder.id} className={styles.foldersCheckbox}>
@@ -192,10 +196,8 @@ export default function TimesheetsGenerator() {
             ))}
           </div>
           <hr className="divider" />
+          <h2>Select type</h2>
           <div className={styles.buttonWrapper}>
-            <Button disabled={isLoading} noMargin onClick={fetchTimesheets}>
-              Generate timesheet
-            </Button>
             <Input
               label="Per day"
               type="radio"
@@ -209,6 +211,10 @@ export default function TimesheetsGenerator() {
               checked={per === "week"}
             />
           </div>
+          <hr className="divider" />
+          <Button disabled={isLoading} noMargin onClick={fetchTimesheets}>
+            Generate timesheet
+          </Button>
           <hr className="divider" />
         </>
       )}

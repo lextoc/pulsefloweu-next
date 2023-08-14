@@ -11,9 +11,7 @@ export default function AppTimesheets() {
     <div className={styles.root}>
       <Header>
         <PaddingContainer>
-          <h1>
-            Timesheets generator <span className="wip" />
-          </h1>
+          <h1>Timesheets generator</h1>
           <p>Generate timesheets for a specific date range</p>
         </PaddingContainer>
       </Header>
