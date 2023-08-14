@@ -1,6 +1,5 @@
 import { useForm, yupResolver } from "@mantine/form";
 import { IconCaretDown } from "@tabler/icons-react";
-import { useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
@@ -20,7 +19,6 @@ import Popover from "@/components/Overlays/Popover";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
 import { useMutationWithErrorHandling } from "@/hooks/useMutationBase";
 import { useFetch } from "@/hooks/useQueryBase";
-import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./NewTask.module.css";
 
