@@ -15,6 +15,7 @@ import Form from "@/components/Inputs/Form";
 import Modal from "@/components/Overlays/Modals/Base";
 import Popover from "@/components/Overlays/Popover";
 import { useSnackbarStore } from "@/stores/snackbar";
+import { RecursivePartial } from "@/utils/helpers";
 
 import styles from "./index.module.css";
 
@@ -29,17 +30,21 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const editForm = useForm<Partial<Omit<Folder, "project_id">>>({
+  const editForm = useForm<RecursivePartial<CreateFolder>>({
     initialValues: {
-      name: folder.name,
+      folder: {
+        name: folder.name,
+      },
     },
 
     validate: {
-      name: (value) => {
-        return Yup.string()
-          .required("Name is required")
-          .max(100, "Name must be at most 100 characters")
-          .validateSync(value);
+      folder: {
+        name: (value) => {
+          return Yup.string()
+            .required("Name is required")
+            .max(100, "Name must be at most 100 characters")
+            .validateSync(value);
+        },
       },
     },
   });
@@ -54,14 +59,10 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
     },
   });
 
-  const onEdit = (values: Partial<CreateFolder>) => {
-    update<{ folder: Partial<CreateFolder> }>(
+  const onEdit = (values: RecursivePartial<CreateFolder>) => {
+    update<RecursivePartial<CreateFolder>>(
       endpoints.folders.detail(folder.id),
-      {
-        folder: {
-          ...values,
-        },
-      },
+      values,
     ).then((data) => {
       if (data?.errors) {
         showSnackbar({
@@ -128,7 +129,7 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
           <Input
             label="Folder name"
             placeholder="Folder name"
-            {...editForm.getInputProps("name")}
+            {...editForm.getInputProps("folder.name")}
           />
           <div className="buttons-right">
             <Button variant="subtle" onClick={() => setIsEditModalOpen(false)}>
