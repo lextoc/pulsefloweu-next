@@ -1,11 +1,11 @@
-import { useForm } from "@mantine/form";
+import { useForm, yupResolver } from "@mantine/form";
 import { IconCaretDown } from "@tabler/icons-react";
 import { useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
 import { useEffect, useId, useState } from "react";
-import Yup from "yup";
+import * as Yup from "yup";
 
 import { getHeaders } from "@/api/cookies";
 import create from "@/api/create";
@@ -14,6 +14,7 @@ import { Folder } from "@/api/types/folders";
 import { Project } from "@/api/types/projects";
 import { CreateTask } from "@/api/types/tasks";
 import { CreateTimeEntry } from "@/api/types/time-entries";
+import { taskValidationSchema } from "@/api/validationSchemas";
 import Button from "@/components/Buttons/Base";
 import Input from "@/components/Inputs/Base";
 import Form from "@/components/Inputs/Form";
@@ -29,6 +30,7 @@ dayjs.extend(utc);
 
 export interface NewTaskProps {}
 
+// TODO refactor
 export default function NewTask(props: NewTaskProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
@@ -61,10 +63,10 @@ export default function NewTask(props: NewTaskProps) {
 
   const onSubmit = (values: Omit<CreateTask, "folder_id">) => {
     if (!selectedFolderId) return;
-    create<{ task: CreateTask }>(endpoints.tasks.main, {
+    create<CreateTask>(endpoints.tasks.main, {
       task: {
+        ...values.task,
         folder_id: selectedFolderId,
-        ...values,
       },
     }).then((data) => {
       const taskId = data?.data?.id;
@@ -106,23 +108,18 @@ export default function NewTask(props: NewTaskProps) {
     });
   };
 
-  const form = useForm<Omit<CreateTask, "folder_id">>({
+  const form = useForm<CreateTask>({
     initialValues: {
-      name: "",
-    },
-
-    validate: {
-      name: (value) => {
-        return Yup.string()
-          .required("Name is required")
-          .max(100, "Name must be at most 100 characters")
-          .validateSync(value);
+      task: {
+        name: "",
+        folder_id: -1,
       },
     },
+    validate: yupResolver(taskValidationSchema),
   });
 
-  const projectId = useId();
-  const folderId = useId();
+  const htmlProjectId = useId();
+  const htmlFolderId = useId();
 
   return (
     <div className={styles.root}>
@@ -131,14 +128,14 @@ export default function NewTask(props: NewTaskProps) {
           <Input
             label="Create new task"
             placeholder="New task name"
-            {...form.getInputProps("name")}
+            {...form.getInputProps("task.name")}
           />
         </Form>
         <div className={styles.dropdowns}>
           <div className={styles.dropdownWrapper}>
-            <label htmlFor={projectId}>Project:</label>
+            <label htmlFor={htmlProjectId}>Project:</label>
             <Popover
-              id={projectId}
+              id={htmlProjectId}
               content={
                 <div className={styles.dropdownButtons}>
                   {projects.map((project) => (
@@ -166,9 +163,9 @@ export default function NewTask(props: NewTaskProps) {
             />
           </div>
           <div className={styles.dropdownWrapper}>
-            <label htmlFor={folderId}>Folder:</label>
+            <label htmlFor={htmlFolderId}>Folder:</label>
             <Popover
-              id={folderId}
+              id={htmlFolderId}
               content={
                 <div className={styles.dropdownButtons}>
                   {folders.map((folder) => (

@@ -3,7 +3,7 @@ import { useForm } from "@mantine/form";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Yup from "yup";
+import * as Yup from "yup";
 
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";

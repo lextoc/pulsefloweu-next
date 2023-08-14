@@ -3,13 +3,13 @@
 import { useForm } from "@mantine/form";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-import { clearCookies, setCookies } from "@/api/cookies";
+import { setCookies } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
 import Button from "@/components/Buttons/Base";
 import Input from "@/components/Inputs/Base";
 import Form from "@/components/Inputs/Form";
-import { useAuthenticationStore } from "@/stores/authentication";
 import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./index.module.css";
@@ -25,8 +25,10 @@ export default function RegisterForm(props: RegisterFormProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
   const { push } = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = (values: RegisterFormValues) => {
+    setIsLoading(true);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -57,7 +59,8 @@ export default function RegisterForm(props: RegisterFormProps) {
           queryClient.invalidateQueries([endpoints.auth.validateToken]);
           push("/app/dashboard");
         }
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const form = useForm({
@@ -90,7 +93,9 @@ export default function RegisterForm(props: RegisterFormProps) {
         <Button variant="subtle" nextLink="/">
           Sign in
         </Button>
-        <Button type="submit">Register</Button>
+        <Button disabled={isLoading} type="submit">
+          Register
+        </Button>
       </div>
     </Form>
   );

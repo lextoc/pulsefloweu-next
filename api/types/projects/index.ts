@@ -6,8 +6,6 @@ export interface Project {
   updated_at: string;
 }
 
-export type CreateProject = Omit<
-  Project,
-  "id" | "user_id" | "created_at" | "updated_at"
->;
-
+export type CreateProject = {
+  project: Omit<Project, "id" | "user_id" | "created_at" | "updated_at">;
+};

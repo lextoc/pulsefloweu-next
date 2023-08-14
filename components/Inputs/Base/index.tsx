@@ -14,16 +14,18 @@ export interface InputProps
   transparent?: boolean;
   small?: boolean;
   fullWidth?: boolean;
+  error?: string;
 }
 
 export default function Input({
-  type,
+  type = "text",
   label,
   inverted,
   transparent,
   small,
   className,
   fullWidth,
+  error,
   ...props
 }: InputProps) {
   const id = useId();
@@ -52,6 +54,7 @@ export default function Input({
       {(type === "checkbox" || type === "radio") && label && (
         <Label htmlFor={id}>{label}</Label>
       )}
+      {error && <div className={styles.error}>{error}</div>}
     </div>
   );
 }

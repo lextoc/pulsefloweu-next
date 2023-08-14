@@ -98,7 +98,7 @@ export default function TasksCard({ task }: TaskCardProps) {
 
   return (
     <Card
-      hasMovingBackground={isActive}
+      whiteAnimatedBackground={isActive}
       header={
         <>
           <Link

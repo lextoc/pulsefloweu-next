@@ -37,9 +37,9 @@ describe("Card component", () => {
     expect(footerElement).toBeNull();
   });
 
-  it("applies moving background styles when hasMovingBackground is true", () => {
+  it("applies moving background styles when whiteAnimatedBackground is true", () => {
     const { container } = render(
-      <Card {...defaultProps} hasMovingBackground />,
+      <Card {...defaultProps} whiteAnimatedBackground />,
     );
 
     const cardElement = container.querySelector(".rootMovingBackground");
@@ -47,9 +47,9 @@ describe("Card component", () => {
     expect(cardElement).toBeInTheDocument();
   });
 
-  it("does not apply moving background styles when hasMovingBackground is false", () => {
+  it("does not apply moving background styles when whiteAnimatedBackground is false", () => {
     const { container } = render(
-      <Card {...defaultProps} hasMovingBackground={false} />,
+      <Card {...defaultProps} whiteAnimatedBackground={false} />,
     );
 
     const cardElement = container.querySelector(".rootMovingBackground");

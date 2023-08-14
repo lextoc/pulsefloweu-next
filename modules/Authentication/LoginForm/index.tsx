@@ -3,8 +3,9 @@
 import { useForm } from "@mantine/form";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-import { clearCookies, setCookies } from "@/api/cookies";
+import { setCookies } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
 import Button from "@/components/Buttons/Base";
 import Input from "@/components/Inputs/Base";
@@ -24,8 +25,10 @@ export default function LoginForm(props: LoginFormProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
   const { push } = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = (values: LoginFormValues) => {
+    setIsLoading(true);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -60,7 +63,8 @@ export default function LoginForm(props: LoginFormProps) {
               push("/app/timer");
             });
         }
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const form = useForm({
@@ -95,7 +99,9 @@ export default function LoginForm(props: LoginFormProps) {
         <Button variant="subtle" nextLink="/register">
           Register
         </Button>
-        <Button type="submit">Sign in</Button>
+        <Button disabled={isLoading} type="submit">
+          Sign in
+        </Button>
       </div>
     </Form>
   );

@@ -13,6 +13,7 @@ export interface ButtonProps
   danger?: boolean;
   noMargin?: boolean;
   testid?: string;
+  disabled?: boolean;
 }
 
 export default function Button({
@@ -22,6 +23,7 @@ export default function Button({
   danger,
   noMargin,
   testid,
+  disabled = false,
   ...props
 }: ButtonProps) {
   const classNames = `${variant === "subtle" ? styles.subtle : styles.root} ${
@@ -37,7 +39,13 @@ export default function Button({
   }
 
   return (
-    <button className={classNames} {...props} data-testid={testid}>
+    <button
+      className={classNames}
+      {...props}
+      data-testid={testid}
+      disabled={disabled}
+      aria-disabled={disabled}
+    >
       {children}
     </button>
   );

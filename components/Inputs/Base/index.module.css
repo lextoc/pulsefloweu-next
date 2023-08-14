@@ -91,3 +91,15 @@
   top: 0;
   right: 0;
 }
+
+.error {
+  position: absolute;
+  color: rgb(var(--danger));
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  margin-top: 0.25em;
+  text-align: right;
+  width: 100%;
+}

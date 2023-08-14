@@ -14,15 +14,17 @@ export interface Task {
   active_time_entries: TimeEntry[];
 }
 
-export type CreateTask = Omit<
-  Task,
-  | "id"
-  | "user_id"
-  | "created_at"
-  | "updated_at"
-  | "total_duration_of_time_entries"
-  | "folder_name"
-  | "project_name"
-  | "active_time_entries"
-  | "project_id"
->;
+export type CreateTask = {
+  task: Omit<
+    Task,
+    | "id"
+    | "user_id"
+    | "created_at"
+    | "updated_at"
+    | "total_duration_of_time_entries"
+    | "folder_name"
+    | "project_name"
+    | "active_time_entries"
+    | "project_id"
+  >;
+};

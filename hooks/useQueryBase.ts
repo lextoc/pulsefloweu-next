@@ -5,7 +5,6 @@ import {
 } from "@tanstack/react-query";
 import queryString from "query-string";
 
-import { getHeaders } from "@/api/cookies";
 import {
   AuthenticationData,
   useAuthenticationStore,

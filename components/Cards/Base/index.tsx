@@ -4,14 +4,14 @@ export interface CardProps {
   header: React.ReactNode;
   content?: React.ReactNode;
   footer?: React.ReactNode;
-  hasMovingBackground?: boolean;
+  whiteAnimatedBackground?: boolean;
 }
 
 export default function Card({
   header,
   content,
   footer,
-  hasMovingBackground: withMovingBackground,
+  whiteAnimatedBackground: withMovingBackground,
 }: CardProps) {
   return (
     <article

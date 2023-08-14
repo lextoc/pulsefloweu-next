@@ -7,7 +7,6 @@ export interface Folder {
   updated_at: string;
 }
 
-export type CreateFolder = Omit<
-  Folder,
-  "id" | "user_id" | "created_at" | "updated_at"
->;
+export type CreateFolder = {
+  folder: Omit<Folder, "id" | "user_id" | "created_at" | "updated_at">;
+};

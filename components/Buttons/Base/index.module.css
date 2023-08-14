@@ -15,6 +15,11 @@
   transition: background-color 150ms ease;
 }
 
+.root[aria-disabled="true"] {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 .root:hover,
 .root:focus {
   background-color: rgba(var(--secondary-bright), 0.8);
