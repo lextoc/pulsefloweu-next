@@ -20,6 +20,12 @@
 .input[type="time"],
 .input[type="date"] {
   font-family: inherit;
+  appearance: none;
+  color: inherit;
+}
+
+.input::-webkit-date-and-time-value {
+  text-align: left;
 }
 
 .input[type="time"] {
@@ -28,9 +34,6 @@
 
 .input[type="time"]::-webkit-calendar-picker-indicator {
   display: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
   appearance: none;
 }
 

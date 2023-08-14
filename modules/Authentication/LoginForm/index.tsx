@@ -60,7 +60,7 @@ export default function LoginForm() {
           queryClient
             .invalidateQueries([endpoints.auth.validateToken])
             .then(() => {
-              push("/app/timer");
+              push("/app/get-started");
             });
         }
       })

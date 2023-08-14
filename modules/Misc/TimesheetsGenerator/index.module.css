@@ -1,9 +1,4 @@
-.inputs {
-  display: flex;
-}
-
 .input {
-  width: 20rem;
   margin-right: 2rem;
 }
 

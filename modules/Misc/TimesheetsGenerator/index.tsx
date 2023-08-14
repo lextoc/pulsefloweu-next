@@ -1,7 +1,6 @@
 "use client";
 
 import { useForm } from "@mantine/form";
-import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
@@ -10,7 +9,6 @@ import { useEffect, useState } from "react";
 
 import { getHeaders } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
-import getPage from "@/api/getPage";
 import { Folder } from "@/api/types/folders";
 import { Project } from "@/api/types/projects";
 import { TimeEntry } from "@/api/types/time-entries";
@@ -107,7 +105,7 @@ export default function TimesheetsGenerator() {
 
   return (
     <div>
-      <div className={styles.inputs}>
+      <div className="cards">
         <Input
           className={styles.input}
           label="From"

@@ -60,7 +60,7 @@ export default function SideNavigation() {
         <div className={styles.inner}>
           <SideNavigationRunningTimeEntries />
           <SideNavigationLink
-            href="/app/timer"
+            href="/app/get-started"
             title="Get started"
             sub="Start inserting time entries for your tasks"
           />

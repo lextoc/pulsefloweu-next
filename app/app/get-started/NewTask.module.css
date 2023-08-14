@@ -57,7 +57,11 @@
     margin: 0 auto;
   }
 
+  .dropdownWrapper label {
+    display: none;
+  }
+
   .dropdown {
-    padding: 1rem;
+    padding: 0.5rem;
   }
 }
