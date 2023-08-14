@@ -24,13 +24,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"],
-  "rules": {
-    "max-line-length": [
-      true,
-      {
-        "limit": 120
-      }
-    ]
-  }
+  "exclude": ["node_modules"]
 }
