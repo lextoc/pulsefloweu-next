@@ -5,10 +5,8 @@ import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
 import { useEffect, useId, useState } from "react";
-import * as Yup from "yup";
 
 import { getHeaders } from "@/api/cookies";
-import create from "@/api/create";
 import endpoints from "@/api/endpoints";
 import { Folder } from "@/api/types/folders";
 import { Project } from "@/api/types/projects";
@@ -20,6 +18,7 @@ import Input from "@/components/Inputs/Base";
 import Form from "@/components/Inputs/Form";
 import Popover from "@/components/Overlays/Popover";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
+import { useMutationWithErrorHandling } from "@/hooks/useMutationBase";
 import { useFetch } from "@/hooks/useQueryBase";
 import { useSnackbarStore } from "@/stores/snackbar";
 
@@ -30,11 +29,7 @@ dayjs.extend(utc);
 
 export interface NewTaskProps {}
 
-// TODO refactor
 export default function NewTask() {
-  const queryClient = useQueryClient();
-  const showSnackbar = useSnackbarStore((state) => state.show);
-
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
     null,
   );
@@ -61,9 +56,21 @@ export default function NewTask() {
     setSelectedFolderId(null);
   }, [selectedProjectId]);
 
+  const { mutateAsync: mutateAsyncTask, isLoading: isLoadingTask } =
+    useMutationWithErrorHandling<CreateTask>({
+      method: "POST",
+      endpoint: endpoints.tasks.main,
+    });
+
+  const { mutate: mutateTimeEntry, isLoading: isLoadingTimeEntry } =
+    useMutationWithErrorHandling<CreateTimeEntry>({
+      method: "POST",
+      endpoint: endpoints.timeEntries.main,
+    });
+
   const onSubmit = (values: Omit<CreateTask, "folder_id">) => {
-    if (!selectedFolderId) return;
-    create<CreateTask>(endpoints.tasks.main, {
+    if (!selectedFolderId || isLoadingTask || isLoadingTimeEntry) return;
+    mutateAsyncTask({
       task: {
         ...values.task,
         folder_id: selectedFolderId,
@@ -82,27 +89,12 @@ export default function NewTask() {
           return response.json();
         })
         .then(() => {
-          create<CreateTimeEntry>(endpoints.timeEntries.main, {
+          mutateTimeEntry({
             time_entry: {
               start_date: dayjs().format(),
               folder_id: selectedFolderId,
               task_id: taskId,
             },
-          }).then((data) => {
-            if (data?.errors) {
-              showSnackbar({
-                message:
-                  data?.errors?.full_messages?.join(" ") ||
-                  data?.errors?.join(" "),
-                type: "error",
-              });
-            } else {
-              form.reset();
-              queryClient.invalidateQueries();
-              showSnackbar({
-                message: "Task has been created",
-              });
-            }
           });
         });
     });

@@ -24,7 +24,7 @@ export type UseMutationWithErrorHandlingPossibleMethods =
 export interface useMutationWithErrorHandlingProps<T> {
   method: UseMutationWithErrorHandlingPossibleMethods;
   endpoint: string;
-  form: UseFormReturnType<T>;
+  form?: UseFormReturnType<T>;
 }
 
 export const useMutationWithErrorHandling = <
@@ -47,7 +47,7 @@ export const useMutationWithErrorHandling = <
     },
     onSuccess: (response) => {
       if (response.success) {
-        form.reset();
+        form?.reset();
         queryClient.invalidateQueries();
         showSnackbar({
           message: "Folder has been created",
