@@ -21,7 +21,7 @@ export interface LoginFormValues {
 
 export interface LoginFormProps {}
 
-export default function LoginForm(props: LoginFormProps) {
+export default function LoginForm() {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
   const { push } = useRouter();

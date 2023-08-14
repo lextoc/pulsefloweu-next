@@ -15,7 +15,7 @@ import styles from "./index.module.css";
 
 export interface ProjectCreateCardProps {}
 
-export function ProjectCreateCard(props: ProjectCreateCardProps) {
+export function ProjectCreateCard() {
   const form = useForm<CreateProject>({
     initialValues: {
       project: {

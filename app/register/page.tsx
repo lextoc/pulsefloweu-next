@@ -7,7 +7,7 @@ import styles from "../page.module.css";
 
 export interface RegisterProps {}
 
-export default function Register(props: RegisterProps) {
+export default function Register() {
   return (
     <div className={styles.loginWrapper}>
       <div className={styles.logoWrapper}>

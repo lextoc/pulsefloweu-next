@@ -28,7 +28,7 @@ dayjs.extend(utc);
 
 export interface TimesheetsGeneratorProps {}
 
-export default function TimesheetsGenerator(props: TimesheetsGeneratorProps) {
+export default function TimesheetsGenerator() {
   const set = useNavigationStore((state) => state.set);
   set({ menuTitle: "Generate timesheets based on your input" });
 

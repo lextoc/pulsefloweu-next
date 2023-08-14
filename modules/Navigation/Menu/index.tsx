@@ -32,7 +32,7 @@ export interface ProfileFormValues {
 
 export interface NavigationMenuProps {}
 
-export default function NavigationMenu(props: NavigationMenuProps) {
+export default function NavigationMenu() {
   const showSnackbar = useSnackbarStore((state) => state.show);
   const menuTitle = useNavigationStore((state) => state.menuTitle);
   const shouldToggleMobileMenu = useNavigationStore(

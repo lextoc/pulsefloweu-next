@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 
 export interface AppTimelineProps {}
 
-export default function AppTimeline(props: AppTimelineProps) {
+export default function AppTimeline() {
   return (
     <div className={styles.root}>
       <Header>

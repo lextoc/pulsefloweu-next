@@ -9,9 +9,7 @@ import styles from "./index.module.css";
 
 export interface SideNavigationProjectsProps {}
 
-export default function SideNavigationProjects(
-  props: SideNavigationProjectsProps,
-) {
+export default function SideNavigationProjects() {
   const { data: projectsData } = useFetch<Project[]>(endpoints.projects.main);
   const projects: Project[] = projectsData?.success ? projectsData.data : [];
 

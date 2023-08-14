@@ -13,7 +13,7 @@ import styles from "./page.module.css";
 
 export interface AppDashboardProps {}
 
-export default function AppDashboard(props: AppDashboardProps) {
+export default function AppDashboard() {
   const set = useNavigationStore((state) => state.set);
   set({ menuTitle: "Create projects and manage memberships and permissions" });
 

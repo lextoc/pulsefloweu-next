@@ -25,7 +25,7 @@ dayjs.extend(utc);
 
 export interface AppTimerProps {}
 
-export default function AppTimer(props: AppTimerProps) {
+export default function AppTimer() {
   const set = useNavigationStore((state) => state.set);
   set({ menuTitle: "Start timing your tasks" });
 

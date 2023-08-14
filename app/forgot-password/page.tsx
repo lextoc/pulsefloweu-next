@@ -6,7 +6,7 @@ import styles from "../page.module.css";
 
 export interface ForgotPasswordProps {}
 
-export default function ForgotPassword(props: ForgotPasswordProps) {
+export default function ForgotPassword() {
   return (
     <div className={styles.loginWrapper}>
       <div className={styles.logoWrapper}>

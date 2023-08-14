@@ -14,7 +14,7 @@ import styles from "./index.module.css";
 
 export interface SideNavigationProps {}
 
-export default function SideNavigation(props: SideNavigationProps) {
+export default function SideNavigation() {
   const pathname = usePathname();
   const shouldToggleMobileMenu = useNavigationStore(
     (state) => state.shouldToggleMobileMenu,
@@ -38,18 +38,20 @@ export default function SideNavigation(props: SideNavigationProps) {
 
   return (
     <>
-      <div
+      <button
         className={`${styles.mobileOverlay} ${
           shouldToggleMobileMenu ? styles.opacityOverlay : ""
         } ${isMobileMenuOpen ? styles.opacityOverlay : ""}`}
+        aria-label="Close mobile menu"
+        onClick={onLinkClick}
       />
       <div
         className={`${styles.root} ${
           shouldToggleMobileMenu ? styles.moveOut : ""
         } ${isMobileMenuOpen ? styles.moveIn : ""}`}
       >
-        <div className={styles.secondRoot} />
-        <div className={styles.thirdRoot} />
+        <div className={styles.secondRoot} aria-hidden="true" />
+        <div className={styles.thirdRoot} aria-hidden="true" />
         <div className={styles.logoWrapper}>
           <Link href="/" className={styles.logo} onClick={onLinkClick}>
             <Logo small white noLink />

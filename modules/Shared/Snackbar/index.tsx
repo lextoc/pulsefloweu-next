@@ -9,7 +9,7 @@ import styles from "./index.module.css";
 
 export interface SnackbarProps {}
 
-export default function Snackbar(props: SnackbarProps) {
+export default function Snackbar() {
   const message = useSnackbarStore((state) => state.message);
   const type = useSnackbarStore((state) => state.type);
   const visible = useSnackbarStore((state) => state.visible);

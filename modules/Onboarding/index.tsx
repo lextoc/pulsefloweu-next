@@ -34,7 +34,7 @@ export interface ProjectFormValues {
 
 export interface OnboardingProps {}
 
-export function Onboarding(props: OnboardingProps) {
+export function Onboarding() {
   const showSnackbar = useSnackbarStore((state) => state.show);
   const queryClient = useQueryClient();
 

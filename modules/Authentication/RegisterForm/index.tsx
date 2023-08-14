@@ -21,7 +21,7 @@ export interface RegisterFormValues {
 
 export interface RegisterFormProps {}
 
-export default function RegisterForm(props: RegisterFormProps) {
+export default function RegisterForm() {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
   const { push } = useRouter();

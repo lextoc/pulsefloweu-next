@@ -6,7 +6,7 @@ import styles from "./index.module.css";
 
 export interface INavigationProgressProps {}
 
-export default function NavigationProgress(props: INavigationProgressProps) {
+export default function NavigationProgress() {
   const isFetching = useIsFetching();
 
   return (

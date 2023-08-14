@@ -6,7 +6,7 @@ import styles from "./page.module.css";
 
 export interface AppTimesheetsProps {}
 
-export default function AppTimesheets(props: AppTimesheetsProps) {
+export default function AppTimesheets() {
   return (
     <div className={styles.root}>
       <Header>

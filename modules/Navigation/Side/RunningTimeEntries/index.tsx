@@ -26,9 +26,7 @@ dayjs.extend(utc);
 
 export interface SideNavigationRunningTimeEntriesProps {}
 
-export default function SideNavigationRunningTimeEntries(
-  props: SideNavigationRunningTimeEntriesProps,
-) {
+export default function SideNavigationRunningTimeEntries() {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
   const [time, setTime] = useState(Date.now());

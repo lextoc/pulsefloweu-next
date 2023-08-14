@@ -31,7 +31,7 @@ dayjs.extend(utc);
 export interface NewTaskProps {}
 
 // TODO refactor
-export default function NewTask(props: NewTaskProps) {
+export default function NewTask() {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
