@@ -164,9 +164,26 @@ export default function TimeEntriesListItem({
   // For animating timer.
   useEffect(() => {
     if (!timeEntry.end_date) {
-      const interval = setInterval(() => setTime(Date.now()), 1000);
+      let interval: NodeJS.Timer;
+
+      const handleVisibilityChange = () => {
+        if (document.visibilityState === "visible") {
+          interval = setInterval(() => setTime(Date.now()), 1000);
+        } else {
+          clearInterval(interval);
+        }
+      };
+
+      handleVisibilityChange();
+
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+
       return () => {
         clearInterval(interval);
+        document.removeEventListener(
+          "visibilitychange",
+          handleVisibilityChange,
+        );
       };
     }
   }, []);
