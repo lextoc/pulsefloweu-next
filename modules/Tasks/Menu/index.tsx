@@ -1,19 +1,19 @@
 "use client";
-import { useForm } from "@mantine/form";
+import { useForm, yupResolver } from "@mantine/form";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import * as Yup from "yup";
+import { useEffect, useState } from "react";
 
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
 import { CreateTask, Task } from "@/api/types/tasks";
-import update from "@/api/update";
+import { taskValidationSchema } from "@/api/validationSchemas";
 import Button from "@/components/Buttons/Base";
 import Input from "@/components/Inputs/Base";
 import Form from "@/components/Inputs/Form";
 import Modal from "@/components/Overlays/Modals/Base";
 import Popover from "@/components/Overlays/Popover";
+import { useMutationWithErrorHandling } from "@/hooks/useMutationBase";
 import { useSnackbarStore } from "@/stores/snackbar";
 import { RecursivePartial } from "@/utils/helpers";
 
@@ -36,16 +36,7 @@ export default function TaskMenu({ task }: TaskMenuProps) {
         name: task.name,
       },
     },
-    validate: {
-      task: {
-        name: (value) => {
-          return Yup.string()
-            .required("Name is required")
-            .max(100, "Name must be at most 100 characters")
-            .validateSync(value);
-        },
-      },
-    },
+    validate: yupResolver(taskValidationSchema),
   });
 
   const deleteForm = useForm({
@@ -58,28 +49,16 @@ export default function TaskMenu({ task }: TaskMenuProps) {
     },
   });
 
+  const { mutateAsync, isLoading: isLoadingEdit } =
+    useMutationWithErrorHandling<RecursivePartial<CreateTask>>({
+      method: "PATCH",
+      endpoint: endpoints.tasks.detail(task.id),
+      form: editForm,
+    });
+
   const onEdit = (values: RecursivePartial<CreateTask>) => {
-    update<{ task: RecursivePartial<CreateTask> }>(
-      endpoints.tasks.detail(task.id),
-      {
-        task: {
-          ...values,
-        },
-      },
-    ).then((data) => {
-      if (data?.errors) {
-        showSnackbar({
-          message:
-            data?.errors?.full_messages?.join(" ") || data?.errors?.join(" "),
-          type: "error",
-        });
-      } else {
-        queryClient.invalidateQueries();
-        showSnackbar({
-          message: "Task has been updated",
-        });
-        setIsEditModalOpen(false);
-      }
+    mutateAsync(values).then(() => {
+      setIsEditModalOpen(false);
     });
   };
 
@@ -101,6 +80,14 @@ export default function TaskMenu({ task }: TaskMenuProps) {
       }
     });
   };
+
+  useEffect(() => {
+    editForm.setValues({ task: task });
+  }, [isEditModalOpen]);
+
+  useEffect(() => {
+    deleteForm.reset();
+  }, [isDeleteModalOpen]);
 
   return (
     <div className={styles.root}>
@@ -125,6 +112,7 @@ export default function TaskMenu({ task }: TaskMenuProps) {
           </div>
         }
       />
+
       <Modal isOpen={isEditModalOpen} close={() => setIsEditModalOpen(false)}>
         <h2>Edit task</h2>
         <p>Editing the "{task.name}" task.</p>
@@ -132,16 +120,19 @@ export default function TaskMenu({ task }: TaskMenuProps) {
           <Input
             label="Task name"
             placeholder="Task name"
-            {...editForm.getInputProps("name")}
+            {...editForm.getInputProps("task.name")}
           />
           <div className="buttons-right">
             <Button variant="subtle" onClick={() => setIsEditModalOpen(false)}>
               Cancel
             </Button>
-            <Button type="submit">Update</Button>
+            <Button disabled={isLoadingEdit} type="submit">
+              Update
+            </Button>
           </div>
         </Form>
       </Modal>
+
       <Modal
         isOpen={isDeleteModalOpen}
         close={() => setIsDeleteModalOpen(false)}

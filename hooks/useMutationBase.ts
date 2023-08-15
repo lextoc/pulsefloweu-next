@@ -9,12 +9,17 @@ import { CreateTask } from "@/api/types/tasks";
 import { CreateTimeEntry } from "@/api/types/time-entries";
 import update from "@/api/update";
 import { useSnackbarStore } from "@/stores/snackbar";
+import { RecursivePartial } from "@/utils/helpers";
 
 export type UseMutationWithErrorHandlingPossibleTypes =
   | CreateProject
   | CreateFolder
   | CreateTask
-  | CreateTimeEntry;
+  | CreateTimeEntry
+  | RecursivePartial<CreateProject>
+  | RecursivePartial<CreateFolder>
+  | RecursivePartial<CreateTask>
+  | RecursivePartial<CreateTimeEntry>;
 
 export type UseMutationWithErrorHandlingPossibleMethods =
   | "POST"
