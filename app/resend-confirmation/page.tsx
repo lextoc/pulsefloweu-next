@@ -30,10 +30,9 @@ export default function ForgotPassword() {
       method: "GET",
     };
 
-    fetch(
-      `${endpoints.auth.confirmationNew}?email=${values.email}`,
-      requestOptions,
-    )
+    const queryParams = new URLSearchParams({ email: values.email }).toString();
+
+    fetch(`${endpoints.auth.confirmationNew}?${queryParams}`, requestOptions)
       .then((response) => {
         return response.json();
       })
