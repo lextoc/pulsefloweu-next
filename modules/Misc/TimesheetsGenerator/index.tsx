@@ -16,7 +16,10 @@ import Button from "@/components/Buttons/Base";
 import Input from "@/components/Inputs/Base";
 import { useFetch } from "@/hooks/useQueryBase";
 import { useNavigationStore } from "@/stores/navigation";
-import { transformSecondsToHumanReadableString } from "@/utils/helpers";
+import {
+  transformSecondsToHumanReadableString,
+  transformSecondsToTimer,
+} from "@/utils/helpers";
 
 import styles from "./index.module.css";
 import TimesheetsGeneratorProjectsButton from "./ProjectButton";
@@ -148,7 +151,7 @@ export default function TimesheetsGenerator() {
 
   const getDurationFromDates = (start: string, end: string) => {
     const seconds = dayjs(end).diff(dayjs(start), "seconds");
-    return transformSecondsToHumanReadableString(seconds);
+    return transformSecondsToTimer(seconds);
   };
 
   return (

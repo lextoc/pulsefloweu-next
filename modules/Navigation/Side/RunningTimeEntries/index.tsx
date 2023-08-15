@@ -1,9 +1,6 @@
 import { useTimeout } from "@mantine/hooks";
-import {
-  IconPlayerPauseFilled,
-  IconPlayerPlayFilled,
-} from "@tabler/icons-react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { IconPlayerPauseFilled } from "@tabler/icons-react";
+import { useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
@@ -12,12 +9,11 @@ import { useEffect, useState } from "react";
 
 import { getHeaders } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
-import getPage from "@/api/getPage";
 import { TimeEntryWithTaskName } from "@/api/types/time-entries";
 import { useFetch } from "@/hooks/useQueryBase";
 import { useNavigationStore } from "@/stores/navigation";
 import { useSnackbarStore } from "@/stores/snackbar";
-import { transformSecondsToHumanReadableString } from "@/utils/helpers";
+import { transformSecondsToTimer } from "@/utils/helpers";
 
 import styles from "./index.module.css";
 
@@ -89,7 +85,7 @@ export default function SideNavigationRunningTimeEntries() {
           >
             <div className={styles.name}>{timeEntry.task_name}</div>
             <div className={styles.timer}>
-              {transformSecondsToHumanReadableString(seconds)}
+              {transformSecondsToTimer(seconds)}
             </div>
           </Link>
           <button className={styles.iconButton} onClick={onClick}>
