@@ -21,9 +21,9 @@ export default function SideNavigationProject({
 }: SideNavigationProjectProps) {
   const pathname = usePathname();
 
-  const { data: foldersData } = useFetch<Folder[]>(
-    endpoints.projects.folders(project.id || -1),
-  );
+  const { data: foldersData } = useFetch<Folder[]>(endpoints.folders.main, {
+    project_id: project.id,
+  });
   const folders: Folder[] = foldersData?.success ? foldersData.data : [];
   const set = useNavigationStore((state) => state.set);
 

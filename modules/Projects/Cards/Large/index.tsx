@@ -16,9 +16,9 @@ export interface ProjectsLargeCardProps {
 }
 
 export default function ProjectsLargeCard({ project }: ProjectsLargeCardProps) {
-  const { data: foldersData } = useFetch<Folder[]>(
-    endpoints.projects.folders(project.id || -1),
-  );
+  const { data: foldersData } = useFetch<Folder[]>(endpoints.folders.main, {
+    project_id: project.id,
+  });
   const folders: Folder[] = foldersData?.success ? foldersData.data : [];
 
   return (

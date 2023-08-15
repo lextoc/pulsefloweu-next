@@ -43,9 +43,9 @@ export default function TimesheetsGenerator() {
   const { data: projectsData } = useFetch<Project[]>(endpoints.projects.main);
   const projects: Project[] = projectsData?.success ? projectsData.data : [];
 
-  const { data: foldersData } = useFetch<Folder[]>(
-    endpoints.projects.folders(selectedProject?.id || -1),
-  );
+  const { data: foldersData } = useFetch<Folder[]>(endpoints.folders.main, {
+    project_id: selectedProject?.id,
+  });
   const folders: Folder[] = foldersData?.success ? foldersData.data : [];
 
   const form = useForm({

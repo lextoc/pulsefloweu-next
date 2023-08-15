@@ -40,10 +40,10 @@ export default function ProjectDetail({ projectId }: IProjectDetailProps) {
   const current = new URLSearchParams(Array.from(searchParams.entries()));
   const page = current.get("page");
 
-  const { data: foldersData } = useFetch<Folder[]>(
-    endpoints.projects.folders(projectId),
-    { page },
-  );
+  const { data: foldersData } = useFetch<Folder[]>(endpoints.folders.main, {
+    project_id: projectId,
+    page,
+  });
   const folders: Folder[] = foldersData?.success ? foldersData.data : [];
 
   if (!project) return null;

@@ -15,7 +15,6 @@ const folderRoutes = {
 
 const projectRoutes = {
   detail: (projectId: number) => apiUrl(`/projects/${projectId}`),
-  folders: (projectId: number) => apiUrl(`/projects/${projectId}/folders`),
   main: apiUrl("/projects"),
 };
 

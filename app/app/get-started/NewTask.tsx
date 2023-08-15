@@ -19,20 +19,34 @@ import Popover from "@/components/Overlays/Popover";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
 import { useMutationWithErrorHandling } from "@/hooks/useMutationBase";
 import { useFetch } from "@/hooks/useQueryBase";
+import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "./NewTask.module.css";
 
 dayjs.extend(advancedFormat);
 dayjs.extend(utc);
 
+const requestOptions = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    ...getHeaders(),
+  },
+};
+
 export interface NewTaskProps {}
 
 export default function NewTask() {
+  const showSnackbar = useSnackbarStore((state) => state.show);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
     null,
   );
 
-  const { data: projectsData } = useFetch<Project[]>(endpoints.projects.main);
+  const { data: projectsData, isLoading: isProjectsLoading } = useFetch<
+    Project[]
+  >(endpoints.projects.main, {
+    latest_time_entry_first: true,
+  });
   const projects: Project[] = projectsData?.success ? projectsData.data : [];
 
   if (!selectedProjectId && projects.length) {
@@ -41,8 +55,12 @@ export default function NewTask() {
 
   const [selectedFolderId, setSelectedFolderId] = useState<number | null>(null);
 
-  const { data: foldersData } = useFetch<Folder[]>(
-    endpoints.projects.folders(selectedProjectId || -1),
+  const { data: foldersData, isLoading: isFoldersLoading } = useFetch<Folder[]>(
+    endpoints.folders.main,
+    {
+      latest_time_entry_first: true,
+      project_id: selectedProjectId,
+    },
   );
   const folders: Folder[] = foldersData?.success ? foldersData.data : [];
 
@@ -75,25 +93,25 @@ export default function NewTask() {
       },
     }).then((data) => {
       const taskId = data?.data?.id;
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...getHeaders(),
-        },
-      };
       fetch(endpoints.misc.stopAll, requestOptions)
         .then((response) => {
           return response.json();
         })
-        .then(() => {
-          mutateTimeEntry({
-            time_entry: {
-              start_date: dayjs().format(),
-              folder_id: selectedFolderId,
-              task_id: taskId,
-            },
-          });
+        .then((_response) => {
+          if (_response.success) {
+            mutateTimeEntry({
+              time_entry: {
+                start_date: dayjs().format(),
+                folder_id: selectedFolderId,
+                task_id: taskId,
+              },
+            });
+          } else {
+            showSnackbar({
+              message: "Something went wrong",
+              type: "error",
+            });
+          }
         });
     });
   };
@@ -118,6 +136,7 @@ export default function NewTask() {
           <Input
             label="Create new task"
             placeholder="New task name"
+            disabled={isProjectsLoading || isFoldersLoading}
             {...form.getInputProps("task.name")}
           />
         </Form>
