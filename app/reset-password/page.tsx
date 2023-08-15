@@ -1,7 +1,7 @@
 "use client";
 import { useForm } from "@mantine/form";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 import endpoints from "@/api/endpoints";
@@ -13,23 +13,30 @@ import { useSnackbarStore } from "@/stores/snackbar";
 
 import styles from "../page.module.css";
 
-export interface ForgotPasswordFormValues {
-  email: string;
+export interface ResetPasswordFormValues {
+  password: string;
+  password_confirmation: string;
 }
 
-export interface ForgotPasswordProps {}
+export interface ResetPasswordProps {}
 
 export default function ForgotPassword() {
   const showSnackbar = useSnackbarStore((state) => state.show);
   const { push } = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const searchParams = useSearchParams();
 
-  const onSubmit = (values: ForgotPasswordFormValues) => {
+  const onSubmit = (values: ResetPasswordFormValues) => {
     setIsLoading(true);
     const requestOptions = {
-      method: "POST",
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
+      body: JSON.stringify({
+        ["access-token"]: searchParams.get("access-token"),
+        client: searchParams.get("client"),
+        uid: searchParams.get("uid"),
+        ...values,
+      }),
     };
 
     fetch(endpoints.auth.password, requestOptions)
@@ -45,7 +52,7 @@ export default function ForgotPassword() {
         } else {
           push("/");
           showSnackbar({
-            message: "Password reset e-mail sent",
+            message: data.message,
           });
         }
       })
@@ -54,8 +61,8 @@ export default function ForgotPassword() {
 
   const form = useForm({
     initialValues: {
-      email: "",
-      redirect_url: "http://" + window.location.host + "/reset-password",
+      password: "",
+      password_confirmation: "",
     },
 
     validate: {
@@ -71,15 +78,23 @@ export default function ForgotPassword() {
       <div className={styles.login}>
         <h1>Forgot password?</h1>
         <p>
-          Please fill in your details below and click on "Continue" to send a
-          password reset link.
+          Please fill in your details below and click on "Continue" to update
+          your password.
         </p>
         <Form onSubmit={form.onSubmit((values) => onSubmit(values))}>
           <Input
-            label="Email address"
-            {...form.getInputProps("email")}
-            placeholder="Email"
-            autoComplete="email"
+            label="New password"
+            placeholder="New password"
+            type="password"
+            autoComplete="current-password"
+            {...form.getInputProps("password")}
+          />
+          <Input
+            label="Repeat new password"
+            placeholder="New password confirmation"
+            type="password"
+            autoComplete="new-password"
+            {...form.getInputProps("password_confirmation")}
           />
           <div className={styles.submit}>
             <Button variant="subtle" nextLink="/">

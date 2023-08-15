@@ -138,3 +138,12 @@
   color: rgba(var(--secondary), 0.5);
   font-size: 0.9rem;
 }
+
+.submit {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit button {
+  margin-left: 1rem;
+}

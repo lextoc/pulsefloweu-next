@@ -5,6 +5,7 @@ const authRoutes = {
   main: apiUrl("/auth"),
   signIn: apiUrl("/auth/sign_in"),
   validateToken: apiUrl("/auth/validate_token"),
+  password: apiUrl("/auth/password"),
 };
 
 const folderRoutes = {
