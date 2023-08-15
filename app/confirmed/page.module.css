@@ -1,0 +1,129 @@
+.confirmedWrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-right: var(--box-margin);
+  padding-left: var(--box-margin);
+  background: linear-gradient(
+    75deg,
+    rgba(var(--secondary-bright), 0.01),
+    rgb(var(--light-background))
+  );
+  border-top: 0.5rem solid rgb(var(--main));
+  border-bottom: 0.5rem solid rgb(var(--main));
+  padding-top: 5vh;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+@media (min-width: 1200px) {
+  .confirmedWrapper {
+    padding-top: 15vh;
+    padding-bottom: 15vh;
+  }
+}
+
+@keyframes moveAround {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.confirmedWrapper::before {
+  content: "";
+  display: block;
+  bottom: -75vw;
+  left: -50vw;
+  width: 90vw;
+  height: 90vw;
+  border-radius: 90vw;
+  background: linear-gradient(
+    rgba(var(--secondary-bright), 0.05),
+    rgba(var(--secondary-bright), 0)
+  );
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(var(--secondary-bright), 0.05);
+  filter: blur(0.8rem);
+  animation: moveAround 50s ease-in-out infinite;
+}
+
+.confirmedWrapper::after {
+  content: "";
+  display: block;
+  bottom: -50vw;
+  right: -50vw;
+  width: 75vw;
+  height: 75vw;
+  border-radius: 75vw;
+  background: linear-gradient(
+    rgba(var(--secondary-bright), 0.1),
+    rgba(var(--secondary-bright), 0),
+    rgba(var(--secondary-bright), 0),
+    rgba(var(--secondary-bright), 0)
+  );
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(var(--secondary-bright), 0.05);
+  filter: blur(0.1rem);
+  animation: moveAround 60s ease-in-out infinite;
+}
+
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 2.5em;
+  max-width: 40rem;
+  text-align: center;
+}
+
+.logoWrapper a {
+  justify-content: center;
+}
+
+.logoWrapper p {
+  margin: 3rem 0 2rem;
+}
+
+.confirmed {
+  background: rgb(var(--white));
+  border-radius: var(--border-radius);
+  padding: var(--box-padding);
+  width: var(--box-width);
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.confirmed::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 10%;
+  left: 10%;
+  bottom: 0;
+  border-bottom: 1rem solid rgba(var(--secondary-bright), 0.3);
+  border-radius: var(--border-radius);
+  filter: blur(0.5rem);
+  z-index: -1;
+}
+
+.links {
+  margin: 0.8rem 0.8rem 4rem;
+}
+
+.links a {
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  color: rgba(var(--secondary), 0.5);
+  font-size: 0.9rem;
+}

@@ -1,11 +1,9 @@
 "use client";
 
 import { useForm } from "@mantine/form";
-import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { setCookies } from "@/api/cookies";
 import endpoints from "@/api/endpoints";
 import Button from "@/components/Buttons/Base";
 import Input from "@/components/Inputs/Base";
@@ -22,7 +20,6 @@ export interface RegisterFormValues {
 export interface RegisterFormProps {}
 
 export default function RegisterForm() {
-  const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
   const { push } = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -35,13 +32,8 @@ export default function RegisterForm() {
       body: JSON.stringify(values),
     };
 
-    let accessToken: string | undefined = undefined;
-    let client: string | undefined = undefined;
-
     fetch(endpoints.auth.main, requestOptions)
       .then((response) => {
-        accessToken = response.headers.get("access-token") || undefined;
-        client = response.headers.get("client") || undefined;
         return response.json();
       })
       .then((data) => {
@@ -51,13 +43,10 @@ export default function RegisterForm() {
             type: "error",
           });
         } else {
-          setCookies({
-            ["access-token"]: accessToken!,
-            client: client!,
-            uid: data.data.uid,
+          push("/");
+          showSnackbar({
+            message: "Confirmation e-mail sent",
           });
-          queryClient.invalidateQueries([endpoints.auth.validateToken]);
-          push("/app/dashboard");
         }
       })
       .finally(() => setIsLoading(false));
