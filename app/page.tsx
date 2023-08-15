@@ -29,6 +29,8 @@ export default function Home() {
         <a href="mailto:alexander.claes10@gmail.com">Contact support</a>
         &nbsp;•&nbsp;
         <Link href="/forgot-password">Forgot password</Link>
+        &nbsp;•&nbsp;
+        <Link href="/resend-confirmation">Resend confirmation e-mail</Link>
       </div>
     </div>
   );
