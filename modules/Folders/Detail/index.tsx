@@ -63,10 +63,10 @@ export default function FoldersDetail({ folderId }: FoldersDetailProps) {
   /**
    * Fetch tasks
    */
-  const { data: tasksData } = useFetch<Task[]>(
-    endpoints.folders.tasks(folder?.id || -1),
-    { page },
-  );
+  const { data: tasksData } = useFetch<Task[]>(endpoints.tasks.main, {
+    folder_id: folder?.id,
+    page,
+  });
   const tasks: Task[] = tasksData?.success ? tasksData.data : [];
 
   if (!folder) return null;

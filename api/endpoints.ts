@@ -10,7 +10,6 @@ const authRoutes = {
 const folderRoutes = {
   main: apiUrl("/folders"),
   detail: (folderId: number) => apiUrl(`/folders/${folderId}`),
-  tasks: (folderId: number) => apiUrl(`/folders/${folderId}/tasks`),
 };
 
 const projectRoutes = {
@@ -21,7 +20,6 @@ const projectRoutes = {
 const taskRoutes = {
   detail: (taskId: number) => apiUrl(`/tasks/${taskId}`),
   main: apiUrl("/tasks"),
-  timeEntries: (taskId: number) => apiUrl(`/tasks/${taskId}/time_entries`),
 };
 
 const timeEntryRoutes = {

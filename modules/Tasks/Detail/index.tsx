@@ -45,9 +45,10 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
    * Fetch time entries
    */
   const timeEntriesQuery = useQuery({
-    queryKey: [endpoints.tasks.timeEntries(taskId!), page],
+    queryKey: [endpoints.timeEntries.main],
     queryFn: () =>
-      getPage(endpoints.tasks.timeEntries(taskId!), {
+      getPage(endpoints.timeEntries.main, {
+        task_id: taskId,
         page,
       }),
   });
