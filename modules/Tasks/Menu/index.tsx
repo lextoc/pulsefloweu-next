@@ -43,7 +43,6 @@ export default function TaskMenu({ task }: TaskMenuProps) {
     initialValues: {
       delete: "",
     },
-
     validate: {
       delete: (value) => (value === "DELETE" ? null : "Type DELETE"),
     },
@@ -86,7 +85,7 @@ export default function TaskMenu({ task }: TaskMenuProps) {
   }, [isEditModalOpen]);
 
   useEffect(() => {
-    deleteForm.reset();
+    deleteForm.setValues({ delete: "" });
   }, [isDeleteModalOpen]);
 
   return (

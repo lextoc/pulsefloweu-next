@@ -55,7 +55,8 @@ export const useMutationWithErrorHandling = <
         form?.reset();
         queryClient.invalidateQueries();
         showSnackbar({
-          message: "Folder has been created",
+          message:
+            method === "POST" ? "Successfully created" : "Successfully updated",
         });
       } else {
         showSnackbar({

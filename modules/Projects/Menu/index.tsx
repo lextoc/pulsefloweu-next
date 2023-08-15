@@ -1,19 +1,19 @@
 "use client";
-import { useForm } from "@mantine/form";
+import { useForm, yupResolver } from "@mantine/form";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import * as Yup from "yup";
+import { useEffect, useState } from "react";
 
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
 import { CreateProject, Project } from "@/api/types/projects";
-import update from "@/api/update";
+import { projectValidationSchema } from "@/api/validationSchemas";
 import Button from "@/components/Buttons/Base";
 import Input from "@/components/Inputs/Base";
 import Form from "@/components/Inputs/Form";
 import Modal from "@/components/Overlays/Modals/Base";
 import Popover from "@/components/Overlays/Popover";
+import { useMutationWithErrorHandling } from "@/hooks/useMutationBase";
 import { useSnackbarStore } from "@/stores/snackbar";
 import { RecursivePartial } from "@/utils/helpers";
 
@@ -37,47 +37,28 @@ export default function ProjectMenu({ project, white }: ProjectMenuProps) {
         name: project.name,
       },
     },
-
-    validate: {
-      project: {
-        name: (value) => {
-          return Yup.string()
-            .required("Name is required")
-            .max(100, "Name must be at most 100 characters")
-            .validateSync(value);
-        },
-      },
-    },
+    validate: yupResolver(projectValidationSchema),
   });
 
   const deleteForm = useForm({
     initialValues: {
       delete: "",
     },
-
     validate: {
       delete: (value) => (value === "DELETE" ? null : "Type DELETE"),
     },
   });
 
+  const { mutateAsync, isLoading: isLoadingEdit } =
+    useMutationWithErrorHandling<RecursivePartial<CreateProject>>({
+      method: "PATCH",
+      endpoint: endpoints.projects.detail(project.id),
+      form: editForm,
+    });
+
   const onEdit = (values: RecursivePartial<CreateProject>) => {
-    update<RecursivePartial<CreateProject>>(
-      endpoints.projects.detail(project.id),
-      values,
-    ).then((data) => {
-      if (data?.errors) {
-        showSnackbar({
-          message:
-            data?.errors?.full_messages?.join(" ") || data?.errors?.join(" "),
-          type: "error",
-        });
-      } else {
-        queryClient.invalidateQueries();
-        showSnackbar({
-          message: "Project has been updated",
-        });
-        setIsEditModalOpen(false);
-      }
+    mutateAsync(values).then(() => {
+      setIsEditModalOpen(false);
     });
   };
 
@@ -98,6 +79,14 @@ export default function ProjectMenu({ project, white }: ProjectMenuProps) {
       }
     });
   };
+
+  useEffect(() => {
+    editForm.setValues({ project: project });
+  }, [isEditModalOpen]);
+
+  useEffect(() => {
+    deleteForm.setValues({ delete: "" });
+  }, [isDeleteModalOpen]);
 
   return (
     <div className={styles.root}>
@@ -130,13 +119,15 @@ export default function ProjectMenu({ project, white }: ProjectMenuProps) {
           <Input
             label="Project name"
             placeholder="Project name"
-            {...editForm.getInputProps("name")}
+            {...editForm.getInputProps("project.name")}
           />
           <div className="buttons-right">
             <Button variant="subtle" onClick={() => setIsEditModalOpen(false)}>
               Cancel
             </Button>
-            <Button type="submit">Update</Button>
+            <Button disabled={isLoadingEdit} type="submit">
+              Update
+            </Button>
           </div>
         </Form>
       </Modal>

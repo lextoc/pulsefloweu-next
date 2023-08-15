@@ -1,19 +1,20 @@
 "use client";
-import { useForm } from "@mantine/form";
+import { useForm, yupResolver } from "@mantine/form";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import * as Yup from "yup";
+import { useEffect, useState } from "react";
 
 import destroy from "@/api/destroy";
 import endpoints from "@/api/endpoints";
 import { CreateFolder, Folder } from "@/api/types/folders";
 import update from "@/api/update";
+import { folderValidationSchema } from "@/api/validationSchemas";
 import Button from "@/components/Buttons/Base";
 import Input from "@/components/Inputs/Base";
 import Form from "@/components/Inputs/Form";
 import Modal from "@/components/Overlays/Modals/Base";
 import Popover from "@/components/Overlays/Popover";
+import { useMutationWithErrorHandling } from "@/hooks/useMutationBase";
 import { useSnackbarStore } from "@/stores/snackbar";
 import { RecursivePartial } from "@/utils/helpers";
 
@@ -36,47 +37,28 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
         name: folder.name,
       },
     },
-
-    validate: {
-      folder: {
-        name: (value) => {
-          return Yup.string()
-            .required("Name is required")
-            .max(100, "Name must be at most 100 characters")
-            .validateSync(value);
-        },
-      },
-    },
+    validate: yupResolver(folderValidationSchema),
   });
 
   const deleteForm = useForm({
     initialValues: {
       delete: "",
     },
-
     validate: {
       delete: (value) => (value === "DELETE" ? null : "Type DELETE"),
     },
   });
 
+  const { mutateAsync, isLoading: isLoadingEdit } =
+    useMutationWithErrorHandling<RecursivePartial<CreateFolder>>({
+      method: "PATCH",
+      endpoint: endpoints.folders.detail(folder.id),
+      form: editForm,
+    });
+
   const onEdit = (values: RecursivePartial<CreateFolder>) => {
-    update<RecursivePartial<CreateFolder>>(
-      endpoints.folders.detail(folder.id),
-      values,
-    ).then((data) => {
-      if (data?.errors) {
-        showSnackbar({
-          message:
-            data?.errors?.full_messages?.join(" ") || data?.errors?.join(" "),
-          type: "error",
-        });
-      } else {
-        queryClient.invalidateQueries();
-        showSnackbar({
-          message: "Folder has been updated",
-        });
-        setIsEditModalOpen(false);
-      }
+    mutateAsync(values).then(() => {
+      setIsEditModalOpen(false);
     });
   };
 
@@ -98,6 +80,14 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
       }
     });
   };
+
+  useEffect(() => {
+    editForm.setValues({ folder: folder });
+  }, [isEditModalOpen]);
+
+  useEffect(() => {
+    deleteForm.setValues({ delete: "" });
+  }, [isDeleteModalOpen]);
 
   return (
     <div className={styles.root}>
@@ -122,6 +112,7 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
           </div>
         }
       />
+
       <Modal isOpen={isEditModalOpen} close={() => setIsEditModalOpen(false)}>
         <h2>Edit folder</h2>
         <p>Editing the "{folder.name}" folder.</p>
@@ -135,10 +126,13 @@ export default function FolderMenu({ folder }: FolderMenuProps) {
             <Button variant="subtle" onClick={() => setIsEditModalOpen(false)}>
               Cancel
             </Button>
-            <Button type="submit">Update</Button>
+            <Button disabled={isLoadingEdit} type="submit">
+              Update
+            </Button>
           </div>
         </Form>
       </Modal>
+
       <Modal
         isOpen={isDeleteModalOpen}
         close={() => setIsDeleteModalOpen(false)}
