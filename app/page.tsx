@@ -12,8 +12,8 @@ export default function Home() {
         <div>
           <Logo />
           <p>
-            Use tracky as your tool for time entries and generating timesheets,
-            for free.
+            Use PulseFlow as your tool for time entries and generating
+            timesheets, for free.
           </p>
         </div>
       </div>

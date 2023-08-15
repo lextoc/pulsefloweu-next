@@ -52,11 +52,11 @@ function actualLogo({
       </svg>
       {!noText && (
         <div
-          className={`${styles.tracky} ${small ? styles.trackySmall : ""} ${
-            white ? styles.trackyWhite : ""
-          }`}
+          className={`${styles.pulseflow} ${
+            small ? styles.pulseflowSmall : ""
+          } ${white ? styles.pulseflowWhite : ""}`}
         >
-          Tracky
+          PulseFlow
         </div>
       )}
     </>

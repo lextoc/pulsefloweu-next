@@ -204,7 +204,7 @@ export function Onboarding() {
           <Input
             label="Project name"
             {...projectForm.getInputProps("projectName")}
-            placeholder="e.g. 'Tracky'"
+            placeholder="e.g. 'PulseFlow'"
           />
           <Input
             label="Folder name"

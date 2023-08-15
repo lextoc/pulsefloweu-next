@@ -27,7 +27,7 @@ const font = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Tracky",
+  title: "PulseFlow",
   description: "",
 };
 

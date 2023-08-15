@@ -11,7 +11,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "api.tracky.be",
+        hostname: "api.pulseflow.eu",
         port: "",
         pathname: "/**",
       },
