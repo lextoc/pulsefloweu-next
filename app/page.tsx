@@ -12,8 +12,12 @@ export default function Home() {
         <div>
           <Logo />
           <p>
-            Use PulseFlow as your tool for time entries and generating
-            timesheets, for free.
+            PulseFlow offers complimentary access for individual users, allowing
+            you to harness its time entry and timesheet generation features
+            without any charges. As our platform evolves, incorporating team
+            functionality, it's important to note that this enhanced aspect will
+            be available under a subscription model to ensure its continued
+            availability and quality.
           </p>
         </div>
       </div>
