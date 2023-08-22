@@ -12,7 +12,7 @@ import Pagination from "@/components/Navigation/Pagination";
 import { Header } from "@/components/Shared/Header";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
 import { useFetch } from "@/hooks/useQueryBase";
-import TimeEntriesListItem from "@/modules/TimeEntries/ListItem";
+import TimeEntryListItem from "@/modules/TimeEntries/ListItem";
 import { useNavigationStore } from "@/stores/navigation";
 import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
@@ -103,7 +103,7 @@ export default function AppTimer() {
                   {/* @ts-ignore */}
                   {timeEntries[date].time_entries.map(
                     (timeEntry: TimeEntry) => (
-                      <TimeEntriesListItem
+                      <TimeEntryListItem
                         key={`timers-time-entry-${timeEntry.id}`}
                         timeEntry={timeEntry}
                       />

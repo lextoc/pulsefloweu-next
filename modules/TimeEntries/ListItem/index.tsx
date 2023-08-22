@@ -29,13 +29,13 @@ dayjs.extend(timezone);
 dayjs.extend(advancedFormat);
 dayjs.extend(utc);
 
-export interface TimeEntriesListItemProps {
+export interface TimeEntryListItemProps {
   timeEntry: TimeEntry;
 }
 
-export default function TimeEntriesListItem({
+export default function TimeEntryListItem({
   timeEntry,
-}: TimeEntriesListItemProps) {
+}: TimeEntryListItemProps) {
   const queryClient = useQueryClient();
   const showSnackbar = useSnackbarStore((state) => state.show);
 
@@ -87,7 +87,9 @@ export default function TimeEntriesListItem({
   const form = useForm({
     initialValues: {
       startDate: dayjs(timeEntry.start_date).format("HH:mm"),
-      endDate: dayjs(timeEntry.end_date).format("HH:mm"),
+      endDate: timeEntry.end_date
+        ? dayjs(timeEntry.end_date).format("HH:mm")
+        : "",
       date: dayjs(timeEntry.start_date).format("YYYY-MM-DD"),
     },
 
@@ -96,30 +98,36 @@ export default function TimeEntriesListItem({
     },
   });
 
-  const [dates] = useDebouncedValue(form.getTransformedValues(), 3000);
+  const [dates] = useDebouncedValue(form.values, 3000);
   const isEnteringNewValues =
-    JSON.stringify(dates) !== JSON.stringify(form.getTransformedValues());
+    JSON.stringify(dates) !== JSON.stringify(form.values);
 
   useEffect(() => {
     let newStartDate = setHoursAndMinutes(dayjs(dates.date), dates.startDate);
-    let newEndDate = setHoursAndMinutes(dayjs(dates.date), dates.endDate);
+    let newEndDate = setHoursAndMinutes(
+      dayjs(dates.date),
+      !dates.endDate ? dayjs().format("HH:mm") : dates.endDate,
+    );
     if (
       !dayjs(timeEntry.start_date).isValid() ||
       !dayjs(newStartDate).isValid() ||
       !dayjs(newEndDate).isValid() ||
-      !dayjs(timeEntry.end_date).isValid() ||
+      (!dayjs(timeEntry.end_date).isValid() && timeEntry.end_date) ||
       dayjs(newStartDate).isAfter(dayjs(newEndDate)) ||
       (dayjs(newStartDate).isSame(dayjs(timeEntry.start_date), "minutes") &&
-        dayjs(newEndDate).isSame(dayjs(timeEntry.end_date), "minutes"))
+        (dayjs(newEndDate).isSame(dayjs(timeEntry.end_date), "minutes") ||
+          !timeEntry.end_date))
     ) {
       form.setValues({
         startDate: dayjs(timeEntry.start_date).format("HH:mm"),
-        endDate: dayjs(timeEntry.end_date).format("HH:mm"),
+        endDate: timeEntry.end_date
+          ? dayjs(timeEntry.end_date).format("HH:mm")
+          : "",
         date: dayjs(timeEntry.start_date).format("YYYY-MM-DD"),
       });
       return;
     }
-    onTimeChange(dates.startDate, dates.endDate);
+    onTimeChange(dates.startDate, dates.endDate || undefined);
   }, [dates]);
 
   const setHoursAndMinutes = (date: Dayjs, value: string): string => {
@@ -132,13 +140,15 @@ export default function TimeEntriesListItem({
       .format();
   };
 
-  const onTimeChange = (start: string, end: string) => {
+  const onTimeChange = (start: string, end?: string) => {
     let newStartDate = setHoursAndMinutes(dayjs(form.values.date), start);
-    let newEndDate = setHoursAndMinutes(dayjs(form.values.date), end);
+    let newEndDate = end
+      ? setHoursAndMinutes(dayjs(form.values.date), end)
+      : undefined;
     updateDate(newStartDate, newEndDate);
   };
 
-  const updateDate = (startDate: string, endDate: string) => {
+  const updateDate = (startDate: string, endDate?: string) => {
     update<{ time_entry: Partial<TimeEntry> }>(
       endpoints.timeEntries.detail(timeEntry.id),
       {
@@ -189,10 +199,22 @@ export default function TimeEntriesListItem({
   }, []);
 
   useEffect(() => {
-    form.setValues({
-      startDate: dayjs(timeEntry.start_date).format("HH:mm"),
-      endDate: dayjs(timeEntry.end_date).format("HH:mm"),
-    });
+    if (dayjs(timeEntry.start_date).format("HH:mm") !== form.values.startDate) {
+      form.setFieldValue(
+        "startDate",
+        dayjs(timeEntry.start_date).format("HH:mm"),
+      );
+    }
+
+    if (
+      timeEntry.end_date &&
+      dayjs(timeEntry.end_date).format("HH:mm") !== form.values.endDate
+    ) {
+      form.setFieldValue(
+        "endDate",
+        timeEntry.end_date ? dayjs(timeEntry.end_date).format("HH:mm") : "",
+      );
+    }
   }, [timeEntry]);
 
   return (
@@ -226,7 +248,6 @@ export default function TimeEntriesListItem({
           type="date"
           transparent
           small
-          disabled={!timeEntry.end_date}
           {...form.getInputProps("date")}
         />
         <Input
@@ -234,7 +255,6 @@ export default function TimeEntriesListItem({
           type="time"
           transparent
           small
-          disabled={!timeEntry.end_date}
           {...form.getInputProps("startDate")}
         />
         <span className={styles.separator}>–</span>
@@ -243,7 +263,6 @@ export default function TimeEntriesListItem({
           type="time"
           transparent
           small
-          disabled={!timeEntry.end_date}
           min={form.getInputProps("startDate").value}
           {...form.getInputProps("endDate")}
         />

@@ -13,7 +13,7 @@ import { Task } from "@/api/types/tasks";
 import { TimeEntry } from "@/api/types/time-entries";
 import Pagination from "@/components/Navigation/Pagination";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
-import TimeEntriesListItem from "@/modules/TimeEntries/ListItem";
+import TimeEntryListItem from "@/modules/TimeEntries/ListItem";
 import { useNavigationStore } from "@/stores/navigation";
 import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
@@ -131,7 +131,7 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
                 </span>
               </h3>
               {timeEntries[date].time_entries.map((timeEntry: TimeEntry) => (
-                <TimeEntriesListItem
+                <TimeEntryListItem
                   key={`timer-time-entry-${timeEntry.id}`}
                   timeEntry={timeEntry}
                 />

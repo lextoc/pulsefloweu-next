@@ -45,15 +45,13 @@ export default function TimeEntryMenu({ timeEntry }: TimeEntryMenuProps) {
       <Popover
         content={
           <div className={styles.menu}>
-            {timeEntry.end_date && (
-              <Button
-                variant="subtle"
-                onClick={() => setIsEditModalOpen(true)}
-                noMargin
-              >
-                Edit time entry
-              </Button>
-            )}
+            <Button
+              variant="subtle"
+              onClick={() => setIsEditModalOpen(true)}
+              noMargin
+            >
+              Edit time entry
+            </Button>
             <Button
               variant="subtle"
               danger
