@@ -14,6 +14,7 @@ import { TimeEntry } from "@/api/types/time-entries";
 import Pagination from "@/components/Navigation/Pagination";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
 import TimeEntriesListItem from "@/modules/TimeEntries/ListItem";
+import { useNavigationStore } from "@/stores/navigation";
 import { transformSecondsToHumanReadableString } from "@/utils/helpers";
 
 import TaskMenu from "../Menu";
@@ -31,7 +32,8 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
   const current = new URLSearchParams(Array.from(searchParams.entries()));
   const page = current.get("page");
 
-  /** * Fetch task
+  /**
+   * Fetch task
    */
   const query = useQuery({
     queryKey: [endpoints.tasks.detail(taskId!)],
@@ -40,6 +42,9 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
 
   let task: Task | null = null;
   if (query.data?.success) task = query.data?.data;
+
+  const set = useNavigationStore((state) => state.set);
+  set({ menuTitle: `Viewing task "${task?.name || ""}"` });
 
   /**
    * Fetch time entries
