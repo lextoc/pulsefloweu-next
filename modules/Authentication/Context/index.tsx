@@ -1,6 +1,6 @@
 "use client";
 
-import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 import { createContext } from "react";
 
@@ -25,10 +25,11 @@ export function AuthenticationProvider({
 }: AuthenticationProviderProps) {
   const pathname = usePathname();
   const { push } = useRouter();
+  const headers = getHeaders();
 
   const query = useQuery({
     queryKey: [endpoints.auth.validateToken],
-    queryFn: () => validateToken(getHeaders()),
+    queryFn: () => validateToken(headers),
     initialData: { success: true, data: initialUser },
   });
 
@@ -38,7 +39,6 @@ export function AuthenticationProvider({
   const setAuthentication = useAuthenticationStore((state) => state.set);
   const clearAuthentication = useAuthenticationStore((state) => state.clear);
   const accessToken = useAuthenticationStore((state) => state.accessToken);
-  const headers = getHeaders();
 
   if (pathname.startsWith("/app") && !accessToken && !headers["access-token"]) {
     push("/");

@@ -29,7 +29,7 @@ export interface TaskCardProps {
   task: Task;
 }
 
-export default function TasksCard({ task }: TaskCardProps) {
+export default function TaskCard({ task }: TaskCardProps) {
   const [time, setTime] = useState(Date.now());
   const [isExploding, setIsExploding] = useState(false);
 

@@ -12,11 +12,11 @@ import styles from "./index.module.css";
 dayjs.extend(advancedFormat);
 dayjs.extend(utc);
 
-export interface FoldersCardProps {
+export interface FolderCardProps {
   folder: Folder;
 }
 
-export default function FoldersCard({ folder }: FoldersCardProps) {
+export default function FolderCard({ folder }: FolderCardProps) {
   return (
     <Card
       header={

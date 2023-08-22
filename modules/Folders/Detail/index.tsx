@@ -17,7 +17,7 @@ import Pagination from "@/components/Navigation/Pagination";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
 import { useFetch } from "@/hooks/useQueryBase";
 import FolderMenu from "@/modules/Folders/Menu";
-import TasksCard from "@/modules/Tasks/Cards/Base";
+import TaskCard from "@/modules/Tasks/Cards/Base";
 import TasksCreateCard from "@/modules/Tasks/Cards/Create";
 import { useNavigationStore } from "@/stores/navigation";
 
@@ -104,7 +104,7 @@ export default function FoldersDetail({ folderId }: FoldersDetailProps) {
       <div className={`${styles.cards} cards`}>
         <TasksCreateCard folder={folder} />
         {tasks.map((task) => (
-          <TasksCard key={task.id} task={task} />
+          <TaskCard key={task.id} task={task} />
         ))}
       </div>
       <Pagination {...tasksData?.meta} />

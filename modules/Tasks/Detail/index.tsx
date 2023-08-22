@@ -102,6 +102,16 @@ export default function TasksDetail({ taskId }: TasksDetailProps) {
             </p>
           </div>
         </header>
+        <p>
+          You've spent a total of&nbsp;
+          <strong>
+            {task &&
+              transformSecondsToHumanReadableString(
+                task?.total_duration_of_time_entries,
+              )}
+          </strong>{" "}
+          on this task.
+        </p>
         <hr />
         <h2 className={styles.contentTitle}>Your time entries</h2>
         {Object.keys(timeEntries).map((date: string) => {

@@ -11,7 +11,7 @@ import Pagination from "@/components/Navigation/Pagination";
 import { Header } from "@/components/Shared/Header";
 import PaddingContainer from "@/components/Shared/PaddingContainer";
 import { useFetch } from "@/hooks/useQueryBase";
-import FoldersCard from "@/modules/Folders/Cards/Base";
+import FolderCard from "@/modules/Folders/Cards/Base";
 import FoldersCreateCard from "@/modules/Folders/Cards/Create";
 import ProjectMenu from "@/modules/Projects/Menu";
 import { useNavigationStore } from "@/stores/navigation";
@@ -62,7 +62,7 @@ export default function ProjectDetail({ projectId }: IProjectDetailProps) {
         <h2>Folders</h2>
         <div className="cards">
           {folders.map((folder) => (
-            <FoldersCard key={folder.id} folder={folder} />
+            <FolderCard key={folder.id} folder={folder} />
           ))}
           <FoldersCreateCard project={project} />
         </div>
